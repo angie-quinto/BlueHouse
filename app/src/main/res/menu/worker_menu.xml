@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/worker_navHome"
+            android:icon="@drawable/ic_baseline_account_box_24"
+            android:title="Home"/>
+        <item
+            android:id="@+id/worker_profile"
+            android:icon="@drawable/ic_baseline_account_box_24"
+            android:title="Profile"/>
+        <item
+            android:id="@+id/worker_messages"
+            android:icon="@drawable/ic_baseline_account_box_24"
+            android:title="Messages"/>
+
+        <item
+            android:id="@+id/worker_settings"
+            android:icon="@drawable/ic_baseline_account_box_24"
+            android:title="Settings"/>
+        <item
+            android:id="@+id/worker_savedServices"
+            android:icon="@drawable/ic_baseline_account_box_24"
+            android:title="Saved Offers/Services"/>
+
+        <item
+            android:id="@+id/worker_help"
+            android:icon="@drawable/ic_baseline_account_box_24"
+            android:title="Help &amp; Feedback"/>
+        <item
+            android:id="@+id/worker_signOut"
+            android:icon="@drawable/ic_baseline_account_box_24"
+            android:title="Sign out"/>
+    </group>
+
+    <item android:title="others">
+        <menu>
+            <item
+                android:id="@+id/worker_share"
+                android:icon="@drawable/ic_baseline_account_box_24"
+                android:title="Share"/>
+            <item
+                android:id="@+id/worker_contactUs"
+                android:icon="@drawable/ic_baseline_account_box_24"
+                android:title="Contact Us"/>
+
+        </menu>
+    </item>
+
+</menu>

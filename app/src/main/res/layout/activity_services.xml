@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.Services">
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/chipGroup"
+        android:layout_width="332dp"
+        android:layout_height="521dp"
+        android:layout_marginTop="84dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chp_plumbing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checkable="true"
+            android:text="Plumbing" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chp_waterPipe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checkable="true"
+            android:text="Water Pipe Maintenance" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chp_carpentry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checkable="true"
+            android:text="Carpentry" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chp_jetMatic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checkable="true"
+            android:text="JetMatic Pump Maintenance" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chp_upholstery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checkable="true"
+            android:text="Upholstery" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chp_septic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checkable="true"
+            android:text="Septic Tank Maintenance" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chp_gardening"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checkable="true"
+            android:text="Gardening" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chp_homeAppliance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checkable="true"
+            android:text="Home Appliance Maintenance" />
+
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chp_roofing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checkable="true"
+            android:text="Roofing" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chp_houseCleaning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checkable="true"
+            android:text="House Cleaning" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chp_laundry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checkable="true"
+            android:text="Laundry Services" />
+
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chp_beautician"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checkable="true"
+            android:text="Beautician" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chp_electrical_maintenance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checkable="true"
+            android:text="Electrical Maintenance" />
+
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chp_computerRepair"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checkable="true"
+            android:text="Computer/Electronics Repair" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chp_mechanic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checkable="true"
+            android:text="Mechanic" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chp_pestControl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checkable="true"
+            android:text="Pest Control &amp; Fumigation" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chp_cooking"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checkable="true"
+            android:text="Cooking" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chp_sewerageCleaning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checkable="true"
+            android:text="Sewerage Cleaning" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chp_delivery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checkable="true"
+            android:text="Delivery Services" />
+
+    </com.google.android.material.chip.ChipGroup>
+
+    <Button
+        android:id="@+id/btn_proceed"
+        android:layout_width="@dimen/btn_width"
+        android:layout_height="@dimen/btn_height"
+        android:text="Proceed"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chipGroup"
+        app:layout_constraintVertical_bias="0.439" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
