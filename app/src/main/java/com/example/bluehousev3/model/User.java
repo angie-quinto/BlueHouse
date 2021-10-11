@@ -10,7 +10,7 @@ public class User{
     private String address;
     private String birthdate;
     private String password;
-    private String photoUrl;
+    private String selfieUrl;
 
     public String getAddress() {
         return address;
@@ -91,11 +91,11 @@ public class User{
         this.password = password;
     }
 
-    public String getPhotoUrl() {
-        return photoUrl;
+    public String getSelfieUrl() {
+        return selfieUrl;
     }
 
-    public void setPhotoUrl(String photoUrl) {
-        this.photoUrl = photoUrl;
+    public void setSelfieUrl(String photoUrl) {
+        this.selfieUrl = photoUrl;
     }
 }

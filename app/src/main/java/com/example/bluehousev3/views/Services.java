@@ -132,7 +132,7 @@ public class Services extends AppCompatActivity {
       Worker worker = new Worker();
       worker.setServicesOffered(servicesOffered);
 
-    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+      FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     String uid = user.getUid();
 
     mDatabase.child("users").child(uid).child("servicesOffered").setValue(worker.getServicesOffered()).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -144,6 +144,7 @@ public class Services extends AppCompatActivity {
           Intent intent = new Intent(Services.this,
               WorkerVerification.class);
           startActivity(intent);
+          finish();
         } else {
           Toast.makeText(Services.this, "failed to add in the database",
               Toast.LENGTH_LONG).show();

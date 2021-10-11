@@ -394,9 +394,11 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
         if (userType.equals("Worker")) {
             Intent intent = new Intent(Register.this, Services.class);
             startActivity(intent);
+            finish();
         } else if (userType.equals("Client")) {
             Intent clIntent = new Intent(Register.this, ClientHomePage.class);
             startActivity(clIntent);
+            finish();
         } else {
             Toast.makeText(Register.this, "userType is: " + userType,
                 Toast.LENGTH_LONG).show();

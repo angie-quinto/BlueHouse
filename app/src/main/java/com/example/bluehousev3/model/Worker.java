@@ -5,7 +5,10 @@ import java.util.ArrayList;
 public class Worker extends User {
     private ArrayList<String> servicesOffered;
     private int hourlyRate;
-
+    private String policeClearance;
+    private String validId1;
+    private String validId2;
+    private String cert;
 
     public Worker(ArrayList<String> servicesOffered, int hourlyRate) {
         this.servicesOffered = servicesOffered;
@@ -34,5 +37,35 @@ public class Worker extends User {
         this.hourlyRate = hourlyRate;
     }
 
+    public String getPoliceClearance() {
+        return policeClearance;
+    }
 
+    public void setPoliceClearance(String policeClearance) {
+        this.policeClearance = policeClearance;
+    }
+
+    public String getValidId1() {
+        return validId1;
+    }
+
+    public void setValidId1(String validId1) {
+        this.validId1 = validId1;
+    }
+
+    public String getValidId2() {
+        return validId2;
+    }
+
+    public void setValidId2(String validId2) {
+        this.validId2 = validId2;
+    }
+
+    public String getCert() {
+        return cert;
+    }
+
+    public void setCert(String cert) {
+        this.cert = cert;
+    }
 }

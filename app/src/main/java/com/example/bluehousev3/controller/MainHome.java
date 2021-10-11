@@ -31,13 +31,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.annotations.NotNull;
+import com.squareup.picasso.Picasso;
 
 public class MainHome extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
   private DrawerLayout drawerLayout;
   private TextView tvProfileName;
-  private View headerView;
-  private ImageView profilePic;
-
+  private ImageView ivProfilePic;
   private FirebaseAuth mAuth;
   // Todo: show profile when the image view is clicked
 
@@ -56,13 +55,16 @@ public class MainHome extends AppCompatActivity implements NavigationView.OnNavi
     NavigationView navigationView = findViewById(R.id.nav_view);
     navigationView.setNavigationItemSelectedListener(this);
 
-    headerView = navigationView.getHeaderView(0);
+    View headerView = navigationView.getHeaderView(0);
     tvProfileName = headerView.findViewById(R.id.tv_profileName);
+    ivProfilePic = headerView.findViewById(R.id.iv_profile);
 
 
 
 
-    setProfileName();
+
+
+    setProfile();
 
     ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout,toolbar,
         R.string.nav_open, R.string.nav_close);
@@ -85,7 +87,6 @@ public class MainHome extends AppCompatActivity implements NavigationView.OnNavi
       super.onBackPressed();
     }
   }
-
   @SuppressLint("NonConstantResourceId")
   @Override
   public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
@@ -111,11 +112,12 @@ public class MainHome extends AppCompatActivity implements NavigationView.OnNavi
         Toast.makeText(MainHome.this, "user signed out", Toast.LENGTH_LONG).show();
         Intent intent = new Intent(MainHome.this, LogIn.class);
         startActivity(intent);
+        finish();
     }
     drawerLayout.closeDrawer(GravityCompat.START);
     return true;
 }
-private void setProfileName() {
+private void setProfile() {
     FirebaseUser currentUser = mAuth.getCurrentUser();
     if (currentUser != null) {
       String uid = currentUser.getUid();
@@ -127,16 +129,21 @@ private void setProfileName() {
         @Override
         public void onDataChange(@NonNull DataSnapshot snapshot) {
           String fullName = snapshot.child("fullName").getValue(String.class);
+          String imgUrl = snapshot.child("SelfieUrl").getValue(String.class);
           tvProfileName.setText(fullName);
-        }
 
+          Picasso.get()
+              .load(imgUrl)
+              .into(ivProfilePic);
+        }
         @Override
         public void onCancelled(@NonNull DatabaseError error) {
-
+          Toast.makeText(MainHome.this, "cannot read user's name and profile pic. Please sign out" +
+                   "and login again.",
+              Toast.LENGTH_SHORT).show();
         }
       };
       currRef.addValueEventListener(eventListener);
     }
-}
-
   }
+}
