@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -16,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.bluehousev3.model.ClientJobPosts;
 import com.example.bluehousev3.views.LogIn;
 import com.example.bluehousev3.R;
 import com.example.bluehousev3.fragments_worker.Home;
@@ -33,18 +36,23 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.annotations.NotNull;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+
 public class MainHome extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
   private DrawerLayout drawerLayout;
   private TextView tvProfileName;
   private ImageView ivProfilePic;
   private FirebaseAuth mAuth;
-  // Todo: show profile when the image view is clicked
 
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_worker);
+
+
+
+
 
     mAuth = FirebaseAuth.getInstance();
 
@@ -58,20 +66,12 @@ public class MainHome extends AppCompatActivity implements NavigationView.OnNavi
     View headerView = navigationView.getHeaderView(0);
     tvProfileName = headerView.findViewById(R.id.tv_profileName);
     ivProfilePic = headerView.findViewById(R.id.iv_profile);
-
-
-
-
-
-
     setProfile();
 
     ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout,toolbar,
         R.string.nav_open, R.string.nav_close);
     drawerLayout.addDrawerListener(toggle);
     toggle.syncState();
-
-
 
     if (savedInstanceState == null) {
       getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,

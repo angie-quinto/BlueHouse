@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/worker_profile_nav"
+        android:icon="@drawable/ic_baseline_account_box_24"
+        android:title="Profile"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/worker_popularSer_nav"
+        android:icon="@drawable/ic_baseline_account_box_24"
+        android:title="Popular Services"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/worker_indemandSer_nav"
+        android:icon="@drawable/ic_baseline_account_box_24"
+        android:title="In-demand Services"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/worker_history_nav"
+        android:icon="@drawable/ic_baseline_account_box_24"
+        android:title="History"
+        app:showAsAction="always" />
+</menu>

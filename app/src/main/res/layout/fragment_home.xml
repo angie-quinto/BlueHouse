@@ -6,11 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".fragments_worker.Home">
 
-    <TextView
-        android:id="@+id/tv_prof"
-        android:layout_width="127dp"
-        android:layout_height="25dp"
-        android:text="Home Fragment"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_serviceReq"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

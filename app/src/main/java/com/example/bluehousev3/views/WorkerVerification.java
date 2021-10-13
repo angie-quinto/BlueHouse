@@ -112,7 +112,7 @@ public class WorkerVerification extends AppCompatActivity {
 
     btnGeVerified.setOnClickListener(v -> {
       // condition if the images provided by the worker is complete
-      if (imgCount >= 4) {
+      if (imgCount == 5) {
         Intent intent = new Intent(WorkerVerification.this, MainHome.class);
         startActivity(intent);
         finish();
@@ -122,6 +122,7 @@ public class WorkerVerification extends AppCompatActivity {
             .setMessage("Please Provide all the requirements being asked")
             .setPositiveButton(android.R.string.yes, (dialog, which) -> {
             }).show();
+
       }
     });
   }

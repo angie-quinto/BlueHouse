@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="350dp">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:layout_marginBottom="70dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.13">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="350dp">
+
+            <ImageView
+                android:id="@+id/iv_clientPic"
+                android:layout_width="82dp"
+                android:layout_height="64dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/ic_baseline_account_box_24"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@drawable/ic_baseline_account_box_24"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/tv_clientname"
+                android:layout_width="253dp"
+                android:layout_height="22dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="16dp"
+                android:text="Client Name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/iv_clientPic"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_clientLoc"
+                android:layout_width="255dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="4dp"
+                android:text="Client Location"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/iv_clientPic"
+                app:layout_constraintTop_toBottomOf="@+id/tv_clientname" />
+
+            <ImageView
+                android:id="@+id/iv_jobpic1"
+                android:layout_width="116dp"
+                android:layout_height="95dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="28dp"
+                android:background="@drawable/ic_baseline_photo_camera_24"
+                app:layout_constraintStart_toStartOf="@+id/iv_clientPic"
+                app:layout_constraintTop_toBottomOf="@+id/iv_clientPic"
+                tools:srcCompat="@drawable/ic_baseline_photo_camera_24"
+                tools:visibility="visible" />
+
+            <ImageView
+                android:id="@+id/iv_jobpic2"
+                android:layout_width="105dp"
+                android:layout_height="96dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="36dp"
+                android:background="@drawable/ic_baseline_photo_camera_24"
+                app:layout_constraintEnd_toEndOf="@+id/tv_clientLoc"
+                app:layout_constraintHorizontal_bias="0.055"
+                app:layout_constraintStart_toEndOf="@+id/iv_jobpic1"
+                app:layout_constraintTop_toBottomOf="@+id/tv_clientLoc"
+                tools:srcCompat="@drawable/ic_baseline_photo_camera_24"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/tv_serviceReq"
+                android:layout_width="148dp"
+                android:layout_height="18dp"
+                android:layout_marginTop="8dp"
+                android:text="Service Title"
+                app:layout_constraintEnd_toEndOf="@+id/tv_clientLoc"
+                app:layout_constraintHorizontal_bias="0.414"
+                app:layout_constraintStart_toStartOf="@+id/iv_clientPic"
+                app:layout_constraintTop_toBottomOf="@+id/tv_clientLoc" />
+
+            <TextView
+                android:id="@+id/tv_serviceDesc"
+                android:layout_width="205dp"
+                android:layout_height="44dp"
+                android:layout_marginTop="12dp"
+                android:text="Service Description"
+                app:layout_constraintEnd_toEndOf="@+id/iv_jobpic2"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/iv_jobpic1"
+                app:layout_constraintTop_toBottomOf="@+id/iv_jobpic1" />
+
+            <Button
+                android:id="@+id/btn_accept"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="53dp"
+                android:text="accept "
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/tv_serviceDesc"
+                app:layout_constraintTop_toBottomOf="@+id/iv_jobpic2"
+                app:layout_constraintVertical_bias="0.237" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</FrameLayout>
