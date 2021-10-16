@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import com.example.bluehousev3.R;
 
-// Todo: set up recyclerview here
+
 public class SavedOffers extends Fragment {
 
 

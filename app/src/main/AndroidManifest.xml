@@ -19,9 +19,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BlueHouseV3">
         <activity
-            android:name=".views.WorkerHomePage"
-            android:exported="false" />
-        <activity
             android:name=".controller.MainHome"
             android:exported="true" />
         <activity

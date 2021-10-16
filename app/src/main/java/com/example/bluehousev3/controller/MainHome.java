@@ -50,10 +50,6 @@ public class MainHome extends AppCompatActivity implements NavigationView.OnNavi
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_worker);
 
-
-
-
-
     mAuth = FirebaseAuth.getInstance();
 
     Toolbar toolbar = findViewById(R.id.toolbar);

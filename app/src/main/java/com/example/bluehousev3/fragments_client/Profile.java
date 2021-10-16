@@ -1,6 +1,5 @@
-package com.example.bluehousev3.fragments_worker;
+package com.example.bluehousev3.fragments_client;
 
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -22,34 +21,32 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
-// display user(worker) info
-public class Profile extends Fragment {
-  private TextView tvUserId, tvName, tvAge, tvAddress, tvGender, tvPhoneNum,
-      tvEmail, tvHourlyRate;
-  private ImageView ivPic;
 
+public class Profile extends Fragment {
+
+  private TextView tvUserId, tvName, tvAge, tvAddress, tvGender, tvPhoneNum,
+      tvEmail;
+  private ImageView ivPic;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
     // Inflate the layout for this fragment
-    View view =inflater.inflate(R.layout.fragment_profile, container, false);
+    View view = inflater.inflate(R.layout.fragment_profile2, container, false);
 
-    tvUserId = view.findViewById(R.id.tv_uid);
-    tvName = view.findViewById(R.id.tv_name);
-    tvAge = view.findViewById(R.id.tv_age);
-    tvAddress = view.findViewById(R.id.tv_address);
-    tvGender = view.findViewById(R.id.tv_gender);
-    tvPhoneNum = view.findViewById(R.id.tv_phoneNum);
-    tvEmail = view.findViewById(R.id.tv_email);
-    tvHourlyRate = view.findViewById(R.id.tv_rate);
-    ivPic = view.findViewById(R.id.iv_workerPic);
+    tvUserId = view.findViewById(R.id.tv_clientId);
+    tvName = view.findViewById(R.id.tv_clientName);
+    tvAge = view.findViewById(R.id.tv_clientAge);
+    tvAddress = view.findViewById(R.id.tv_clientAdd);
+    tvGender = view.findViewById(R.id.tv_client_gender);
+    tvPhoneNum = view.findViewById(R.id.tv_clientPhone);
+    tvEmail = view.findViewById(R.id.tv_clientEmail);
+
+    ivPic = view.findViewById(R.id.iv_clientProfilePic);
 
     setProfile();
-
-  return view;
+    return view;
   }
-
   private void setProfile() {
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     if (user != null) {
@@ -76,18 +73,14 @@ public class Profile extends Fragment {
           String gender = dataSnapshot.child("gender").getValue(String.class);
           String phoneNum =
               dataSnapshot.child("phoneNumber").getValue(String.class);
-          int rate = dataSnapshot.child("hourlyRate").getValue(Integer.class);
-          String imgUrl = dataSnapshot.child("SelfieUrl").getValue(String.class);
+
           tvName.setText(name);
           tvAddress.setText(address);
           tvAge.setText(String.valueOf(age));
-          tvHourlyRate.setText(String.valueOf(rate));
           tvGender.setText(gender);
           tvPhoneNum.setText(phoneNum);
 
-          Picasso.get()
-              .load(imgUrl)
-              .into(ivPic);
+         // todo: load client pic
 
         }
         @Override
@@ -97,7 +90,5 @@ public class Profile extends Fragment {
     } else {
       Toast.makeText(getContext(), "user is null", Toast.LENGTH_LONG).show();
     }
-    }
   }
-
-
+}
