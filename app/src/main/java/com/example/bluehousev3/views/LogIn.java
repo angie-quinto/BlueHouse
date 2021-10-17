@@ -14,7 +14,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bluehousev3.R;
-import com.example.bluehousev3.controller.MainHome;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -101,7 +100,7 @@ private void login() {
                             assert userType != null;
 
                             if (userType.equals("Worker")) {
-                                Intent intent = new Intent(LogIn.this, MainHome.class);
+                                Intent intent = new Intent(LogIn.this, WorkerHomePage.class);
                                 startActivity(intent);
                                 finish();
                                 Toast.makeText(LogIn.this, "Welcome back " + mName,
@@ -137,6 +136,15 @@ private void login() {
                 }
             }
         });
+    }
+    @Override
+    public void onBackPressed() {
+
+        if (getFragmentManager().getBackStackEntryCount() == 1 ) {
+            this.finish();
+        } else {
+            getFragmentManager().popBackStack();
+        }
     }
 }
 

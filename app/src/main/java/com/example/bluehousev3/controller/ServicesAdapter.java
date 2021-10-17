@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,9 +12,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bluehousev3.R;
 import com.example.bluehousev3.model.Services;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-import org.w3c.dom.Text;
-
+import java.util.ArrayList;
 import java.util.List;
 
 public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHolder> {
@@ -38,16 +43,13 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHo
   public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
     Services services = mServices.get(position);
 
-   // TextView textView = holder.nameTextView;
-   // textView.setText(contact.getName());
-   // Button button = holder.messageButton;
-   // button.setText(contact.isOnline() ? "Message" : "Offline");
-   // button.setEnabled(contact.isOnline());
     // todo: get data from database
-    TextView tv = holder.tvServiceTitle;
-    TextView tv2 = holder.tvWorkerCount;
+     TextView tv, tv2;
+     tv = holder.tvServiceTitle;
+     tv2 = holder.tvWorkerCount;
     ImageButton ib = holder.btnImg;
-
+    tv.setText(services.getServiceName());
+    tv2.setText("9");
   }
 
   @Override

@@ -1,5 +1,6 @@
 package com.example.bluehousev3.fragments_client;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,11 +8,13 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bluehousev3.R;
+import com.example.bluehousev3.views.LogIn;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -19,7 +22,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.squareup.picasso.Picasso;
 
 
 public class Profile extends Fragment {
@@ -31,7 +33,7 @@ public class Profile extends Fragment {
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
-    // Inflate the layout for this fragment
+
     View view = inflater.inflate(R.layout.fragment_profile2, container, false);
 
     tvUserId = view.findViewById(R.id.tv_clientId);
@@ -41,26 +43,29 @@ public class Profile extends Fragment {
     tvGender = view.findViewById(R.id.tv_client_gender);
     tvPhoneNum = view.findViewById(R.id.tv_clientPhone);
     tvEmail = view.findViewById(R.id.tv_clientEmail);
-
+    Button btnSignOut = view.findViewById(R.id.btn_clientSignout);
     ivPic = view.findViewById(R.id.iv_clientProfilePic);
 
     setProfile();
+
+    btnSignOut.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        FirebaseAuth.getInstance().signOut();
+        Toast.makeText(getContext(), "user signed out", Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(getContext(), LogIn.class);
+        startActivity(intent);
+      }
+    });
     return view;
   }
   private void setProfile() {
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     if (user != null) {
-
       String email = user.getEmail();
-      tvEmail.setText(email);
-      // Check if user's email is verified
-      //boolean emailVerified = user.isEmailVerified();
-
-      // The user's ID, unique to the Firebase project. Do NOT use this value to
-      // authenticate with your backend server, if you have one. Use
-      // FirebaseUser.getIdToken() instead.
+      tvEmail.setText("Email: " + email);
       String uid = user.getUid();
-      tvUserId.setText(uid);
+      tvUserId.setText("User ID: " + uid);
       DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
       DatabaseReference userReference = rootRef.child("users");
       DatabaseReference current_userRef = userReference.child(uid);
@@ -74,13 +79,11 @@ public class Profile extends Fragment {
           String phoneNum =
               dataSnapshot.child("phoneNumber").getValue(String.class);
 
-          tvName.setText(name);
-          tvAddress.setText(address);
-          tvAge.setText(String.valueOf(age));
-          tvGender.setText(gender);
-          tvPhoneNum.setText(phoneNum);
-
-         // todo: load client pic
+          tvName.setText("Name: " + name);
+          tvAddress.setText("Address: " + address);
+          tvAge.setText("Age: " + String.valueOf(age));
+          tvGender.setText("Gender: " + gender);
+          tvPhoneNum.setText("Mobile Number: " + phoneNum);
 
         }
         @Override

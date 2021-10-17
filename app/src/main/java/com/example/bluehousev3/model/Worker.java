@@ -9,6 +9,8 @@ public class Worker extends User {
     private String validId1;
     private String validId2;
     private String cert;
+    private static int lastWorkerId = 0;
+
 
     public Worker(ArrayList<String> servicesOffered, int hourlyRate) {
         this.servicesOffered = servicesOffered;
@@ -20,6 +22,9 @@ public class Worker extends User {
     }
 
     public Worker() {}
+    public Worker(String fullName) {
+        super(fullName);
+    }
 
     public ArrayList<String> getServicesOffered() {
         return servicesOffered;
@@ -67,5 +72,15 @@ public class Worker extends User {
 
     public void setCert(String cert) {
         this.cert = cert;
+    }
+
+    public static ArrayList<Worker> createWorkersList(int numWorkers) {
+        ArrayList<Worker> workers = new ArrayList<Worker>();
+
+        for (int i = 1; i <= numWorkers; i++) {
+            workers.add(new Worker("fullName"));
+        }
+
+        return workers;
     }
 }

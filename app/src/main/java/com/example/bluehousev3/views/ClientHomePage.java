@@ -9,20 +9,16 @@ import com.example.bluehousev3.R;
 import com.example.bluehousev3.fragments_client.InDemandServices;
 import com.example.bluehousev3.fragments_client.PopularServices;
 import com.example.bluehousev3.fragments_client.Profile;
-import com.example.bluehousev3.fragments_worker.Home;
-import com.example.bluehousev3.fragments_worker.SavedOffers;
-import com.example.bluehousev3.fragments_worker.Settings;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class ClientHomePage extends AppCompatActivity {
-BottomNavigationView bottomNavigationView;
   @SuppressLint("NonConstantResourceId")
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_client_home_page);
 
-    bottomNavigationView = findViewById(R.id.client_bot_nav);
+    BottomNavigationView bottomNavigationView = findViewById(R.id.client_bot_nav);
     bottomNavigationView.setSelectedItemId(R.id.client_home_nav);
     bottomNavigationView.setOnItemSelectedListener(item -> {
 

@@ -19,7 +19,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BlueHouseV3">
         <activity
-            android:name=".controller.MainHome"
+            android:name=".views.WorkerHomePage"
             android:exported="true" />
         <activity
             android:name=".views.ClientHomePage"

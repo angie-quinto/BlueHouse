@@ -35,7 +35,6 @@ public class Home extends Fragment {
                            Bundle savedInstanceState) {
     View view =  inflater.inflate(R.layout.fragment_home, container, false);
     RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_serviceReq);
-    // Inflate the layout for this fragment
     recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
     serviceRequests = ClientJobPosts.jobPostList(20);

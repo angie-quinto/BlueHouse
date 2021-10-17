@@ -8,25 +8,37 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar2"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginEnd="1dp"
+        android:layout_width="410dp"
+        android:layout_height="53dp"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <SearchView
-        android:layout_width="87dp"
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="56dp"
         android:layout_height="53dp"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton2"
-        app:layout_constraintHorizontal_bias="0.961"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="@+id/toolbar2"
+        app:layout_constraintStart_toEndOf="@+id/searchView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/notif_ic"
+        tools:visibility="visible" />
+
+    <SearchView
+        android:id="@+id/searchView"
+        android:layout_width="268dp"
+        android:layout_height="51dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+    </SearchView>
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -51,17 +63,6 @@
 
 
     </LinearLayout>
-
-    <ImageButton
-        android:id="@+id/imageButton2"
-        android:layout_width="54dp"
-        android:layout_height="55dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/toolbar2"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/notif_ic"
-        tools:ignore="SpeakableTextPresentCheck" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_container_client"

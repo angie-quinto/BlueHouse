@@ -56,12 +56,6 @@ public class Profile extends Fragment {
 
       String email = user.getEmail();
       tvEmail.setText(email);
-      // Check if user's email is verified
-      //boolean emailVerified = user.isEmailVerified();
-
-      // The user's ID, unique to the Firebase project. Do NOT use this value to
-      // authenticate with your backend server, if you have one. Use
-      // FirebaseUser.getIdToken() instead.
       String uid = user.getUid();
       tvUserId.setText(uid);
       DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();

@@ -1,4 +1,4 @@
-package com.example.bluehousev3.fragments_worker;
+package com.example.bluehousev3.fragments_client;
 
 import android.os.Bundle;
 
@@ -10,9 +10,11 @@ import android.view.ViewGroup;
 
 import com.example.bluehousev3.R;
 
-public class Settings extends Fragment {
+
+public class ServicePost extends Fragment {
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    return inflater.inflate(R.layout.fragment_settings, container, false);
+    View view = inflater.inflate(R.layout.fragment_service_post, container, false);
+    return view;
   }
 }

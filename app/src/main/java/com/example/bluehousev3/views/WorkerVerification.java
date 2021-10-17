@@ -24,7 +24,6 @@ import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 import com.example.bluehousev3.R;
-import com.example.bluehousev3.controller.MainHome;
 import com.example.bluehousev3.model.Worker;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -113,7 +112,7 @@ public class WorkerVerification extends AppCompatActivity {
     btnGeVerified.setOnClickListener(v -> {
       // condition if the images provided by the worker is complete
       if (imgCount == 5) {
-        Intent intent = new Intent(WorkerVerification.this, MainHome.class);
+        Intent intent = new Intent(WorkerVerification.this, WorkerHomePage.class);
         startActivity(intent);
         finish();
       } else {

@@ -12,90 +12,93 @@ public class User{
     private String password;
     private String selfieUrl;
 
-    public String getAddress() {
-        return address;
-    }
+  public User() {}
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
+  public User(String fullName) {}
 
-    public String getBirthdate() {
-        return birthdate;
-    }
-
-    public void setBirthdate(String birthdate) {
-        this.birthdate = birthdate;
-    }
-
-    public User(String fullName, int age, String gender) {
+  public User(String fullName, int age, String gender) {
         this.fullName = fullName;
         this.age = age;
         this.gender = gender;
-    }
-    public User() {}
+  }
 
-    public String getPhoneNumber() {
+  public String getAddress() {
+    return address;
+  }
+
+  public void setAddress(String address) {
+    this.address = address;
+  }
+
+  public String getBirthdate() {
+    return birthdate;
+  }
+
+  public void setBirthdate(String birthdate) {
+    this.birthdate = birthdate;
+  }
+
+  public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
+  public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getEmail() {
+  public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
+  public void setEmail(String email) {
         this.email = email;
     }
 
-    public int getAge() {
+  public int getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+  public void setAge(int age) {
         this.age = age;
     }
 
-    public String getFullName() {
+  public String getFullName() {
         return fullName;
     }
 
-    public void setFullName(String fullName) {
+  public void setFullName(String fullName) {
         this.fullName = fullName;
     }
 
-    public String getGender() {
+  public String getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+  public void setGender(String gender) {
         this.gender = gender;
     }
 
-    public String getUserType() {
+  public String getUserType() {
         return userType;
     }
 
-    public void setUserType(String userType) {
+  public void setUserType(String userType) {
         this.userType = userType;
     }
 
-    public String getPassword() {
+  public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
+  public void setPassword(String password) {
         this.password = password;
     }
 
-    public String getSelfieUrl() {
+  public String getSelfieUrl() {
         return selfieUrl;
     }
 
-    public void setSelfieUrl(String photoUrl) {
+  public void setSelfieUrl(String photoUrl) {
         this.selfieUrl = photoUrl;
     }
 }

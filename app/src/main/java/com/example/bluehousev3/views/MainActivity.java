@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 import com.example.bluehousev3.R;
-import com.example.bluehousev3.controller.MainHome;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -35,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
           assert userType != null;
 
           if (userType.equals("Worker")) {
-            Intent intent = new Intent(MainActivity.this, MainHome.class);
+            Intent intent = new Intent(MainActivity.this, WorkerHomePage.class);
             startActivity(intent);
             finish();
           } else if (userType.equals("Client")) {
