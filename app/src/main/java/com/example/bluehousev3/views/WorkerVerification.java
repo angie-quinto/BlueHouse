@@ -4,6 +4,7 @@ images and uploads them into Firebase Storage and put the image urls into the
 user's realtime database
  */
 package com.example.bluehousev3.views;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +17,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.view.View;
 import android.webkit.MimeTypeMap;
@@ -28,8 +30,11 @@ import com.example.bluehousev3.model.Worker;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -37,10 +42,10 @@ import java.io.ByteArrayOutputStream;
 import java.util.Objects;
 
 public class WorkerVerification extends AppCompatActivity {
-  private  int imgCount = 0;
   private DatabaseReference mDatabase;
   private final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
   private final String uid;
+  private final String[] ids = new String[4];
   {
     assert user != null;
     uid = user.getUid();
@@ -111,7 +116,10 @@ public class WorkerVerification extends AppCompatActivity {
 
     btnGeVerified.setOnClickListener(v -> {
       // condition if the images provided by the worker is complete
-      if (imgCount == 5) {
+
+
+
+      if (verified()) {
         Intent intent = new Intent(WorkerVerification.this, WorkerHomePage.class);
         startActivity(intent);
         finish();
@@ -169,7 +177,7 @@ public class WorkerVerification extends AppCompatActivity {
               worker.setSelfieUrl(selfie1);
               mDatabase.child("users").child(uid).child("SelfieUrl").setValue(worker.getSelfieUrl());
               progressBar.setVisibility(View.INVISIBLE);
-              imgCount++;
+
             } else {
               Toast.makeText(WorkerVerification.this, "Error uploading " +
                       "selfie Image to database",
@@ -199,7 +207,7 @@ public class WorkerVerification extends AppCompatActivity {
                   "Clearance Image Uploaded " +
                   "Successfully",
               Toast.LENGTH_SHORT).show();
-          imgCount++;
+
         })).addOnProgressListener(snapshot -> progressBar.setVisibility(View.VISIBLE)).addOnFailureListener(e -> {
           progressBar.setVisibility(View.INVISIBLE);
           Toast.makeText(WorkerVerification.this, "Police " +
@@ -221,7 +229,7 @@ public class WorkerVerification extends AppCompatActivity {
                   "Image Uploaded " +
                   "Successfully",
               Toast.LENGTH_SHORT).show();
-          imgCount++;
+
         })).addOnProgressListener(snapshot -> progressBar.setVisibility(View.VISIBLE)).addOnFailureListener(e -> {
           progressBar.setVisibility(View.INVISIBLE);
           Toast.makeText(WorkerVerification.this, "Valid ID 1 Image Upload " +
@@ -244,7 +252,7 @@ public class WorkerVerification extends AppCompatActivity {
                   "Image Uploaded " +
                   "Successfully",
               Toast.LENGTH_SHORT).show();
-          imgCount++;
+
         })).addOnProgressListener(snapshot -> progressBar.setVisibility(View.VISIBLE)).addOnFailureListener(e -> {
           progressBar.setVisibility(View.INVISIBLE);
           Toast.makeText(WorkerVerification.this, "Valid ID 2 Image Upload " +
@@ -268,7 +276,7 @@ public class WorkerVerification extends AppCompatActivity {
           Toast.makeText(WorkerVerification.this, "Certificate " +
                   "Image Uploaded Successfully",
               Toast.LENGTH_SHORT).show();
-          imgCount++;
+
         })).addOnProgressListener(snapshot -> progressBar.setVisibility(View.VISIBLE)).addOnFailureListener(e -> {
           progressBar.setVisibility(View.INVISIBLE);
           Toast.makeText(WorkerVerification.this, "Certificate " +
@@ -282,6 +290,33 @@ public class WorkerVerification extends AppCompatActivity {
     ContentResolver cr = getContentResolver();
     MimeTypeMap mime = MimeTypeMap.getSingleton();
     return mime.getExtensionFromMimeType(cr.getType(mUri));
+  }
+
+  private boolean verified() {
+      boolean verified = true;
+      String uid = user.getUid();
+      DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+      DatabaseReference userRef = rootRef.child("users");
+      DatabaseReference curUserRef = userRef.child(uid);
+
+      ValueEventListener eventListener = new ValueEventListener() {
+      @Override
+      public void onDataChange(@NonNull DataSnapshot snapshot) {
+         ids[0] = snapshot.child("SelfieUrl").getValue(String.class);
+         ids[1] = snapshot.child("PoliceClearanceUrl").getValue(String.class);
+         ids[2] = snapshot.child("ValidId1Url").getValue(String.class);
+         ids[3] = snapshot.child("ValidId2Url").getValue(String.class);
+      }
+      @Override
+      public void onCancelled(@NonNull DatabaseError error) {
+
+      }
+    };
+    curUserRef.addValueEventListener(eventListener);
+    if (ids[0]== null && ids[1] == null && ids[2] == null && ids[3] == null) {
+      verified = false;
+    }
+    return verified;
   }
 }
 
