@@ -44,6 +44,8 @@
         <entry key="..\:/Users/User-PC/StudioProjects/BlueHouse/app/src/main/res/layout/activity_client_home_page.xml" value="0.2" />
         <entry key="..\:/Users/User-PC/StudioProjects/BlueHouse/app/src/main/res/layout/activity_worker_home_page.xml" value="0.13489583333333333" />
         <entry key="..\:/Users/User-PC/StudioProjects/BlueHouse/app/src/main/res/layout/activity_worker_home_page2.xml" value="0.13489583333333333" />
+        <entry key="app/src/main/res/layout/activity_client_home_page.xml" value="0.359375" />
+        <entry key="app/src/main/res/layout/fragment_home_client.xml" value="0.359375" />
       </map>
     </option>
   </component>

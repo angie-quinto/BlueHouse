@@ -26,7 +26,6 @@ import java.util.List;
 
 public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHolder> {
   private List<Services> mServices;
-  private final int limit = 19;
   int size = 0;
   public ServicesAdapter(List<Services> services) {
     mServices = services;
@@ -52,25 +51,12 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHo
      tv2 = holder.tvWorkerCount;
     ImageButton ib = holder.btnImg;
     tv.setText(services.getServiceName());
-    DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
-    DatabaseReference serviceRef = reference.child("users");
-    serviceRef.addValueEventListener(new ValueEventListener() {
-      @Override
-      public void onDataChange(@NonNull DataSnapshot snapshot) {
-        size = (int) snapshot.child("servicesOffered").getChildrenCount();
-        Log.d("SIZE", "onDataChange: hello ");
-      }
-
-      @Override
-      public void onCancelled(@NonNull DatabaseError error) {
-
-      }
-    });
     tv2.setText(String.valueOf(size));
   }
 
   @Override
   public int getItemCount() {
+    int limit = 19;
     if (mServices.size() > limit) {
       return limit;
     } else
