@@ -108,7 +108,6 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
 
         genderSpinner = findViewById(R.id.sp_gender);
         genderAdapter = ArrayAdapter.createFromResource(this, R.array.gender, android.R.layout.simple_spinner_item);
-
         genderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         genderSpinner.setAdapter(genderAdapter);
         genderSpinner.setOnItemSelectedListener(this);
@@ -206,89 +205,102 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
             edtBirthdate.requestFocus();
             return;
         }
+        if (age < 18 ) {
+            edtBirthdate.setError("you must be 18 and above to register");
+            edtBirthdate.requestFocus();
+        }
 
-        progressBar.setVisibility(View.VISIBLE);
+
 
         // creates an account for the new user and put their credential on
         // the database
-        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()) {
-                    Toast.makeText(Register.this, "Auth Success", Toast.LENGTH_SHORT).show();
-                    if(userType.equals("Worker")) {
-                        com.example.bluehousev3.model.Worker worker = new com.example.bluehousev3.model.Worker();
-                        worker.setUserType("Worker");
-                        worker.setFullName(name);
-                        worker.setAge(age);
-                        worker.setGender(getGender());
-                        worker.setEmail(email);
-                        worker.setPhoneNumber(mobileNum);
-                        worker.setAddress(address);
-                        worker.setBirthdate(birthDate);
-                        worker.setAge(age);
-                        worker.setServicesOffered(Services.servicesOffered);
+        if (age > 18) {
+            progressBar.setVisibility(View.VISIBLE);
+            mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if(task.isSuccessful()) {
+                        Toast.makeText(Register.this, "Auth Success", Toast.LENGTH_SHORT).show();
+                        if(userType.equals("Worker")) {
+                            com.example.bluehousev3.model.Worker worker = new com.example.bluehousev3.model.Worker();
+                            worker.setUserType("Worker");
+                            worker.setFullName(name);
+                            worker.setAge(age);
+                            worker.setGender(getGender());
+                            worker.setEmail(email);
+                            worker.setPhoneNumber(mobileNum);
+                            worker.setAddress(address);
+                            worker.setBirthdate(birthDate);
+                            worker.setAge(age);
+                            worker.setRating("not yet rated");
+                            worker.setVerified("not yet verified");
 
-                        FirebaseDatabase.getInstance(FIREBASE_URL).getReference("users")
-                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                            .setValue(worker).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    progressBar.setVisibility(View.GONE);
-                                    Toast.makeText(Register.this, "Worker has" +
-                                        " been registered successfully", Toast.LENGTH_SHORT).show();
-                                    goToDesignatedActivity();
+                            //worker.setServicesOffered(Services.servicesOffered);
+                            FirebaseDatabase.getInstance(FIREBASE_URL).getReference("users").child("usertype").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue("worker");
 
-                                } else {
-                                    progressBar.setVisibility(View.GONE);
-                                    Toast.makeText(Register.this, "Worker " +
-                                        "registration failed", Toast.LENGTH_SHORT).show();
+                            FirebaseDatabase.getInstance(FIREBASE_URL).getReference("users").child("workers")
+                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                    .setValue(worker).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        progressBar.setVisibility(View.GONE);
+                                        Toast.makeText(Register.this, "Worker has" +
+                                                " been registered successfully", Toast.LENGTH_SHORT).show();
+                                        goToDesignatedActivity();
+
+                                    } else {
+                                        progressBar.setVisibility(View.GONE);
+                                        Toast.makeText(Register.this, "Worker " +
+                                                "registration failed", Toast.LENGTH_SHORT).show();
+                                    }
                                 }
-                            }
-                        });
+                            });
 
-                    } else if (userType.equals("Client")) {
-                        Client client = new Client();
-                        client.setUserType("Client");
-                        client.setFullName(name);
-                        client.setAge(age);
-                        client.setGender(getGender());
-                        client.setEmail(email);
-                        client.setPhoneNumber(mobileNum);
-                        client.setAddress(address);
-                        client.setAge(age);
-                        client.setBirthdate(birthDate);
+                        } else if (userType.equals("Client")) {
+                            Client client = new Client();
+                            client.setUserType("Client");
+                            client.setFullName(name);
+                            client.setAge(age);
+                            client.setGender(getGender());
+                            client.setEmail(email);
+                            client.setPhoneNumber(mobileNum);
+                            client.setAddress(address);
+                            client.setAge(age);
+                            client.setBirthdate(birthDate);
+                            FirebaseDatabase.getInstance(FIREBASE_URL).getReference("users").child("usertype").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue("client");
+                            FirebaseDatabase.getInstance(FIREBASE_URL).getReference("users").child("clients")
+                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                    .setValue(client).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        progressBar.setVisibility(View.GONE);
+                                        Toast.makeText(Register.this, "Client has been registered successfully", Toast.LENGTH_SHORT).show();
+                                        goToDesignatedActivity();
 
-                        FirebaseDatabase.getInstance(FIREBASE_URL).getReference("users")
-                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                            .setValue(client).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    progressBar.setVisibility(View.GONE);
-                                    Toast.makeText(Register.this, "Client has been registered successfully", Toast.LENGTH_SHORT).show();
-                                    goToDesignatedActivity();
-
-                                } else {
-                                    progressBar.setVisibility(View.GONE);
-                                    Toast.makeText(Register.this, "Client registration failed", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        progressBar.setVisibility(View.GONE);
+                                        Toast.makeText(Register.this, "Client registration failed", Toast.LENGTH_SHORT).show();
+                                    }
                                 }
-                            }
-                        });
+                            });
+                        } else {
+                            Toast.makeText(Register.this, "Registration Failed", Toast.LENGTH_SHORT).show();
+                        }
                     } else {
-                        Toast.makeText(Register.this, "Registration Failed", Toast.LENGTH_SHORT).show();
+                        progressBar.setVisibility(View.GONE);
+                        Toast.makeText(Register.this, "Auth Failed", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Register.this, "Invalid Email",
+                                Toast.LENGTH_LONG).show();
                     }
-                } else {
-                    progressBar.setVisibility(View.GONE);
-                    Toast.makeText(Register.this, "Auth Failed", Toast.LENGTH_SHORT).show();
-                    Toast.makeText(Register.this, "Invalid Email",
-                        Toast.LENGTH_LONG).show();
                 }
-            }
 
 
-        });
+            });
+
+        }
+
     }
 
 
@@ -377,6 +389,8 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
         age = currYear - year;
 
 
+
+
     }
     // Todo: find a way to remove this unused methods.
     @Override
@@ -396,7 +410,7 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
             startActivity(intent);
             finish();
         } else if (userType.equals("Client")) {
-            Intent clIntent = new Intent(Register.this, ClientHomePage.class);
+            Intent clIntent = new Intent(Register.this, ClientHomePageActivity.class);
             startActivity(clIntent);
             finish();
         } else {

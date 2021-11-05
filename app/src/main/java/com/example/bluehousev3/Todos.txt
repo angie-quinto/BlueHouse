@@ -1,8 +1,7 @@
 todo: load client pic
-todo: add all available services in database for real time access
 todo: change the access modifier of methods in non-model obj
 todo: change the date picker dialog widget
-todo: set certificate upload in worker verification to optional [checked]
 todo: !priority: code client service request feature
+todo: fix the bug on when the client signed out and its activity is still showing when the back button is pressed
 
 

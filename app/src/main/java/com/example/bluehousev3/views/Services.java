@@ -5,13 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.bluehousev3.R;
-import com.example.bluehousev3.model.Worker;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.chip.Chip;
@@ -21,6 +20,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Services extends AppCompatActivity {
   private Chip chipPlumbing, chipWaterPipe, chipJetMatic, chipCarpentry,
@@ -28,10 +29,18 @@ public class Services extends AppCompatActivity {
       chipRoofing, chipHouseCleaning, chipLaundry, chipBeautician,
       chipElectricalMaintenance, chipComputerRepair, chipMechanic,
       chipPestControl, chipCooking, chipSewerage, chipDelivery;
-  public static ArrayList<String> servicesOffered;
-  public static final String FIREBASE_URL = "https://blue-house-v3-default-rtdb.asia-southeast1.firebasedatabase.app";
-
+  private Map<String, String> serviceOffered;
+  private static final String FIREBASE_URL = "https://blue-house-v3-default-rtdb.asia-southeast1.firebasedatabase.app";
   private DatabaseReference mDatabase;
+  private DatabaseReference workersUnderServiceRef;
+  private final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+  private final String uid;
+  private ArrayList<String> plumbing, waterPipe, carpentry, jetMatic, upholstery, septic, gardening, homeAppliance, roofing,
+          houseCleaning, laundry, beaut, electrical, computer, mechanic, pestControl, cooking, sewerage, delivery;
+  {
+    assert user != null;
+    uid = user.getUid();
+  }
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +48,7 @@ public class Services extends AppCompatActivity {
     setContentView(R.layout.activity_services);
 
     mDatabase = FirebaseDatabase.getInstance().getReference();
+    workersUnderServiceRef = FirebaseDatabase.getInstance().getReference().child("workersUnderService");
 
     chipPlumbing = findViewById(R.id.chp_plumbing);
     chipWaterPipe = findViewById(R.id.chp_waterPipe);
@@ -60,8 +70,7 @@ public class Services extends AppCompatActivity {
     chipSewerage = findViewById(R.id.chp_sewerageCleaning);
     chipDelivery = findViewById(R.id.chp_delivery);
     Button btnProceed = findViewById(R.id.btn_proceed);
-
-    servicesOffered = new ArrayList<>();
+    serviceOffered = new HashMap<>();
 
     btnProceed.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -73,88 +82,121 @@ public class Services extends AppCompatActivity {
 
   private void goToRegister() {
     if (chipPlumbing.isChecked()) {
-      servicesOffered.add("Plumbing");
-      setServicesWithWorkerId("Plumbing");
+      serviceOffered.put("service1","Plumbing");
+      DatabaseReference ref = workersUnderServiceRef.child("plumbing").push();
+      ref.setValue(uid);
+
     }
     if (chipWaterPipe.isChecked()) {
-      servicesOffered.add("Water Pipe Maintenance");
-      setServicesWithWorkerId("Water Pipe Maintenance");
+      serviceOffered.put("service2","Water Pipe Maintenance");
+      DatabaseReference ref = workersUnderServiceRef.child("waterPipeMaintenance").push();
+      ref.setValue(uid);
+
     }
     if (chipCarpentry.isChecked()) {
-      servicesOffered.add("Carpentry");
-      setServicesWithWorkerId("Carpentry");
+      serviceOffered.put("service3","Carpentry");
+      DatabaseReference ref = workersUnderServiceRef.child("carpentry").push();
+      ref.setValue(uid);
+
     }
     if (chipJetMatic.isChecked()) {
-      servicesOffered.add("JetMatic Pump Maintenance");
-      setServicesWithWorkerId("JetMatic Pump Maintenance");
+      serviceOffered.put("service4","JetMatic Pump Maintenance");
+      DatabaseReference ref = workersUnderServiceRef.child("jetMaticPumpMaintenance").push();
+      ref.setValue(uid);
+
     }
     if (chipUpholstery.isChecked()) {
-      servicesOffered.add("Upholstery");
-      setServicesWithWorkerId("Upholstery");
+      serviceOffered.put("service5","Upholstery");
+      DatabaseReference ref = workersUnderServiceRef.child("upholstery").push();
+      ref.setValue(uid);
+
     }
     if (chipSeptic.isChecked()) {
-      servicesOffered.add("Septic Tank Maintenance");
-      setServicesWithWorkerId("Septic Tank Maintenance");
+      serviceOffered.put("service6","Septic Tank Maintenance");
+      DatabaseReference ref = workersUnderServiceRef.child("septicTankMaintenance").push();
+      ref.setValue(uid);
+
     }
     if (chipGardening.isChecked()) {
-      servicesOffered.add("Gardening");
-      setServicesWithWorkerId("Gardening");
+      serviceOffered.put("service7","Gardening");
+      DatabaseReference ref = workersUnderServiceRef.child("gardening").push();
+      ref.setValue(uid);
+
     }
     if (chipHomeAppliance.isChecked()) {
-      servicesOffered.add("Home Appliance Maintenance");
-      setServicesWithWorkerId("Home Appliance Maintenance");
+      serviceOffered.put("service8","Home Appliance Maintenance");
+      DatabaseReference ref = workersUnderServiceRef.child("homeApplianceMaintenance").push();
+      ref.setValue(uid);
+
     }
     if (chipRoofing.isChecked()) {
-      servicesOffered.add("Roofing");
-      setServicesWithWorkerId("Roofing");
+      serviceOffered.put("service9","Roofing");
+      DatabaseReference ref = workersUnderServiceRef.child("roofing").push();
+      ref.setValue(uid);
+
     }
     if (chipHouseCleaning.isChecked()) {
-      servicesOffered.add("House Keeping");
-      setServicesWithWorkerId("HouseKeeping");
+      serviceOffered.put("service10","House Keeping");
+      DatabaseReference ref = workersUnderServiceRef.child("houseCleaning").push();
+      ref.setValue(uid);
+
     }
     if (chipLaundry.isChecked()) {
-      servicesOffered.add("Laundry");
-      setServicesWithWorkerId("Laundry");
+      serviceOffered.put("service11","Laundry");
+      DatabaseReference ref = workersUnderServiceRef.child("laundry").push();
+      ref.setValue(uid);
+
     }
     if (chipBeautician.isChecked()) {
-      servicesOffered.add("Beautician");
-      setServicesWithWorkerId("Beautician");
+      serviceOffered.put("service12","Beautician");
+      DatabaseReference ref = workersUnderServiceRef.child("beautician").push();
+      ref.setValue(uid);
+
     }
     if (chipElectricalMaintenance.isChecked()) {
-      servicesOffered.add("Electrical Maintenance");
-      setServicesWithWorkerId("Electrical Maintenance");
+      serviceOffered.put("service13","Electrical Maintenance");
+      DatabaseReference ref = workersUnderServiceRef.child("electricalMaintenance").push();
+      ref.setValue(uid);
+
     }
     if (chipComputerRepair.isChecked()) {
-      servicesOffered.add("Computer/Electronic Device Repair");
-      setServicesWithWorkerId("Computer/Electronic Device Repair");
+      serviceOffered.put("service14","Computer/Electronic Device Repair");
+      DatabaseReference ref = workersUnderServiceRef.child("computerAndElectronicRepair").push();
+      ref.setValue(uid);
+
     }
     if (chipMechanic.isChecked()) {
-      servicesOffered.add("Mechanic");
-      setServicesWithWorkerId("Mechanic");
+      serviceOffered.put("service15","Mechanic");
+      DatabaseReference ref = workersUnderServiceRef.child("mechanic").push();
+      ref.setValue(uid);
+
     }
     if (chipPestControl.isChecked()) {
-      servicesOffered.add("Pest Control and Fumigation");
-      setServicesWithWorkerId("Pest Control and Fumigation");
+      serviceOffered.put("service16","Pest Control & Fumigation");
+      DatabaseReference ref = workersUnderServiceRef.child("pestControlAndFumigation").push();
+      ref.setValue(uid);
+
     }
     if (chipCooking.isChecked()) {
-      servicesOffered.add("Cooking Services");
-      setServicesWithWorkerId("Cooking Services");
+      serviceOffered.put("service17","Cooking Services");
+      DatabaseReference ref = workersUnderServiceRef.child("cooking").push();
+      ref.setValue(uid);
+
     }
     if (chipSewerage.isChecked()) {
-      servicesOffered.add("Sewerage Cleaning");
-      setServicesWithWorkerId("Sewerage Cleaning");
+      serviceOffered.put("service18","Sewerage Cleaning");
+      DatabaseReference ref = workersUnderServiceRef.child("sewerageCleaning").push();
+      ref.setValue(uid);
+
     }
     if (chipDelivery.isChecked()) {
-      servicesOffered.add("Delivery Services");
-      setServicesWithWorkerId("Delivery Services");
+      serviceOffered.put("service19","Delivery Services");
+      DatabaseReference ref = workersUnderServiceRef.child("deliveryServices").push();
+      ref.setValue(uid);
+
     }
-      Worker worker = new Worker();
-      worker.setServicesOffered(servicesOffered);
 
-    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-    String uid = user.getUid();
-
-    mDatabase.child("users").child(uid).child("servicesOffered").setValue(worker.getServicesOffered()).addOnCompleteListener(new OnCompleteListener<Void>() {
+    mDatabase.child("users").child("workerServicesOffered").child(uid).setValue(serviceOffered).addOnCompleteListener(new OnCompleteListener<Void>() {
       @Override
       public void onComplete(@NonNull Task<Void> task) {
         if (task.isSuccessful()) {
@@ -170,21 +212,5 @@ public class Services extends AppCompatActivity {
         }
       }
     });
-
-  }
-  private void setServicesWithWorkerId(String serviceName) {
-    FirebaseDatabase.getInstance(FIREBASE_URL).getReference("services")
-            .child(serviceName)
-            .setValue(FirebaseAuth.getInstance().getCurrentUser().getUid()).addOnCompleteListener(new OnCompleteListener<Void>() {
-      @Override
-      public void onComplete(@NonNull Task<Void> task) {
-        if (task.isSuccessful()) {
-          Log.d("setServicesWithWorkerId", "successfully added to database: " + serviceName);
-        } else {
-          Log.d("setServicesWithWorkerId", "failure adding to database: " + serviceName);
-        }
-      }
-    });
-
   }
 }

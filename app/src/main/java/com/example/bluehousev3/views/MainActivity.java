@@ -15,33 +15,34 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
+  private final FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
-
-    FirebaseAuth mAuth = FirebaseAuth.getInstance();
     FirebaseUser currentUser = mAuth.getCurrentUser();
     if (currentUser != null) {
-      String uid = currentUser.getUid();
-      DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
-      DatabaseReference userRef = rootRef.child("users");
-      DatabaseReference currRef = userRef.child(uid);
-      ValueEventListener eventListener = new ValueEventListener() {
+        String uid = currentUser.getUid();
+       DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("users/usertype");
+        ValueEventListener eventListener = new ValueEventListener() {
         @Override
         public void onDataChange(@NonNull DataSnapshot snapshot) {
-          String userType = snapshot.child("userType").getValue(String.class);
-          assert userType != null;
+          String userType = snapshot.child(uid).getValue(String.class);
 
-          if (userType.equals("Worker")) {
+          if (userType.equals("worker")) {
             Intent intent = new Intent(MainActivity.this, WorkerHomePage.class);
             startActivity(intent);
             finish();
-          } else if (userType.equals("Client")) {
+          } else if (userType.equals("client")) {
             Intent intent = new Intent(MainActivity.this,
-                ClientHomePage.class);
+                ClientHomePageActivity.class);
             startActivity(intent);
             finish();
+          } else {
+              Intent intent = new Intent(MainActivity.this, LogIn.class);
+              startActivity(intent);
+              finish();
           }
         }
         @Override
@@ -53,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
           finish();
         }
       };
-      currRef.addValueEventListener(eventListener);
+      reference.addValueEventListener(eventListener);
     } else {
       Intent intent = new Intent(MainActivity.this, LogIn.class);
       startActivity(intent);

@@ -17,10 +17,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bluehousev3.R;
-import com.example.bluehousev3.fragments_worker.Home;
-import com.example.bluehousev3.fragments_worker.Profile;
-import com.example.bluehousev3.fragments_worker.SavedOffers;
-import com.example.bluehousev3.fragments_worker.Settings;
+import com.example.bluehousev3.worker.Home;
+import com.example.bluehousev3.worker.Profile;
+import com.example.bluehousev3.worker.SavedOffers;
+import com.example.bluehousev3.worker.Settings;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -111,9 +111,7 @@ private void setProfile() {
     FirebaseUser currentUser = mAuth.getCurrentUser();
     if (currentUser != null) {
       String uid = currentUser.getUid();
-      DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
-      DatabaseReference userRef = rootRef.child("users");
-      DatabaseReference currRef = userRef.child(uid);
+      DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference().child("users/workerIds").child(uid);
 
       ValueEventListener eventListener = new ValueEventListener() {
         @Override
@@ -133,7 +131,7 @@ private void setProfile() {
               Toast.LENGTH_SHORT).show();
         }
       };
-      currRef.addValueEventListener(eventListener);
+      rootRef.addValueEventListener(eventListener);
     }
   }
 }

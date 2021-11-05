@@ -31,7 +31,7 @@ public class LogIn extends AppCompatActivity {
     private TextView txtForgotPass;
     private ProgressBar progressBar;
     private FirebaseAuth mAuth;
-    private String mName;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,29 +88,25 @@ private void login() {
                     FirebaseUser currentUser = mAuth.getCurrentUser();
                     assert currentUser != null;
                     String uid = currentUser.getUid();
-                    DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
-                    DatabaseReference userRef = rootRef.child("users");
-                    DatabaseReference currRef = userRef.child(uid);
+                    DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference().child("users/usertype");
 
                     ValueEventListener eventListener = new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            String userType = snapshot.child("userType").getValue(String.class);
-                             mName = snapshot.child("fullName").getValue(String.class);
-                            assert userType != null;
+                            String userType = snapshot.child(uid).getValue(String.class);
 
-                            if (userType.equals("Worker")) {
+                            if (userType.equals("worker")) {
                                 Intent intent = new Intent(LogIn.this, WorkerHomePage.class);
                                 startActivity(intent);
                                 finish();
-                                Toast.makeText(LogIn.this, "Welcome back " + mName,
+                                Toast.makeText(LogIn.this, "Welcome back!",
                                     Toast.LENGTH_LONG).show();
-                            } else if (userType.equals("Client")) {
+                            } else if (userType.equals("client")) {
                                 Intent intent = new Intent(LogIn.this,
-                                ClientHomePage.class);
+                                ClientHomePageActivity.class);
                                 startActivity(intent);
                                 finish();
-                                Toast.makeText(LogIn.this, "Welcome back " + mName,
+                                Toast.makeText(LogIn.this, "Welcome back!",
                                     Toast.LENGTH_LONG).show();
                             }
                         }
@@ -123,7 +119,7 @@ private void login() {
                             finish();
                         }
                     };
-                    currRef.addValueEventListener(eventListener);
+                    rootRef.addValueEventListener(eventListener);
 
                 } else {
                     progressBar.setVisibility(View.INVISIBLE);
@@ -139,7 +135,6 @@ private void login() {
     }
     @Override
     public void onBackPressed() {
-
         if (getFragmentManager().getBackStackEntryCount() == 1 ) {
             this.finish();
         } else {

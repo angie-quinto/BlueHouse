@@ -4,24 +4,23 @@
 
     <item
         android:id="@+id/client_home_nav"
-        android:icon="@drawable/ic_baseline_account_box_24"
+        android:icon="@mipmap/home"
         android:title="Home"
         app:showAsAction="always" />
-
     <item
-        android:id="@+id/client_profile_nav"
-        android:icon="@drawable/ic_baseline_account_box_24"
-        android:title="Profile"
+        android:id="@+id/client_service_requests"
+        android:icon="@mipmap/service_request"
+        android:title="Service Requests"
         app:showAsAction="always" />
     <item
-        android:id="@+id/client_popularSer_nav"
-        android:icon="@drawable/ic_baseline_account_box_24"
+        android:id="@+id/client_popularWorkers_nav"
+        android:icon="@mipmap/in_demand_workers"
         android:title="Popular Services"
         app:showAsAction="always" />
     <item
-        android:id="@+id/client_indemandSer_nav"
-        android:icon="@drawable/ic_baseline_account_box_24"
-        android:title="In-demand Services"
+        android:id="@+id/client_profile_nav"
+        android:icon="@mipmap/profile_ic"
+        android:title="Profile"
         app:showAsAction="always" />
 
 </menu>

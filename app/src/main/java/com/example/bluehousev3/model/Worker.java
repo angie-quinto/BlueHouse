@@ -9,6 +9,8 @@ public class Worker extends User {
     private String validId1;
     private String validId2;
     private String cert;
+    private String rating;
+    private String verified;
     private static int lastWorkerId = 0;
 
 
@@ -16,6 +18,7 @@ public class Worker extends User {
         this.servicesOffered = servicesOffered;
         this.hourlyRate = hourlyRate;
     }
+
 
     public Worker(String fullName, int age, String gender) {
         super(fullName, age, gender);
@@ -74,13 +77,19 @@ public class Worker extends User {
         this.cert = cert;
     }
 
-    public static ArrayList<Worker> createWorkersList(int numWorkers) {
-        ArrayList<Worker> workers = new ArrayList<Worker>();
+    public String getRating() {
+        return rating;
+    }
 
-        for (int i = 1; i <= numWorkers; i++) {
-            workers.add(new Worker("fullName"));
-        }
+    public void setRating(String rating) {
+        this.rating = rating;
+    }
 
-        return workers;
+    public String getVerified() {
+        return verified;
+    }
+
+    public void setVerified(String verified) {
+        this.verified = verified;
     }
 }

@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.ClientHomePage">
+    tools:context=".views.ClientHomePageActivity">
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="56dp"
-        android:layout_height="53dp"
+        android:layout_width="44dp"
+        android:layout_height="30dp"
         android:layout_marginTop="4dp"
         android:contentDescription="TODO"
         android:visibility="visible"
@@ -21,42 +21,27 @@
         tools:ignore="ImageContrastCheck"
         tools:visibility="visible" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="413dp"
-        android:layout_height="53dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="677dp"
-        android:layout_marginBottom="1dp"
-        android:orientation="horizontal"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragment_container_client"
+        android:name="com.example.bluehousev3.client.Home"
+        android:layout_width="409dp"
+        android:layout_height="645dp"
+        android:layout_marginTop="44dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/client_bot_nav"
+        android:layout_width="407dp"
+        android:layout_height="42dp"
+        android:background="?android:attr/windowBackground"
+        android:foreground="?attr/selectableItemBackground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:menu="@menu/client_nav_menu">
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/client_bot_nav"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="?android:attr/windowBackground"
-            android:foreground="?attr/selectableItemBackground"
-            app:menu="@menu/client_nav_menu" />
-
-
-    </LinearLayout>
-
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragment_container_client"
-        android:name="com.example.bluehousev3.fragments_client.Home"
-        android:layout_width="373dp"
-        android:layout_height="561dp"
-        android:layout_marginStart="46dp"
-        android:layout_marginEnd="49dp"
-        android:layout_marginBottom="58dp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.421"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout="@layout/fragment_home_client" />
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

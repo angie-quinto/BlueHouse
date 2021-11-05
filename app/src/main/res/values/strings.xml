@@ -9,7 +9,12 @@
         <item>Worker</item>
     </string-array>
 
-    <!-- TODO: Remove or change this placeholder text -->
+    <string-array name="rate">
+        <item>Daily</item>
+        <item>Hourly</item>
+    </string-array>
+
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="nav_open">open nav drawer</string>
     <string name="nav_close">close nav drawer</string>

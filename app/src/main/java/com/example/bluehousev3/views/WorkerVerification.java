@@ -43,6 +43,7 @@ import java.util.Objects;
 
 public class WorkerVerification extends AppCompatActivity {
   private DatabaseReference mDatabase;
+  private DatabaseReference workerIdsRef;
   private final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
   private final String uid;
   private final String[] ids = new String[4];
@@ -63,6 +64,7 @@ public class WorkerVerification extends AppCompatActivity {
     setContentView(R.layout.activity_worker_verification);
 
     mDatabase = FirebaseDatabase.getInstance().getReference();
+    workerIdsRef = mDatabase.child("users/workerIds");
 
     ImageButton ibSelfie = findViewById(R.id.ib_selfie);
     ImageButton ibPolice = findViewById(R.id.ib_policeClear);
@@ -116,13 +118,11 @@ public class WorkerVerification extends AppCompatActivity {
 
     btnGeVerified.setOnClickListener(v -> {
       // condition if the images provided by the worker is complete
-
-
-
       if (verified()) {
         Intent intent = new Intent(WorkerVerification.this, WorkerHomePage.class);
         startActivity(intent);
         finish();
+
       } else {
         new AlertDialog.Builder(WorkerVerification.this)
             .setTitle("Incomplete Image Upload")
@@ -133,6 +133,7 @@ public class WorkerVerification extends AppCompatActivity {
       }
     });
   }
+
 
   // uploads images of firebase and sets the url of the images as a property
   // of user object in realtime database for later retrieval
@@ -175,7 +176,7 @@ public class WorkerVerification extends AppCompatActivity {
               Worker worker = new Worker();
               String selfie1 = downloadUri.toString();
               worker.setSelfieUrl(selfie1);
-              mDatabase.child("users").child(uid).child("SelfieUrl").setValue(worker.getSelfieUrl());
+              workerIdsRef.child(uid).child("SelfieUrl").setValue(worker.getSelfieUrl());
               progressBar.setVisibility(View.INVISIBLE);
 
             } else {
@@ -201,7 +202,7 @@ public class WorkerVerification extends AppCompatActivity {
           Worker worker = new Worker();
           String pClearance = uri.toString();
           worker.setPoliceClearance(pClearance);
-          mDatabase.child("users").child(uid).child("PoliceClearanceUrl").setValue(worker.getPoliceClearance());
+          workerIdsRef.child(uid).child("PoliceClearanceUrl").setValue(worker.getPoliceClearance());
           progressBar.setVisibility(View.INVISIBLE);
           Toast.makeText(WorkerVerification.this, "Police " +
                   "Clearance Image Uploaded " +
@@ -223,7 +224,7 @@ public class WorkerVerification extends AppCompatActivity {
           Worker worker = new Worker();
           String valid1 = uri.toString();
           worker.setValidId1(valid1);
-          mDatabase.child("users").child(uid).child("ValidId1Url").setValue(worker.getValidId1());
+          workerIdsRef.child(uid).child("ValidId1Url").setValue(worker.getValidId1());
           progressBar.setVisibility(View.INVISIBLE);
           Toast.makeText(WorkerVerification.this, "Valid ID 1 " +
                   "Image Uploaded " +
@@ -246,7 +247,7 @@ public class WorkerVerification extends AppCompatActivity {
           Worker worker = new Worker();
           String valid2 = uri.toString();
           worker.setValidId2(valid2);
-          mDatabase.child("users").child(uid).child("ValidId2Url").setValue(worker.getValidId2());
+          workerIdsRef.child(uid).child("ValidId2Url").setValue(worker.getValidId2());
           progressBar.setVisibility(View.INVISIBLE);
           Toast.makeText(WorkerVerification.this, "Valid ID " +
                   "Image Uploaded " +
@@ -271,7 +272,7 @@ public class WorkerVerification extends AppCompatActivity {
           Worker worker = new Worker();
           String cert = uri.toString();
           worker.setCert(cert);
-          mDatabase.child("users").child(uid).child("CertificateUrl").setValue(worker.getCert());
+          workerIdsRef.child(uid).child("CertificateUrl").setValue(worker.getCert());
           progressBar.setVisibility(View.INVISIBLE);
           Toast.makeText(WorkerVerification.this, "Certificate " +
                   "Image Uploaded Successfully",
@@ -295,9 +296,8 @@ public class WorkerVerification extends AppCompatActivity {
   private boolean verified() {
       boolean verified = true;
       String uid = user.getUid();
-      DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
-      DatabaseReference userRef = rootRef.child("users");
-      DatabaseReference curUserRef = userRef.child(uid);
+
+      DatabaseReference curUserRef = workerIdsRef.child(uid);
 
       ValueEventListener eventListener = new ValueEventListener() {
       @Override
