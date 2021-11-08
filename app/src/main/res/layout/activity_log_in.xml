@@ -33,41 +33,27 @@
         app:layout_constraintTop_toBottomOf="@+id/edt_email" />
 
     <TextView
-        android:id="@+id/edt_forgotPass"
-        android:layout_width="183dp"
-        android:layout_height="29dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="44dp"
-        android:text="forgot your password?"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_password" />
-
-    <TextView
         android:id="@+id/edt_register"
         android:layout_width="67dp"
         android:layout_height="30dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="36dp"
+        android:layout_marginTop="48dp"
         android:text="Register"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_password" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_login" />
 
     <Button
         android:id="@+id/btn_login"
         android:layout_width="@dimen/btn_width"
         android:layout_height="@dimen/btn_height"
-        android:layout_marginTop="168dp"
+        android:layout_marginTop="76dp"
         android:text="login"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_password"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/edt_password" />
 
     <ProgressBar
         android:id="@+id/progressBar2"

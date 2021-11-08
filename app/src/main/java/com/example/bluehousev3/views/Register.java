@@ -30,6 +30,7 @@ import android.widget.Toast;
 
 
 import com.example.bluehousev3.R;
+import com.example.bluehousev3.client.ClientHomePageActivity;
 import com.example.bluehousev3.model.Client;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -231,7 +232,6 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
                             worker.setPhoneNumber(mobileNum);
                             worker.setAddress(address);
                             worker.setBirthdate(birthDate);
-                            worker.setAge(age);
                             worker.setRating("not yet rated");
                             worker.setVerified("not yet verified");
 
@@ -266,7 +266,6 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
                             client.setEmail(email);
                             client.setPhoneNumber(mobileNum);
                             client.setAddress(address);
-                            client.setAge(age);
                             client.setBirthdate(birthDate);
                             FirebaseDatabase.getInstance(FIREBASE_URL).getReference("users").child("usertype").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue("client");
                             FirebaseDatabase.getInstance(FIREBASE_URL).getReference("users").child("clients")

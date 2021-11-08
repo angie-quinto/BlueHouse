@@ -86,7 +86,9 @@ public class RequestMenu extends Fragment {
                     btnMark.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Toast.makeText(getActivity(), "complete", Toast.LENGTH_SHORT).show();
+
+                            RateWorkerDialog rateWorkerDialog = new RateWorkerDialog(wId, reqId);
+                            rateWorkerDialog.show(getParentFragmentManager(), "Rate Worker");
 
                         }
                     });

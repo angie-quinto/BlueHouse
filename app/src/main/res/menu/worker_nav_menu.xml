@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/worker_pending"
+        android:icon="@mipmap/home"
+        android:title="Pending Requests"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/worker_accepted_req"
+        android:icon="@mipmap/service_request"
+        android:title="Accepted Requests"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/worker_popularServices_nav"
+        android:icon="@mipmap/in_demand_workers"
+        android:title="Popular Services"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/worker_profile_nav"
+        android:icon="@mipmap/profile_ic"
+        android:title="Profile"
+        app:showAsAction="always" />
+
+</menu>

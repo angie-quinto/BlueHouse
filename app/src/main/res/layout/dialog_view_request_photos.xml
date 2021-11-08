@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/iv_req_photo1"
+        android:layout_width="134dp"
+        android:layout_height="133dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintEnd_toStartOf="@+id/iv_req_photo2"
+        app:layout_constraintHorizontal_bias="0.949"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_insert_photo" />
+
+    <ImageView
+        android:id="@+id/iv_req_photo2"
+        android:layout_width="134dp"
+        android:layout_height="135dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="64dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_insert_photo" />
+
+    <Button
+        android:id="@+id/btn_close_reqPh"
+        android:layout_width="117dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="40dp"
+        android:text="Close"
+        app:layout_constraintEnd_toEndOf="@+id/iv_req_photo2"
+        app:layout_constraintHorizontal_bias="0.522"
+        app:layout_constraintStart_toStartOf="@+id/iv_req_photo1"
+        app:layout_constraintTop_toBottomOf="@+id/iv_req_photo1" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

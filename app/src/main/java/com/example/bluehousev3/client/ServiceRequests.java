@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bluehousev3.R;
@@ -37,6 +38,7 @@ public class ServiceRequests extends Fragment implements ClientServiceRequestsAd
 
   private static final String TAG = "ServiceRequests";
   private Map<String, Object> workersMap;
+  private TextView tvNoReq;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -56,6 +58,7 @@ public class ServiceRequests extends Fragment implements ClientServiceRequestsAd
     workerAddress = new ArrayList<>();
     workerIds = new ArrayList<>();
     reqId = new ArrayList<>();
+    tvNoReq = view.findViewById(R.id.tv_no_req_client);
 
 
 
@@ -124,7 +127,6 @@ public class ServiceRequests extends Fragment implements ClientServiceRequestsAd
                 workerAddress.add(address);
                 adapter.notifyDataSetChanged();
               }
-
             }
           }
 
@@ -134,7 +136,9 @@ public class ServiceRequests extends Fragment implements ClientServiceRequestsAd
           }
         });
 
-
+        if (serviceType.isEmpty()) {
+          tvNoReq.setText("Service Requests is Empty");
+        }
       }
 
       @Override
@@ -142,8 +146,6 @@ public class ServiceRequests extends Fragment implements ClientServiceRequestsAd
         Log.d(TAG, "Error on: ref" );
       }
     });
-
-
 
     return view;
   }

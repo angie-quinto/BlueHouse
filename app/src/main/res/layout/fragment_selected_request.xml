@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".worker.transactions.SelectedRequest">
+
+
+    <TextView
+        android:id="@+id/tv_service_type_selected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Service Type"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_desc_selec"
+        android:layout_width="295dp"
+        android:layout_height="64dp"
+        android:text="Description"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_service_type_selected" />
+
+    <TextView
+        android:id="@+id/tv_start_date_selec"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:text="Start Date"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_desc_selec" />
+
+    <TextView
+        android:id="@+id/tv_end_date_selec"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:text="End Date"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_start_date_selec" />
+
+    <TextView
+        android:id="@+id/tv_start_time_selec"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="116dp"
+        android:layout_marginTop="4dp"
+        android:text="Start Time"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/tv_start_date_selec"
+        app:layout_constraintTop_toBottomOf="@+id/tv_desc_selec" />
+
+    <TextView
+        android:id="@+id/tv_end_time_selec"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="124dp"
+        android:layout_marginTop="4dp"
+        android:text="End Time"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/tv_end_date_selec"
+        app:layout_constraintTop_toBottomOf="@+id/tv_start_time_selec" />
+
+    <TextView
+        android:id="@+id/tv_loc_select"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Location"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.089"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_end_date_selec" />
+
+    <TextView
+        android:id="@+id/tv_proposed_rate_selec"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Proposed Rate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_loc_select" />
+
+    <Button
+        android:id="@+id/btn_pic_selec"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="View Request PHotos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_client_age" />
+
+    <Button
+        android:id="@+id/btn_accept_selec"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="36dp"
+        android:text="Accept Request"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_pic_selec" />
+
+    <Button
+        android:id="@+id/btn_reject_req"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:text="Reject Request"
+        app:layout_constraintEnd_toStartOf="@+id/btn_accept_selec"
+        app:layout_constraintHorizontal_bias="0.607"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_pic_selec" />
+
+    <TextView
+        android:id="@+id/tv_client_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Client Name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.128"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider5" />
+
+    <TextView
+        android:id="@+id/tv_client_rating_selec"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Client Rating"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.13"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_client_name" />
+
+    <View
+        android:id="@+id/divider5"
+        android:layout_width="409dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="1dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_proposed_rate_selec" />
+
+    <TextView
+        android:id="@+id/tv_client_gender_selec"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Client Gender"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.131"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_client_rating_selec" />
+
+    <TextView
+        android:id="@+id/tv_client_age"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Client Age"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.123"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_client_gender_selec" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

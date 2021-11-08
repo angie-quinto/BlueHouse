@@ -20,13 +20,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BlueHouseV3">
         <activity
-            android:name=".views.WorkerHomePage"
+            android:name=".worker.WorkerHomePage"
             android:exported="true" />
         <activity
-            android:name=".views.ClientHomePageActivity"
+            android:name=".client.ClientHomePageActivity"
             android:exported="true" />
         <activity
-            android:name=".views.WorkerVerification"
+            android:name=".worker.WorkerVerification"
             android:exported="true" />
         <activity
             android:name=".views.Services"

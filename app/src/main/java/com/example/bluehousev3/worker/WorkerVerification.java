@@ -3,7 +3,7 @@ this class asks for the users(worker) selfie, police clearance, 2 valid ids
 images and uploads them into Firebase Storage and put the image urls into the
 user's realtime database
  */
-package com.example.bluehousev3.views;
+package com.example.bluehousev3.worker;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -17,7 +17,6 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.view.View;
 import android.webkit.MimeTypeMap;
@@ -54,8 +53,7 @@ public class WorkerVerification extends AppCompatActivity {
 
   private ProgressBar progressBar;
 
-  private final StorageReference reference =
-      FirebaseStorage.getInstance().getReference();
+  private final StorageReference reference = FirebaseStorage.getInstance().getReference();
 
 
   @Override
@@ -115,25 +113,43 @@ public class WorkerVerification extends AppCompatActivity {
       intent.setType("image/*");
       startActivityForResult(intent, 1);
     });
+              // condition if the images provided by the worker is complete
 
-    btnGeVerified.setOnClickListener(v -> {
-      // condition if the images provided by the worker is complete
-      if (verified()) {
-        Intent intent = new Intent(WorkerVerification.this, WorkerHomePage.class);
-        startActivity(intent);
-        finish();
+              DatabaseReference curUserRef = workerIdsRef.child(uid);
 
-      } else {
-        new AlertDialog.Builder(WorkerVerification.this)
-            .setTitle("Incomplete Image Upload")
-            .setMessage("Please Provide all the requirements being asked")
-            .setPositiveButton(android.R.string.yes, (dialog, which) -> {
-            }).show();
+              curUserRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                  ids[0] = snapshot.child("SelfieUrl").getValue(String.class);
+                  ids[1] = snapshot.child("PoliceClearanceUrl").getValue(String.class);
+                  ids[2] = snapshot.child("ValidId1Url").getValue(String.class);
+                  ids[3] = snapshot.child("ValidId2Url").getValue(String.class);
 
-      }
-    });
+                  btnGeVerified.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                      if (ids[0] == null || ids[1] == null || ids[2] == null || ids[3] == null) {
+                        new AlertDialog.Builder(WorkerVerification.this)
+                                .setTitle("Incomplete Image Upload")
+                                .setMessage("Please Provide all the requirements being asked")
+                                .setPositiveButton(android.R.string.yes, (dialog, which) -> {
+                                }).show();
+                      } else {
+                        Intent intent = new Intent(WorkerVerification.this, WorkerHomePage.class);
+                        startActivity(intent);
+                        finish();
+                      }
+                    }
+                  });
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+              });
   }
-
 
   // uploads images of firebase and sets the url of the images as a property
   // of user object in realtime database for later retrieval
@@ -291,32 +307,6 @@ public class WorkerVerification extends AppCompatActivity {
     ContentResolver cr = getContentResolver();
     MimeTypeMap mime = MimeTypeMap.getSingleton();
     return mime.getExtensionFromMimeType(cr.getType(mUri));
-  }
-
-  private boolean verified() {
-      boolean verified = true;
-      String uid = user.getUid();
-
-      DatabaseReference curUserRef = workerIdsRef.child(uid);
-
-      ValueEventListener eventListener = new ValueEventListener() {
-      @Override
-      public void onDataChange(@NonNull DataSnapshot snapshot) {
-         ids[0] = snapshot.child("SelfieUrl").getValue(String.class);
-         ids[1] = snapshot.child("PoliceClearanceUrl").getValue(String.class);
-         ids[2] = snapshot.child("ValidId1Url").getValue(String.class);
-         ids[3] = snapshot.child("ValidId2Url").getValue(String.class);
-      }
-      @Override
-      public void onCancelled(@NonNull DatabaseError error) {
-
-      }
-    };
-    curUserRef.addValueEventListener(eventListener);
-    if (ids[0]== null && ids[1] == null && ids[2] == null && ids[3] == null) {
-      verified = false;
-    }
-    return verified;
   }
 }
 

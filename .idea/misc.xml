@@ -44,8 +44,37 @@
         <entry key="..\:/Users/User-PC/StudioProjects/BlueHouse/app/src/main/res/layout/activity_client_home_page.xml" value="0.2" />
         <entry key="..\:/Users/User-PC/StudioProjects/BlueHouse/app/src/main/res/layout/activity_worker_home_page.xml" value="0.13489583333333333" />
         <entry key="..\:/Users/User-PC/StudioProjects/BlueHouse/app/src/main/res/layout/activity_worker_home_page2.xml" value="0.13489583333333333" />
-        <entry key="app/src/main/res/layout/activity_client_home_page.xml" value="0.359375" />
+        <entry key="app/src/main/res/layout/activity_client_home_page.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/activity_log_in.xml" value="0.3494791666666667" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.3494791666666667" />
+        <entry key="app/src/main/res/layout/activity_register.xml" value="0.3494791666666667" />
+        <entry key="app/src/main/res/layout/activity_services.xml" value="0.3494791666666667" />
+        <entry key="app/src/main/res/layout/activity_worker.xml" value="0.3494791666666667" />
+        <entry key="app/src/main/res/layout/activity_worker_home_page.xml" value="0.3494791666666667" />
+        <entry key="app/src/main/res/layout/activity_worker_home_page2.xml" value="0.35520833333333335" />
+        <entry key="app/src/main/res/layout/activity_worker_home_page3.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_worker_verification.xml" value="0.3494791666666667" />
+        <entry key="app/src/main/res/layout/available_workers_row.xml" value="0.3494791666666667" />
+        <entry key="app/src/main/res/layout/dialog_request_a_new_type_of_service.xml" value="0.3494791666666667" />
+        <entry key="app/src/main/res/layout/dialog_view_request_photos.xml" value="0.3536458333333333" />
+        <entry key="app/src/main/res/layout/dialog_worker_cert.xml" value="0.35520833333333335" />
         <entry key="app/src/main/res/layout/fragment_home_client.xml" value="0.359375" />
+        <entry key="app/src/main/res/layout/fragment_laundry.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_pending_requests.xml" value="0.35520833333333335" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/fragment_request_a_service.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_request_a_service2.xml" value="0.35520833333333335" />
+        <entry key="app/src/main/res/layout/fragment_saved_offers.xml" value="0.17274569402228976" />
+        <entry key="app/src/main/res/layout/fragment_selected_request.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_service_requests_client.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_services_offered.xml" value="0.25833333333333336" />
+        <entry key="app/src/main/res/layout/job_post_row.xml" value="0.3494791666666667" />
+        <entry key="app/src/main/res/layout/rate_worker.xml" value="0.3546875" />
+        <entry key="app/src/main/res/layout/rate_worker_dialog.xml" value="0.35520833333333335" />
+        <entry key="app/src/main/res/layout/row_pending_requests.xml" value="0.35520833333333335" />
+        <entry key="app/src/main/res/layout/row_service.xml" value="0.33" />
+        <entry key="app/src/main/res/menu/client_nav_menu.xml" value="0.1" />
+        <entry key="app/src/main/res/menu/worker_nav_menu.xml" value="0.1" />
       </map>
     </option>
   </component>

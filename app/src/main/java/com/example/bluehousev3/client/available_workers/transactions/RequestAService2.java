@@ -3,7 +3,6 @@ package com.example.bluehousev3.client.available_workers.transactions;
 import static android.app.Activity.RESULT_OK;
 
 import android.Manifest;
-import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -17,11 +16,9 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.MimeTypeMap;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -32,11 +29,7 @@ import android.widget.Toast;
 
 import com.example.bluehousev3.R;
 import com.example.bluehousev3.client.Home;
-import com.example.bluehousev3.model.Worker;
-import com.example.bluehousev3.views.WorkerVerification;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -44,10 +37,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
-
-import java.util.Objects;
 
 
 public class RequestAService2 extends Fragment {
@@ -78,6 +68,7 @@ public class RequestAService2 extends Fragment {
         edtRate = view.findViewById(R.id.edt_rate);
         btnSubmit = view.findViewById(R.id.btn_submit);
 
+        assert getArguments() != null;
         serviceType = getArguments().getString("serviceType");
         description = getArguments().getString("description");
         startDate = getArguments().getString("startDate");
@@ -164,6 +155,7 @@ public class RequestAService2 extends Fragment {
                                 workerRef.child("status").setValue("pending");
                                 workerRef.child("img1Url").setValue(imgUrl1);
                                 workerRef.child("img2Url").setValue(imgUrl2);
+                                workerRef.child("clientId").setValue(uid);
 
                                 serviceReqRef.child("serviceType").setValue(serviceType);
                                 serviceReqRef.child("description").setValue(description);

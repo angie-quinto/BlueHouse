@@ -14,6 +14,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bluehousev3.R;
+import com.example.bluehousev3.client.ClientHomePageActivity;
+import com.example.bluehousev3.worker.WorkerHomePage;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -28,7 +30,7 @@ import com.google.firebase.database.ValueEventListener;
 public class LogIn extends AppCompatActivity {
     private EditText edtEmail;
     private EditText edtPassword;
-    private TextView txtForgotPass;
+
     private ProgressBar progressBar;
     private FirebaseAuth mAuth;
 
@@ -40,7 +42,7 @@ public class LogIn extends AppCompatActivity {
 
         edtEmail = findViewById(R.id.edt_email);
         edtPassword = findViewById(R.id.edt_password);
-        txtForgotPass = findViewById(R.id.edt_forgotPass);
+
         TextView txtRegister = findViewById(R.id.edt_register);
         Button btnLogin = findViewById(R.id.btn_login);
         progressBar = findViewById(R.id.progressBar2);

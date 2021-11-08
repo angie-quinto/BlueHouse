@@ -8,7 +8,7 @@
 
     <ImageView
         android:id="@+id/iv_workerPic"
-        android:layout_width="174dp"
+        android:layout_width="67dp"
         android:layout_height="61dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,10 +22,10 @@
         android:id="@+id/tv_uid"
         android:layout_width="@dimen/width_textView"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="12dp"
         android:text="User Id: "
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_workerPic" />
 
@@ -33,10 +33,10 @@
         android:id="@+id/tv_rate"
         android:layout_width="@dimen/width_textView"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="4dp"
         android:text="Hourly Rate: "
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_email" />
 
@@ -44,10 +44,10 @@
         android:id="@+id/tv_email"
         android:layout_width="@dimen/width_textView"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         android:text="Email"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_phoneNum" />
 
@@ -55,10 +55,10 @@
         android:id="@+id/tv_gender"
         android:layout_width="@dimen/width_textView"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="4dp"
         android:text="Gender: "
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_address" />
 
@@ -66,10 +66,10 @@
         android:id="@+id/tv_phoneNum"
         android:layout_width="@dimen/width_textView"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="4dp"
         android:text="Phone Number: "
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_gender" />
 
@@ -77,10 +77,10 @@
         android:id="@+id/tv_address"
         android:layout_width="@dimen/width_textView"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         android:text="Address"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_age" />
 
@@ -88,10 +88,10 @@
         android:id="@+id/tv_age"
         android:layout_width="@dimen/width_textView"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         android:text="Age:"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_name" />
 
@@ -99,10 +99,10 @@
         android:id="@+id/tv_name"
         android:layout_width="@dimen/width_textView"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="4dp"
         android:text="Name:"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_uid" />
 
@@ -110,22 +110,32 @@
         android:id="@+id/textView16"
         android:layout_width="@dimen/width_textView"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         android:text="Services Offered: "
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_rate" />
 
-    <TextView
-        android:id="@+id/tvServicesOff"
-        android:layout_width="295dp"
-        android:layout_height="270dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <Button
+        android:id="@+id/btn_sign_out_worker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Sign Out"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_serv_offered" />
+
+    <Button
+        android:id="@+id/btn_serv_offered"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="My Services Offered"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView16"
-        app:layout_constraintVertical_bias="0.373" />
+        app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
