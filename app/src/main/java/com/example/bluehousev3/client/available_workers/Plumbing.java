@@ -56,7 +56,7 @@ public class Plumbing extends Fragment implements AvailableWorkerAdapter.OnWorke
         rvAvailableWorkers.setAdapter(adapter);
 
         DatabaseReference workerRef = FirebaseDatabase.getInstance().getReference().child("users/workers");
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("workersUnderService/carpentry");
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("workersUnderService/plumbingWaterPipeMaintenance");
 
         ref.addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")

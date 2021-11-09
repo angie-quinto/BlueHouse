@@ -17,33 +17,6 @@ public class ServiceRequest {
     private String img1Url;
     private String img2Url;
 
-
-
-
-    public ServiceRequest(String proposedRateTime, String serviceType,
-                          String description, String startDate,
-                          String endDate, String startTime, String endTime,
-                          String assignedAddress, String proposedRate,
-                          String status, String workerName, String workerAddress,
-                          String workerId, String img1Url, String img2Url) {
-        this.serviceType = serviceType;
-        this.description = description;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.location = assignedAddress;
-        this.proposedRate = proposedRate;
-        this.status = status;
-        this.workerName = workerName;
-        this.workerAddress = workerAddress;
-        this.workerId = workerId;
-        this.proposedRateTime = proposedRateTime;
-        this.img1Url = img1Url;
-        this.img2Url = img2Url;
-
-    }
-
     public ServiceRequest() {}
 
     public String getServiceType() {

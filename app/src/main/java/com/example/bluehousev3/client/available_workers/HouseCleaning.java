@@ -56,7 +56,7 @@ public class HouseCleaning extends Fragment implements AvailableWorkerAdapter.On
         rvAvailableWorkers.setAdapter(adapter);
 
         DatabaseReference workerRef = FirebaseDatabase.getInstance().getReference().child("users/workers");
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("workersUnderService/carpentry");
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("workersUnderService/housekeeping");
 
         ref.addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")

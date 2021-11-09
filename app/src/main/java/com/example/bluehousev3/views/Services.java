@@ -24,13 +24,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Services extends AppCompatActivity {
-  private Chip chipPlumbing, chipWaterPipe, chipJetMatic, chipCarpentry,
+  private Chip chipPlumbing, chipJetMatic, chipCarpentry,
       chipUpholstery, chipSeptic, chipGardening, chipHomeAppliance,
       chipRoofing, chipHouseCleaning, chipLaundry, chipBeautician,
       chipElectricalMaintenance, chipComputerRepair, chipMechanic,
-      chipPestControl, chipCooking, chipSewerage, chipDelivery;
-  private Map<String, String> serviceOffered;
-  private static final String FIREBASE_URL = "https://blue-house-v3-default-rtdb.asia-southeast1.firebasedatabase.app";
+      chipPestControl, chipCooking;
+  private Map<String, String> servicesOffered;
   private DatabaseReference mDatabase;
   private DatabaseReference workersUnderServiceRef;
   private final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -50,7 +49,7 @@ public class Services extends AppCompatActivity {
     workersUnderServiceRef = FirebaseDatabase.getInstance().getReference().child("workersUnderService");
 
     chipPlumbing = findViewById(R.id.chp_plumbing);
-    chipWaterPipe = findViewById(R.id.chp_waterPipe);
+
     chipJetMatic = findViewById(R.id.chp_jetMatic);
     chipCarpentry = findViewById(R.id.chp_carpentry);
     chipUpholstery = findViewById(R.id.chp_upholstery);
@@ -66,10 +65,8 @@ public class Services extends AppCompatActivity {
     chipMechanic = findViewById(R.id.chp_mechanic);
     chipPestControl = findViewById(R.id.chp_pestControl);
     chipCooking = findViewById(R.id.chp_cooking);
-    chipSewerage = findViewById(R.id.chp_sewerageCleaning);
-    chipDelivery = findViewById(R.id.chp_delivery);
     Button btnProceed = findViewById(R.id.btn_proceed);
-    serviceOffered = new HashMap<>();
+    servicesOffered = new HashMap<>();
 
     btnProceed.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -81,121 +78,104 @@ public class Services extends AppCompatActivity {
 
   private void goToRegister() {
     if (chipPlumbing.isChecked()) {
-      serviceOffered.put("service1","Plumbing");
-      DatabaseReference ref = workersUnderServiceRef.child("plumbing").push();
+      servicesOffered.put("service1","Plumbing/Water Pipe Maintenance");
+      DatabaseReference ref = workersUnderServiceRef.child("plumbingWaterPipeMaintenance").push();
       ref.setValue(uid);
 
     }
-    if (chipWaterPipe.isChecked()) {
-      serviceOffered.put("service2","Water Pipe Maintenance");
-      DatabaseReference ref = workersUnderServiceRef.child("waterPipeMaintenance").push();
-      ref.setValue(uid);
 
-    }
     if (chipCarpentry.isChecked()) {
-      serviceOffered.put("service3","Carpentry");
+      servicesOffered.put("service2","Carpentry");
       DatabaseReference ref = workersUnderServiceRef.child("carpentry").push();
       ref.setValue(uid);
 
     }
     if (chipJetMatic.isChecked()) {
-      serviceOffered.put("service4","JetMatic Pump Maintenance");
+      servicesOffered.put("service3","JetMatic Pump Maintenance");
       DatabaseReference ref = workersUnderServiceRef.child("jetMaticPumpMaintenance").push();
       ref.setValue(uid);
 
     }
     if (chipUpholstery.isChecked()) {
-      serviceOffered.put("service5","Upholstery");
+      servicesOffered.put("service4","Upholstery");
       DatabaseReference ref = workersUnderServiceRef.child("upholstery").push();
       ref.setValue(uid);
 
     }
     if (chipSeptic.isChecked()) {
-      serviceOffered.put("service6","Septic Tank Maintenance");
+      servicesOffered.put("service5","Septic Tank Maintenance");
       DatabaseReference ref = workersUnderServiceRef.child("septicTankMaintenance").push();
       ref.setValue(uid);
 
     }
     if (chipGardening.isChecked()) {
-      serviceOffered.put("service7","Gardening");
+      servicesOffered.put("service6","Gardening");
       DatabaseReference ref = workersUnderServiceRef.child("gardening").push();
       ref.setValue(uid);
 
     }
     if (chipHomeAppliance.isChecked()) {
-      serviceOffered.put("service8","Home Appliance Maintenance");
+      servicesOffered.put("service7","Home Appliance Maintenance");
       DatabaseReference ref = workersUnderServiceRef.child("homeApplianceMaintenance").push();
       ref.setValue(uid);
 
     }
     if (chipRoofing.isChecked()) {
-      serviceOffered.put("service9","Roofing");
-      DatabaseReference ref = workersUnderServiceRef.child("roofing").push();
+      servicesOffered.put("service8","Roof Maintenance");
+      DatabaseReference ref = workersUnderServiceRef.child("roofMaintenance").push();
       ref.setValue(uid);
 
     }
     if (chipHouseCleaning.isChecked()) {
-      serviceOffered.put("service10","House Keeping");
-      DatabaseReference ref = workersUnderServiceRef.child("houseCleaning").push();
+      servicesOffered.put("service9","Housekeeping");
+      DatabaseReference ref = workersUnderServiceRef.child("housekeeping").push();
       ref.setValue(uid);
 
     }
     if (chipLaundry.isChecked()) {
-      serviceOffered.put("service11","Laundry");
+      servicesOffered.put("service10","Laundry Services");
       DatabaseReference ref = workersUnderServiceRef.child("laundry").push();
       ref.setValue(uid);
 
     }
     if (chipBeautician.isChecked()) {
-      serviceOffered.put("service12","Beautician");
-      DatabaseReference ref = workersUnderServiceRef.child("beautician").push();
+      servicesOffered.put("service11","Beauty Salon Services");
+      DatabaseReference ref = workersUnderServiceRef.child("beautySalonServices").push();
       ref.setValue(uid);
 
     }
     if (chipElectricalMaintenance.isChecked()) {
-      serviceOffered.put("service13","Electrical Maintenance");
+      servicesOffered.put("service12","Electrical Maintenance");
       DatabaseReference ref = workersUnderServiceRef.child("electricalMaintenance").push();
       ref.setValue(uid);
 
     }
     if (chipComputerRepair.isChecked()) {
-      serviceOffered.put("service14","Computer/Electronic Device Repair");
+      servicesOffered.put("service13","Computer/Electronic Device Repair");
       DatabaseReference ref = workersUnderServiceRef.child("computerAndElectronicRepair").push();
       ref.setValue(uid);
 
     }
     if (chipMechanic.isChecked()) {
-      serviceOffered.put("service15","Mechanic");
+      servicesOffered.put("service14","Mechanic");
       DatabaseReference ref = workersUnderServiceRef.child("mechanic").push();
       ref.setValue(uid);
 
     }
     if (chipPestControl.isChecked()) {
-      serviceOffered.put("service16","Pest Control & Fumigation");
+      servicesOffered.put("service15","Pest Control & Fumigation");
       DatabaseReference ref = workersUnderServiceRef.child("pestControlAndFumigation").push();
       ref.setValue(uid);
 
     }
     if (chipCooking.isChecked()) {
-      serviceOffered.put("service17","Cooking Services");
-      DatabaseReference ref = workersUnderServiceRef.child("cooking").push();
-      ref.setValue(uid);
-
-    }
-    if (chipSewerage.isChecked()) {
-      serviceOffered.put("service18","Sewerage Cleaning");
-      DatabaseReference ref = workersUnderServiceRef.child("sewerageCleaning").push();
-      ref.setValue(uid);
-
-    }
-    if (chipDelivery.isChecked()) {
-      serviceOffered.put("service19","Delivery Services");
-      DatabaseReference ref = workersUnderServiceRef.child("deliveryServices").push();
+      servicesOffered.put("service16","Cooking Services");
+      DatabaseReference ref = workersUnderServiceRef.child("cookingServices").push();
       ref.setValue(uid);
 
     }
 
-    mDatabase.child("users").child("workerServicesOffered").child(uid).setValue(serviceOffered).addOnCompleteListener(new OnCompleteListener<Void>() {
+    mDatabase.child("users").child("workerServicesOffered").child(uid).setValue(servicesOffered).addOnCompleteListener(new OnCompleteListener<Void>() {
       @Override
       public void onComplete(@NonNull Task<Void> task) {
         if (task.isSuccessful()) {

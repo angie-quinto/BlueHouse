@@ -1,5 +1,6 @@
 package com.example.bluehousev3.client.available_workers.transactions;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,12 +17,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bluehousev3.R;
+import com.example.bluehousev3.model.Worker;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+
+import java.util.Objects;
 
 
 public class WorkerProfile extends Fragment {
@@ -58,17 +62,19 @@ public class WorkerProfile extends Fragment {
 
         workerId = getArguments().getString("workerId");
         bundle.putString("Wid" , workerId);
-
+        Worker worker = new Worker();
         DatabaseReference workerRef = FirebaseDatabase.getInstance().getReference().child("users/workers").child(workerId);
         workerRef.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 tvName.setText("Name: " + snapshot.child("fullName").getValue(String.class));
-                int age = snapshot.child("age").getValue(Integer.class);
-                tvAge.setText("Age: " + String.valueOf(age));
+
+                String age = snapshot.child("age").getValue(String.class);
+                tvAge.setText("Age: " + age);
                 tvPhoneNum.setText("Mobile Number: " + snapshot.child("phoneNumber").getValue(String.class));
-                int rate = snapshot.child("hourlyRate").getValue(Integer.class);
-                tvHourlyRate.setText("Hourly Rate: " + String.valueOf(rate));
+                String rate = snapshot.child("rate").getValue(String.class);
+                tvHourlyRate.setText("Rate: " + rate);
                 tvEmail.setText("Email: " + snapshot.child("email").getValue(String.class));
                 tvGender.setText("Gender: " + snapshot.child("gender").getValue(String.class));
                 tvAddress.setText("Address: " + snapshot.child("address").getValue(String.class));

@@ -52,7 +52,7 @@ public class Upholstery extends Fragment implements AvailableWorkerAdapter.OnWor
         rvAvailableWorkers.setAdapter(adapter);
 
         DatabaseReference workerRef = FirebaseDatabase.getInstance().getReference().child("users/workers");
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("workersUnderService/carpentry");
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("workersUnderService/upholstery");
 
         ref.addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")

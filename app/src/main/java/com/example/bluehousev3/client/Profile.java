@@ -86,7 +86,7 @@ public class Profile extends Fragment {
         public void onDataChange(DataSnapshot dataSnapshot) {
           String name = dataSnapshot.child("fullName").getValue(String.class);
           String address = dataSnapshot.child("address").getValue(String.class);
-          int age = dataSnapshot.child("age").getValue(Integer.class);
+          String age = dataSnapshot.child("age").getValue(String.class);
           String gender = dataSnapshot.child("gender").getValue(String.class);
           String phoneNum =
               dataSnapshot.child("phoneNumber").getValue(String.class);

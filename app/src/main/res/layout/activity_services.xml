@@ -8,12 +8,11 @@
 
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/chipGroup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="84dp"
+        android:layout_width="395dp"
+        android:layout_height="410dp"
+        android:layout_marginTop="108dp"
         android:isScrollContainer="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -23,15 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checkable="true"
-            android:text="Plumbing" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chp_waterPipe"
-            style="@style/Widget.MaterialComponents.Chip.Choice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checkable="true"
-            android:text="Water Pipe Maintenance" />
+            android:text="Plumbing/Water Pipe Maintenance" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chp_carpentry"
@@ -88,7 +79,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checkable="true"
-            android:text="Roofing" />
+            android:text="Roof Maintenance" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chp_houseCleaning"
@@ -96,7 +87,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checkable="true"
-            android:text="House Cleaning" />
+            android:text="Housekeeping" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chp_laundry"
@@ -113,7 +104,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checkable="true"
-            android:text="Beautician" />
+            android:text="Beauty Salon Services" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chp_electrical_maintenance"
@@ -154,23 +145,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checkable="true"
-            android:text="Cooking" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chp_sewerageCleaning"
-            style="@style/Widget.MaterialComponents.Chip.Choice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checkable="true"
-            android:text="Sewerage Cleaning" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chp_delivery"
-            style="@style/Widget.MaterialComponents.Chip.Choice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checkable="true"
-            android:text="Delivery Services" />
+            android:text="Cooking Services" />
 
     </com.google.android.material.chip.ChipGroup>
 

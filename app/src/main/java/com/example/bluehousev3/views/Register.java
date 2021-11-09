@@ -61,7 +61,7 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
     private EditText edtRetypePass;
     private EditText edtMobileNum, edtRate;
     private ProgressBar progressBar;
-    private int age;
+    private String age;
     private EditText edtAddress, edtBirthdate;
     private Switch swAutoLocate;
     public static String userType;
@@ -208,7 +208,7 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
             edtBirthdate.requestFocus();
             return;
         }
-        if (age < 18 ) {
+        if (Integer.parseInt(age) < 18 ) {
             edtBirthdate.setError("you must be 18 and above to register");
             edtBirthdate.requestFocus();
         }
@@ -217,7 +217,7 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
 
         // creates an account for the new user and put their credential on
         // the database
-        if (age > 18) {
+        if (Integer.parseInt(age) > 18) {
             progressBar.setVisibility(View.VISIBLE);
             mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
@@ -390,8 +390,8 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
 
         // get users age from birthdate
         int currYear = Calendar.getInstance().get(Calendar.YEAR);
-        age = currYear - year;
-
+        int intAge = currYear - year;
+        age = String.valueOf(intAge);
 
 
 

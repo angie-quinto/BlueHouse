@@ -54,7 +54,7 @@ public class Roofing extends Fragment implements AvailableWorkerAdapter.OnWorker
         rvAvailableWorkers.setAdapter(adapter);
 
         DatabaseReference workerRef = FirebaseDatabase.getInstance().getReference().child("users/workers");
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("workersUnderService/carpentry");
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("workersUnderService/roofMaintenance");
 
         ref.addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")

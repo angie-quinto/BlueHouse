@@ -145,20 +145,6 @@ public class RequestAService2 extends Fragment {
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 String rate = edtRate.getText().toString();
-
-//                                workerRef.child("serviceType").setValue(serviceType);
-//                                workerRef.child("description").setValue(description);
-//                                workerRef.child("startDate").setValue(startDate);
-//                                workerRef.child("endDate").setValue(endDate);
-//                                workerRef.child("startTime").setValue(startTime);
-//                                workerRef.child("endTime").setValue(endTime);
-//                                workerRef.child("location").setValue(location);
-//                                workerRef.child("proposedRate").setValue(rate);
-//                                workerRef.child("proposedRateTime").setValue(selectedRate);
-//                                workerRef.child("status").setValue("pending");
-//                                workerRef.child("img1Url").setValue(imgUrl1);
-//                                workerRef.child("img2Url").setValue(imgUrl2);
-//                                workerRef.child("clientId").setValue(uid);
                                 DatabaseReference workerRef = FirebaseDatabase.getInstance().getReference().child("users/workers").child(workerId);
                                  workerRef.addValueEventListener(new ValueEventListener() {
                                      @Override

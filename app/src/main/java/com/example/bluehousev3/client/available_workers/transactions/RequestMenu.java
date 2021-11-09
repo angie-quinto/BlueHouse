@@ -46,9 +46,10 @@ public class RequestMenu extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String status = snapshot.child("status").getValue(String.class);
                 assert status != null;
-                if (status.equals("Cancelled") || status.equals("Completed")) {
+                if (status.equals("cancelled") || status.equals("completed") || status.equals("rejected")) {
                     btnCancel.setEnabled(false);
                     btnMark.setEnabled(false);
+
                 } else {
                     btnCancel.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -61,7 +62,7 @@ public class RequestMenu extends Fragment {
                                     "Yes",
                                     new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog, int id) {
-                                            reference.child("status").setValue("Cancelled").addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            reference.child("status").setValue("cancelled").addOnSuccessListener(new OnSuccessListener<Void>() {
                                                 @Override
                                                 public void onSuccess(Void unused) {
                                                     Toast.makeText(getActivity(), "Request Cancelled", Toast.LENGTH_SHORT).show();
@@ -89,7 +90,7 @@ public class RequestMenu extends Fragment {
 
                             RateWorkerDialog rateWorkerDialog = new RateWorkerDialog(wId, reqId);
                             rateWorkerDialog.show(getParentFragmentManager(), "Rate Worker");
-                            reference.child("status").setValue("Completed").addOnSuccessListener(new OnSuccessListener<Void>() {
+                            reference.child("status").setValue("completed").addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void unused) {
                                     Toast.makeText(getActivity(), "Transaction Complete", Toast.LENGTH_SHORT).show();

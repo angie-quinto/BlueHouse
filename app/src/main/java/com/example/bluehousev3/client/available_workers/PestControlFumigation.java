@@ -55,7 +55,7 @@ public class PestControlFumigation extends Fragment implements AvailableWorkerAd
         rvAvailableWorkers.setAdapter(adapter);
 
         DatabaseReference workerRef = FirebaseDatabase.getInstance().getReference().child("users/workers");
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("workersUnderService/carpentry");
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("workersUnderService/pestControlAndFumigation");
 
         ref.addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")

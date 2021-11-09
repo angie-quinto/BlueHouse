@@ -35,6 +35,7 @@ import java.util.ArrayList;
 public class PendingRequests extends Fragment implements PendingRequestsAdapter.OnPendingRequestClickListener {
     private ArrayList<PendingRequest> pendingRequests;
     private ArrayList<String> reqId;
+    private ArrayList<String> clientId;
     private TextView tvNoReq;
     private Bundle bundle;
 
@@ -46,6 +47,7 @@ public class PendingRequests extends Fragment implements PendingRequestsAdapter.
         pendingRequests = new ArrayList<>();
         reqId = new ArrayList<>();
         tvNoReq = view.findViewById(R.id.tv_no_req);
+        clientId = new ArrayList<>();
         bundle = new Bundle();
         RecyclerView rv = view.findViewById(R.id.rv_pending);
 
@@ -68,11 +70,10 @@ public class PendingRequests extends Fragment implements PendingRequestsAdapter.
                 for (DataSnapshot snapshot1 : snapshot.getChildren()) {
                     for (DataSnapshot snapshot2 : snapshot1.getChildren()) {
                         if (snapshot2.child("workerId").getValue(String.class).equals(uid)) {
-                            reqId.add(snapshot2.getKey());
                             String status = snapshot2.child("status").getValue(String.class);
-
-                            assert status != null;
                             if (status.equals("pending")) {
+                                clientId.add(snapshot1.getKey());
+                                reqId.add(snapshot2.getKey());
                                 PendingRequest pending = snapshot2.getValue(PendingRequest.class);
                                 pendingRequests.add(pending);
                             }
@@ -102,6 +103,7 @@ public class PendingRequests extends Fragment implements PendingRequestsAdapter.
     public void onPendingRequestClicked(int position) {
         String req = reqId.get(position);
         bundle.putString("rId", req);
+        bundle.putString("cId", clientId.get(position));
         Fragment selected = new SelectedRequest();
         selected.setArguments(bundle);
         FragmentTransaction ft = getParentFragmentManager().beginTransaction();

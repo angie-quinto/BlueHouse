@@ -21,7 +21,6 @@ import com.example.bluehousev3.client.available_workers.Beautician;
 import com.example.bluehousev3.client.available_workers.Carpentry;
 import com.example.bluehousev3.client.available_workers.ComputerElectronicRepair;
 import com.example.bluehousev3.client.available_workers.Cooking;
-import com.example.bluehousev3.client.available_workers.DeliveryService;
 import com.example.bluehousev3.client.available_workers.ElectricalMaintenance;
 import com.example.bluehousev3.client.available_workers.Gardening;
 import com.example.bluehousev3.client.available_workers.HomeApplianceMaintenance;
@@ -33,9 +32,7 @@ import com.example.bluehousev3.client.available_workers.PestControlFumigation;
 import com.example.bluehousev3.client.available_workers.Plumbing;
 import com.example.bluehousev3.client.available_workers.Roofing;
 import com.example.bluehousev3.client.available_workers.SepticTankMaintenance;
-import com.example.bluehousev3.client.available_workers.SewerageCleaning;
 import com.example.bluehousev3.client.available_workers.Upholstery;
-import com.example.bluehousev3.client.available_workers.WaterPipeMaintenance;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -80,7 +77,7 @@ public class Home extends Fragment  implements ServiceAdapter.OnServiceListener 
   public void onServiceClick(int position) {
       String service = services.get(position);
 
-      if (service.equals("Plumbing")) {
+      if (service.equals("Plumbing/Water Pipe Maintenance")) {
         Fragment plumbing = new Plumbing();
           FragmentTransaction ft = getParentFragmentManager().beginTransaction();
           ft.replace(R.id.fragment_container_client, plumbing);
@@ -88,15 +85,7 @@ public class Home extends Fragment  implements ServiceAdapter.OnServiceListener 
           ft.addToBackStack(null);
           ft.commit();
       }
-      if (service.equals("Water Pipe Maintenance")) {
-          Fragment water = new WaterPipeMaintenance();
-          FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-          ft.replace(R.id.fragment_container_client, water);
-          ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-          ft.addToBackStack(null);
-          ft.commit();
 
-      }
       if (service.equals("Carpentry")) {
           Fragment carpe = new Carpentry();
           FragmentTransaction ft = getParentFragmentManager().beginTransaction();
@@ -151,7 +140,7 @@ public class Home extends Fragment  implements ServiceAdapter.OnServiceListener 
           ft.commit();
 
       }
-      if (service.equals("Roofing")) {
+      if (service.equals("Roof Maintenance")) {
           Fragment r = new Roofing();
           FragmentTransaction ft = getParentFragmentManager().beginTransaction();
           ft.replace(R.id.fragment_container_client, r);
@@ -160,7 +149,7 @@ public class Home extends Fragment  implements ServiceAdapter.OnServiceListener 
           ft.commit();
 
       }
-      if (service.equals("House Cleaning")) {
+      if (service.equals("Housekeeping")) {
           Fragment h = new HouseCleaning();
           FragmentTransaction ft = getParentFragmentManager().beginTransaction();
           ft.replace(R.id.fragment_container_client, h);
@@ -169,7 +158,7 @@ public class Home extends Fragment  implements ServiceAdapter.OnServiceListener 
           ft.commit();
 
       }
-      if (service.equals("Laundry services")) {
+      if (service.equals("Laundry Services")) {
           Fragment l = new Laundry();
           FragmentTransaction ft = getParentFragmentManager().beginTransaction();
           ft.replace(R.id.fragment_container_client, l);
@@ -178,7 +167,7 @@ public class Home extends Fragment  implements ServiceAdapter.OnServiceListener 
           ft.commit();
 
       }
-      if (service.equals("Beautician")) {
+      if (service.equals("Beauty Salon Services")) {
           Fragment b = new Beautician();
           FragmentTransaction ft = getParentFragmentManager().beginTransaction();
           ft.replace(R.id.fragment_container_client, b);
@@ -232,25 +221,6 @@ public class Home extends Fragment  implements ServiceAdapter.OnServiceListener 
           ft.commit();
 
       }
-      if (service.equals("Sewerage Cleaning")) {
-          Fragment s = new SewerageCleaning();
-          FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-          ft.replace(R.id.fragment_container_client, s);
-          ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-          ft.addToBackStack(null);
-          ft.commit();
-
-      }
-      if (service.equals("Deliver Services")) {
-          Fragment d = new DeliveryService();
-          FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-          ft.replace(R.id.fragment_container_client, d);
-          ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-          ft.addToBackStack(null);
-          ft.commit();
-
-      }
-
   }
 }
 

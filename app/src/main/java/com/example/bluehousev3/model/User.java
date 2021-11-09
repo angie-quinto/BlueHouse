@@ -3,7 +3,7 @@ package com.example.bluehousev3.model;
 public class User{
     private String userType;
     private String fullName;
-    private int age;
+    private String age;
     private String gender;
     private String phoneNumber;
     private String email;
@@ -16,7 +16,7 @@ public class User{
 
   public User(String fullName) {}
 
-  public User(String fullName, int age, String gender) {
+  public User(String fullName, String age, String gender) {
         this.fullName = fullName;
         this.age = age;
         this.gender = gender;
@@ -54,11 +54,11 @@ public class User{
         this.email = email;
     }
 
-  public int getAge() {
+  public String getAge() {
         return age;
     }
 
-  public void setAge(int age) {
+  public void setAge(String age) {
         this.age = age;
     }
 

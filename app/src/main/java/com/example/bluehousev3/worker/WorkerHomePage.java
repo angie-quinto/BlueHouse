@@ -2,14 +2,17 @@ package com.example.bluehousev3.worker;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.widget.Toast;
 
 import com.example.bluehousev3.R;
+import com.example.bluehousev3.client.PopularServices;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class WorkerHomePage extends AppCompatActivity {
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,15 +32,14 @@ public class WorkerHomePage extends AppCompatActivity {
                 case R.id.worker_profile_nav:
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_worker,
                             new Profile()).commit();
-                    Toast.makeText(getApplicationContext(), "tap", Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.worker_accepted_req:
-//                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_client,
-//                            new PopularWorkers()).commit();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_worker,
+                            new AcceptedRequests()).commit();
                     break;
                 case R.id.worker_popularServices_nav:
-//                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_client,
-//                            new ServiceRequests()).commit();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_worker,
+                            new PopularServices()).commit();
                     break;
             }
             return true;

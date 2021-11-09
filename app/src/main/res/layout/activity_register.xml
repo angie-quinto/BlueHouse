@@ -181,7 +181,7 @@
         android:layout_width="@dimen/width_textView"
         android:layout_height="@dimen/height_textView"
         android:ems="10"
-        android:hint="Rate"
+        android:hint="Rate (for worker only)"
         android:inputType="number"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"

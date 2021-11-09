@@ -21,26 +21,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ClientServiceRequestsAdapter extends RecyclerView.Adapter<ClientServiceRequestsAdapter.ViewHolder> {
-//    private ArrayList<String> serviceType, description, startDate, startTime, endDate, endTime, assignedAddress, proposedRate,
-//    status, workerName, workerAddress;
     private OnRequestClickListener onRequestClickListener;
     private ArrayList<ServiceRequest> serviceRequests;
 
-    public ClientServiceRequestsAdapter(ArrayList<ServiceRequest> serviceRequests/*ArrayList<String> serviceType, ArrayList<String> description, ArrayList<String> startDate,
-                                        ArrayList<String> endDate, ArrayList<String> startTime, ArrayList<String> endTime,
-                                        ArrayList<String> assignedAddress, ArrayList<String> proposedRate, ArrayList<String> status, ArrayList<String> workerName,
-                                        ArrayList<String> workerAddress, */ ,OnRequestClickListener onRequestClickListener) {
-//        this.serviceType = serviceType;
-//        this.description = description;
-//        this.startDate = startDate;
-//        this.endDate = endDate;
-//        this.startTime = startTime;
-//        this.endTime = endTime;
-//        this.assignedAddress = assignedAddress;
-//        this.proposedRate = proposedRate;
-//        this.status = status;
-//        this.workerName = workerName;
-//        this.workerAddress = workerAddress;
+    public ClientServiceRequestsAdapter(ArrayList<ServiceRequest> serviceRequests, OnRequestClickListener onRequestClickListener) {
+
         this.onRequestClickListener = onRequestClickListener;
         this.serviceRequests = serviceRequests;
     }
@@ -56,7 +41,6 @@ public class ClientServiceRequestsAdapter extends RecyclerView.Adapter<ClientSer
 
     @Override
     public void onBindViewHolder(@NonNull ClientServiceRequestsAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        //if (!startDate.isEmpty()) {
             holder.tvServiceType.setText("Service Type: " + serviceRequests.get(position ).getServiceType());
             holder.tvDescription.setText("Description: " + serviceRequests.get(position).getDescription());
             holder.tvStartDate.setText("Start Date: " + serviceRequests.get(position).getStartDate());
@@ -68,10 +52,6 @@ public class ClientServiceRequestsAdapter extends RecyclerView.Adapter<ClientSer
             holder.tvStatus.setText("Status: " + serviceRequests.get(position).getStatus());
             holder.tvWorkerName.setText("Worker Name: " + serviceRequests.get(position).getWorkerName());
             holder.tvWorkerAddress.setText("Worker Address: " + serviceRequests.get(position).getWorkerAddress());
-
-
-        //}
-
     }
 
     @Override

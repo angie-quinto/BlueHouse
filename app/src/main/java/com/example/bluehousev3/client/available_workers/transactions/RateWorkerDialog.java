@@ -58,7 +58,7 @@ public class RateWorkerDialog extends DialogFragment {
                 if (rateInt < 1 || rateInt > 5) {
                     Toast.makeText(getActivity(), "Please provide a value not exceeding 5", Toast.LENGTH_SHORT).show();
                 } else {
-                    reference.child(String.valueOf(System.currentTimeMillis())).setValue(rateInt).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    reference.child(String.valueOf(System.currentTimeMillis())).setValue(rate).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void unused) {
                             statRef.child("status").setValue("Completed").addOnSuccessListener(new OnSuccessListener<Void>() {
