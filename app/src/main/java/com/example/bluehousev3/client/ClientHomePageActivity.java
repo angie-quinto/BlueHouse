@@ -36,7 +36,7 @@ public class ClientHomePageActivity extends AppCompatActivity {
           break;
         case R.id.client_popularWorkers_nav:
           getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_client,
-              new PopularWorkers()).commit();
+              new PopularServices()).commit();
           break;
         case R.id.client_service_requests:
           getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_client,

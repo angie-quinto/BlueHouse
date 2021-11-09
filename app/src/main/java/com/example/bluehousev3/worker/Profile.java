@@ -82,12 +82,12 @@ public class Profile extends Fragment {
           String gender = dataSnapshot.child("gender").getValue(String.class);
           String phoneNum =
               dataSnapshot.child("phoneNumber").getValue(String.class);
-          int rate = dataSnapshot.child("hourlyRate").getValue(Integer.class);
+          String rate = dataSnapshot.child("rate").getValue(String.class);
           String imgUrl = dataSnapshot.child("SelfieUrl").getValue(String.class);
           tvName.setText("Full Name:  " + name);
           tvAddress.setText("Address: " + address);
           tvAge.setText("Age: " + String.valueOf(age));
-          tvHourlyRate.setText("Hourly Rate: " + String.valueOf(rate));
+          tvHourlyRate.setText("Rate: " + rate);
           tvGender.setText("Gender: " + gender);
           tvPhoneNum.setText("Mobile Number: " + phoneNum);
 

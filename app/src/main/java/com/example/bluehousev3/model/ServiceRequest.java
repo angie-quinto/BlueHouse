@@ -1,23 +1,47 @@
 package com.example.bluehousev3.model;
 
-import java.util.ArrayList;
-
 public class ServiceRequest {
-    private String serviceType, description, startDate, endDate, startTime, endTime, assignedAddress,
-    proposedRate, status, workerName, workerAddress;
+    private String serviceType;
+    private String description;
+    private String startDate;
+    private String endDate;
+    private String startTime;
+    private String endTime;
+    private String location;
+    private String proposedRate;
+    private String status;
+    private String workerName;
+    private String workerAddress;
+    private String workerId;
+    private String proposedRateTime;
+    private String img1Url;
+    private String img2Url;
 
-    public ServiceRequest(String serviceType, String description, String startDate, String endDate, String startTime, String endTime, String assignedAddress, String proposedRate, String status, String workerName, String workerAddress) {
+
+
+
+    public ServiceRequest(String proposedRateTime, String serviceType,
+                          String description, String startDate,
+                          String endDate, String startTime, String endTime,
+                          String assignedAddress, String proposedRate,
+                          String status, String workerName, String workerAddress,
+                          String workerId, String img1Url, String img2Url) {
         this.serviceType = serviceType;
         this.description = description;
         this.startDate = startDate;
         this.endDate = endDate;
         this.startTime = startTime;
         this.endTime = endTime;
-        this.assignedAddress = assignedAddress;
+        this.location = assignedAddress;
         this.proposedRate = proposedRate;
         this.status = status;
         this.workerName = workerName;
         this.workerAddress = workerAddress;
+        this.workerId = workerId;
+        this.proposedRateTime = proposedRateTime;
+        this.img1Url = img1Url;
+        this.img2Url = img2Url;
+
     }
 
     public ServiceRequest() {}
@@ -70,12 +94,12 @@ public class ServiceRequest {
         this.endTime = endTime;
     }
 
-    public String getAssignedAddress() {
-        return assignedAddress;
+    public String getLocation() {
+        return location;
     }
 
-    public void setAssignedAddress(String assignedAddress) {
-        this.assignedAddress = assignedAddress;
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public String getProposedRate() {
@@ -98,26 +122,49 @@ public class ServiceRequest {
         return workerName;
     }
 
-    public void setWorkerName(String workerName) {
-        this.workerName = workerName;
+    public void setWorkerName(String fullName) {
+        this.workerName = fullName;
     }
 
     public String getWorkerAddress() {
         return workerAddress;
     }
 
-    public void setWorkerAddress(String workerAddress) {
-        this.workerAddress = workerAddress;
+    public void setWorkerAddress(String address) {
+        this.workerAddress = address;
     }
 
-  public ArrayList<ServiceRequest> createServiceRequestList(ServiceRequest serviceRequest, int num) {
-        ArrayList<ServiceRequest> serviceRequests = new ArrayList<>();
-
-        for (int i = 1; i <= num; i++) {
-            serviceRequests.add(serviceRequest);
-            //serviceRequests.add(new ServiceRequest(getServiceType(), getDescription(), getStartDate(), getEndDate(),  getStartTime(), getEndTime(),  getAssignedAddress(), getProposedRate(), getStatus(),  getWorkerName(), getWorkerAddress()));
-        }
-
-        return serviceRequests;
+    public String getWorkerId() {
+        return workerId;
     }
+
+    public void setWorkerId(String workerId) {
+        this.workerId = workerId;
+    }
+
+    public String getProposedRateTime() {
+        return proposedRateTime;
+    }
+
+    public void setProposedRateTime(String proposedRateTime) {
+        this.proposedRateTime = proposedRateTime;
+    }
+
+    public String getImg1Url() {
+        return img1Url;
+    }
+
+    public void setImg1Url(String img1Url) {
+        this.img1Url = img1Url;
+    }
+
+    public String getImg2Url() {
+        return img2Url;
+    }
+
+    public void setImg2Url(String img2Url) {
+        this.img2Url = img2Url;
+    }
+
+
 }

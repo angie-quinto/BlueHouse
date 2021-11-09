@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,28 +59,31 @@ public class PendingRequests extends Fragment implements PendingRequestsAdapter.
         FirebaseUser user = mAuth.getCurrentUser();
         String uid = user.getUid();
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("users/serviceRequests/").child(uid);
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("users/serviceRequests");
         reference.addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 for (DataSnapshot snapshot1 : snapshot.getChildren()) {
-                    reqId.add(snapshot1.getKey());
-                    String status = snapshot1.child("status").getValue(String.class);
-                    assert status != null;
-                    if (status.equals("pending")) {
-                        PendingRequest pending = snapshot1.getValue(PendingRequest.class);
-                        assert pending != null;
-                        pendingRequests.add(pending);
+                    for (DataSnapshot snapshot2 : snapshot1.getChildren()) {
+                        if (snapshot2.child("workerId").getValue(String.class).equals(uid)) {
+                            reqId.add(snapshot2.getKey());
+                            String status = snapshot2.child("status").getValue(String.class);
 
+                            assert status != null;
+                            if (status.equals("pending")) {
+                                PendingRequest pending = snapshot2.getValue(PendingRequest.class);
+                                pendingRequests.add(pending);
+                            }
+                        }
                     }
-
                 }
+
                 if (pendingRequests.isEmpty()) {
                     tvNoReq.setText("There are no pending requests right now");
                 }
-//                Toast.makeText(getActivity(), "reqid" + reqId.get(0), Toast.LENGTH_SHORT).show();
+
                 adapter.notifyDataSetChanged();
             }
 
@@ -97,7 +101,6 @@ public class PendingRequests extends Fragment implements PendingRequestsAdapter.
     @Override
     public void onPendingRequestClicked(int position) {
         String req = reqId.get(position);
-        Toast.makeText(getActivity(), "reqId: " + req, Toast.LENGTH_SHORT).show();
         bundle.putString("rId", req);
         Fragment selected = new SelectedRequest();
         selected.setArguments(bundle);

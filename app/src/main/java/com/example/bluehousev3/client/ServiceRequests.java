@@ -20,6 +20,7 @@ import com.example.bluehousev3.R;
 import com.example.bluehousev3.adapters.ClientServiceRequestsAdapter;
 import com.example.bluehousev3.client.available_workers.transactions.RequestMenu;
 import com.example.bluehousev3.client.available_workers.transactions.WorkerProfile;
+import com.example.bluehousev3.model.ServiceRequest;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -33,119 +34,152 @@ import java.util.Map;
 
 
 public class ServiceRequests extends Fragment implements ClientServiceRequestsAdapter.OnRequestClickListener {
-  private ArrayList<String> serviceType, description, startDate, startTime, endDate, endTime, assignedAddress, proposedRate,
-          status, workerName, workerAddress, workerIds, reqId;
-
-  private static final String TAG = "ServiceRequests";
-  private Map<String, Object> workersMap;
+//  private ArrayList<String> serviceType, description, startDate, startTime, endDate, endTime, assignedAddress, proposedRate,
+//          status, workerName, workerAddress, workerIds, reqId;
+//
+//  private static final String TAG = "ServiceRequests";
+//  private Map<String, Object> workersMap;
   private TextView tvNoReq;
-
+//
+  private  ArrayList<String> reqId;
+  private ArrayList<ServiceRequest> serviceRequests;
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_service_requests_client, container, false);
-
-
-    serviceType = new ArrayList<>();
-    description = new ArrayList<>();
-    startDate = new ArrayList<>();
-    startTime = new ArrayList<>();
-    endDate = new ArrayList<>();
-    endTime = new ArrayList<>();
-    assignedAddress = new ArrayList<>();
-    proposedRate = new ArrayList<>();
-    status = new ArrayList<>();
-    workerName = new ArrayList<>();
-    workerAddress = new ArrayList<>();
-    workerIds = new ArrayList<>();
-    reqId = new ArrayList<>();
     tvNoReq = view.findViewById(R.id.tv_no_req_client);
-
-
-
-    ClientServiceRequestsAdapter adapter = new ClientServiceRequestsAdapter(serviceType, description,
-            startDate, endDate, startTime, endTime, assignedAddress, proposedRate, status, workerName, workerAddress, this);
-    RecyclerView recyclerView = view.findViewById(R.id.rv_service_requests_client);
-    recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-    recyclerView.setAdapter(adapter);
+    serviceRequests = new ArrayList<>();
+    reqId = new ArrayList<>();
+    RecyclerView rv = view.findViewById(R.id.rv_service_requests_client);
+    rv.setLayoutManager(new LinearLayoutManager(getActivity()));
+    ClientServiceRequestsAdapter adapter = new ClientServiceRequestsAdapter(serviceRequests, this);
+    rv.setAdapter(adapter);
 
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
     FirebaseUser user = mAuth.getCurrentUser();
     String uid = user.getUid();
-    DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("users/clientRequests").child(uid);
 
-    ref.addValueEventListener(new ValueEventListener() {
+    DatabaseReference serviceReqRef = FirebaseDatabase.getInstance().getReference().child("users").child("serviceRequests").child(uid);
+    serviceReqRef.addValueEventListener(new ValueEventListener() {
       @SuppressLint("NotifyDataSetChanged")
       @Override
       public void onDataChange(@NonNull DataSnapshot snapshot) {
-        for (DataSnapshot snapshots: snapshot.getChildren()) {
-            reqId.add(snapshots.getKey());
-          for (DataSnapshot dataSnapshot: snapshots.getChildren()) {
-              workerIds.add(dataSnapshot.getKey());
-            for (DataSnapshot snapshot1: dataSnapshot.getChildren()) {
-              if (snapshot1.getKey().equals("serviceType")) {
-                serviceType.add(snapshot1.getValue(String.class));
-              }
-              if (snapshot1.getKey().equals("description")) {
-                description.add(snapshot1.getValue(String.class));
-              }
-              if (snapshot1.getKey().equals("startDate")) {
-                startDate.add(snapshot1.getValue(String.class));
-              }
-              if (snapshot1.getKey().equals("endDate")) {
-                endDate.add(snapshot1.getValue(String.class));
-              }
-              if (snapshot1.getKey().equals("startTime")) {
-                startTime.add(snapshot1.getValue(String.class));
-              }
-              if (snapshot1.getKey().equals("endTime")) {
-                endTime.add(snapshot1.getValue(String.class));
-              }
-              if (snapshot1.getKey().equals("location")) {
-                assignedAddress.add(snapshot1.getValue(String.class));
-              }
-              if (snapshot1.getKey().equals("proposedRate")) {
-                proposedRate.add(snapshot1.getValue(String.class));
-              }
-              if (snapshot1.getKey().equals("status")) {
-                status.add(snapshot1.getValue(String.class));
-              }
-            }
-          }
-          adapter.notifyDataSetChanged();
+        for (DataSnapshot snapshot1 : snapshot.getChildren()) {
+          reqId.add(snapshot1.getKey());
+          ServiceRequest serviceRequest = snapshot1.getValue(ServiceRequest.class);
+          serviceRequests.add(serviceRequest);
         }
-        DatabaseReference workerRef = FirebaseDatabase.getInstance().getReference().child("users/workers");
-        workerRef.addValueEventListener(new ValueEventListener() {
-          @SuppressLint("NotifyDataSetChanged")
-          @Override
-          public void onDataChange(@NonNull DataSnapshot snapshot) {
-            workersMap = (Map<String, Object>) snapshot.getValue();
-            for (int i = 0; i < workerIds.size(); i++) {
-              if (workersMap.containsKey(workerIds.get(i))) {
-                String name = snapshot.child(workerIds.get(i)).child("fullName").getValue(String.class);
-                String address = snapshot.child(workerIds.get(i)).child("address").getValue(String.class);
-                workerName.add(name);
-                workerAddress.add(address);
-                adapter.notifyDataSetChanged();
-              }
-            }
-          }
-
-          @Override
-          public void onCancelled(@NonNull DatabaseError error) {
-            Log.d(TAG, "Error on: workerRef" );
-          }
-        });
-
-        if (serviceType.isEmpty()) {
+        adapter.notifyDataSetChanged();
+        if (serviceRequests.isEmpty()) {
           tvNoReq.setText("Service Requests is Empty");
         }
       }
 
       @Override
       public void onCancelled(@NonNull DatabaseError error) {
-        Log.d(TAG, "Error on: ref" );
+
       }
     });
+//    serviceType = new ArrayList<>();
+//    description = new ArrayList<>();
+//    startDate = new ArrayList<>();
+//    startTime = new ArrayList<>();
+//    endDate = new ArrayList<>();
+//    endTime = new ArrayList<>();
+//    assignedAddress = new ArrayList<>();
+//    proposedRate = new ArrayList<>();
+//    status = new ArrayList<>();
+//    workerName = new ArrayList<>();
+//    workerAddress = new ArrayList<>();
+//    workerIds = new ArrayList<>();
+//    reqId = new ArrayList<>();
+
+//
+//
+//
+//    ClientServiceRequestsAdapter adapter = new ClientServiceRequestsAdapter(serviceType, description,
+//            startDate, endDate, startTime, endTime, assignedAddress, proposedRate, status, workerName, workerAddress, this);
+//    RecyclerView recyclerView = view.findViewById(R.id.rv_service_requests_client);
+//    recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+//    recyclerView.setAdapter(adapter);
+//
+//    FirebaseAuth mAuth = FirebaseAuth.getInstance();
+//    FirebaseUser user = mAuth.getCurrentUser();
+//    String uid = user.getUid();
+//    DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("users/clientRequests").child(uid);
+//
+//    ref.addValueEventListener(new ValueEventListener() {
+//      @SuppressLint("NotifyDataSetChanged")
+//      @Override
+//      public void onDataChange(@NonNull DataSnapshot snapshot) {
+//        for (DataSnapshot snapshots: snapshot.getChildren()) {
+//            reqId.add(snapshots.getKey());
+//          for (DataSnapshot dataSnapshot: snapshots.getChildren()) {
+//              workerIds.add(dataSnapshot.getKey());
+//            for (DataSnapshot snapshot1: dataSnapshot.getChildren()) {
+//              if (snapshot1.getKey().equals("serviceType")) {
+//                serviceType.add(snapshot1.getValue(String.class));
+//              }
+//              if (snapshot1.getKey().equals("description")) {
+//                description.add(snapshot1.getValue(String.class));
+//              }
+//              if (snapshot1.getKey().equals("startDate")) {
+//                startDate.add(snapshot1.getValue(String.class));
+//              }
+//              if (snapshot1.getKey().equals("endDate")) {
+//                endDate.add(snapshot1.getValue(String.class));
+//              }
+//              if (snapshot1.getKey().equals("startTime")) {
+//                startTime.add(snapshot1.getValue(String.class));
+//              }
+//              if (snapshot1.getKey().equals("endTime")) {
+//                endTime.add(snapshot1.getValue(String.class));
+//              }
+//              if (snapshot1.getKey().equals("location")) {
+//                assignedAddress.add(snapshot1.getValue(String.class));
+//              }
+//              if (snapshot1.getKey().equals("proposedRate")) {
+//                proposedRate.add(snapshot1.getValue(String.class));
+//              }
+//              if (snapshot1.getKey().equals("status")) {
+//                status.add(snapshot1.getValue(String.class));
+//              }
+//            }
+//          }
+//          adapter.notifyDataSetChanged();
+//        }
+//        DatabaseReference workerRef = FirebaseDatabase.getInstance().getReference().child("users/workers");
+//        workerRef.addValueEventListener(new ValueEventListener() {
+//          @SuppressLint("NotifyDataSetChanged")
+//          @Override
+//          public void onDataChange(@NonNull DataSnapshot snapshot) {
+//            workersMap = (Map<String, Object>) snapshot.getValue();
+//            for (int i = 0; i < workerIds.size(); i++) {
+//              if (workersMap.containsKey(workerIds.get(i))) {
+//                String name = snapshot.child(workerIds.get(i)).child("fullName").getValue(String.class);
+//                String address = snapshot.child(workerIds.get(i)).child("address").getValue(String.class);
+//                workerName.add(name);
+//                workerAddress.add(address);
+//                adapter.notifyDataSetChanged();
+//              }
+//            }
+//          }
+//
+//          @Override
+//          public void onCancelled(@NonNull DatabaseError error) {
+//            Log.d(TAG, "Error on: workerRef" );
+//          }
+//        });
+//
+//        if (serviceType.isEmpty()) {
+//          tvNoReq.setText("Service Requests is Empty");
+//        }
+//      }
+//
+//      @Override
+//      public void onCancelled(@NonNull DatabaseError error) {
+//        Log.d(TAG, "Error on: ref" );
+//      }
+//    });
 
     return view;
   }
@@ -153,7 +187,7 @@ public class ServiceRequests extends Fragment implements ClientServiceRequestsAd
   @Override
   public void onRequestClick(int position) {
     String requestId = reqId.get(position);
-    String workerId = workerIds.get(position);
+    String workerId = serviceRequests.get(position).getWorkerId();
     Bundle bundle = new Bundle();
     bundle.putString("workerId2", workerId);
     bundle.putString("reqId", requestId);

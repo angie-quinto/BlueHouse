@@ -21,26 +21,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ClientServiceRequestsAdapter extends RecyclerView.Adapter<ClientServiceRequestsAdapter.ViewHolder> {
-    private ArrayList<String> serviceType, description, startDate, startTime, endDate, endTime, assignedAddress, proposedRate,
-    status, workerName, workerAddress;
+//    private ArrayList<String> serviceType, description, startDate, startTime, endDate, endTime, assignedAddress, proposedRate,
+//    status, workerName, workerAddress;
     private OnRequestClickListener onRequestClickListener;
+    private ArrayList<ServiceRequest> serviceRequests;
 
-    public ClientServiceRequestsAdapter(ArrayList<String> serviceType, ArrayList<String> description, ArrayList<String> startDate,
+    public ClientServiceRequestsAdapter(ArrayList<ServiceRequest> serviceRequests/*ArrayList<String> serviceType, ArrayList<String> description, ArrayList<String> startDate,
                                         ArrayList<String> endDate, ArrayList<String> startTime, ArrayList<String> endTime,
                                         ArrayList<String> assignedAddress, ArrayList<String> proposedRate, ArrayList<String> status, ArrayList<String> workerName,
-                                        ArrayList<String> workerAddress, OnRequestClickListener onRequestClickListener) {
-        this.serviceType = serviceType;
-        this.description = description;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.assignedAddress = assignedAddress;
-        this.proposedRate = proposedRate;
-        this.status = status;
-        this.workerName = workerName;
-        this.workerAddress = workerAddress;
+                                        ArrayList<String> workerAddress, */ ,OnRequestClickListener onRequestClickListener) {
+//        this.serviceType = serviceType;
+//        this.description = description;
+//        this.startDate = startDate;
+//        this.endDate = endDate;
+//        this.startTime = startTime;
+//        this.endTime = endTime;
+//        this.assignedAddress = assignedAddress;
+//        this.proposedRate = proposedRate;
+//        this.status = status;
+//        this.workerName = workerName;
+//        this.workerAddress = workerAddress;
         this.onRequestClickListener = onRequestClickListener;
+        this.serviceRequests = serviceRequests;
     }
 
     @NonNull
@@ -55,17 +57,17 @@ public class ClientServiceRequestsAdapter extends RecyclerView.Adapter<ClientSer
     @Override
     public void onBindViewHolder(@NonNull ClientServiceRequestsAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         //if (!startDate.isEmpty()) {
-            holder.tvServiceType.setText("Service Type: " + serviceType.get(position ));
-            holder.tvDescription.setText("Description: " + description.get(position));
-            holder.tvStartDate.setText("Start Date: " + startDate.get(position));
-            holder.tvEndDate.setText("End Date: " + endDate.get(position));
-            holder.tvStartTime.setText("Start Time: " + startTime.get(position));
-            holder.tvEndTime.setText("End Time: " + endTime.get(position));
-            holder.tvAssignedAddress.setText("Assigned Address: " + assignedAddress.get(position));
-            holder.tvProposedRate.setText("Proposed Rate: " + proposedRate.get(position));
-            holder.tvStatus.setText("Status: " + status.get(position));
-            holder.tvWorkerName.setText("Worker Name: " + workerName.get(position));
-            holder.tvWorkerAddress.setText("Worker Address: " + workerAddress.get(position));
+            holder.tvServiceType.setText("Service Type: " + serviceRequests.get(position ).getServiceType());
+            holder.tvDescription.setText("Description: " + serviceRequests.get(position).getDescription());
+            holder.tvStartDate.setText("Start Date: " + serviceRequests.get(position).getStartDate());
+            holder.tvEndDate.setText("End Date: " + serviceRequests.get(position).getEndDate());
+            holder.tvStartTime.setText("Start Time: " + serviceRequests.get(position).getStartTime());
+            holder.tvEndTime.setText("End Time: " + serviceRequests.get(position).getEndTime());
+            holder.tvAssignedAddress.setText("Location: " + serviceRequests.get(position).getLocation());
+            holder.tvProposedRate.setText("Proposed Rate: " + serviceRequests.get(position).getProposedRate() + " : " + serviceRequests.get(position).getProposedRateTime());
+            holder.tvStatus.setText("Status: " + serviceRequests.get(position).getStatus());
+            holder.tvWorkerName.setText("Worker Name: " + serviceRequests.get(position).getWorkerName());
+            holder.tvWorkerAddress.setText("Worker Address: " + serviceRequests.get(position).getWorkerAddress());
 
 
         //}
@@ -74,7 +76,7 @@ public class ClientServiceRequestsAdapter extends RecyclerView.Adapter<ClientSer
 
     @Override
     public int getItemCount() {
-        return workerName.size();
+        return serviceRequests.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{

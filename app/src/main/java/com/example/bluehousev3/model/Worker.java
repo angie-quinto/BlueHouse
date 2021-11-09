@@ -3,22 +3,14 @@ package com.example.bluehousev3.model;
 import java.util.ArrayList;
 
 public class Worker extends User {
-    private ArrayList<String> servicesOffered;
-    private int hourlyRate;
+
+    private String rate;
     private String policeClearance;
     private String validId1;
     private String validId2;
     private String cert;
     private String rating;
     private String verified;
-    private static int lastWorkerId = 0;
-
-
-    public Worker(ArrayList<String> servicesOffered, int hourlyRate) {
-        this.servicesOffered = servicesOffered;
-        this.hourlyRate = hourlyRate;
-    }
-
 
     public Worker(String fullName, int age, String gender) {
         super(fullName, age, gender);
@@ -29,20 +21,13 @@ public class Worker extends User {
         super(fullName);
     }
 
-    public ArrayList<String> getServicesOffered() {
-        return servicesOffered;
+
+    public String getRate() {
+        return rate;
     }
 
-    public void setServicesOffered(ArrayList<String> servicesOffered) {
-        this.servicesOffered = servicesOffered;
-    }
-
-    public int getHourlyRate() {
-        return hourlyRate;
-    }
-
-    public void setHourlyRate(int hourlyRate) {
-        this.hourlyRate = hourlyRate;
+    public void setRate(String rate) {
+        this.rate = rate;
     }
 
     public String getPoliceClearance() {

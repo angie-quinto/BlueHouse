@@ -59,7 +59,7 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
     private EditText edtEmail;
     private EditText edtPassword;
     private EditText edtRetypePass;
-    private EditText edtMobileNum;
+    private EditText edtMobileNum, edtRate;
     private ProgressBar progressBar;
     private int age;
     private EditText edtAddress, edtBirthdate;
@@ -97,6 +97,7 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
         locationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
 
         edtName = findViewById(R.id.edt_name);
+        edtRate = findViewById(R.id.edt_rate_register);
         edtEmail = findViewById(R.id.edt_email_register);
         edtPassword = findViewById(R.id.edt_password_register);
         edtRetypePass = findViewById(R.id.edt_retypePass);
@@ -159,6 +160,7 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
         String mobileNum = edtMobileNum.getText().toString().trim();
         String address = edtAddress.getText().toString().trim();
         String birthDate = edtBirthdate.getText().toString().trim();
+        String rate = edtRate.getText().toString();
         userType = userTypeSpinner.getSelectedItem().toString();
 
         if (name.isEmpty()) {
@@ -227,6 +229,7 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
                             worker.setUserType("Worker");
                             worker.setFullName(name);
                             worker.setAge(age);
+                            worker.setRate(rate);
                             worker.setGender(getGender());
                             worker.setEmail(email);
                             worker.setPhoneNumber(mobileNum);
@@ -337,7 +340,9 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
                 public void onSuccess(Location location) {
                     // we got permissions. Put the values of location xxx into the
                     // UI components
+
                     updateUiValues(location);
+
 
 
                 }

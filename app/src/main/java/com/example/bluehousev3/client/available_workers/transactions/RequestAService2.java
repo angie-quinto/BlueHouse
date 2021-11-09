@@ -33,8 +33,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
@@ -51,7 +54,7 @@ public class RequestAService2 extends Fragment {
     private final String uid = user.getUid();
     private ArrayAdapter<CharSequence> rateAdapter;
     private  DatabaseReference serviceReqRef;
-    private DatabaseReference workerRef;
+   // private DatabaseReference workerRef;
     private String selectedRate;
     private Uri img1, img2;
     private String imgUrl1, imgUrl2;
@@ -78,9 +81,9 @@ public class RequestAService2 extends Fragment {
         location = getArguments().getString("location");
         workerId = getArguments().getString("ID");
 
-        workerRef = FirebaseDatabase.getInstance().getReference().child("users").child("serviceRequests").child(workerId).child(String.valueOf(System.currentTimeMillis()));
+        //workerRef = FirebaseDatabase.getInstance().getReference().child("users").child("serviceRequests").child(workerId).child(String.valueOf(System.currentTimeMillis()));
 
-        serviceReqRef = FirebaseDatabase.getInstance().getReference().child("users").child("clientRequests").child(uid).child(String.valueOf(System.currentTimeMillis())).child(workerId);
+        serviceReqRef = FirebaseDatabase.getInstance().getReference().child("users").child("serviceRequests").child(uid).child(String.valueOf(System.currentTimeMillis()));
 
         Toast.makeText(getActivity(), "id: " + workerId, Toast.LENGTH_SHORT).show();
 
@@ -143,20 +146,33 @@ public class RequestAService2 extends Fragment {
                             public void onClick(DialogInterface dialog, int which) {
                                 String rate = edtRate.getText().toString();
 
-                                workerRef.child("serviceType").setValue(serviceType);
-                                workerRef.child("description").setValue(description);
-                                workerRef.child("startDate").setValue(startDate);
-                                workerRef.child("endDate").setValue(endDate);
-                                workerRef.child("startTime").setValue(startTime);
-                                workerRef.child("endTime").setValue(endTime);
-                                workerRef.child("location").setValue(location);
-                                workerRef.child("proposedRate").setValue(rate);
-                                workerRef.child("proposedRateTime").setValue(selectedRate);
-                                workerRef.child("status").setValue("pending");
-                                workerRef.child("img1Url").setValue(imgUrl1);
-                                workerRef.child("img2Url").setValue(imgUrl2);
-                                workerRef.child("clientId").setValue(uid);
+//                                workerRef.child("serviceType").setValue(serviceType);
+//                                workerRef.child("description").setValue(description);
+//                                workerRef.child("startDate").setValue(startDate);
+//                                workerRef.child("endDate").setValue(endDate);
+//                                workerRef.child("startTime").setValue(startTime);
+//                                workerRef.child("endTime").setValue(endTime);
+//                                workerRef.child("location").setValue(location);
+//                                workerRef.child("proposedRate").setValue(rate);
+//                                workerRef.child("proposedRateTime").setValue(selectedRate);
+//                                workerRef.child("status").setValue("pending");
+//                                workerRef.child("img1Url").setValue(imgUrl1);
+//                                workerRef.child("img2Url").setValue(imgUrl2);
+//                                workerRef.child("clientId").setValue(uid);
+                                DatabaseReference workerRef = FirebaseDatabase.getInstance().getReference().child("users/workers").child(workerId);
+                                 workerRef.addValueEventListener(new ValueEventListener() {
+                                     @Override
+                                     public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                         serviceReqRef.child("workerName").setValue(snapshot.child("fullName").getValue(String.class));
+                                         serviceReqRef.child("workerAddress").setValue(snapshot.child("address").getValue(String.class));
+                                     }
 
+                                     @Override
+                                     public void onCancelled(@NonNull DatabaseError error) {
+
+                                     }
+                                 }) ;
+                                serviceReqRef.child("workerId").setValue(workerId);
                                 serviceReqRef.child("serviceType").setValue(serviceType);
                                 serviceReqRef.child("description").setValue(description);
                                 serviceReqRef.child("startDate").setValue(startDate);

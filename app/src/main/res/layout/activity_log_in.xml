@@ -34,8 +34,8 @@
 
     <TextView
         android:id="@+id/edt_register"
-        android:layout_width="67dp"
-        android:layout_height="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:text="Register"
         android:textSize="18sp"

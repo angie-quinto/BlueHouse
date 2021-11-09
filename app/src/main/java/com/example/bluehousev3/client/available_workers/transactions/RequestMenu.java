@@ -38,7 +38,7 @@ public class RequestMenu extends Fragment {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
         String uid = user.getUid();
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("users/clientRequests").child(uid).child(reqId).child(wId);
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("users/serviceRequests").child(uid).child(reqId);
 
 
         reference.addValueEventListener(new ValueEventListener() {
@@ -89,6 +89,12 @@ public class RequestMenu extends Fragment {
 
                             RateWorkerDialog rateWorkerDialog = new RateWorkerDialog(wId, reqId);
                             rateWorkerDialog.show(getParentFragmentManager(), "Rate Worker");
+                            reference.child("status").setValue("Completed").addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    Toast.makeText(getActivity(), "Transaction Complete", Toast.LENGTH_SHORT).show();
+                                }
+                            });
 
                         }
                     });

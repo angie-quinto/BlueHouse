@@ -10,13 +10,13 @@
         android:id="@+id/edt_name"
         android:layout_width="@dimen/width_textView"
         android:layout_height="@dimen/height_textView"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="32dp"
         android:ems="10"
         android:hint="Full Name"
         android:inputType="textPersonName"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -70,28 +70,28 @@
 
     <Spinner
         android:id="@+id/sp_usertype"
-        android:layout_width="102dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="148dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sp_gender" />
 
     <Spinner
         android:id="@+id/sp_gender"
-        android:layout_width="97dp"
-        android:layout_height="43dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.459"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sw_autoLocate" />
+        app:layout_constraintTop_toBottomOf="@+id/edt_rate_register" />
 
     <Button
         android:id="@+id/btn_register"
         android:layout_width="@dimen/btn_width"
         android:layout_height="@dimen/btn_height"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="36dp"
         android:text="Register"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
@@ -101,28 +101,28 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="81dp"
-        android:layout_height="34dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="Gender:"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/sp_usertype"
-        app:layout_constraintHorizontal_bias="0.597"
+        app:layout_constraintHorizontal_bias="0.611"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sw_autoLocate" />
+        app:layout_constraintTop_toBottomOf="@+id/edt_rate_register" />
 
     <TextView
         android:id="@+id/textView6"
-        android:layout_width="107dp"
-        android:layout_height="44dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="20dp"
         android:text="User Type:"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/sp_usertype"
-        app:layout_constraintHorizontal_bias="0.7"
+        app:layout_constraintHorizontal_bias="0.627"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
@@ -143,9 +143,10 @@
         android:layout_height="@dimen/height_textView"
         android:ems="10"
         android:focusable="false"
+        android:gravity="start"
         android:hint="Tap to set Birthdate"
         android:inputType="textPersonName"
-        android:textAlignment="center"
+        android:textAlignment="textStart"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -165,8 +166,8 @@
 
     <Switch
         android:id="@+id/sw_autoLocate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="222dp"
+        android:layout_height="24dp"
         android:layout_marginTop="8dp"
         android:minHeight="48dp"
         android:text="Auto Locate Address"
@@ -174,5 +175,17 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edt_address" />
+
+    <EditText
+        android:id="@+id/edt_rate_register"
+        android:layout_width="@dimen/width_textView"
+        android:layout_height="@dimen/height_textView"
+        android:ems="10"
+        android:hint="Rate"
+        android:inputType="number"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sw_autoLocate" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

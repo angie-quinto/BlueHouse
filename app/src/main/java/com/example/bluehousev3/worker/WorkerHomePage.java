@@ -6,9 +6,6 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.example.bluehousev3.R;
-import com.example.bluehousev3.client.Home;
-import com.example.bluehousev3.client.PopularWorkers;
-import com.example.bluehousev3.client.ServiceRequests;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class WorkerHomePage extends AppCompatActivity {

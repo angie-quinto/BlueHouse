@@ -52,27 +52,35 @@ public class SelectedRequest extends Fragment {
         FirebaseUser user = mAuth.getCurrentUser();
         String uid = user.getUid();
         String reqId = getArguments().getString("rId");
-        Toast.makeText(getActivity(), "wie" + reqId, Toast.LENGTH_SHORT).show();
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("users/serviceRequests").child(uid).child(reqId);
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("users/serviceRequests");
         reference.addValueEventListener(new ValueEventListener() {
             String serviceType, description, startDate, endDate, startTime, endTime, location, proposedRate, proposedRateTime, clientId;
             String clientName, clientRating, clientGender, image1, image2;
             long clientAge = 0;
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                serviceType = snapshot.child("serviceType").getValue(String.class);
-                description = snapshot.child("description").getValue(String.class);
-                startDate = snapshot.child("startDate").getValue(String.class);
-                endDate = snapshot.child("endDate").getValue(String.class);
-                startTime = snapshot.child("startTime").getValue(String.class);
-                endTime = snapshot.child("endTime").getValue(String.class);
-                location = snapshot.child("location").getValue(String.class);
-                proposedRate = snapshot.child("proposedRate").getValue(String.class);
-                proposedRateTime = snapshot.child("proposedRateTime").getValue(String.class);
-                clientId = snapshot.child("clientId").getValue(String.class);
-                image1 = snapshot.child("img1Url").getValue(String.class);
-                image2 = snapshot.child("img2Url").getValue(String.class);
+                for (DataSnapshot snapshot1 : snapshot.getChildren()) {
+                    for (DataSnapshot snapshot2 : snapshot1.getChildren()) {
+                        if (snapshot2.getKey().equals(reqId)) {
+                            serviceType = snapshot2.child("serviceType").getValue(String.class);
+                            description = snapshot2.child("description").getValue(String.class);
+                            startDate = snapshot2.child("startDate").getValue(String.class);
+                            endDate = snapshot2.child("endDate").getValue(String.class);
+                            startTime = snapshot2.child("startTime").getValue(String.class);
+                            endTime = snapshot2.child("endTime").getValue(String.class);
+                            location = snapshot2.child("location").getValue(String.class);
+                            proposedRate = snapshot2.child("proposedRate").getValue(String.class);
+                            proposedRateTime = snapshot2.child("proposedRateTime").getValue(String.class);
+                            clientId = snapshot1.getKey();
+                            image1 = snapshot2.child("img1Url").getValue(String.class);
+                            image2 = snapshot2.child("img2Url").getValue(String.class);
+                        }
+                    }
+                }
+
+
                 DatabaseReference cRef = FirebaseDatabase.getInstance().getReference().child("users/clients").child(clientId);
                     cRef.addValueEventListener(new ValueEventListener() {
                         @Override
@@ -84,7 +92,7 @@ public class SelectedRequest extends Fragment {
 
                             tvClientName.setText("Client Name: " + clientName);
                             if (clientRating != null) {
-                                tvClientRating.setText("Client Rating" + clientRating);
+                                tvClientRating.setText("Client Rating: " + clientRating);
                             } else {
                                 tvClientRating.setText("Client Rating: Not Yet Rated");
                             }
@@ -103,7 +111,7 @@ public class SelectedRequest extends Fragment {
                 tvDescription.setText("Description: " + description);
                 tvStartDate.setText("Start Date: " + startDate);
                 tvEndDate.setText("End Date: " + endDate);
-                tvStartTime.setText("Start Time" + startTime);
+                tvStartTime.setText("Start Time: " + startTime);
                 tvEndTime.setText("End Time: " + endTime);
                 tvLocation.setText("Location: " + location);
                 tvProposedRate.setText("Proposed Rate: Php " + proposedRate + ": " + proposedRateTime);
@@ -127,7 +135,18 @@ public class SelectedRequest extends Fragment {
         btnRejectRequest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                reference.child("status").setValue("Rejected");
+                reference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                       //todo: set status to rejected when clicked
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+                reference.child("status").setValue("rejected");
 
             }
         });
