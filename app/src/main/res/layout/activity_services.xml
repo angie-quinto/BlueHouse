@@ -8,11 +8,12 @@
 
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/chipGroup"
-        android:layout_width="395dp"
-        android:layout_height="410dp"
+        android:layout_width="355dp"
+        android:layout_height="494dp"
         android:layout_marginTop="108dp"
         android:isScrollContainer="true"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.714"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 

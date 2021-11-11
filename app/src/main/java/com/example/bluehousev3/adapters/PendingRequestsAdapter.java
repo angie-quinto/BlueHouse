@@ -1,5 +1,6 @@
 package com.example.bluehousev3.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 
 public class PendingRequestsAdapter extends RecyclerView.Adapter<PendingRequestsAdapter.ViewHolder> {
     private ArrayList<PendingRequest> pendingRequests;
-    OnPendingRequestClickListener onPendingRequestClickListener;
+    private OnPendingRequestClickListener onPendingRequestClickListener;
 
     public PendingRequestsAdapter(ArrayList<PendingRequest> pendingRequests, OnPendingRequestClickListener onPendingRequestClickListener) {
         this.pendingRequests = pendingRequests;
@@ -31,6 +32,7 @@ public class PendingRequestsAdapter extends RecyclerView.Adapter<PendingRequests
         return new ViewHolder(view, onPendingRequestClickListener);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull PendingRequestsAdapter.ViewHolder holder, int position) {
         holder.tvServiceType.setText("Service Type: " + pendingRequests.get(position).getServiceType());

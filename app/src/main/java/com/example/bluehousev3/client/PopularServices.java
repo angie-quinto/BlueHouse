@@ -46,6 +46,17 @@ public class PopularServices extends Fragment {
     tv9 = view.findViewById(R.id.tv9);
     tv10 = view.findViewById(R.id.tv10);
 
+    tv1.setText("1. Laundry Services");
+    tv2.setText("2. Carpentry");
+    tv3.setText("3. Plumbing/Water Pipe Maintenance");
+    tv4.setText("4. Beauty Salon Services");
+    tv5.setText("5. Electrical Maintenance");
+    tv6.setText("6. Computer/Electronic Repair");
+    tv7.setText("7. Housekeeping");
+    tv8.setText("8. Pest Control & Fumigation");
+    tv9.setText("9. Cooking Services");
+    tv10.setText("10. Home Appliance Maintenance");
+
 
 
 

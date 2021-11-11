@@ -25,7 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 
 
 public class RequestMenu extends Fragment {
-    private Button btnCancel, btnMark;
+    private Button btnCancel, btnMark, btnChat;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -33,6 +33,7 @@ public class RequestMenu extends Fragment {
 
         btnMark = view.findViewById(R.id.btn_mark_menu);
         btnCancel = view.findViewById(R.id.btn_cancel_menu);
+        btnChat = view.findViewById(R.id.btn_chat_req_menu);
         String reqId = getArguments().getString("reqId");
         String wId = getArguments().getString("workerId2");
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -49,6 +50,7 @@ public class RequestMenu extends Fragment {
                 if (status.equals("cancelled") || status.equals("completed") || status.equals("rejected")) {
                     btnCancel.setEnabled(false);
                     btnMark.setEnabled(false);
+                    btnChat.setEnabled(false);
 
                 } else {
                     btnCancel.setOnClickListener(new View.OnClickListener() {

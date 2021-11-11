@@ -94,8 +94,6 @@ public class PendingRequests extends Fragment implements PendingRequestsAdapter.
             }
         });
 
-
-
         return view;
     }
 

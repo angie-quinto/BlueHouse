@@ -25,7 +25,7 @@
         android:id="@+id/fragment_container_client"
         android:name="com.example.bluehousev3.client.Home"
         android:layout_width="409dp"
-        android:layout_height="645dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

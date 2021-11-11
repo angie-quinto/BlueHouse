@@ -1,1 +1,11 @@
 if status == accepted? enable chat feature
+
+
+accepted service row
+- service type
+- start date
+- start time
+- location
+
+item clicked: show addtl. details, chat button, mark as complete
+if status == completed : rate client enabled else : rate client disabled

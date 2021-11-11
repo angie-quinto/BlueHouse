@@ -6,13 +6,6 @@ public class PendingRequest {
     private String startDate;
     private String startTime;
 
-    public PendingRequest(String serviceType, String location, String startDate, String startTime) {
-        this.serviceType = serviceType;
-        this.location = location;
-        this.startDate = startDate;
-        this.startTime = startTime;
-    }
-
     public PendingRequest() {
     }
 

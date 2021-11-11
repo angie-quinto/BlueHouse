@@ -34,7 +34,7 @@ public class SelectedRequest extends Fragment {
     private TextView tvServiceType, tvDescription, tvStartDate, tvEndDate, tvLocation, tvProposedRate,
     tvStartTime, tvEndTime, tvClientName, tvClientRating, tvClientGender, tvClientAge;
     private Button btnViewPhotos, btnRejectRequest, btnAcceptRequest;
-   private String clientId;
+    private String clientId;
     String serviceType, description, startDate, endDate, startTime, endTime, location, proposedRate, proposedRateTime;
     String clientName, clientRating, clientGender, image1, image2;
     String clientAge;

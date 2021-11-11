@@ -13,10 +13,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="Cancel Request"
-        app:layout_constraintEnd_toEndOf="@+id/button2"
+        app:layout_constraintEnd_toEndOf="@+id/btn_chat_req_menu"
         app:layout_constraintHorizontal_bias="0.48"
-        app:layout_constraintStart_toStartOf="@+id/button2"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
+        app:layout_constraintStart_toStartOf="@+id/btn_chat_req_menu"
+        app:layout_constraintTop_toBottomOf="@+id/btn_chat_req_menu" />
 
     <TextView
         android:id="@+id/textView13"
@@ -32,7 +32,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btn_chat_req_menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
