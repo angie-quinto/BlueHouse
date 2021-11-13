@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.provider.ContactsContract;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,6 +39,7 @@ public class PendingRequests extends Fragment implements PendingRequestsAdapter.
     private ArrayList<String> clientId;
     private TextView tvNoReq;
     private Bundle bundle;
+    private static final String TAG = "Pending Request";
 
 
     @Override
@@ -71,12 +73,15 @@ public class PendingRequests extends Fragment implements PendingRequestsAdapter.
                     for (DataSnapshot snapshot2 : snapshot1.getChildren()) {
                         if (snapshot2.child("workerId").getValue(String.class).equals(uid)) {
                             String status = snapshot2.child("status").getValue(String.class);
-                            if (status.equals("pending")) {
-                                clientId.add(snapshot1.getKey());
-                                reqId.add(snapshot2.getKey());
-                                PendingRequest pending = snapshot2.getValue(PendingRequest.class);
-                                pendingRequests.add(pending);
+                            if (status != null) {
+                                if (status.equals("pending")) {
+                                    clientId.add(snapshot1.getKey());
+                                    reqId.add(snapshot2.getKey());
+                                    PendingRequest pending = snapshot2.getValue(PendingRequest.class);
+                                    pendingRequests.add(pending);
+                                }
                             }
+
                         }
                     }
                 }
@@ -90,7 +95,7 @@ public class PendingRequests extends Fragment implements PendingRequestsAdapter.
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getActivity(), "pending request error", Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "onCancelled: Pending Request Error");
             }
         });
 

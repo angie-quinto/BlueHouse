@@ -170,16 +170,16 @@
     <View
         android:id="@+id/divider8"
         android:layout_width="1dp"
-        android:layout_height="200dp"
+        android:layout_height="35dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="4dp"
         android:background="?android:attr/listDivider"
         app:layout_constraintBottom_toTopOf="@+id/divider7"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.621"
+        app:layout_constraintHorizontal_bias="0.531"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.428" />
 
     <TextView
         android:id="@+id/tv_status_selec_accep"

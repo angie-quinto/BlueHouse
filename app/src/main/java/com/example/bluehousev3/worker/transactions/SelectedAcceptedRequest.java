@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.bluehousev3.R;
+import com.example.bluehousev3.worker.PendingRequests;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -61,6 +63,7 @@ public class SelectedAcceptedRequest extends Fragment {
         clientId = getArguments().getString("cIdAccept");
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("users/serviceRequests").child(clientId).child(reqId);
+        String path = "users/serviceRequests/" + clientId + "/" + reqId;
         reference.addValueEventListener(new ValueEventListener() {
 
             @SuppressLint("SetTextI18n")
@@ -132,7 +135,17 @@ public class SelectedAcceptedRequest extends Fragment {
         btnChat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Bundle bundle = new Bundle();
+                bundle.putString("empName", clientName);
+                bundle.putString("WorkerId",uid);
+                bundle.putString("refPath", path);
+                Fragment chat = new Chat();
+                chat.setArguments(bundle);
+                FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+                ft.replace(R.id.fragment_container_worker, chat);
+                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                ft.addToBackStack(null);
+                ft.commit();
             }
         });
 
