@@ -11,10 +11,10 @@ public class User{
     private String birthdate;
     private String password;
     private String selfieUrl;
+    private String highestEducationalAttainment;
 
-  public User() {}
+    public User() {}
 
-  public User(String fullName) {}
 
   public User(String fullName, String age, String gender) {
         this.fullName = fullName;
@@ -100,5 +100,12 @@ public class User{
 
   public void setSelfieUrl(String photoUrl) {
         this.selfieUrl = photoUrl;
+    }
+    public String getHighestEducationalAttainment() {
+        return highestEducationalAttainment;
+    }
+
+    public void setHighestEducationalAttainment(String highestEducationalAttainment) {
+        this.highestEducationalAttainment = highestEducationalAttainment;
     }
 }

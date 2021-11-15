@@ -29,15 +29,14 @@ import java.util.Objects;
 
 
 public class WorkerProfile extends Fragment {
-    private TextView tvName, tvAge, tvRating, tvNumberOfServicesComp, tvEducAtt, tvEmail, tvPhoneNum, tvHourlyRate, tvGender, tvAddress;
+    private TextView tvEducAtt,tvName, tvAge, tvRating, tvNumberOfServicesComp, tvEmail, tvPhoneNum, tvHourlyRate, tvGender, tvAddress;
     private Button btnReviews, btnCert, btnIds, btnRequestService;
     private ImageView ivWorkerProfilePic;
     private Bundle bundle;
     private String workerId;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_worker_profile, container, false);
 
@@ -56,44 +55,40 @@ public class WorkerProfile extends Fragment {
         tvGender = view.findViewById(R.id.tv_workerProfile_gender);
         ivWorkerProfilePic = view.findViewById(R.id.iv_workerProfile_profilePic);
         tvAddress = view.findViewById(R.id.tv_workerProfile_address);
+        tvEducAtt = view.findViewById(R.id.tv_workerProfile_educationalAtt);
 
         bundle = new Bundle();
 
 
         workerId = getArguments().getString("workerId");
         bundle.putString("Wid" , workerId);
-        Worker worker = new Worker();
         DatabaseReference workerRef = FirebaseDatabase.getInstance().getReference().child("users/workers").child(workerId);
         workerRef.addValueEventListener(new ValueEventListener() {
             @SuppressLint("SetTextI18n")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 tvName.setText("Name: " + snapshot.child("fullName").getValue(String.class));
-
                 String age = snapshot.child("age").getValue(String.class);
                 tvAge.setText("Age: " + age);
                 tvPhoneNum.setText("Mobile Number: " + snapshot.child("phoneNumber").getValue(String.class));
                 String rate = snapshot.child("rate").getValue(String.class);
                 tvHourlyRate.setText("Rate: " + rate);
                 tvEmail.setText("Email: " + snapshot.child("email").getValue(String.class));
-                tvGender.setText("Gender: " + snapshot.child("gender").getValue(String.class));
+                tvGender.setText("Sex: " + snapshot.child("gender").getValue(String.class));
                 tvAddress.setText("Address: " + snapshot.child("address").getValue(String.class));
-
+                tvEducAtt.setText("Highest Educational Attainment: " + snapshot.child("highestEducationalAttainment").getValue(String.class));
                 String rating = snapshot.child("rating").getValue(String.class);
-                String educ = snapshot.child("educationalAttainment").getValue(String.class);
+
                 String numComp = snapshot.child("numberOfServicesCompleted").getValue(String.class);
 
-                if (rating == null) {
-                    tvRating.setText("Rating: Not yet rated");
-                } else {
-                    tvRating.setText("Rating: " + rating);
+                if (rating != null) {
+                    if (rating.equals("0")) {
+                        tvRating.setText("Rating: Not yet rated");
+                    } else {
+                        tvRating.setText("Rating: " + rating);
+                    }
                 }
 
-                if (educ == null) {
-                    tvEducAtt.setText("Educational Attainment: Not Applicable");
-                } else {
-                    tvEducAtt.setText("Educational Attainment: " + educ);
-                }
 
                 if (numComp == null) {
                     tvNumberOfServicesComp.setText("Number of Services Completed: 0");
@@ -130,8 +125,6 @@ public class WorkerProfile extends Fragment {
                 Log.d("Database Error", "onCancelled: Error fetching data from database");
             }
         });
-
-
 
         btnReviews.setOnClickListener(new View.OnClickListener() {
             @Override

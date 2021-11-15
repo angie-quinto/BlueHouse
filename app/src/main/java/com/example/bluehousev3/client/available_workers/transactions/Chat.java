@@ -1,4 +1,4 @@
-package com.example.bluehousev3.worker.transactions;
+package com.example.bluehousev3.client.available_workers.transactions;
 
 import android.os.Bundle;
 
@@ -16,7 +16,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-
 import com.example.bluehousev3.R;
 import com.example.bluehousev3.adapters.ChatAdapter;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -29,26 +28,25 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-
 public class Chat extends Fragment {
     private ArrayList<String> chatList;
-    private String workerName;
-    private static final String TAG = "Chat";
+    private String clientName;
+    private static final String TAG = "Chat client";
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_chat, container, false);
-        String path = getArguments().getString("refPath");
-        String uid = getArguments().getString("WorkerId");
+        String path = getArguments().getString("PATH");
+        String uid = getArguments().getString("CLIENT_ID");
         EditText edtMessage = view.findViewById(R.id.edt_chat);
         Button btnSend = view.findViewById(R.id.btn_send_chat);
         TextView tvChatWith = view.findViewById(R.id.tv_chat_name);
         RecyclerView rv = view.findViewById(R.id.rv_chat);
         chatList = new ArrayList<>();
-        String clientName = getArguments().getString("empName");
-        tvChatWith.setText("Chatting with: " + clientName);
+        String workerNAME = getArguments().getString("WORKER_NAME");
+        tvChatWith.setText("Chatting with: " + workerNAME);
 
-
-        DatabaseReference workerRef = FirebaseDatabase.getInstance().getReference().child("users/workers").child(uid);
+        DatabaseReference clientRef = FirebaseDatabase.getInstance().getReference().child("users/employers").child(uid);
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child(path);
         DatabaseReference chatRef = FirebaseDatabase.getInstance().getReference().child(path).child("chats");
         ChatAdapter adapter = new ChatAdapter(chatList);
@@ -87,23 +85,23 @@ public class Chat extends Fragment {
             }
         });
 
-       workerRef.addValueEventListener(new ValueEventListener() {
-           @Override
-           public void onDataChange(@NonNull DataSnapshot snapshot) {
-               workerName = snapshot.child("fullName").getValue(String.class);
-           }
+        clientRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                clientName = snapshot.child("fullName").getValue(String.class);
+            }
 
-           @Override
-           public void onCancelled(@NonNull DatabaseError error) {
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
-           }
-       });
+            }
+        });
 
-       btnSend.setOnClickListener(new View.OnClickListener() {
+        btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String message = edtMessage.getText().toString();
-                reference.child("chats").child(String.valueOf(System.currentTimeMillis())).setValue(workerName + ": " + message).addOnSuccessListener(new OnSuccessListener<Void>() {
+                reference.child("chats").child(String.valueOf(System.currentTimeMillis())).setValue(clientName + ": " + message).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
                         edtMessage.getText().clear();

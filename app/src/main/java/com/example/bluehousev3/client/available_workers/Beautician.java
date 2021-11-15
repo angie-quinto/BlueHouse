@@ -76,9 +76,18 @@ public class Beautician extends Fragment implements AvailableWorkerAdapter.OnWor
                                 String name = snapshot.child(workerIds.get(i)).child("fullName").getValue(String.class);
                                 String address = snapshot.child(workerIds.get(i)).child("address").getValue(String.class);
                                 String rating = snapshot.child(workerIds.get(i)).child("rating").getValue(String.class);
+
                                 workersName.add(name);
                                 workersLoc.add(address);
-                                workersRating.add(rating);
+                                if (rating != null) {
+                                    if (rating.equals("0")) {
+                                        rating = "not yet rated";
+                                        workersRating.add(rating);
+                                    } else {
+                                        workersRating.add(rating);
+                                    }
+                                }
+
                                 Log.d("TAG", "name: " + " / " + workersLoc.size());
                                 adapter.notifyDataSetChanged();
                             }

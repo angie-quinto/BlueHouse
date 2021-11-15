@@ -106,8 +106,9 @@ public class SelectedAcceptedRequest extends Fragment {
             }
         });
 
-        DatabaseReference cRef = FirebaseDatabase.getInstance().getReference().child("users/clients").child(clientId);
+        DatabaseReference cRef = FirebaseDatabase.getInstance().getReference().child("users/employers").child(clientId);
         cRef.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot1) {
                 clientName = snapshot1.child("fullName").getValue(String.class);
@@ -115,14 +116,14 @@ public class SelectedAcceptedRequest extends Fragment {
                 clientGender = snapshot1.child("gender").getValue(String.class);
                 clientRating = snapshot1.child("clientRating").getValue(String.class);
 
-                tvClientName.setText("Client Name: " + clientName);
+                tvClientName.setText("Employer Name: " + clientName);
                 if (clientRating != null) {
-                    tvClientRating.setText("Client Rating: " + clientRating);
+                    tvClientRating.setText("Rating: " + clientRating);
                 } else {
-                    tvClientRating.setText("Client Rating: Not Yet Rated");
+                    tvClientRating.setText("Rating: Not Yet Rated");
                 }
-                tvClientGender.setText("Client Sex: " + clientGender);
-                tvClientAge.setText("Client Age: " + String.valueOf(clientAge));
+                tvClientGender.setText("Sex: " + clientGender);
+                tvClientAge.setText("Age: " + String.valueOf(clientAge));
 
             }
 

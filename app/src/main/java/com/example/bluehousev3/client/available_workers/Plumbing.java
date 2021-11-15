@@ -64,9 +64,9 @@ public class Plumbing extends Fragment implements AvailableWorkerAdapter.OnWorke
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot ds : snapshot.getChildren()) {
                     workerIds.add(ds.getValue(String.class));
-                    adapter.notifyDataSetChanged();
-                }
 
+                }
+                adapter.notifyDataSetChanged();
                 workerRef.addValueEventListener(new ValueEventListener() {
                     @SuppressLint("NotifyDataSetChanged")
                     @Override
@@ -79,13 +79,20 @@ public class Plumbing extends Fragment implements AvailableWorkerAdapter.OnWorke
                                 String rating = snapshot.child(workerIds.get(i)).child("rating").getValue(String.class);
                                 workersName.add(name);
                                 workersLoc.add(address);
-                                workersRating.add(rating);
+                                if (rating != null) {
+                                    if (rating.equals("0")) {
+                                        rating = "not yet rated";
+                                        workersRating.add(rating);
+                                    } else {
+                                        workersRating.add(rating);
+                                    }
+                                }
                                 Log.d("TAG", "name: " + " / " + workersLoc.size());
-                                adapter.notifyDataSetChanged();
+
                             }
 
                         }
-
+                        adapter.notifyDataSetChanged();
                     }
 
                     @Override

@@ -77,8 +77,10 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
     private Spinner genderSpinner;
     ArrayAdapter<CharSequence> genderAdapter;
 
-    private Spinner userTypeSpinner;
-    ArrayAdapter<CharSequence> userTypeAdapter;
+    private Spinner userTypeSpinner, educAttSpinner;
+    ArrayAdapter<CharSequence> userTypeAdapter, educAttAdapter;
+
+
 
     private LocationRequest locationRequest = new LocationRequest();
     private LocationCallback locationCallback;
@@ -119,6 +121,12 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
         userTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         userTypeSpinner.setAdapter(userTypeAdapter);
         userTypeSpinner.setOnItemSelectedListener(this);
+
+        educAttSpinner = findViewById(R.id.sp_educ_att);
+        educAttAdapter = ArrayAdapter.createFromResource(this,R.array.educ_attainment, android.R.layout.simple_spinner_item);
+        educAttAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        educAttSpinner.setAdapter(educAttAdapter);
+        educAttSpinner.setOnItemSelectedListener(this);
 
         locationCallback = new LocationCallback() {
             @Override
@@ -226,7 +234,7 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
                         Toast.makeText(Register.this, "Auth Success", Toast.LENGTH_SHORT).show();
                         if(userType.equals("Worker")) {
                             com.example.bluehousev3.model.Worker worker = new com.example.bluehousev3.model.Worker();
-                            worker.setUserType("Worker");
+                            worker.setUserType("worker");
                             worker.setFullName(name);
                             worker.setAge(age);
                             worker.setRate(rate);
@@ -235,10 +243,10 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
                             worker.setPhoneNumber(mobileNum);
                             worker.setAddress(address);
                             worker.setBirthdate(birthDate);
-                            worker.setRating("not yet rated");
+                            worker.setRating("0");
                             worker.setVerified("not yet verified");
+                            worker.setHighestEducationalAttainment(educAttSpinner.getSelectedItem().toString());
 
-                            //worker.setServicesOffered(Services.servicesOffered);
                             FirebaseDatabase.getInstance(FIREBASE_URL).getReference("users").child("usertype").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue("worker");
 
                             FirebaseDatabase.getInstance(FIREBASE_URL).getReference("users").child("workers")
@@ -260,9 +268,9 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
                                 }
                             });
 
-                        } else if (userType.equals("Client")) {
+                        } else if (userType.equals("Employer")) {
                             Client client = new Client();
-                            client.setUserType("Client");
+                            client.setUserType("employer");
                             client.setFullName(name);
                             client.setAge(age);
                             client.setGender(getGender());
@@ -270,8 +278,9 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
                             client.setPhoneNumber(mobileNum);
                             client.setAddress(address);
                             client.setBirthdate(birthDate);
-                            FirebaseDatabase.getInstance(FIREBASE_URL).getReference("users").child("usertype").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue("client");
-                            FirebaseDatabase.getInstance(FIREBASE_URL).getReference("users").child("clients")
+
+                            FirebaseDatabase.getInstance(FIREBASE_URL).getReference("users").child("usertype").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue("employer");
+                            FirebaseDatabase.getInstance(FIREBASE_URL).getReference("users").child("employers")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                     .setValue(client).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
@@ -413,7 +422,7 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
             Intent intent = new Intent(Register.this, Services.class);
             startActivity(intent);
             finish();
-        } else if (userType.equals("Client")) {
+        } else if (userType.equals("Employer")) {
             Intent clIntent = new Intent(Register.this, ClientHomePageActivity.class);
             startActivity(clIntent);
             finish();

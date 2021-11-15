@@ -54,7 +54,6 @@ public class RequestAService2 extends Fragment {
     private final String uid = user.getUid();
     private ArrayAdapter<CharSequence> rateAdapter;
     private  DatabaseReference serviceReqRef;
-   // private DatabaseReference workerRef;
     private String selectedRate;
     private Uri img1, img2;
     private String imgUrl1, imgUrl2;
@@ -81,7 +80,6 @@ public class RequestAService2 extends Fragment {
         location = getArguments().getString("location");
         workerId = getArguments().getString("ID");
 
-        //workerRef = FirebaseDatabase.getInstance().getReference().child("users").child("serviceRequests").child(workerId).child(String.valueOf(System.currentTimeMillis()));
 
         serviceReqRef = FirebaseDatabase.getInstance().getReference().child("users").child("serviceRequests").child(uid).child(String.valueOf(System.currentTimeMillis()));
 

@@ -12,14 +12,9 @@ public class Worker extends User {
     private String rating;
     private String verified;
 
-    public Worker(String fullName, String age, String gender) {
-        super(fullName, age, gender);
-    }
 
     public Worker() {}
-    public Worker(String fullName) {
-        super(fullName);
-    }
+
 
 
     public String getRate() {

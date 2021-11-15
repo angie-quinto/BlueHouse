@@ -21,7 +21,6 @@
         android:theme="@style/Theme.BlueHouseV3">
         <activity
             android:name=".worker.WorkerHomePage"
-            android:windowSoftInputMode="adjustResize"
             android:exported="true" />
         <activity
             android:name=".client.ClientHomePageActivity"

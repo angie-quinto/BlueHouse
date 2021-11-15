@@ -1,17 +1,27 @@
 <resources>
     <string name="app_name">BlueHouse</string>
+
     <string-array name="gender">
         <item>Male</item>
         <item>Female</item>
     </string-array>
+
     <string-array name="user_type">
-        <item>Client</item>
+        <item>Employer</item>
         <item>Worker</item>
     </string-array>
 
     <string-array name="rate">
         <item>Daily</item>
         <item>Hourly</item>
+    </string-array>
+
+    <string-array name="educ_attainment">
+        <item>Graduate or Professional Degree</item>
+        <item>Bachelors Degree</item>
+        <item>Associate Degree</item>
+        <item>High School Graduate or Equivalent</item>
+        <item>None</item>
     </string-array>
 
 

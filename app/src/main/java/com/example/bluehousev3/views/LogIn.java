@@ -103,7 +103,7 @@ private void login() {
                                 finish();
                                 Toast.makeText(LogIn.this, "Welcome back!",
                                     Toast.LENGTH_LONG).show();
-                            } else if (userType.equals("client")) {
+                            } else if (userType.equals("employer")) {
                                 Intent intent = new Intent(LogIn.this,
                                 ClientHomePageActivity.class);
                                 startActivity(intent);

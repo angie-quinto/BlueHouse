@@ -18,19 +18,8 @@
         tools:src="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/tv_uid"
-        android:layout_width="@dimen/width_textView"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
-        android:text="User Id: "
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_workerPic" />
-
-    <TextView
         android:id="@+id/tv_rate"
-        android:layout_width="@dimen/width_textView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="Hourly Rate: "
@@ -41,18 +30,17 @@
 
     <TextView
         android:id="@+id/tv_email"
-        android:layout_width="@dimen/width_textView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Email"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_phoneNum" />
 
     <TextView
         android:id="@+id/tv_gender"
-        android:layout_width="@dimen/width_textView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="Gender: "
@@ -63,18 +51,18 @@
 
     <TextView
         android:id="@+id/tv_phoneNum"
-        android:layout_width="@dimen/width_textView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="8dp"
         android:text="Phone Number: "
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_gender" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_highest" />
 
     <TextView
         android:id="@+id/tv_address"
-        android:layout_width="@dimen/width_textView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Address"
@@ -85,7 +73,7 @@
 
     <TextView
         android:id="@+id/tv_age"
-        android:layout_width="@dimen/width_textView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Age:"
@@ -96,14 +84,14 @@
 
     <TextView
         android:id="@+id/tv_name"
-        android:layout_width="@dimen/width_textView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="24dp"
         android:text="Name:"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_uid" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_workerPic" />
 
     <Button
         android:id="@+id/btn_sign_out_worker"
@@ -131,11 +119,32 @@
         android:id="@+id/btn_edit_profile_worker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="16dp"
         android:text="Edit My Profile"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.512"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_worker_status_profile" />
+
+    <TextView
+        android:id="@+id/tv_worker_status_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Status"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_rate" />
+
+    <TextView
+        android:id="@+id/tv_highest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Highest Educational Attainment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.512"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_gender" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -167,7 +167,7 @@ public class RequestAService extends Fragment {
                 final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 assert user != null;
                 String uid = user.getUid();
-                DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("users/clients").child(uid);
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("users/employers").child(uid);
                 reference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {

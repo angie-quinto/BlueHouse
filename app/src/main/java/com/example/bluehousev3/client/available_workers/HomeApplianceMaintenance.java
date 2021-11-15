@@ -77,7 +77,14 @@ public class HomeApplianceMaintenance extends Fragment implements AvailableWorke
                                 String rating = snapshot.child(workerIds.get(i)).child("rating").getValue(String.class);
                                 workersName.add(name);
                                 workersLoc.add(address);
-                                workersRating.add(rating);
+                                if (rating != null) {
+                                    if (rating.equals("0")) {
+                                        rating = "not yet rated";
+                                        workersRating.add(rating);
+                                    } else {
+                                        workersRating.add(rating);
+                                    }
+                                }
                                 Log.d("TAG", "name: " + " / " + workersLoc.size());
                                 adapter.notifyDataSetChanged();
                             }

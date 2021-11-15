@@ -60,8 +60,6 @@ public class SelectedRequest extends Fragment {
         btnViewPhotos = view.findViewById(R.id.btn_pic_selec);
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = mAuth.getCurrentUser();
-        String uid = user.getUid();
         String reqId = getArguments().getString("rId");
 
        clientId = getArguments().getString("cId");
@@ -110,7 +108,7 @@ public class SelectedRequest extends Fragment {
             }
         });
 
-            DatabaseReference cRef = FirebaseDatabase.getInstance().getReference().child("users/clients").child(clientId);
+            DatabaseReference cRef = FirebaseDatabase.getInstance().getReference().child("users/employers").child(clientId);
                 cRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot1) {
@@ -119,14 +117,14 @@ public class SelectedRequest extends Fragment {
                         clientGender = snapshot1.child("gender").getValue(String.class);
                         clientRating = snapshot1.child("clientRating").getValue(String.class);
 
-                        tvClientName.setText("Client Name: " + clientName);
+                        tvClientName.setText("Employer Name: " + clientName);
                         if (clientRating != null) {
-                            tvClientRating.setText("Client Rating: " + clientRating);
+                            tvClientRating.setText("Rating: " + clientRating);
                         } else {
-                            tvClientRating.setText("Client Rating: Not Yet Rated");
+                            tvClientRating.setText("Rating: Not Yet Rated");
                         }
-                        tvClientGender.setText("Client Sex: " + clientGender);
-                        tvClientAge.setText("Client Age: " + String.valueOf(clientAge));
+                        tvClientGender.setText("Sex: " + clientGender);
+                        tvClientAge.setText("Age: " + String.valueOf(clientAge));
 
                     }
 

@@ -1,0 +1,7 @@
+add id for client in  Register
+fix logic on WorkerRegistration
+add worker reviews
+number of service completed
+resize picasso
+client account
+client rate

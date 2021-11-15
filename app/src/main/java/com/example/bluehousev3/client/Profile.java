@@ -1,5 +1,6 @@
 package com.example.bluehousev3.client;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -14,7 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bluehousev3.R;
-import com.example.bluehousev3.client.available_workers.transactions.WorkerReviewsDialog;
+
 import com.example.bluehousev3.views.LogIn;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -79,9 +80,10 @@ public class Profile extends Fragment {
       String uid = user.getUid();
       tvUserId.setText("User ID: " + uid);
       DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
-      DatabaseReference userReference = rootRef.child("users/clients");
+      DatabaseReference userReference = rootRef.child("users/employers");
       DatabaseReference current_userRef = userReference.child(uid);
       ValueEventListener eventListener = new ValueEventListener() {
+        @SuppressLint("SetTextI18n")
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
           String name = dataSnapshot.child("fullName").getValue(String.class);

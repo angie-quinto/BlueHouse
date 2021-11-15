@@ -31,21 +31,23 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onDataChange(@NonNull DataSnapshot snapshot) {
           String userType = snapshot.child(uid).getValue(String.class);
-
-          if (userType.equals("worker")) {
-            Intent intent = new Intent(MainActivity.this, WorkerHomePage.class);
-            startActivity(intent);
-            finish();
-          } else if (userType.equals("client")) {
-            Intent intent = new Intent(MainActivity.this,
-                ClientHomePageActivity.class);
-            startActivity(intent);
-            finish();
-          } else {
-              Intent intent = new Intent(MainActivity.this, LogIn.class);
-              startActivity(intent);
-              finish();
+          if (userType != null) {
+              if (userType.equals("worker")) {
+                  Intent intent = new Intent(MainActivity.this, WorkerHomePage.class);
+                  startActivity(intent);
+                  finish();
+              } else if (userType.equals("employer")) {
+                  Intent intent = new Intent(MainActivity.this,
+                          ClientHomePageActivity.class);
+                  startActivity(intent);
+                  finish();
+              } else {
+                  Intent intent = new Intent(MainActivity.this, LogIn.class);
+                  startActivity(intent);
+                  finish();
+              }
           }
+
         }
         @Override
         public void onCancelled(@NonNull DatabaseError error) {

@@ -36,7 +36,6 @@ import java.util.Map;
 public class ServiceRequests extends Fragment implements ClientServiceRequestsAdapter.OnRequestClickListener {
 
   private TextView tvNoReq;
-//
   private  ArrayList<String> reqId;
   private ArrayList<ServiceRequest> serviceRequests;
   @Override
