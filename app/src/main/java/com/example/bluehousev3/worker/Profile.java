@@ -147,7 +147,7 @@ public class Profile extends Fragment {
           String phoneNum =
               dataSnapshot.child("phoneNumber").getValue(String.class);
           String rate = dataSnapshot.child("rate").getValue(String.class);
-          tvVerified.setText("Status: " +dataSnapshot.child("verified").getValue(String.class));
+          tvVerified.setText("Status: " +dataSnapshot.child("status").getValue(String.class));
           tvName.setText("Full Name:  " + name);
           tvAddress.setText("Address: " + address);
           tvAge.setText("Age: " + String.valueOf(age));

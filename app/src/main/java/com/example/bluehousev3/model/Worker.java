@@ -1,6 +1,6 @@
 package com.example.bluehousev3.model;
 
-import java.util.ArrayList;
+
 
 public class Worker extends User {
 
@@ -10,7 +10,7 @@ public class Worker extends User {
     private String validId2;
     private String cert;
     private String rating;
-    private String verified;
+    private String status;
 
 
     public Worker() {}
@@ -65,11 +65,11 @@ public class Worker extends User {
         this.rating = rating;
     }
 
-    public String getVerified() {
-        return verified;
+    public String getStatus() {
+        return status;
     }
 
-    public void setVerified(String verified) {
-        this.verified = verified;
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

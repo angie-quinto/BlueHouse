@@ -24,6 +24,20 @@
         <item>None</item>
     </string-array>
 
+    <string-array name="ids">
+        <item>Philippine Passport</item>
+        <item>Driver’s License</item>
+        <item>PhilHealth ID</item>
+        <item>SSS UMID Card</item>
+        <item>Postal ID</item>
+        <item>TIN ID</item>
+        <item>Voter’s ID</item>
+        <item>PRC ID</item>
+        <item>Senior Citizen ID</item>
+
+
+    </string-array>
+
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="nav_open">open nav drawer</string>

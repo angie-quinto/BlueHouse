@@ -6,8 +6,12 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.DialogFragment;
 
 import android.Manifest;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Application;
 import android.app.DatePickerDialog;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
@@ -30,7 +34,7 @@ import android.widget.Toast;
 
 
 import com.example.bluehousev3.R;
-import com.example.bluehousev3.client.ClientHomePageActivity;
+import com.example.bluehousev3.client.ClientVerification;
 import com.example.bluehousev3.model.Client;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -92,72 +96,92 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        mAuth = FirebaseAuth.getInstance();
+        new AlertDialog.Builder(this)
+                .setTitle("Privacy Policy")
+                .setMessage("BlueHouse is committed to protecting your privacy. This Privacy Policy explains how your personal information is collected, used, and disclosed by BlueHouse. This Privacy Policy applies to our application named BlueHouse , and its associated subdomains (collectively, our \"Service\"). By accessing or using our Service, you signify that you have read, understood, and agree to our collection, storage, use, and disclosure of your personal information as described in this Privacy Policy. \nBy clicking Agree, you agree to our Terms and that you have read our Privacy Policy")
 
-        locationRequest.setInterval(DEFAULT_UPDATE_INTERVAL);
-        locationRequest.setFastestInterval(FAST_UPDATE_INTERVAL);
-        locationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
+                .setPositiveButton("Agree", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        mAuth = FirebaseAuth.getInstance();
 
-        edtName = findViewById(R.id.edt_name);
-        edtRate = findViewById(R.id.edt_rate_register);
-        edtEmail = findViewById(R.id.edt_email_register);
-        edtPassword = findViewById(R.id.edt_password_register);
-        edtRetypePass = findViewById(R.id.edt_retypePass);
-        edtMobileNum = findViewById(R.id.edt_phoneNum);
-        Button btnRegister = findViewById(R.id.btn_register);
-        progressBar = findViewById(R.id.progressBar);
-        edtBirthdate = findViewById(R.id.edt_birthdate);
-        edtAddress = findViewById(R.id.edt_address);
-        swAutoLocate = findViewById(R.id.sw_autoLocate);
+                        locationRequest.setInterval(DEFAULT_UPDATE_INTERVAL);
+                        locationRequest.setFastestInterval(FAST_UPDATE_INTERVAL);
+                        locationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
 
-        genderSpinner = findViewById(R.id.sp_gender);
-        genderAdapter = ArrayAdapter.createFromResource(this, R.array.gender, android.R.layout.simple_spinner_item);
-        genderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        genderSpinner.setAdapter(genderAdapter);
-        genderSpinner.setOnItemSelectedListener(this);
+                        edtName = findViewById(R.id.edt_name);
+                        edtRate = findViewById(R.id.edt_rate_register);
+                        edtEmail = findViewById(R.id.edt_email_register);
+                        edtPassword = findViewById(R.id.edt_password_register);
+                        edtRetypePass = findViewById(R.id.edt_retypePass);
+                        edtMobileNum = findViewById(R.id.edt_phoneNum);
+                        Button btnRegister = findViewById(R.id.btn_register);
+                        progressBar = findViewById(R.id.progressBar);
+                        edtBirthdate = findViewById(R.id.edt_birthdate);
+                        edtAddress = findViewById(R.id.edt_address);
+                        swAutoLocate = findViewById(R.id.sw_autoLocate);
 
-        userTypeSpinner = findViewById(R.id.sp_usertype);
-        userTypeAdapter = ArrayAdapter.createFromResource(this,R.array.user_type, android.R.layout.simple_spinner_item);
-        userTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        userTypeSpinner.setAdapter(userTypeAdapter);
-        userTypeSpinner.setOnItemSelectedListener(this);
+                        genderSpinner = findViewById(R.id.sp_gender);
+                        genderAdapter = ArrayAdapter.createFromResource(Register.this, R.array.gender, android.R.layout.simple_spinner_item);
+                        genderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        genderSpinner.setAdapter(genderAdapter);
+                        genderSpinner.setOnItemSelectedListener(Register.this);
 
-        educAttSpinner = findViewById(R.id.sp_educ_att);
-        educAttAdapter = ArrayAdapter.createFromResource(this,R.array.educ_attainment, android.R.layout.simple_spinner_item);
-        educAttAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        educAttSpinner.setAdapter(educAttAdapter);
-        educAttSpinner.setOnItemSelectedListener(this);
+                        userTypeSpinner = findViewById(R.id.sp_usertype);
+                        userTypeAdapter = ArrayAdapter.createFromResource(Register.this,R.array.user_type, android.R.layout.simple_spinner_item);
+                        userTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        userTypeSpinner.setAdapter(userTypeAdapter);
+                        userTypeSpinner.setOnItemSelectedListener(Register.this);
 
-        locationCallback = new LocationCallback() {
-            @Override
-            public void onLocationResult(@NonNull LocationResult locationResult) {
-                super.onLocationResult(locationResult);
-                // save the location
-                updateUiValues(locationResult.getLastLocation());
-            }
-        };
-        edtBirthdate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showDatePickerDialog(v);
-            }
-        });
+                        educAttSpinner = findViewById(R.id.sp_educ_att);
+                        educAttAdapter = ArrayAdapter.createFromResource(Register.this,R.array.educ_attainment, android.R.layout.simple_spinner_item);
+                        educAttAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        educAttSpinner.setAdapter(educAttAdapter);
+                        educAttSpinner.setOnItemSelectedListener(Register.this);
 
-        btnRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                registerUser();
-            }
-        });
-        swAutoLocate.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView,
-                                         boolean isChecked) {
-                if (isChecked) {
-                    updateGps();
-                }
-            }
-        });
+                        locationCallback = new LocationCallback() {
+                            @Override
+                            public void onLocationResult(@NonNull LocationResult locationResult) {
+                                super.onLocationResult(locationResult);
+                                // save the location
+                                updateUiValues(locationResult.getLastLocation());
+                            }
+                        };
+                        edtBirthdate.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                showDatePickerDialog(v);
+                            }
+                        });
+
+                        btnRegister.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                registerUser();
+                            }
+                        });
+                        swAutoLocate.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                            @Override
+                            public void onCheckedChanged(CompoundButton buttonView,
+                                                         boolean isChecked) {
+                                if (isChecked) {
+                                    updateGps();
+                                }
+                            }
+                        });
+                    }
+                })
+
+                .setNegativeButton("Disagree", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(Register.this, "You need to agree on our privacy policy in order to use this app", Toast.LENGTH_SHORT).show();
+                        System.exit(0);
+                    }
+                })
+                .setIcon(R.drawable.privacy_policy)
+                .show();
+
+
     }
 
     public void registerUser() {
@@ -244,7 +268,7 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
                             worker.setAddress(address);
                             worker.setBirthdate(birthDate);
                             worker.setRating("0");
-                            worker.setVerified("not yet verified");
+                            worker.setStatus("not yet verified");
                             worker.setHighestEducationalAttainment(educAttSpinner.getSelectedItem().toString());
 
                             FirebaseDatabase.getInstance(FIREBASE_URL).getReference("users").child("usertype").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue("worker");
@@ -278,6 +302,8 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
                             client.setPhoneNumber(mobileNum);
                             client.setAddress(address);
                             client.setBirthdate(birthDate);
+                            client.setStatus("not yet verified");
+                            client.setRating("0");
 
                             FirebaseDatabase.getInstance(FIREBASE_URL).getReference("users").child("usertype").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue("employer");
                             FirebaseDatabase.getInstance(FIREBASE_URL).getReference("users").child("employers")
@@ -423,7 +449,7 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
             startActivity(intent);
             finish();
         } else if (userType.equals("Employer")) {
-            Intent clIntent = new Intent(Register.this, ClientHomePageActivity.class);
+            Intent clIntent = new Intent(Register.this, ClientVerification.class);
             startActivity(clIntent);
             finish();
         } else {

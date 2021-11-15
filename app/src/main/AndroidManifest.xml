@@ -20,6 +20,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BlueHouseV3">
         <activity
+            android:name=".client.ClientVerification"
+            android:exported="false" />
+        <activity
             android:name=".worker.WorkerHomePage"
             android:exported="true" />
         <activity
