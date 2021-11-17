@@ -10,12 +10,13 @@
         android:id="@+id/edt_email"
         android:layout_width="@dimen/width_textView"
         android:layout_height="@dimen/height_textView"
-        android:layout_marginTop="216dp"
+        android:layout_marginTop="304dp"
+        android:background="@drawable/edt_border"
         android:ems="10"
-        android:hint="Email"
         android:inputType="textEmailAddress"
+        android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -24,9 +25,10 @@
         android:layout_width="@dimen/width_textView"
         android:layout_height="@dimen/height_textView"
         android:layout_marginTop="40dp"
+        android:background="@drawable/edt_border"
         android:ems="10"
-        android:hint="Password"
         android:inputType="textPassword"
+        android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,7 +38,8 @@
         android:id="@+id/edt_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="52dp"
+        android:gravity="center"
         android:text="Register"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -44,16 +47,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_login" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_login"
-        android:layout_width="@dimen/btn_width"
-        android:layout_height="@dimen/btn_height"
-        android:layout_marginTop="76dp"
+        android:layout_width="@dimen/width_textView"
+        android:layout_height="@dimen/btn_height2"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/button"
         android:text="login"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_password" />
+        app:layout_constraintTop_toBottomOf="@+id/edt_password">
+
+    </androidx.appcompat.widget.AppCompatButton>
 
     <ProgressBar
         android:id="@+id/progressBar2"
@@ -66,5 +72,68 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.377" />
+        app:layout_constraintVertical_bias="0.499" />
+
+    <TextView
+        android:id="@+id/textView48"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="284dp"
+        android:text="Email"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView49"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="20dp"
+        android:text="Password"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edt_email" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="285dp"
+        android:layout_height="230dp"
+        android:layout_marginTop="36dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/logo2" />
+
+    <View
+        android:id="@+id/divider10"
+        android:layout_width="100dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="24dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_login" />
+
+    <View
+        android:id="@+id/divider11"
+        android:layout_width="100dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="60dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_login" />
+
+    <TextView
+        android:id="@+id/textView51"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="OR"
+        app:layout_constraintEnd_toStartOf="@+id/divider11"
+        app:layout_constraintStart_toEndOf="@+id/divider10"
+        app:layout_constraintTop_toBottomOf="@+id/btn_login" />
 </androidx.constraintlayout.widget.ConstraintLayout>

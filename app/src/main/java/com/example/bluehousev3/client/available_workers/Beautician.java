@@ -54,6 +54,7 @@ public class Beautician extends Fragment implements AvailableWorkerAdapter.OnWor
         AvailableWorkerAdapter adapter = new AvailableWorkerAdapter(workersName, workersLoc, workersRating, this);
         RecyclerView rvAvailableWorkers = view.findViewById(R.id.rv_beautician);
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("workersUnderService/beautySalonServices");
+
         rvAvailableWorkers.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvAvailableWorkers.setAdapter(adapter);
 
@@ -101,6 +102,8 @@ public class Beautician extends Fragment implements AvailableWorkerAdapter.OnWor
 
                     }
                 });
+
+
 
             }
 

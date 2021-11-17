@@ -32,12 +32,12 @@ import com.google.firebase.database.ValueEventListener;
 
 public class SelectedRequest extends Fragment {
     private TextView tvServiceType, tvDescription, tvStartDate, tvEndDate, tvLocation, tvProposedRate,
-    tvStartTime, tvEndTime, tvClientName, tvClientRating, tvClientGender, tvClientAge;
+    tvStartTime, tvEndTime, tvClientName, tvClientRating, tvClientGender, tvClientAge, tvEmpStat;
     private Button btnViewPhotos, btnRejectRequest, btnAcceptRequest;
     private String clientId;
     String serviceType, description, startDate, endDate, startTime, endTime, location, proposedRate, proposedRateTime;
     String clientName, clientRating, clientGender, image1, image2;
-    String clientAge;
+    String clientAge, status;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -58,6 +58,7 @@ public class SelectedRequest extends Fragment {
         btnAcceptRequest = view.findViewById(R.id.btn_accept_selec);
         btnRejectRequest = view.findViewById(R.id.btn_reject_req);
         btnViewPhotos = view.findViewById(R.id.btn_pic_selec);
+        tvEmpStat = view.findViewById(R.id.tv_emp_status);
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         String reqId = getArguments().getString("rId");
@@ -110,6 +111,7 @@ public class SelectedRequest extends Fragment {
 
             DatabaseReference cRef = FirebaseDatabase.getInstance().getReference().child("users/employers").child(clientId);
                 cRef.addValueEventListener(new ValueEventListener() {
+                    @SuppressLint("SetTextI18n")
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot1) {
                         clientName = snapshot1.child("fullName").getValue(String.class);
@@ -125,6 +127,13 @@ public class SelectedRequest extends Fragment {
                         }
                         tvClientGender.setText("Sex: " + clientGender);
                         tvClientAge.setText("Age: " + String.valueOf(clientAge));
+
+                        status = snapshot1.child("status").getValue(String.class);
+                        if (status != null) {
+                            tvEmpStat.setText("Status: " + status);
+                        } else {
+                            tvEmpStat.setText("Status: not yet verified");
+                        }
 
                     }
 
@@ -169,18 +178,32 @@ public class SelectedRequest extends Fragment {
         btnAcceptRequest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                reference.child("status").setValue("accepted").addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-                        Toast.makeText(getContext(), "Request Accepted", Toast.LENGTH_SHORT).show();
-                        Fragment pending = new PendingRequests();
-                        FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-                        ft.replace(R.id.fragment_container_worker, pending);
-                        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-                        ft.addToBackStack(null);
-                        ft.commit();
-                    }
-                });
+                if (status == null || status.equals("not yet verified")) {
+                    new AlertDialog.Builder(getContext())
+                        .setTitle("Employer is not yet verified")
+                        .setMessage("Are you sure you want to transact with this employer? Please proceed with caution")
+
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                reference.child("status").setValue("accepted").addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void unused) {
+                                        Toast.makeText(getContext(), "Request Accepted", Toast.LENGTH_SHORT).show();
+                                        Fragment pending = new PendingRequests();
+                                        FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+                                        ft.replace(R.id.fragment_container_worker, pending);
+                                        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                                        ft.addToBackStack(null);
+                                        ft.commit();
+                                    }
+                                });
+                            }
+                        })
+                        .setNegativeButton(android.R.string.no, null)
+                        .setIcon(R.drawable.caution_ic)
+                        .show();
+                }
+
             }
         });
 

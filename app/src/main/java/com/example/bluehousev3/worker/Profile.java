@@ -78,6 +78,7 @@ public class Profile extends Fragment {
         imgUrl = snapshot.child("SelfieUrl").getValue(String.class);
         Picasso.get()
                 .load(imgUrl)
+                .resize(350, 350)
                 .into(ivPic);
       }
 
@@ -86,6 +87,7 @@ public class Profile extends Fragment {
 
       }
     });
+
 
     btnEditProfile.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -147,7 +149,12 @@ public class Profile extends Fragment {
           String phoneNum =
               dataSnapshot.child("phoneNumber").getValue(String.class);
           String rate = dataSnapshot.child("rate").getValue(String.class);
-          tvVerified.setText("Status: " +dataSnapshot.child("status").getValue(String.class));
+          String status = dataSnapshot.child("status").getValue(String.class);
+          if (status == null){
+            tvVerified.setText("Status: not yet verified");
+          } else {
+            tvVerified.setText("Status :" + status);
+          }
           tvName.setText("Full Name:  " + name);
           tvAddress.setText("Address: " + address);
           tvAge.setText("Age: " + String.valueOf(age));
@@ -165,10 +172,7 @@ public class Profile extends Fragment {
     } else {
       Toast.makeText(getContext(), "user is null", Toast.LENGTH_LONG).show();
     }
-
-
-
-    }
+  }
   }
 
 

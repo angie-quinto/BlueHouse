@@ -6,32 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".client.ClientHomePageActivity">
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="44dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="4dp"
-        android:contentDescription="TODO"
-        android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/notif_ic"
-        tools:ignore="ImageContrastCheck"
-        tools:visibility="visible" />
-
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_container_client"
         android:name="com.example.bluehousev3.client.Home"
         android:layout_width="411dp"
-        android:layout_height="649dp"
+        android:layout_height="678dp"
         android:layout_marginBottom="4dp"
         app:layout_constraintBottom_toTopOf="@+id/client_bot_nav"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/client_bot_nav"

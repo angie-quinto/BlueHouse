@@ -61,7 +61,6 @@ public class WorkerReviewsDialog extends DialogFragment {
         });
 
         if (!reviews.isEmpty()) {
-            Toast.makeText(getActivity(), "whh", Toast.LENGTH_SHORT).show();
             WorkerReviewsAdapter adapter = new WorkerReviewsAdapter(reviews);
             RecyclerView recyclerView = view.findViewById(R.id.rv_worker_reviews);
             recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));

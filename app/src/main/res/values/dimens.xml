@@ -4,4 +4,7 @@
     <dimen name="height_textView">50dp</dimen>
     <dimen name="btn_width">250dp</dimen>
     <dimen name="btn_height">60dp</dimen>
+    <dimen name="edt_layout_height">40dp</dimen>
+    <dimen name="bth_layout_height" />
+    <dimen name="btn_height2">50dp</dimen>
 </resources>

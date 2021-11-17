@@ -28,7 +28,6 @@ public class RateWorkerDialog extends DialogFragment {
     private EditText edtRate;
     private String workerId;
     private String id;
-    private String dRate;
 
     public RateWorkerDialog(String workerId, String id) {
         this.workerId = workerId;
@@ -55,7 +54,6 @@ public class RateWorkerDialog extends DialogFragment {
             }
         });
 
-
         btnRate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -64,48 +62,13 @@ public class RateWorkerDialog extends DialogFragment {
                 if (rateInt < 1 || rateInt > 5) {
                     Toast.makeText(getActivity(), "Please provide a value not exceeding 5", Toast.LENGTH_SHORT).show();
                 } else {
-                    // set worker rating to the value of rate
-                    DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference().child("users/workers").child(workerId);
-                    reference1.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            // divide the current rating to the newly added rating
-                            dRate = snapshot.child("rating").getValue(String.class);
-
-                            if (dRate != null) {
-                                Toast.makeText(getActivity(), "drate" + dRate, Toast.LENGTH_SHORT).show();
-                                try{
-                                    int curRate = Integer.parseInt(dRate);
-                                    float fRate = rateInt + curRate / 2f;
-                                    reference1.child("rating").setValue(String.valueOf(fRate)).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                        @Override
-                                        public void onSuccess(Void unused) {
-                                            Toast.makeText(getActivity(), "successfully rated worker", Toast.LENGTH_SHORT).show();
-                                        }
-                                    });
-                                } catch(NumberFormatException ex){
-                                    Log.d("numEx", "onDataChange: RateWorkerDialog");
-                                }
-
-                            }
-
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
-
-
-
                     reference.child(String.valueOf(System.currentTimeMillis())).setValue(rate).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void unused) {
-                            ref.child("status").setValue("Completed").addOnSuccessListener(new OnSuccessListener<Void>() {
+                            ref.child("status").setValue("completed").addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void unused) {
-                                   // Toast.makeText(getActivity(), "Successfully rated worker!", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getActivity(), "Successfully rated worker!", Toast.LENGTH_SHORT).show();
                                     getDialog().dismiss();
                                 }
                             });

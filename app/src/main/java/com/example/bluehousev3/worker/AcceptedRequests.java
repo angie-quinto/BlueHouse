@@ -66,12 +66,15 @@ public class AcceptedRequests extends Fragment implements AcceptedRequestsAdapte
                     for (DataSnapshot snapshot2 : snapshot1.getChildren()) {
                         if (snapshot2.child("workerId").getValue(String.class).equals(uid)) {
                             String status = snapshot2.child("status").getValue(String.class);
-                            if (status.equals("accepted") || status.equals("completed")) {
-                                clientId.add(snapshot1.getKey());
-                                reqId.add(snapshot2.getKey());
-                                PendingRequest pending = snapshot2.getValue(PendingRequest.class);
-                                acceptedRequests.add(pending);
+                            if (status != null) {
+                                if (status.equals("accepted") || status.equals("completed")) {
+                                    clientId.add(snapshot1.getKey());
+                                    reqId.add(snapshot2.getKey());
+                                    PendingRequest pending = snapshot2.getValue(PendingRequest.class);
+                                    acceptedRequests.add(pending);
+                                }
                             }
+
                         }
                     }
                 }

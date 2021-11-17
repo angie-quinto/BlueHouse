@@ -7,35 +7,39 @@
 
     <EditText
         android:id="@+id/edt_new_request"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="213dp"
+        android:layout_height="34dp"
         android:layout_marginTop="36dp"
+        android:background="@drawable/edt_border"
         android:ems="10"
         android:hint="Type your request here"
         android:inputType="textPersonName"
+        android:paddingStart="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_submit_request"
-        android:layout_width="wrap_content"
+        android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="104dp"
         android:layout_marginEnd="16dp"
+        android:background="@drawable/button"
         android:text="Submit Request"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/edt_new_request"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_cancel_req"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="104dp"
+        android:background="@drawable/button"
         android:text="Cancel"
         app:layout_constraintEnd_toStartOf="@+id/edt_new_request"
         app:layout_constraintHorizontal_bias="0.272"

@@ -1,6 +1,4 @@
 fix logic on WorkerRegistration
 add worker reviews
 number of service completed
-resize picasso
-user verified prompt
-add status in worker& emp profile
+calculate worker rating and display it on all text views

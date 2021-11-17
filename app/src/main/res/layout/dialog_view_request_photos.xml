@@ -27,11 +27,12 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_insert_photo" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_close_reqPh"
         android:layout_width="117dp"
         android:layout_height="48dp"
         android:layout_marginTop="40dp"
+        android:background="@drawable/button"
         android:text="Close"
         app:layout_constraintEnd_toEndOf="@+id/iv_req_photo2"
         app:layout_constraintHorizontal_bias="0.522"

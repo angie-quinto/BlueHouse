@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.content.ContentResolver;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -24,6 +25,7 @@ import android.widget.Toast;
 
 import com.example.bluehousev3.R;
 import com.example.bluehousev3.model.Client;
+import com.example.bluehousev3.views.Register;
 import com.example.bluehousev3.worker.WorkerHomePage;
 import com.example.bluehousev3.worker.WorkerVerification;
 import com.google.firebase.auth.FirebaseAuth;
@@ -74,66 +76,86 @@ public class ClientVerification extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference();
         empIdsRef = mDatabase.child("users/employerIds");
 
-        if (ContextCompat.checkSelfPermission(ClientVerification.this,
-                Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(ClientVerification.this,
-                    new String[]{
-                            Manifest.permission.READ_EXTERNAL_STORAGE
-                    }, 200);
-        }
 
-        ivId1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                intent.setType("image/*");
-                startActivityForResult(intent, 6);
-            }
-        });
-
-        ivId2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                intent.setType("image/*");
-                startActivityForResult(intent, 3);
-            }
-        });
-
-        DatabaseReference curUserRef = empIdsRef.child(uid);
-
-        curUserRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                ids[0] = snapshot.child(spId1.getSelectedItem().toString()).getValue(String.class);
-                ids[1] = snapshot.child(spId2.getSelectedItem().toString()).getValue(String.class);
-
-                btnSubmit.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        if (ids[0] == null || ids[1] == null) {
-                            new AlertDialog.Builder(ClientVerification.this)
-                                    .setTitle("Incomplete Image Upload")
-                                    .setMessage("Please Provide all the requirements being asked")
-                                    .setPositiveButton(android.R.string.yes, (dialog, which) -> {
-                                    }).show();
-                        } else {
-                            Intent intent = new Intent(ClientVerification.this, ClientHomePageActivity.class);
-                            startActivity(intent);
-                            finish();
+        new AlertDialog.Builder(this)
+                .setTitle("Privacy Policy")
+                .setMessage("BlueHouse is committed to protecting your privacy. This Privacy Policy explains how your personal information is collected, used, and disclosed by BlueHouse. This Privacy Policy applies to our application named BlueHouse , and its associated subdomains (collectively, our \"Service\"). By accessing or using our Service, you signify that you have read, understood, and agree to our collection, storage, use, and disclosure of your personal information as described in this Privacy Policy. \nBy clicking Agree, you agree to our Terms and that you have read our Privacy Policy")
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (ContextCompat.checkSelfPermission(ClientVerification.this,
+                                Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                            ActivityCompat.requestPermissions(ClientVerification.this,
+                                    new String[]{
+                                            Manifest.permission.READ_EXTERNAL_STORAGE
+                                    }, 200);
                         }
+
+                        ivId1.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent();
+                                intent.setAction(Intent.ACTION_GET_CONTENT);
+                                intent.setType("image/*");
+                                startActivityForResult(intent, 6);
+                            }
+                        });
+
+                        ivId2.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent();
+                                intent.setAction(Intent.ACTION_GET_CONTENT);
+                                intent.setType("image/*");
+                                startActivityForResult(intent, 3);
+                            }
+                        });
+
+                        DatabaseReference curUserRef = empIdsRef.child(uid);
+
+                        curUserRef.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                ids[0] = snapshot.child(spId1.getSelectedItem().toString()).getValue(String.class);
+                                ids[1] = snapshot.child(spId2.getSelectedItem().toString()).getValue(String.class);
+
+                                btnSubmit.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        if (ids[0] == null || ids[1] == null) {
+                                            new AlertDialog.Builder(ClientVerification.this)
+                                                    .setTitle("Incomplete Image Upload")
+                                                    .setMessage("Please Provide all the requirements being asked")
+                                                    .setPositiveButton(android.R.string.yes, (dialog, which) -> {
+                                                    }).show();
+                                        } else {
+                                            Intent intent = new Intent(ClientVerification.this, ClientHomePageActivity.class);
+                                            startActivity(intent);
+                                            finish();
+                                        }
+                                    }
+                                });
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
                     }
-                });
+                })
 
-            }
+                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(ClientVerification.this, "You need to agree on our privacy policy in order to use this app", Toast.LENGTH_SHORT).show();
+                        System.exit(0);
+                    }
+                })
+                .setIcon(R.drawable.privacy_policy)
+                .show();
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        });
     }
 
     @Override

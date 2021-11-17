@@ -1,12 +1,15 @@
 package com.example.bluehousev3.client.available_workers.transactions;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,16 +27,18 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.*;
 
 import java.util.Objects;
 
 
 public class WorkerProfile extends Fragment {
-    private TextView tvEducAtt,tvName, tvAge, tvRating, tvNumberOfServicesComp, tvEmail, tvPhoneNum, tvHourlyRate, tvGender, tvAddress;
+    private TextView tvEducAtt,tvName, tvAge, tvRating, tvNumberOfServicesComp, tvEmail, tvPhoneNum, tvHourlyRate, tvGender, tvAddress, tvStatus;
     private Button btnReviews, btnCert, btnIds, btnRequestService;
     private ImageView ivWorkerProfilePic;
     private Bundle bundle;
     private String workerId;
+    private String status;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -56,6 +61,8 @@ public class WorkerProfile extends Fragment {
         ivWorkerProfilePic = view.findViewById(R.id.iv_workerProfile_profilePic);
         tvAddress = view.findViewById(R.id.tv_workerProfile_address);
         tvEducAtt = view.findViewById(R.id.tv_workerProfile_educationalAtt);
+        tvStatus = view.findViewById(R.id.tv_worker_profile_status);
+
 
         bundle = new Bundle();
 
@@ -78,8 +85,13 @@ public class WorkerProfile extends Fragment {
                 tvAddress.setText("Address: " + snapshot.child("address").getValue(String.class));
                 tvEducAtt.setText("Highest Educational Attainment: " + snapshot.child("highestEducationalAttainment").getValue(String.class));
                 String rating = snapshot.child("rating").getValue(String.class);
-
+                status = snapshot.child("status").getValue(String.class);
                 String numComp = snapshot.child("numberOfServicesCompleted").getValue(String.class);
+                if (status != null) {
+                    tvStatus.setText("Status: " + status);
+                } else {
+                    tvStatus.setText("Status: not yet verified" );
+                }
 
                 if (rating != null) {
                     if (rating.equals("0")) {
@@ -107,6 +119,7 @@ public class WorkerProfile extends Fragment {
                         } else {
                             Picasso.get()
                                     .load(selfie)
+                                    .resize(350, 350)
                                     .into(ivWorkerProfilePic);
                         }
 
@@ -125,6 +138,8 @@ public class WorkerProfile extends Fragment {
                 Log.d("Database Error", "onCancelled: Error fetching data from database");
             }
         });
+
+
 
         btnReviews.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -153,13 +168,36 @@ public class WorkerProfile extends Fragment {
         btnRequestService.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment requestAService = new RequestAService();
-                requestAService.setArguments(bundle);
-                FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-                ft.replace(R.id.fragment_container_client, requestAService);
-                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-                ft.addToBackStack(null);
-                ft.commit();
+                if (status == null || status.equals("not yet verified")) {
+                    new AlertDialog.Builder(getContext())
+                            .setTitle("Worker is not yet verified.")
+                            .setMessage("Are you sure you want to transact with this worker? Please proceed with caution")
+
+                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Fragment requestAService = new RequestAService();
+                                    requestAService.setArguments(bundle);
+                                    FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+                                    ft.replace(R.id.fragment_container_client, requestAService);
+                                    ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                                    ft.addToBackStack(null);
+                                    ft.commit();
+                                }
+                            })
+
+                            .setNegativeButton(android.R.string.no, null)
+                            .setIcon(R.drawable.caution_ic)
+                            .show();
+                } else {
+                    Fragment requestAService = new RequestAService();
+                    requestAService.setArguments(bundle);
+                    FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+                    ft.replace(R.id.fragment_container_client, requestAService);
+                    ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                    ft.addToBackStack(null);
+                    ft.commit();
+                }
+
             }
         });
         return view;

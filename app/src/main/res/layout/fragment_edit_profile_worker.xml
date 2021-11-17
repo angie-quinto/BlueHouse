@@ -10,8 +10,9 @@
     <EditText
         android:id="@+id/edt_edit_name"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_marginTop="48dp"
+        android:background="@drawable/edt_border"
         android:ems="10"
         android:inputType="textPersonName"
         android:minHeight="48dp"
@@ -52,8 +53,9 @@
     <EditText
         android:id="@+id/edt_edit_address"
         android:layout_width="306dp"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:layout_marginTop="8dp"
+        android:background="@drawable/edt_border"
         android:ems="10"
         android:inputType="textPersonName"
         android:minHeight="48dp"
@@ -80,8 +82,9 @@
     <EditText
         android:id="@+id/edt_edit_mobile"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_marginTop="12dp"
+        android:background="@drawable/edt_border"
         android:ems="10"
         android:inputType="number"
         android:minHeight="48dp"
@@ -108,8 +111,9 @@
     <EditText
         android:id="@+id/edt_edit_rate"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_marginTop="8dp"
+        android:background="@drawable/edt_border"
         android:ems="10"
         android:inputType="number"
         android:minHeight="48dp"
@@ -119,22 +123,24 @@
         app:layout_constraintTop_toBottomOf="@+id/edt_edit_mobile"
         tools:ignore="SpeakableTextPresentCheck" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_edit_save"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_marginTop="88dp"
+        android:background="@drawable/button"
         android:text="Save"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.687"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edt_edit_rate" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_edit_cancel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
         android:layout_marginTop="88dp"
+        android:background="@drawable/button"
         android:text="Cancel"
         app:layout_constraintEnd_toStartOf="@+id/btn_edit_save"
         app:layout_constraintHorizontal_bias="0.627"
