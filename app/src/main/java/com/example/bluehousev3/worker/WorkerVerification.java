@@ -12,6 +12,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import android.Manifest;
 import android.content.ContentResolver;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -25,7 +26,10 @@ import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 import com.example.bluehousev3.R;
+import com.example.bluehousev3.client.ClientVerification;
 import com.example.bluehousev3.model.Worker;
+import com.example.bluehousev3.views.MainActivity;
+import com.example.bluehousev3.views.Register;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -73,13 +77,14 @@ public class WorkerVerification extends AppCompatActivity {
     progressBar = findViewById(R.id.progressBar3);
     progressBar.setVisibility(View.INVISIBLE);
 
+
     // request camera permission
     if (ContextCompat.checkSelfPermission(WorkerVerification.this,
-        Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
       ActivityCompat.requestPermissions(WorkerVerification.this,
-          new String[]{
-              Manifest.permission.CAMERA
-          }, 200);
+              new String[]{
+                      Manifest.permission.CAMERA
+              }, 200);
     }
 
     ibSelfie.setOnClickListener(v -> {
@@ -113,42 +118,64 @@ public class WorkerVerification extends AppCompatActivity {
       intent.setType("image/*");
       startActivityForResult(intent, 1);
     });
-              // condition if the images provided by the worker is complete
+    // condition if the images provided by the worker is complete
 
-              DatabaseReference curUserRef = workerIdsRef.child(uid);
+    DatabaseReference curUserRef = workerIdsRef.child(uid);
 
-              curUserRef.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                  ids[0] = snapshot.child("SelfieUrl").getValue(String.class);
-                  ids[1] = snapshot.child("PoliceClearanceUrl").getValue(String.class);
-                  ids[2] = snapshot.child("ValidId1Url").getValue(String.class);
-                  ids[3] = snapshot.child("ValidId2Url").getValue(String.class);
+    curUserRef.addValueEventListener(new ValueEventListener() {
+      @Override
+      public void onDataChange(@NonNull DataSnapshot snapshot) {
+        ids[0] = snapshot.child("SelfieUrl").getValue(String.class);
+        ids[1] = snapshot.child("PoliceClearanceUrl").getValue(String.class);
+        ids[2] = snapshot.child("ValidId1Url").getValue(String.class);
+        ids[3] = snapshot.child("ValidId2Url").getValue(String.class);
 
-                  btnGeVerified.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                      if (ids[0] == null || ids[1] == null || ids[2] == null || ids[3] == null) {
-                        new AlertDialog.Builder(WorkerVerification.this)
-                                .setTitle("Incomplete Image Upload")
-                                .setMessage("Please Provide all the requirements being asked")
-                                .setPositiveButton(android.R.string.yes, (dialog, which) -> {
-                                }).show();
-                      } else {
-                        Intent intent = new Intent(WorkerVerification.this, WorkerHomePage.class);
-                        startActivity(intent);
-                        finish();
-                      }
+        btnGeVerified.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View view) {
+            new AlertDialog.Builder(WorkerVerification.this)
+                .setTitle("Privacy Policy")
+                .setMessage("BlueHouse is committed to protecting your privacy. This Privacy Policy explains how your personal information is collected, used, and disclosed by BlueHouse. This Privacy Policy applies to our application named BlueHouse , and its associated subdomains (collectively, our \"Service\"). By accessing or using our Service, you signify that you have read, understood, and agree to our collection, storage, use, and disclosure of your personal information as described in this Privacy Policy. \nBy clicking Agree, you agree to our Terms and that you have read our Privacy Policy")
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                  public void onClick(DialogInterface dialog, int which) {
+                    if (ids[0] == null || ids[1] == null || ids[2] == null || ids[3] == null) {
+                      new AlertDialog.Builder(WorkerVerification.this)
+                              .setTitle("Incomplete Image Upload")
+                              .setMessage("Please Provide all the requirements being asked")
+                              .setPositiveButton(android.R.string.yes, (dialog1, which1) -> {
+                              }).show();
+                    } else {
+                      Intent intent = new Intent(WorkerVerification.this, WorkerHomePage.class);
+                      startActivity(intent);
+                      finish();
                     }
-                  });
 
-                }
+                  }
+                })
+                .setNegativeButton("Disagree", new DialogInterface.OnClickListener() {
+                  @Override
+                  public void onClick(DialogInterface dialog, int which) {
+                    Toast.makeText(WorkerVerification.this, "You need to agree on our privacy policy in order to use this app", Toast.LENGTH_LONG).show();
+                    FirebaseAuth.getInstance().signOut();
+                    Intent intent = new Intent(WorkerVerification.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                  }
+                })
+                .setIcon(R.drawable.privacy_policy)
+                .show();
+          }
+        });
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
+      }
 
-                }
-              });
+      @Override
+      public void onCancelled(@NonNull DatabaseError error) {
+
+      }
+    });
+
+
   }
 
   // uploads images of firebase and sets the url of the images as a property

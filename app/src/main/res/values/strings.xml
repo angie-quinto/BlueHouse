@@ -14,6 +14,7 @@
     <string-array name="rate">
         <item>Daily</item>
         <item>Hourly</item>
+        <item>Undecided</item>
     </string-array>
 
     <string-array name="educ_attainment">
@@ -34,7 +35,6 @@
         <item>Voter’s ID</item>
         <item>PRC ID</item>
         <item>Senior Citizen ID</item>
-
 
     </string-array>
 

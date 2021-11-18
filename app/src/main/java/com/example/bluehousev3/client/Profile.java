@@ -28,9 +28,8 @@ import com.google.firebase.database.ValueEventListener;
 
 public class Profile extends Fragment {
 
-  private TextView tvUserId, tvName, tvAge, tvAddress, tvGender, tvPhoneNum,
+  private TextView tvName, tvAge, tvAddress, tvGender, tvPhoneNum,
       tvEmail;
-  private ImageView ivPic;
   private Button btnRequest;
 
   @Override
@@ -39,7 +38,7 @@ public class Profile extends Fragment {
 
     View view = inflater.inflate(R.layout.fragment_profile2, container, false);
 
-    tvUserId = view.findViewById(R.id.tv_clientId);
+
     tvName = view.findViewById(R.id.tv_clientName);
     tvAge = view.findViewById(R.id.tv_clientAge);
     tvAddress = view.findViewById(R.id.tv_clientAdd);
@@ -47,7 +46,7 @@ public class Profile extends Fragment {
     tvPhoneNum = view.findViewById(R.id.tv_clientPhone);
     tvEmail = view.findViewById(R.id.tv_clientEmail);
     Button btnSignOut = view.findViewById(R.id.btn_clientSignout);
-    ivPic = view.findViewById(R.id.iv_clientProfilePic);
+
     btnRequest = view.findViewById(R.id.btn_request_a_service_type);
 
     setProfile();
@@ -78,7 +77,7 @@ public class Profile extends Fragment {
       String email = user.getEmail();
       tvEmail.setText("Email: " + email);
       String uid = user.getUid();
-      tvUserId.setText("User ID: " + uid);
+
       DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
       DatabaseReference userReference = rootRef.child("users/employers");
       DatabaseReference current_userRef = userReference.child(uid);

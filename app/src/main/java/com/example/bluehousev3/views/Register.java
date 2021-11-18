@@ -44,6 +44,7 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -97,89 +98,89 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
         setContentView(R.layout.activity_register);
 
         new AlertDialog.Builder(this)
-                .setTitle("Privacy Policy")
-                .setMessage("BlueHouse is committed to protecting your privacy. This Privacy Policy explains how your personal information is collected, used, and disclosed by BlueHouse. This Privacy Policy applies to our application named BlueHouse , and its associated subdomains (collectively, our \"Service\"). By accessing or using our Service, you signify that you have read, understood, and agree to our collection, storage, use, and disclosure of your personal information as described in this Privacy Policy. \nBy clicking Agree, you agree to our Terms and that you have read our Privacy Policy")
+            .setTitle("Privacy Policy")
+            .setMessage("BlueHouse is committed to protecting your privacy. This Privacy Policy explains how your personal information is collected, used, and disclosed by BlueHouse. This Privacy Policy applies to our application named BlueHouse , and its associated subdomains (collectively, our \"Service\"). By accessing or using our Service, you signify that you have read, understood, and agree to our collection, storage, use, and disclosure of your personal information as described in this Privacy Policy. \nBy clicking Agree, you agree to our Terms and that you have read our Privacy Policy")
 
-                .setPositiveButton("Agree", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        mAuth = FirebaseAuth.getInstance();
+            .setPositiveButton("Agree", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    mAuth = FirebaseAuth.getInstance();
 
-                        locationRequest.setInterval(DEFAULT_UPDATE_INTERVAL);
-                        locationRequest.setFastestInterval(FAST_UPDATE_INTERVAL);
-                        locationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
+                    locationRequest.setInterval(DEFAULT_UPDATE_INTERVAL);
+                    locationRequest.setFastestInterval(FAST_UPDATE_INTERVAL);
+                    locationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
 
-                        edtName = findViewById(R.id.edt_name);
-                        edtRate = findViewById(R.id.edt_rate_register);
-                        edtEmail = findViewById(R.id.edt_email_register);
-                        edtPassword = findViewById(R.id.edt_password_register);
-                        edtRetypePass = findViewById(R.id.edt_retypePass);
-                        edtMobileNum = findViewById(R.id.edt_phoneNum);
-                        Button btnRegister = findViewById(R.id.btn_register);
-                        progressBar = findViewById(R.id.progressBar);
-                        edtBirthdate = findViewById(R.id.edt_birthdate);
-                        edtAddress = findViewById(R.id.edt_address);
-                        swAutoLocate = findViewById(R.id.sw_autoLocate);
+                    edtName = findViewById(R.id.edt_name);
+                    edtRate = findViewById(R.id.edt_rate_register);
+                    edtEmail = findViewById(R.id.edt_email_register);
+                    edtPassword = findViewById(R.id.edt_password_register);
+                    edtRetypePass = findViewById(R.id.edt_retypePass);
+                    edtMobileNum = findViewById(R.id.edt_phoneNum);
+                    Button btnRegister = findViewById(R.id.btn_register);
+                    progressBar = findViewById(R.id.progressBar);
+                    edtBirthdate = findViewById(R.id.edt_birthdate);
+                    edtAddress = findViewById(R.id.edt_address);
+                    swAutoLocate = findViewById(R.id.sw_autoLocate);
 
-                        genderSpinner = findViewById(R.id.sp_gender);
-                        genderAdapter = ArrayAdapter.createFromResource(Register.this, R.array.gender, android.R.layout.simple_spinner_item);
-                        genderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        genderSpinner.setAdapter(genderAdapter);
-                        genderSpinner.setOnItemSelectedListener(Register.this);
+                    genderSpinner = findViewById(R.id.sp_gender);
+                    genderAdapter = ArrayAdapter.createFromResource(Register.this, R.array.gender, android.R.layout.simple_spinner_item);
+                    genderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    genderSpinner.setAdapter(genderAdapter);
+                    genderSpinner.setOnItemSelectedListener(Register.this);
 
-                        userTypeSpinner = findViewById(R.id.sp_usertype);
-                        userTypeAdapter = ArrayAdapter.createFromResource(Register.this,R.array.user_type, android.R.layout.simple_spinner_item);
-                        userTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        userTypeSpinner.setAdapter(userTypeAdapter);
-                        userTypeSpinner.setOnItemSelectedListener(Register.this);
+                    userTypeSpinner = findViewById(R.id.sp_usertype);
+                    userTypeAdapter = ArrayAdapter.createFromResource(Register.this,R.array.user_type, android.R.layout.simple_spinner_item);
+                    userTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    userTypeSpinner.setAdapter(userTypeAdapter);
+                    userTypeSpinner.setOnItemSelectedListener(Register.this);
 
-                        educAttSpinner = findViewById(R.id.sp_educ_att);
-                        educAttAdapter = ArrayAdapter.createFromResource(Register.this,R.array.educ_attainment, android.R.layout.simple_spinner_item);
-                        educAttAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        educAttSpinner.setAdapter(educAttAdapter);
-                        educAttSpinner.setOnItemSelectedListener(Register.this);
+                    educAttSpinner = findViewById(R.id.sp_educ_att);
+                    educAttAdapter = ArrayAdapter.createFromResource(Register.this,R.array.educ_attainment, android.R.layout.simple_spinner_item);
+                    educAttAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    educAttSpinner.setAdapter(educAttAdapter);
+                    educAttSpinner.setOnItemSelectedListener(Register.this);
 
-                        locationCallback = new LocationCallback() {
-                            @Override
-                            public void onLocationResult(@NonNull LocationResult locationResult) {
-                                super.onLocationResult(locationResult);
-                                // save the location
-                                updateUiValues(locationResult.getLastLocation());
+                    locationCallback = new LocationCallback() {
+                        @Override
+                        public void onLocationResult(@NonNull LocationResult locationResult) {
+                            super.onLocationResult(locationResult);
+                            // save the location
+                            updateUiValues(locationResult.getLastLocation());
+                        }
+                    };
+                    edtBirthdate.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            showDatePickerDialog(v);
+                        }
+                    });
+
+                    btnRegister.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            registerUser();
+                        }
+                    });
+                    swAutoLocate.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                        @Override
+                        public void onCheckedChanged(CompoundButton buttonView,
+                                                     boolean isChecked) {
+                            if (isChecked) {
+                                updateGps();
                             }
-                        };
-                        edtBirthdate.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                showDatePickerDialog(v);
-                            }
-                        });
+                        }
+                    });
+                }
+            })
 
-                        btnRegister.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                registerUser();
-                            }
-                        });
-                        swAutoLocate.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                            @Override
-                            public void onCheckedChanged(CompoundButton buttonView,
-                                                         boolean isChecked) {
-                                if (isChecked) {
-                                    updateGps();
-                                }
-                            }
-                        });
-                    }
-                })
-
-                .setNegativeButton("Disagree", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(Register.this, "You need to agree on our privacy policy in order to use this app", Toast.LENGTH_SHORT).show();
-                        System.exit(0);
-                    }
-                })
-                .setIcon(R.drawable.privacy_policy)
-                .show();
+            .setNegativeButton("Disagree", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Toast.makeText(Register.this, "You need to agree on our privacy policy in order to use this app", Toast.LENGTH_LONG).show();
+                    System.exit(0);
+                }
+            })
+            .setIcon(R.drawable.privacy_policy)
+            .show();
 
 
     }

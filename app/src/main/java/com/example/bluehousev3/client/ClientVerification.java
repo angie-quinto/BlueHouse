@@ -8,6 +8,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -25,6 +26,8 @@ import android.widget.Toast;
 
 import com.example.bluehousev3.R;
 import com.example.bluehousev3.model.Client;
+import com.example.bluehousev3.views.LogIn;
+import com.example.bluehousev3.views.MainActivity;
 import com.example.bluehousev3.views.Register;
 import com.example.bluehousev3.worker.WorkerHomePage;
 import com.example.bluehousev3.worker.WorkerVerification;
@@ -80,7 +83,7 @@ public class ClientVerification extends AppCompatActivity {
         new AlertDialog.Builder(this)
                 .setTitle("Privacy Policy")
                 .setMessage("BlueHouse is committed to protecting your privacy. This Privacy Policy explains how your personal information is collected, used, and disclosed by BlueHouse. This Privacy Policy applies to our application named BlueHouse , and its associated subdomains (collectively, our \"Service\"). By accessing or using our Service, you signify that you have read, understood, and agree to our collection, storage, use, and disclosure of your personal information as described in this Privacy Policy. \nBy clicking Agree, you agree to our Terms and that you have read our Privacy Policy")
-                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                .setPositiveButton("Agree", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         if (ContextCompat.checkSelfPermission(ClientVerification.this,
                                 Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
@@ -145,11 +148,15 @@ public class ClientVerification extends AppCompatActivity {
                     }
                 })
 
-                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                .setNegativeButton("Disagree", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Toast.makeText(ClientVerification.this, "You need to agree on our privacy policy in order to use this app", Toast.LENGTH_SHORT).show();
-                        System.exit(0);
+                        FirebaseAuth.getInstance().signOut();
+                        Intent intent = new Intent(ClientVerification.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
+
                     }
                 })
                 .setIcon(R.drawable.privacy_policy)

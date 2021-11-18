@@ -16,28 +16,17 @@
         app:menu="@menu/worker_nav_menu" />
 
 
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.955"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/notif_ic"
-        tools:ignore="SpeakableTextPresentCheck" />
-
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_container_worker"
         android:name="com.example.bluehousev3.worker.PendingRequests"
-        android:layout_width="407dp"
-        android:layout_height="629dp"
+        android:layout_width="412dp"
+        android:layout_height="676dp"
         android:layout_marginTop="52dp"
         android:layout_marginBottom="5dp"
         app:layout_constraintBottom_toTopOf="@+id/worker_bottom_nav"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.901" />
 </androidx.constraintlayout.widget.ConstraintLayout>
