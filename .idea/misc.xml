@@ -71,7 +71,7 @@
         <entry key="app/src/main/res/layout/fragment_accepted_requests.xml" value="0.22631578947368422" />
         <entry key="app/src/main/res/layout/fragment_beautician.xml" value="0.20925925925925926" />
         <entry key="app/src/main/res/layout/fragment_carpentry.xml" value="0.20925925925925926" />
-        <entry key="app/src/main/res/layout/fragment_chat.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_chat.xml" value="0.5" />
         <entry key="app/src/main/res/layout/fragment_chat_client.xml" value="0.35572916666666665" />
         <entry key="app/src/main/res/layout/fragment_computer_electronic_repair.xml" value="0.20925925925925926" />
         <entry key="app/src/main/res/layout/fragment_cooking.xml" value="0.20925925925925926" />

@@ -171,7 +171,7 @@ public class WorkerProfile extends Fragment {
                 if (status == null || status.equals("not yet verified")) {
                     new AlertDialog.Builder(getContext())
                             .setTitle("Worker is not yet verified.")
-                            .setMessage("Are you sure you want to transact with this worker? Please proceed with caution")
+                            .setMessage("Are you sure you want to transact with this worker?")
 
                             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {

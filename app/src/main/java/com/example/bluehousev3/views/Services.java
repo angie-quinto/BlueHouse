@@ -179,7 +179,7 @@ public class Services extends AppCompatActivity {
       @Override
       public void onComplete(@NonNull Task<Void> task) {
         if (task.isSuccessful()) {
-          Toast.makeText(Services.this, "Successfully added to database",
+          Toast.makeText(Services.this, "Successfully added to services offered",
               Toast.LENGTH_LONG).show();
           Intent intent = new Intent(Services.this,
               WorkerVerification.class);

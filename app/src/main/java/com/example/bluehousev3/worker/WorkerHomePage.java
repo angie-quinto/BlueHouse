@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.example.bluehousev3.R;
@@ -17,7 +18,7 @@ public class WorkerHomePage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_worker_home_page);
-
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
         BottomNavigationView bottomNavigationView = findViewById(R.id.worker_bottom_nav);
         bottomNavigationView.setItemIconTintList(null);
         bottomNavigationView.setSelectedItemId(R.id.worker_pending);

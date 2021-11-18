@@ -99,7 +99,13 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
 
         new AlertDialog.Builder(this)
             .setTitle("Privacy Policy")
-            .setMessage("BlueHouse is committed to protecting your privacy. This Privacy Policy explains how your personal information is collected, used, and disclosed by BlueHouse. This Privacy Policy applies to our application named BlueHouse , and its associated subdomains (collectively, our \"Service\"). By accessing or using our Service, you signify that you have read, understood, and agree to our collection, storage, use, and disclosure of your personal information as described in this Privacy Policy. \nBy clicking Agree, you agree to our Terms and that you have read our Privacy Policy")
+            .setMessage("BlueHouse collects user information to verify if a user can register based on Philippine Labor laws (RA7610 & RA9231). BlueHouse is committed in following ethical practices, protecting the personal information of all users, and will not rent, barter, sell, permit, or give away to anyone unaffiliated with BlueHouse to use their data. \n" +
+                    "\n" +
+                    "This Privacy Policy explains how your personal information is collected, used, and disclosed by BlueHouse. This Privacy Policy applies to our application named BlueHouse. \n" +
+                    "\n" +
+                    "By accessing or using our Service, you signify that you agree to our collection, and storage of your personal information.\n" +
+                    "\n" +
+                    "By clicking Agree, you agree to our Terms and that you have read our Privacy Policy.")
 
             .setPositiveButton("Agree", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {

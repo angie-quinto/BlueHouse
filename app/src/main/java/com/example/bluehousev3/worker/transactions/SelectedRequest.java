@@ -181,7 +181,7 @@ public class SelectedRequest extends Fragment {
                 if (status == null || status.equals("not yet verified")) {
                     new AlertDialog.Builder(getContext())
                         .setTitle("Employer is not yet verified")
-                        .setMessage("Are you sure you want to transact with this employer? Please proceed with caution")
+                        .setMessage("Are you sure you want to transact with this employer?")
 
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {

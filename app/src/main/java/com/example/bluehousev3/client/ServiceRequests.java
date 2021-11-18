@@ -62,6 +62,7 @@ public class ServiceRequests extends Fragment implements ClientServiceRequestsAd
           reqId.add(snapshot1.getKey());
           ServiceRequest serviceRequest = snapshot1.getValue(ServiceRequest.class);
           serviceRequests.add(serviceRequest);
+          rv.smoothScrollToPosition(serviceRequests.size());
         }
         adapter.notifyDataSetChanged();
         if (serviceRequests.isEmpty()) {

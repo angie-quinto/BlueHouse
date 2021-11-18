@@ -4,21 +4,26 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.bluehousev3.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.ViewHolder> {
     private ArrayList<String> serviceList;
     private OnServiceListener onServiceListener;
+    private ArrayList<Integer> images;
 
-    public ServiceAdapter(ArrayList<String> serviceList, OnServiceListener onServiceListener) {
+    public ServiceAdapter(ArrayList<String> serviceList, OnServiceListener onServiceListener, ArrayList<Integer> images) {
         this.serviceList = serviceList;
         this.onServiceListener = onServiceListener;
+        this.images = images;
+
     }
 
     @NonNull
@@ -34,6 +39,7 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ServiceAdapter.ViewHolder holder, int position) {
          holder.tvServiceTitle.setText(serviceList.get(position));
+         holder.iv.setImageResource(images.get(position));
     }
 
     @Override
@@ -43,11 +49,13 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.ViewHold
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView tvServiceTitle;
+        ImageView iv;
         OnServiceListener onServiceListener;
 
         public ViewHolder(@NonNull View itemView, OnServiceListener onServiceListener) {
             super(itemView);
             tvServiceTitle = itemView.findViewById(R.id.tv_serviceTitle);
+            iv = itemView.findViewById(R.id.iv_service);
             this.onServiceListener = onServiceListener;
 
             itemView.setOnClickListener(this);

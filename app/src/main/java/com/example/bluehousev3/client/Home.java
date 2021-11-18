@@ -44,13 +44,33 @@ import java.util.ArrayList;
 
 public class Home extends Fragment  implements ServiceAdapter.OnServiceListener  {
   ArrayList<String> services;
+  ArrayList<Integer> images;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
       View view =  inflater.inflate(R.layout.fragment_home_client, container, false);
       services = new ArrayList<>();
+      images = new ArrayList<>();
 
-      ServiceAdapter adapter = new ServiceAdapter(services , this);
+      images.add(R.mipmap.plumbing_1_round);
+      images.add(R.mipmap.carpe_1_round);
+      images.add(R.mipmap.jetmatic_round);
+      images.add(R.mipmap.upholstery_1_round);
+      images.add(R.mipmap.septic_1_round);
+      images.add(R.mipmap.gardening_1_round);
+      images.add(R.mipmap.homeapp_1_round);
+      images.add(R.mipmap.roof_1_round);
+      images.add(R.mipmap.hkeep_1_round);
+      images.add(R.mipmap.laundry_1_round);
+      images.add(R.mipmap.beauty_1_round);
+      images.add(R.mipmap.electric_1_round);
+      images.add(R.mipmap.electronic_1_round);
+      images.add(R.mipmap.mech_1_round);
+      images.add(R.mipmap.pest_1_round);
+      images.add(R.mipmap.cooking_1_round);
+
+
+      ServiceAdapter adapter = new ServiceAdapter(services , this, images);
       RecyclerView rvServices = view.findViewById(R.id.rv_clientHome);
       rvServices.setLayoutManager(new LinearLayoutManager(getActivity()));
       rvServices.setAdapter(adapter);
@@ -62,6 +82,7 @@ public class Home extends Fragment  implements ServiceAdapter.OnServiceListener 
       public void onDataChange(@NonNull DataSnapshot snapshot) {
         for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
           services.add(dataSnapshot.getValue(String.class));
+
         }
         adapter.notifyDataSetChanged();
       }
