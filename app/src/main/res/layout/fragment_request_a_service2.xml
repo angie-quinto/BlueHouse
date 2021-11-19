@@ -7,11 +7,12 @@
     tools:context=".client.available_workers.transactions.RequestAService2">
 
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_submit"
-        android:layout_width="232dp"
-        android:layout_height="57dp"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
         android:layout_marginTop="60dp"
+        android:background="@drawable/button"
         android:text="Submit Service Request"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -77,7 +78,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:background="@drawable/edt_border"
         android:ems="10"
+        android:padding="10dp"
         android:inputType="number"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="@+id/sp_rate"
@@ -105,8 +108,8 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/edt_rate"
         app:layout_constraintEnd_toStartOf="@+id/edt_rate"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.901"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/edt_rate"
-        app:layout_constraintVertical_bias="0.692" />
+        app:layout_constraintVertical_bias="0.571" />
 </androidx.constraintlayout.widget.ConstraintLayout>

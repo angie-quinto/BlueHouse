@@ -21,15 +21,15 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.webkit.MimeTypeMap;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.Toast;
 import com.example.bluehousev3.R;
-import com.example.bluehousev3.client.ClientVerification;
 import com.example.bluehousev3.model.Worker;
 import com.example.bluehousev3.views.MainActivity;
-import com.example.bluehousev3.views.Register;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -47,6 +47,8 @@ import java.util.Objects;
 public class WorkerVerification extends AppCompatActivity {
   private DatabaseReference mDatabase;
   private DatabaseReference workerIdsRef;
+  private Spinner sid1, sid2;
+  private ArrayAdapter<CharSequence> adap1, adap2;
   private final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
   private final String uid;
   private final String[] ids = new String[4];
@@ -68,10 +70,21 @@ public class WorkerVerification extends AppCompatActivity {
     mDatabase = FirebaseDatabase.getInstance().getReference();
     workerIdsRef = mDatabase.child("users/workerIds");
 
+    sid1 = findViewById(R.id.sp_valid1);
+    sid2 = findViewById(R.id.spVid2);
+
+    adap1 = ArrayAdapter.createFromResource(this, R.array.ids, android.R.layout.simple_spinner_item);
+    adap1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+    sid1.setAdapter(adap1);
+
+    adap2 = ArrayAdapter.createFromResource(this, R.array.ids, android.R.layout.simple_spinner_item);
+    adap2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+    sid2.setAdapter(adap1);
+
     ImageButton ibSelfie = findViewById(R.id.ib_selfie);
     ImageButton ibPolice = findViewById(R.id.ib_policeClear);
     ImageButton ibValidId1 = findViewById(R.id.ib_validId1);
-    ImageButton ibValidId2 = findViewById(R.id.ib_validId2);
+    ImageButton ibValidId2 = findViewById(R.id.ib_validId_2);
     ImageButton ibCert = findViewById(R.id.ib_cert);
     Button btnGeVerified = findViewById(R.id.btn_getVerified);
     progressBar = findViewById(R.id.progressBar3);

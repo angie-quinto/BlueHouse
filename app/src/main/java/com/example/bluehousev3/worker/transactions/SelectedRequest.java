@@ -203,7 +203,6 @@ public class SelectedRequest extends Fragment {
                         .setIcon(R.drawable.caution_ic)
                         .show();
                 }
-
             }
         });
 
