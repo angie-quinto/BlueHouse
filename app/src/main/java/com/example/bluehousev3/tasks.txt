@@ -1,5 +1,0 @@
-fix logic on WorkerRegistration
-add worker reviews
-number of service completed
-calculate worker rating and display it on all text views
-add view title

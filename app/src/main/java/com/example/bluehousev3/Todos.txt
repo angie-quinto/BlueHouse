@@ -1,8 +1,0 @@
-todo: change the access modifier of methods in non-model obj
-todo: fix the bug on when the client signed out and its activity is still showing when the back button is pressed
-
-
-
-
-
-

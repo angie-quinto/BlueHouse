@@ -7,30 +7,31 @@
 
     <TextView
         android:id="@+id/tv_worker_name"
-        android:layout_width="174dp"
-        android:layout_height="23dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
         android:text="Worker Name: "
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.67"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/iv_worker_pic"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_worker_location"
-        android:layout_width="223dp"
-        android:layout_height="47dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:text="Location :"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.845"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/iv_worker_pic"
         app:layout_constraintTop_toBottomOf="@+id/tv_worker_name" />
 
     <ImageView
         android:id="@+id/iv_worker_pic"
         android:layout_width="115dp"
         android:layout_height="85dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="32dp"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.054"
@@ -41,13 +42,14 @@
 
     <TextView
         android:id="@+id/tv_worker_rating"
-        android:layout_width="154dp"
-        android:layout_height="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:text="Rating: "
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.618"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/iv_worker_pic"
         app:layout_constraintTop_toBottomOf="@+id/tv_worker_location"
         app:layout_constraintVertical_bias="0.0" />
 

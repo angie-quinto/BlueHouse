@@ -4,23 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".client.available_workers.Carpentry">
+    tools:context=".client.available_workers.AvailableWorkers">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_carpentry"
-        android:layout_width="408dp"
+        android:id="@+id/rv_beautician"
+        android:layout_width="411dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_available_workers_label" />
 
     <TextView
-        android:id="@+id/textView11"
-        android:layout_width="233dp"
-        android:layout_height="41dp"
-        android:text="Available Workers under Carpentry"
+        android:id="@+id/tv_available_workers_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Available Workers under "
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

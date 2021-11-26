@@ -12,18 +12,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bluehousev3.R;
+import com.example.bluehousev3.model.AvailableWorkersUnderService;
 
 import java.util.ArrayList;
 
 public class AvailableWorkerAdapter extends RecyclerView.Adapter<AvailableWorkerAdapter.ViewHolder> {
-    private ArrayList<String> workerNames, workerLocation, workerRating;
-    private OnWorkerListener onWorkerListener;
 
+    private OnWorkerListener onWorkerListener;
+    private ArrayList<AvailableWorkersUnderService> availableWorkersUnderServices;
     public AvailableWorkerAdapter() {}
-    public AvailableWorkerAdapter(ArrayList<String> workerNames, ArrayList<String> workerLocation, ArrayList<String> workerRating, OnWorkerListener onWorkerListener) {
-        this.workerNames = workerNames;
-        this.workerLocation = workerLocation;
-        this.workerRating = workerRating;
+    public AvailableWorkerAdapter(ArrayList<AvailableWorkersUnderService> availableWorkers, OnWorkerListener onWorkerListener) {
+        this.availableWorkersUnderServices = availableWorkers;
         this.onWorkerListener = onWorkerListener;
 
     }
@@ -40,19 +39,20 @@ public class AvailableWorkerAdapter extends RecyclerView.Adapter<AvailableWorker
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull AvailableWorkerAdapter.ViewHolder holder, int position) {
-        holder.tvName.setText("Name: " + workerNames.get(position));
-        holder.tvWorkerLoc.setText("Location: " + workerLocation.get(position));
-
-        if (workerRating.get(position) == null) {
-            holder.tvRating.setText("Rating: not yet rated");
+        holder.tvName.setText("Name: " + availableWorkersUnderServices.get(position).getFullName());
+        holder.tvWorkerLoc.setText("Location: " + availableWorkersUnderServices.get(position).getAddress());
+        if (availableWorkersUnderServices.get(position).getRating() != null) {
+            holder.tvRating.setText("Rating: " + availableWorkersUnderServices.get(position).getRating());
         } else {
-            holder.tvRating.setText("Rating: " + workerRating.get(position));
+            holder.tvRating.setText("Rating: not yet rated");
         }
+
+
     }
 
     @Override
     public int getItemCount() {
-        return workerNames.size();
+        return availableWorkersUnderServices.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

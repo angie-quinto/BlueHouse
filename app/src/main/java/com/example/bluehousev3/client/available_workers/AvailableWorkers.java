@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,12 +13,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.example.bluehousev3.R;
 import com.example.bluehousev3.adapters.AvailableWorkerAdapter;
 import com.example.bluehousev3.client.available_workers.transactions.WorkerProfile;
-import com.google.firebase.database.ChildEventListener;
+import com.example.bluehousev3.model.AvailableWorkersUnderService;
+import com.example.bluehousev3.model.PendingRequest;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,37 +30,47 @@ import java.util.ArrayList;
 import java.util.Map;
 
 
-public class PestControlFumigation extends Fragment implements AvailableWorkerAdapter.OnWorkerListener {
+public class AvailableWorkers extends Fragment implements AvailableWorkerAdapter.OnWorkerListener{
+
 
     private ArrayList<String> workerIds;
     private Map<String, Object> workersMap;
-    private ArrayList<String> workersName;
-    private ArrayList<String> workersLoc;
-    private ArrayList<String> workersRating;
+    private ArrayList<AvailableWorkersUnderService> availableWorkersUnderServices;
+    private TextView tvLabel;
+    private String rating;
 
 
+    @SuppressLint("SetTextI18n")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_pest_control_fumigation, container, false);
+        View view = inflater.inflate(R.layout.fragment_available_workers, container, false);
 
-        workersName = new ArrayList<>();
-        workersLoc = new ArrayList<>();
-        workersRating = new ArrayList<>();
+
         workerIds = new ArrayList<>();
+        tvLabel = view.findViewById(R.id.tv_available_workers_label);
 
-        AvailableWorkerAdapter adapter = new AvailableWorkerAdapter(workersName, workersLoc, workersRating, this);
-        RecyclerView rvAvailableWorkers = view.findViewById(R.id.rv_pestControl);
-        rvAvailableWorkers.setLayoutManager(new LinearLayoutManager(getActivity()));
-        rvAvailableWorkers.setAdapter(adapter);
+        availableWorkersUnderServices = new ArrayList<>();
+        assert getArguments() != null;
+        String serviceType = getArguments().getString("serviceType");
+        String serviceName = getArguments().getString("serviceName");
+        tvLabel.setText("Available workers under " + serviceName);
 
         DatabaseReference workerRef = FirebaseDatabase.getInstance().getReference().child("users/workers");
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("workersUnderService/pestControlAndFumigation");
+        AvailableWorkerAdapter adapter = new AvailableWorkerAdapter(availableWorkersUnderServices, this);
+        RecyclerView rvAvailableWorkers = view.findViewById(R.id.rv_beautician);
+
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("workersUnderService").child(serviceType);
+
+
+        rvAvailableWorkers.setLayoutManager(new LinearLayoutManager(getActivity()));
+        rvAvailableWorkers.setAdapter(adapter);
 
         ref.addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+
                 for(DataSnapshot ds : snapshot.getChildren()) {
                     workerIds.add(ds.getValue(String.class));
                     adapter.notifyDataSetChanged();
@@ -73,20 +83,9 @@ public class PestControlFumigation extends Fragment implements AvailableWorkerAd
                         workersMap = (Map<String, Object>) snapshot.getValue();
                         for (int i = 0; i < workerIds.size(); i++) {
                             if (workersMap.containsKey(workerIds.get(i))) {
-                                String name = snapshot.child(workerIds.get(i)).child("fullName").getValue(String.class);
-                                String address = snapshot.child(workerIds.get(i)).child("address").getValue(String.class);
-                                String rating = snapshot.child(workerIds.get(i)).child("rating").getValue(String.class);
-                                workersName.add(name);
-                                workersLoc.add(address);
-                                if (rating != null) {
-                                    if (rating.equals("0")) {
-                                        rating = "not yet rated";
-                                        workersRating.add(rating);
-                                    } else {
-                                        workersRating.add(rating);
-                                    }
-                                }
-                                Log.d("TAG", "name: " + " / " + workersLoc.size());
+
+                                AvailableWorkersUnderService aw = snapshot.child(workerIds.get(i)).getValue(AvailableWorkersUnderService.class);
+                                availableWorkersUnderServices.add(aw);
                                 adapter.notifyDataSetChanged();
                             }
 
@@ -99,6 +98,8 @@ public class PestControlFumigation extends Fragment implements AvailableWorkerAd
 
                     }
                 });
+
+
 
             }
 

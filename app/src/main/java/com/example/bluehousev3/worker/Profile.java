@@ -148,7 +148,7 @@ public class Profile extends Fragment {
           String gender = dataSnapshot.child("gender").getValue(String.class);
           String phoneNum =
               dataSnapshot.child("phoneNumber").getValue(String.class);
-          String rate = dataSnapshot.child("rate").getValue(String.class);
+         String rate = dataSnapshot.child("rate").getValue(String.class);
           String status = dataSnapshot.child("status").getValue(String.class);
           if (status == null){
             tvVerified.setText("Status: not yet verified");
@@ -157,7 +157,7 @@ public class Profile extends Fragment {
           }
           tvName.setText("Full Name:  " + name);
           tvAddress.setText("Address: " + address);
-          tvAge.setText("Age: " + String.valueOf(age));
+          tvAge.setText("Age: " + age);
           tvHourlyRate.setText("Rate: " + rate);
           tvGender.setText("Sex: " + gender);
           tvPhoneNum.setText("Mobile Number: " + phoneNum);

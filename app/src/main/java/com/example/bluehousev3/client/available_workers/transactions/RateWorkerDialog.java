@@ -1,5 +1,6 @@
 package com.example.bluehousev3.client.available_workers.transactions;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,6 +23,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class RateWorkerDialog extends DialogFragment {
     private Button btnRate, btnCancel;
@@ -69,6 +72,35 @@ public class RateWorkerDialog extends DialogFragment {
                                 @Override
                                 public void onSuccess(Void unused) {
                                     Toast.makeText(getActivity(), "Successfully rated worker!", Toast.LENGTH_SHORT).show();
+
+                                    // computation for worker rating
+                                    reference.addValueEventListener(new ValueEventListener() {
+                                        @SuppressLint("SetTextI18n")
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                            if (snapshot.exists()) {
+                                                ArrayList<Integer> ratings = new ArrayList<>();
+                                                for (DataSnapshot snapshot1 : snapshot.getChildren()) {
+                                                    ratings.add(Integer.parseInt(snapshot1.getValue(String.class)));
+                                                }
+                                                int sum = 0;
+                                                for (int k = 0; k < ratings.size(); k++) {
+                                                    sum += ratings.get(k);
+                                                }
+                                                double total = (double) sum / ratings.size();
+                                                // set worker rating to worker obj
+                                                DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("users/workers").child(workerId).child("rating");
+                                                ref.setValue(String.valueOf(total));
+                                            }
+
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+
+                                        }
+                                    });
+
                                     getDialog().dismiss();
                                 }
                             });

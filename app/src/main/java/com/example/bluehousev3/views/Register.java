@@ -182,7 +182,9 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     Toast.makeText(Register.this, "You need to agree on our privacy policy in order to use this app", Toast.LENGTH_LONG).show();
-                    System.exit(0);
+                    Intent intent = new Intent(Register.this, LogIn.class);
+                    startActivity(intent);
+                    finish();
                 }
             })
             .setIcon(R.drawable.privacy_policy)
@@ -274,7 +276,7 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
                             worker.setPhoneNumber(mobileNum);
                             worker.setAddress(address);
                             worker.setBirthdate(birthDate);
-                            worker.setRating("0");
+                            //worker.setRating("0");
                             worker.setStatus("not yet verified");
                             worker.setHighestEducationalAttainment(educAttSpinner.getSelectedItem().toString());
 
