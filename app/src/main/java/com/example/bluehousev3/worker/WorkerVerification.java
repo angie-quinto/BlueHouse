@@ -52,6 +52,7 @@ public class WorkerVerification extends AppCompatActivity {
   private final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
   private final String uid;
   private final String[] ids = new String[4];
+
   {
     assert user != null;
     uid = user.getUid();
@@ -82,13 +83,14 @@ public class WorkerVerification extends AppCompatActivity {
     sid2.setAdapter(adap1);
 
     ImageButton ibSelfie = findViewById(R.id.ib_selfie);
-    ImageButton ibPolice = findViewById(R.id.ib_policeClear);
     ImageButton ibValidId1 = findViewById(R.id.ib_validId1);
     ImageButton ibValidId2 = findViewById(R.id.ib_validId_2);
     ImageButton ibCert = findViewById(R.id.ib_cert);
     Button btnGeVerified = findViewById(R.id.btn_getVerified);
     progressBar = findViewById(R.id.progressBar3);
     progressBar.setVisibility(View.INVISIBLE);
+
+
 
 
     // request camera permission
@@ -105,12 +107,7 @@ public class WorkerVerification extends AppCompatActivity {
       startActivityForResult(intent, 100);
     });
 
-    ibPolice.setOnClickListener(v -> {
-      Intent intent = new Intent();
-      intent.setAction(Intent.ACTION_GET_CONTENT);
-      intent.setType("image/*");
-      startActivityForResult(intent, 20);
-    });
+
 
     ibValidId1.setOnClickListener(v -> {
       Intent intent = new Intent();
@@ -139,9 +136,8 @@ public class WorkerVerification extends AppCompatActivity {
       @Override
       public void onDataChange(@NonNull DataSnapshot snapshot) {
         ids[0] = snapshot.child("SelfieUrl").getValue(String.class);
-        ids[1] = snapshot.child("PoliceClearanceUrl").getValue(String.class);
-        ids[2] = snapshot.child("ValidId1Url").getValue(String.class);
-        ids[3] = snapshot.child("ValidId2Url").getValue(String.class);
+        ids[1] = snapshot.child("ValidId1Url").getValue(String.class);
+        ids[2] = snapshot.child("ValidId2Url").getValue(String.class);
 
         btnGeVerified.setOnClickListener(new View.OnClickListener() {
           @Override
@@ -157,7 +153,7 @@ public class WorkerVerification extends AppCompatActivity {
                         "By clicking Agree, you agree to our Terms and that you have read our Privacy Policy.")
                 .setPositiveButton("Agree", new DialogInterface.OnClickListener() {
                   public void onClick(DialogInterface dialog, int which) {
-                    if (ids[0] == null || ids[1] == null || ids[2] == null || ids[3] == null) {
+                    if (ids[0] == null || ids[1] == null || ids[2] == null) {
                       new AlertDialog.Builder(WorkerVerification.this)
                               .setTitle("Incomplete Image Upload")
                               .setMessage("Please Provide all the requirements being asked")
@@ -250,33 +246,6 @@ public class WorkerVerification extends AppCompatActivity {
         });
       }
 
-      if (requestCode == 20) {
-        //gets the uri of the image
-        Uri policeUri = data.getData();
-        // create a storage reference and file name and file extension for the
-        // image and uploads the image in firebase storage.
-        final StorageReference fileRef =
-            reference.child(System.currentTimeMillis() + "." + getFileExtension(policeUri));
-        fileRef.putFile(policeUri).addOnSuccessListener(taskSnapshot -> fileRef.getDownloadUrl().addOnSuccessListener(uri -> {
-          // gets the url of the uploaded image from the firebase and put
-          // it into the realtime database as a property
-          // of the user(worker) object
-          Worker worker = new Worker();
-          String pClearance = uri.toString();
-          worker.setPoliceClearance(pClearance);
-          workerIdsRef.child(uid).child("PoliceClearanceUrl").setValue(worker.getPoliceClearance());
-          progressBar.setVisibility(View.INVISIBLE);
-          Toast.makeText(WorkerVerification.this, "Police " +
-                  "Clearance Image Uploaded " +
-                  "Successfully",
-              Toast.LENGTH_SHORT).show();
-
-        })).addOnProgressListener(snapshot -> progressBar.setVisibility(View.VISIBLE)).addOnFailureListener(e -> {
-          progressBar.setVisibility(View.INVISIBLE);
-          Toast.makeText(WorkerVerification.this, "Police " +
-              "Clearance Image Upload Failed!", Toast.LENGTH_SHORT).show();
-        });
-      }
 
       if (requestCode == 10) {
         Uri validId1Uri = data.getData();
@@ -288,9 +257,7 @@ public class WorkerVerification extends AppCompatActivity {
           worker.setValidId1(valid1);
           workerIdsRef.child(uid).child("ValidId1Url").setValue(worker.getValidId1());
           progressBar.setVisibility(View.INVISIBLE);
-          Toast.makeText(WorkerVerification.this, "Valid ID 1 " +
-                  "Image Uploaded " +
-                  "Successfully",
+          Toast.makeText(WorkerVerification.this, sid1.getSelectedItem().toString() + " upload success",
               Toast.LENGTH_SHORT).show();
 
         })).addOnProgressListener(snapshot -> progressBar.setVisibility(View.VISIBLE)).addOnFailureListener(e -> {
@@ -311,9 +278,7 @@ public class WorkerVerification extends AppCompatActivity {
           worker.setValidId2(valid2);
           workerIdsRef.child(uid).child("ValidId2Url").setValue(worker.getValidId2());
           progressBar.setVisibility(View.INVISIBLE);
-          Toast.makeText(WorkerVerification.this, "Valid ID " +
-                  "Image Uploaded " +
-                  "Successfully",
+          Toast.makeText(WorkerVerification.this, sid2.getSelectedItem().toString() + " upload success",
               Toast.LENGTH_SHORT).show();
 
         })).addOnProgressListener(snapshot -> progressBar.setVisibility(View.VISIBLE)).addOnFailureListener(e -> {

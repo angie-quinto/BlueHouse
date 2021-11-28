@@ -16,6 +16,8 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.bluehousev3.R;
+import com.example.bluehousev3.views.RateDialog;
+import com.example.bluehousev3.views.ReviewDialog;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -27,7 +29,7 @@ import com.google.firebase.database.ValueEventListener;
 
 
 public class RequestMenu extends Fragment {
-    private Button btnCancel, btnMark, btnChat;
+    private Button btnCancel, btnMark, btnChat, btnReview;
     private static final String TAG = "Request Menu";
     private Bundle bundle;
     private String workerName;
@@ -40,6 +42,7 @@ public class RequestMenu extends Fragment {
         btnMark = view.findViewById(R.id.btn_mark_menu);
         btnCancel = view.findViewById(R.id.btn_cancel_menu);
         btnChat = view.findViewById(R.id.btn_chat_req_menu);
+        btnReview = view.findViewById(R.id.btn_create_review);
         String reqId = getArguments().getString("reqId");
         String wId = getArguments().getString("workerId2");
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -59,6 +62,7 @@ public class RequestMenu extends Fragment {
                         btnCancel.setEnabled(false);
                         btnMark.setEnabled(false);
                         btnChat.setEnabled(false);
+                        btnReview.setEnabled(false);
 
                     } else {
                         btnCancel.setOnClickListener(new View.OnClickListener() {
@@ -97,13 +101,15 @@ public class RequestMenu extends Fragment {
                         btnMark.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-
-                                RateWorkerDialog rateWorkerDialog = new RateWorkerDialog(wId, reqId);
-                                rateWorkerDialog.show(getParentFragmentManager(), "Rate Worker");
+                                ReviewDialog reviewDialog = new ReviewDialog(wId);
+                                reviewDialog.show(getParentFragmentManager(), "review worker dialog");
+                                RateDialog rateDialog = new RateDialog(path, "workerRatings", uid, "workers");
+                                rateDialog.show(getParentFragmentManager(), "rate worker dialog");
                                 reference.child("status").setValue("completed").addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void unused) {
                                         Toast.makeText(getActivity(), "Transaction Complete", Toast.LENGTH_SHORT).show();
+
                                     }
                                 });
 
@@ -113,7 +119,6 @@ public class RequestMenu extends Fragment {
                         btnChat.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-//                                Toast.makeText(getActivity(), "dsd" + path, Toast.LENGTH_SHORT).show();
                                 bundle.putString("WORKER_NAME", workerName);
                                 bundle.putString("PATH", path);
                                 bundle.putString("CLIENT_ID", uid);
@@ -124,6 +129,14 @@ public class RequestMenu extends Fragment {
                                 ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
                                 ft.addToBackStack(null);
                                 ft.commit();
+                            }
+                        });
+
+                        btnReview.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                ReviewDialog reviewDialog = new ReviewDialog(wId);
+                                reviewDialog.show(getParentFragmentManager(), "review worker");
                             }
                         });
                     }

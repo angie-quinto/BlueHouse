@@ -11,7 +11,7 @@
         android:layout_width="261dp"
         android:layout_height="48dp"
         android:layout_marginTop="36dp"
-        android:text="In order to become a verified service provider you need to provide the ff:"
+        android:text="In order to become a verified worker you need to provide the ff:"
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
@@ -24,7 +24,7 @@
         android:layout_height="@dimen/btn_height2"
         android:layout_marginBottom="76dp"
         android:background="@drawable/button"
-        android:text="Get Verified"
+        android:text="Submit"
         android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -54,30 +54,6 @@
         app:layout_constraintHorizontal_bias="0.48"
         app:layout_constraintStart_toStartOf="@+id/textView7"
         app:layout_constraintTop_toBottomOf="@+id/textView7"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:text="Police Clearance"
-        app:layout_constraintEnd_toEndOf="@+id/ib_selfie"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/ib_selfie"
-        app:layout_constraintTop_toBottomOf="@+id/ib_selfie" />
-
-    <ImageButton
-        android:id="@+id/ib_policeClear"
-        android:layout_width="105dp"
-        android:layout_height="85dp"
-        android:layout_marginTop="8dp"
-        android:minHeight="48dp"
-        android:src="@drawable/ic_baseline_account_box_24"
-        app:layout_constraintEnd_toEndOf="@+id/textView8"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textView8"
-        app:layout_constraintTop_toBottomOf="@+id/textView8"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
@@ -111,8 +87,8 @@
         android:layout_marginTop="8dp"
         android:src="@drawable/ic_baseline_perm_identity_24"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.446"
-        app:layout_constraintStart_toEndOf="@+id/ib_policeClear"
+        app:layout_constraintHorizontal_bias="0.748"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spVid2"
         tools:ignore="SpeakableTextPresentCheck" />
 
@@ -120,21 +96,21 @@
         android:id="@+id/textView10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="8dp"
         android:text="(optional) certificates"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.169"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ib_validId_2" />
+        app:layout_constraintTop_toBottomOf="@+id/ib_selfie" />
 
     <ImageButton
         android:id="@+id/ib_cert"
         android:layout_width="105dp"
         android:layout_height="85dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:src="@android:drawable/ic_input_add"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintHorizontal_bias="0.202"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView10"
         tools:ignore="SpeakableTextPresentCheck" />
@@ -159,7 +135,8 @@
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="@+id/textView9"
         app:layout_constraintStart_toStartOf="@+id/textView9"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+        app:layout_constraintTop_toBottomOf="@+id/textView9"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <Spinner
         android:id="@+id/spVid2"

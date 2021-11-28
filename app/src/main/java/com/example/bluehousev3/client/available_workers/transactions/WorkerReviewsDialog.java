@@ -31,6 +31,7 @@ public class WorkerReviewsDialog extends DialogFragment {
     private TextView tv;
     private Button btnBack;
 
+
     public WorkerReviewsDialog(String workerId) {
         this.workerId = workerId;
     }
@@ -39,11 +40,14 @@ public class WorkerReviewsDialog extends DialogFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.dialog_worker_reviews, container, false);
-
         reviews = new ArrayList<>();
-
         tv = view.findViewById(R.id.tv_reviews);
         btnBack = view.findViewById(R.id.btn_back_reviews);
+
+        WorkerReviewsAdapter adapter = new WorkerReviewsAdapter(reviews);
+        RecyclerView recyclerView = view.findViewById(R.id.rv_worker_reviews);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setAdapter(adapter);
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("users/workerReviews").child(workerId);
         reference.addValueEventListener(new ValueEventListener() {
@@ -52,6 +56,11 @@ public class WorkerReviewsDialog extends DialogFragment {
                 for(DataSnapshot snapshot1: snapshot.getChildren()) {
                     reviews.add(snapshot1.getValue(String.class));
                 }
+                if (reviews.isEmpty()) {
+                    tv.setText("Worker has no reviews yet");
+                }
+                adapter.notifyDataSetChanged();
+
             }
 
             @Override
@@ -60,14 +69,7 @@ public class WorkerReviewsDialog extends DialogFragment {
             }
         });
 
-        if (!reviews.isEmpty()) {
-            WorkerReviewsAdapter adapter = new WorkerReviewsAdapter(reviews);
-            RecyclerView recyclerView = view.findViewById(R.id.rv_worker_reviews);
-            recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-            recyclerView.setAdapter(adapter);
-        } else {
-            tv.setText("Worker has no reviews yet");
-        }
+
 
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override

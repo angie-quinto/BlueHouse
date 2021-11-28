@@ -140,35 +140,6 @@ public class WorkerProfile extends Fragment {
             }
         });
 
-//        DatabaseReference ratingRef  = FirebaseDatabase.getInstance().getReference().child("users/workerRatings").child(workerId);
-//        ratingRef.addValueEventListener(new ValueEventListener() {
-//            @SuppressLint("SetTextI18n")
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                if (snapshot.exists()) {
-//                    ArrayList<Integer> ratings = new ArrayList<>();
-//                    for (DataSnapshot snapshot1 : snapshot.getChildren()) {
-//                        ratings.add(Integer.parseInt(snapshot1.getValue(String.class)));
-//                    }
-//                    int sum = 0;
-//                    for (int k = 0; k < ratings.size(); k++) {
-//                        sum += ratings.get(k);
-//                    }
-//                    double total = (double) sum / ratings.size();
-//                    tvRating.setText("Rating: " + String.valueOf(total));
-//                    DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("users/workers").child(workerId).child("rating");
-//                        ref.setValue(String.valueOf(total));
-//                } else {
-//                    tvRating.setText("Not yet Rated");
-//                }
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
 
 
 
