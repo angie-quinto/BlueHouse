@@ -57,7 +57,7 @@ public class RequestAService2 extends Fragment {
     private String selectedRate;
     private Uri img1, img2;
     private String imgUrl1, imgUrl2;
-
+     String rate;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -79,6 +79,10 @@ public class RequestAService2 extends Fragment {
         endTime = getArguments().getString("endTime");
         location = getArguments().getString("location");
         workerId = getArguments().getString("ID");
+        rate = getArguments().getString("workerRATE3");
+
+        edtRate.setText(rate);
+        Toast.makeText(getActivity(), "rate3" + rate, Toast.LENGTH_SHORT).show();
 
 
         serviceReqRef = FirebaseDatabase.getInstance().getReference().child("users").child("serviceRequests").child(uid).child(String.valueOf(System.currentTimeMillis()));
@@ -142,7 +146,12 @@ public class RequestAService2 extends Fragment {
 
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
-                                String rate = edtRate.getText().toString();
+                                String nRate = edtRate.getText().toString();
+                                if (Integer.parseInt(nRate) < Integer.parseInt(rate)) {
+                                    edtRate.setError("proposed rate must be greater than the rate of the worker");
+                                    edtRate.requestFocus();
+                                    return;
+                                }
                                 DatabaseReference workerRef = FirebaseDatabase.getInstance().getReference().child("users/workers").child(workerId);
                                  workerRef.addValueEventListener(new ValueEventListener() {
                                      @Override
@@ -156,6 +165,7 @@ public class RequestAService2 extends Fragment {
 
                                      }
                                  }) ;
+
                                 serviceReqRef.child("workerId").setValue(workerId);
                                 serviceReqRef.child("serviceType").setValue(serviceType);
                                 serviceReqRef.child("description").setValue(description);
@@ -164,7 +174,7 @@ public class RequestAService2 extends Fragment {
                                 serviceReqRef.child("startTime").setValue(startTime);
                                 serviceReqRef.child("endTime").setValue(endTime);
                                 serviceReqRef.child("location").setValue(location);
-                                serviceReqRef.child("proposedRate").setValue(rate);
+                                serviceReqRef.child("proposedRate").setValue(nRate);
                                 serviceReqRef.child("status").setValue("pending");
                                 serviceReqRef.child("img1Url").setValue(imgUrl1);
                                 serviceReqRef.child("img2Url").setValue(imgUrl2);

@@ -21,6 +21,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 
 import com.example.bluehousev3.R;
@@ -53,6 +54,7 @@ public class RequestAService extends Fragment {
     private ArrayAdapter<String> arrayAdapter;
     private final Calendar myCalendar = Calendar.getInstance();
     private String workerId;
+    private String rate;
 
 
 
@@ -76,7 +78,7 @@ public class RequestAService extends Fragment {
         services = new String[servicesOffered.size()];
 
 
-
+        rate = getArguments().getString("workerRate");
 
         DatabaseReference workerServicesOfferedRef = FirebaseDatabase.getInstance().getReference().child("users/workerServicesOffered").child(workerId);
         workerServicesOfferedRef.addValueEventListener(new ValueEventListener() {
@@ -233,6 +235,9 @@ public class RequestAService extends Fragment {
         bundle.putString("endTime", endTime);
         bundle.putString("location", location);
         bundle.putString("ID", workerId);
+        bundle.putString("workerRATE3", rate);
+
+        Toast.makeText(getActivity(), "rate2: " + rate, Toast.LENGTH_SHORT).show();
 
         Fragment req2 = new RequestAService2();
         req2.setArguments(bundle);

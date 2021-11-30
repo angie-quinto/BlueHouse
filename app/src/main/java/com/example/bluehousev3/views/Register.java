@@ -6,6 +6,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.DialogFragment;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Application;
@@ -45,6 +46,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -60,16 +62,12 @@ import java.util.List;
 
 
 public class Register extends AppCompatActivity implements AdapterView.OnItemSelectedListener, DatePickerDialog.OnDateSetListener {
-    private EditText edtName;
-    private EditText edtEmail;
-    private EditText edtPassword;
-    private EditText edtRetypePass;
-    private EditText edtMobileNum, edtRate;
+
     private ProgressBar progressBar;
     private String age;
-    private EditText edtAddress, edtBirthdate;
     private Switch swAutoLocate;
     public static String userType;
+    private TextInputEditText tietName, tietEmail, tietPassword, tietRetypePass, tietMobileNum, tietBirthdate, tietAddress, tietRate;
 
     private FirebaseAuth mAuth;
     public static final String FIREBASE_URL = "https://blue-house-v3-default-rtdb.asia-southeast1.firebasedatabase.app";
@@ -108,6 +106,7 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
                     "By clicking Agree, you agree to our Terms and that you have read our Privacy Policy.")
 
             .setPositiveButton("Agree", new DialogInterface.OnClickListener() {
+                @SuppressLint("CutPasteId")
                 public void onClick(DialogInterface dialog, int which) {
                     mAuth = FirebaseAuth.getInstance();
 
@@ -115,17 +114,22 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
                     locationRequest.setFastestInterval(FAST_UPDATE_INTERVAL);
                     locationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
 
-                    edtName = findViewById(R.id.edt_name);
-                    edtRate = findViewById(R.id.edt_rate_register);
-                    edtEmail = findViewById(R.id.edt_email_register);
-                    edtPassword = findViewById(R.id.edt_password_register);
-                    edtRetypePass = findViewById(R.id.edt_retypePass);
-                    edtMobileNum = findViewById(R.id.edt_phoneNum);
+                    tietName = findViewById(R.id.tiet_name);
+                    tietEmail = findViewById(R.id.tiet_email);
+                    tietPassword = findViewById(R.id.tiet_password);
+                    tietRetypePass = findViewById(R.id.tiet_retype_pass);
+                    tietMobileNum = findViewById(R.id.tiet_mobile_num);
+                    tietAddress = findViewById(R.id.tiet_birthdate);
+                    tietBirthdate = findViewById(R.id.tiet_address);
+                    tietRate = findViewById(R.id.tiet_rate);
+
+
+
                     Button btnRegister = findViewById(R.id.btn_register);
                     progressBar = findViewById(R.id.progressBar);
-                    edtBirthdate = findViewById(R.id.edt_birthdate);
-                    edtAddress = findViewById(R.id.edt_address);
+
                     swAutoLocate = findViewById(R.id.sw_autoLocate);
+
 
                     genderSpinner = findViewById(R.id.sp_gender);
                     genderAdapter = ArrayAdapter.createFromResource(Register.this, R.array.gender, android.R.layout.simple_spinner_item);
@@ -153,7 +157,7 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
                             updateUiValues(locationResult.getLastLocation());
                         }
                     };
-                    edtBirthdate.setOnClickListener(new View.OnClickListener() {
+                    tietBirthdate.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             showDatePickerDialog(v);
@@ -194,65 +198,66 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
     }
 
     public void registerUser() {
-        String name = edtName.getText().toString().trim();
-        String email = edtEmail.getText().toString().trim();
-        String password = edtPassword.getText().toString().trim();
-        String retypePass = edtRetypePass.getText().toString().trim();
-        String mobileNum = edtMobileNum.getText().toString().trim();
-        String address = edtAddress.getText().toString().trim();
-        String birthDate = edtBirthdate.getText().toString().trim();
-        String rate = edtRate.getText().toString();
+        String name = tietName.getText().toString().trim();
+        String email = tietEmail.getText().toString().trim();
+        String password = tietPassword.getText().toString().trim();
+        String retypePass = tietRetypePass.getText().toString().trim();
+        String mobileNum = tietMobileNum.getText().toString().trim();
+        String address = tietAddress.getText().toString().trim();
+        String birthDate = tietBirthdate.getText().toString().trim();
+        String rate = tietRate.getText().toString();
+
         userType = userTypeSpinner.getSelectedItem().toString();
 
         if (name.isEmpty()) {
-            edtName.setError("Full Name is required");
-            edtName.requestFocus();
+            tietName.setError("Full Name is required");
+            tietName.requestFocus();
             return;
         }
         if (email.isEmpty()) {
-            edtEmail.setError("Email is required");
-            edtEmail.requestFocus();
+            tietEmail.setError("Email is required");
+            tietEmail.requestFocus();
             return;
         }
-        if (password.isEmpty()) {
-            edtPassword.setError("Password is required");
-            edtPassword.requestFocus();
+        if (password.length() < 8) {
+            tietPassword.setError("Password is required");
+            tietPassword.requestFocus();
             return;
         }
-        if (password.length() < 6) {
-            edtPassword.setError("Password must contain at least 6 characters");
-            edtPassword.requestFocus();
-            return;
-        }
+
         if (!password.equals(retypePass)) {
-            edtRetypePass.setError("Password did not match");
-            edtRetypePass.requestFocus();
+            tietRetypePass.setError("Password did not match");
+            tietRetypePass.requestFocus();
             return;
         }
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            edtEmail.setError("Please provide a valid email");
-            edtEmail.requestFocus();
+            tietEmail.setError("Please provide a valid email");
+            tietEmail.requestFocus();
             return;
         }
-        if (mobileNum.isEmpty()) {
-            edtMobileNum.setError("Mobile number is required");
-            edtMobileNum.requestFocus();
+
+        if (mobileNum.length() != 10) {
+            tietMobileNum.setError("Mobile number is required");
+            tietMobileNum.requestFocus();
             return;
         }
         if (address.isEmpty()) {
-            edtAddress.setError("Address is required");
-            edtAddress.requestFocus();
+            tietAddress.setError("Address is required");
+            tietAddress.requestFocus();
             return;
         }
         if (birthDate.isEmpty()) {
-            edtBirthdate.setError("Birthdate is required");
-            edtBirthdate.requestFocus();
+            tietBirthdate.setError("Birthdate is required");
+            tietBirthdate.requestFocus();
             return;
         }
         if (Integer.parseInt(age) < 18 ) {
-            edtBirthdate.setError("you must be 18 and above to register");
-            edtBirthdate.requestFocus();
+            tietBirthdate.setError("you must be 18 and above to register");
+            tietBirthdate.requestFocus();
+            return;
         }
+
+
 
 
 
@@ -405,7 +410,7 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
             List<Address> addressList =
                 geocoder.getFromLocation(l.getLatitude(),
                     l.getLongitude(), 1);
-            edtAddress.setText(addressList.get(0).getAddressLine(0));
+            tietAddress.setText(addressList.get(0).getAddressLine(0));
         } catch (Exception e) {
             Toast.makeText(this, "Unable to get location",
                 Toast.LENGTH_LONG).show();
@@ -430,7 +435,7 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
         c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
 
         String birthDate = DateFormat.getDateInstance(DateFormat.FULL).format(c.getTime());
-        edtBirthdate.setText(birthDate);
+        tietBirthdate.setText(birthDate);
 
         // get users age from birthdate
         int currYear = Calendar.getInstance().get(Calendar.YEAR);

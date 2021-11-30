@@ -6,90 +6,192 @@
     android:layout_height="match_parent"
     tools:context=".views.Register">
 
-    <EditText
-        android:id="@+id/edt_name"
-        android:layout_width="@dimen/width_textView"
-        android:layout_height="40dp"
-        android:layout_marginTop="28dp"
-        android:background="@drawable/edt_border"
-        android:ems="8"
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_name"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
         android:hint="Full Name"
-        android:inputType="textPersonName"
-        android:padding="10dp"
-        android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView44" />
+        app:layout_constraintTop_toBottomOf="@+id/textView44">
 
-    <EditText
-        android:id="@+id/edt_email_register"
-        android:layout_width="@dimen/width_textView"
-        android:layout_height="@dimen/edt_layout_height"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/edt_border"
-        android:ems="10"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tiet_name"
+            android:layout_width="300dp"
+            android:layout_height="55dp"
+
+            app:layout_constraintEnd_toEndOf="@+id/til_name"
+            app:layout_constraintLeft_toLeftOf="@+id/til_name"
+            app:layout_constraintTop_toTopOf="@+id/til_name" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_email"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
         android:hint="Email"
-        android:inputType="textEmailAddress"
-        android:padding="10dp"
-        android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_name" />
+        app:layout_constraintTop_toBottomOf="@+id/til_name">
 
-    <EditText
-        android:id="@+id/edt_password_register"
-        android:layout_width="@dimen/width_textView"
-        android:layout_height="@dimen/edt_layout_height"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/edt_border"
-        android:ems="10"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tiet_email"
+            android:layout_width="300dp"
+            android:layout_height="55dp"
+
+            app:layout_constraintEnd_toEndOf="@+id/til_email"
+            app:layout_constraintLeft_toLeftOf="@+id/til_email"
+            app:layout_constraintTop_toTopOf="@+id/til_email" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_password"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
         android:hint="Password"
-        android:inputType="textPassword"
-        android:padding="10dp"
-        android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_email_register" />
+        app:layout_constraintTop_toBottomOf="@+id/til_email">
 
-    <EditText
-        android:id="@+id/edt_retypePass"
-        android:layout_width="@dimen/width_textView"
-        android:layout_height="@dimen/edt_layout_height"
-        android:layout_marginTop="5dp"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tiet_password"
+            android:layout_width="300dp"
+            android:layout_height="55dp"
 
-        android:background="@drawable/edt_border"
-        android:ems="10"
-        android:hint="Re Type Password"
-        android:inputType="textPassword"
-        android:padding="10dp"
-        android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="@+id/til_password"
+            app:layout_constraintLeft_toLeftOf="@+id/til_password"
+            app:layout_constraintTop_toTopOf="@+id/til_password" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_retype_pass"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:hint="Re type Password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_password_register" />
+        app:layout_constraintTop_toBottomOf="@+id/til_password">
 
-    <EditText
-        android:id="@+id/edt_phoneNum"
-        android:layout_width="@dimen/width_textView"
-        android:layout_height="@dimen/edt_layout_height"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/edt_border"
-        android:ems="10"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tiet_retype_pass"
+            android:layout_width="300dp"
+            android:layout_height="55dp"
+
+            app:layout_constraintEnd_toEndOf="@+id/til_retype_pass"
+            app:layout_constraintLeft_toLeftOf="@+id/til_retype_pass"
+            app:layout_constraintTop_toTopOf="@+id/til_retype_pass" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_mobile_num"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
         android:hint="Mobile Number"
-        android:inputType="phone"
-        android:padding="10dp"
-        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="@+id/til_retype_pass"
+        app:layout_constraintLeft_toLeftOf="@+id/til_retype_pass"
+        app:layout_constraintTop_toBottomOf="@+id/til_retype_pass"
+        app:prefixText="+63">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tiet_mobile_num"
+            android:layout_width="300dp"
+            android:layout_height="55dp"
+            android:inputType="numberDecimal"
+            app:layout_constraintEnd_toEndOf="@+id/til_mobile_num"
+            app:layout_constraintLeft_toLeftOf="@+id/til_mobile_num"
+            app:layout_constraintTop_toTopOf="@+id/til_mobile_num"
+
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_birthdate"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:hint="birthdate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_retypePass" />
+        app:layout_constraintTop_toBottomOf="@+id/til_mobile_num">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tiet_birthdate"
+            android:layout_width="300dp"
+            android:layout_height="55dp"
+
+            app:layout_constraintEnd_toEndOf="@+id/til_birthdate"
+            app:layout_constraintLeft_toLeftOf="@+id/til_birthdate"
+            app:layout_constraintTop_toTopOf="@+id/til_birthdate" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_address"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:hint="Address"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/til_birthdate">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tiet_address"
+            android:layout_width="300dp"
+            android:layout_height="55dp"
+
+            app:layout_constraintEnd_toEndOf="@+id/til_address"
+            app:layout_constraintLeft_toLeftOf="@+id/til_address"
+            app:layout_constraintTop_toTopOf="@+id/til_address" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_rate"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:hint="Rate (for worker only)"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/til_address">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tiet_rate"
+            android:layout_width="300dp"
+            android:layout_height="55dp"
+
+            app:layout_constraintEnd_toEndOf="@+id/til_rate"
+            app:layout_constraintLeft_toLeftOf="@+id/til_rate"
+            app:layout_constraintTop_toTopOf="@+id/til_rate" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <Spinner
         android:id="@+id/sp_usertype"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/textView6"
-        app:layout_constraintTop_toBottomOf="@+id/edt_rate_register"
+        app:layout_constraintTop_toBottomOf="@+id/sw_autoLocate"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <Spinner
@@ -98,7 +200,7 @@
         android:layout_height="wrap_content"
         android:minHeight="48dp"
         app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/edt_rate_register"
+        app:layout_constraintTop_toBottomOf="@+id/sw_autoLocate"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <androidx.appcompat.widget.AppCompatButton
@@ -110,34 +212,34 @@
         android:text="Register"
         android:textAllCaps="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.515"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sp_educ_att" />
+        app:layout_constraintTop_toBottomOf="@+id/sp_gender" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="56dp"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="8dp"
+
         android:text="Sex:"
         android:textSize="14sp"
-
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_rate_register" />
+        app:layout_constraintTop_toBottomOf="@+id/sw_autoLocate" />
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="3dp"
-        android:layout_marginTop="14dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="8dp"
         android:text="User Type:"
         android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/sp_gender"
-        app:layout_constraintTop_toBottomOf="@+id/edt_rate_register" />
+        app:layout_constraintTop_toBottomOf="@+id/sw_autoLocate" />
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -150,64 +252,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/edt_birthdate"
-        android:layout_width="@dimen/width_textView"
-        android:layout_height="@dimen/edt_layout_height"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/edt_border"
-        android:ems="10"
-        android:focusable="false"
-        android:gravity="start"
-        android:hint="Tap to set Birthdate"
-        android:inputType="textPersonName"
-        android:padding="10dp"
-        android:textAlignment="textStart"
-        android:textStyle="normal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_phoneNum" />
-
-    <EditText
-        android:id="@+id/edt_address"
-        android:layout_width="@dimen/width_textView"
-        android:layout_height="@dimen/edt_layout_height"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/edt_border"
-        android:ems="10"
-        android:hint="Address: "
-        android:inputType="textPersonName"
-        android:padding="10dp"
-        android:textStyle="normal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_birthdate" />
 
     <Switch
         android:id="@+id/sw_autoLocate"
         android:layout_width="222dp"
         android:layout_height="24dp"
+        android:layout_marginTop="16dp"
         android:minHeight="48dp"
         android:text="Auto Locate Address"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_address"
+        app:layout_constraintTop_toBottomOf="@+id/textView42"
         tools:ignore="TouchTargetSizeCheck" />
-
-    <EditText
-        android:id="@+id/edt_rate_register"
-        android:layout_width="@dimen/width_textView"
-        android:layout_height="@dimen/edt_layout_height"
-        android:background="@drawable/edt_border"
-        android:ems="10"
-        android:hint="Rate (for worker only)"
-        android:inputType="number"
-        android:padding="10dp"
-        android:textStyle="normal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sw_autoLocate" />
 
     <Spinner
         android:id="@+id/sp_educ_att"
@@ -215,22 +272,21 @@
         android:layout_height="wrap_content"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView42"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textView42"
+        app:layout_constraintTop_toBottomOf="@+id/til_rate"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/textView42"
-        android:layout_width="326dp"
-        android:layout_height="16dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="199dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="56dp"
         android:text="Highest Educational Attainment(for workers only)"
         android:textSize="14sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.647"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sp_gender" />
+        app:layout_constraintTop_toBottomOf="@+id/til_rate" />
 
     <TextView
         android:id="@+id/textView44"

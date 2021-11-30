@@ -41,6 +41,7 @@ public class WorkerProfile extends Fragment {
     private Bundle bundle;
     private String workerId;
     private String status;
+    private String rate;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -80,7 +81,7 @@ public class WorkerProfile extends Fragment {
                 String age = snapshot.child("age").getValue(String.class);
                 tvAge.setText("Age: " + age);
                 tvPhoneNum.setText("Mobile Number: " + snapshot.child("phoneNumber").getValue(String.class));
-                String rate = snapshot.child("rate").getValue(String.class);
+                rate = snapshot.child("rate").getValue(String.class);
                 tvHourlyRate.setText("Rate: " + rate);
                 tvEmail.setText("Email: " + snapshot.child("email").getValue(String.class));
                 tvGender.setText("Sex: " + snapshot.child("gender").getValue(String.class));
@@ -179,6 +180,8 @@ public class WorkerProfile extends Fragment {
                             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
                                     Fragment requestAService = new RequestAService();
+                                    bundle.putString("workerRate", rate);
+                                    Toast.makeText(getActivity(), "rate1:" + rate, Toast.LENGTH_SHORT).show();
                                     requestAService.setArguments(bundle);
                                     FragmentTransaction ft = getParentFragmentManager().beginTransaction();
                                     ft.replace(R.id.fragment_container_client, requestAService);
