@@ -155,13 +155,13 @@ public class Profile extends Fragment {
           } else {
             tvVerified.setText("Status :" + status);
           }
-          tvName.setText("Full Name:  " + name);
+          tvName.setText(name);
           tvAddress.setText("Address: " + address);
           tvAge.setText("Age: " + age);
           tvHourlyRate.setText("Rate: " + rate);
           tvGender.setText("Sex: " + gender);
           tvPhoneNum.setText("Mobile Number: " + phoneNum);
-          tvHighest.setText("Highest Educational Attainment: " + dataSnapshot.child("highestEducationalAttainment").getValue(String.class));
+          tvHighest.setText("Educational Attainment: " + dataSnapshot.child("highestEducationalAttainment").getValue(String.class));
         }
         @Override
         public void onCancelled(DatabaseError databaseError) {

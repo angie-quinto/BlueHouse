@@ -16,5 +16,9 @@
     <style name="datePicker" parent="Theme.AppCompat.Light.Dialog">
 
     </style>
+    <style name="roundedImageViewRounded">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">20%</item>
+    </style>
 
 </resources>
