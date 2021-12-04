@@ -11,7 +11,6 @@ import android.widget.Toast;
 
 import com.example.bluehousev3.R;
 
-import com.example.bluehousev3.worker.WorkerVerification;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.chip.Chip;
@@ -182,7 +181,8 @@ public class Services extends AppCompatActivity {
           Toast.makeText(Services.this, "Successfully added to services offered",
               Toast.LENGTH_LONG).show();
           Intent intent = new Intent(Services.this,
-              WorkerVerification.class);
+              RegisterIds.class);
+          intent.putExtra("userTypeRegister", "Worker");
           startActivity(intent);
           finish();
         } else {

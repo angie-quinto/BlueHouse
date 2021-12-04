@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".worker.WorkerVerification">
+    tools:context=".views.RegisterIds">
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="261dp"
         android:layout_height="48dp"
         android:layout_marginTop="36dp"
-        android:text="In order to become a verified worker you need to provide the ff:"
+        android:text="In order to become a verified user you need to provide the ff:"
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"

@@ -2,8 +2,10 @@ package com.example.bluehousev3.client;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -24,12 +26,18 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
+
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 
 public class Profile extends Fragment {
 
   private TextView tvName, tvAge, tvAddress, tvGender, tvPhoneNum,
       tvEmail;
+  private ImageView ivProfile;
   private Button btnRequest;
 
   @Override
@@ -45,6 +53,7 @@ public class Profile extends Fragment {
     tvGender = view.findViewById(R.id.tv_client_gender);
     tvPhoneNum = view.findViewById(R.id.tv_clientPhone);
     tvEmail = view.findViewById(R.id.tv_clientEmail);
+    ivProfile = view.findViewById(R.id.iv_empPic);
     Button btnSignOut = view.findViewById(R.id.btn_clientSignout);
 
     btnRequest = view.findViewById(R.id.btn_request_a_service_type);
@@ -97,6 +106,20 @@ public class Profile extends Fragment {
           tvAge.setText("Age: " + String.valueOf(age));
           tvGender.setText("Gender: " + gender);
           tvPhoneNum.setText("Mobile Number: " + phoneNum);
+
+          DatabaseReference picRef = FirebaseDatabase.getInstance().getReference().child("users/employerIds").child(uid);
+          picRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+              String url = snapshot.child("SelfieUrl").getValue(String.class);
+              Picasso.get().load(url).resize(350, 350).into(ivProfile);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+          });
 
         }
         @Override

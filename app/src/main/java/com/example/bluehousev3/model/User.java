@@ -12,14 +12,25 @@ public class User{
     private String password;
     private String selfieUrl;
     private String highestEducationalAttainment;
+    private String validId1, validId2;
 
     public User() {}
 
 
-  public User(String fullName, String age, String gender) {
-        this.fullName = fullName;
-        this.age = age;
-        this.gender = gender;
+  public String getValidId1() {
+    return validId1;
+  }
+
+  public void setValidId1(String validId1) {
+    this.validId1 = validId1;
+  }
+
+  public String getValidId2() {
+    return validId2;
+  }
+
+  public void setValidId2(String validId2) {
+    this.validId2 = validId2;
   }
 
   public String getAddress() {

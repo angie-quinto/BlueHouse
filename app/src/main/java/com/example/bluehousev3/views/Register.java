@@ -7,9 +7,7 @@ import androidx.fragment.app.DialogFragment;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Application;
 import android.app.DatePickerDialog;
 
 import android.content.DialogInterface;
@@ -27,7 +25,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Switch;
@@ -35,7 +32,6 @@ import android.widget.Toast;
 
 
 import com.example.bluehousev3.R;
-import com.example.bluehousev3.client.ClientVerification;
 import com.example.bluehousev3.model.Client;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -45,8 +41,8 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -67,6 +63,7 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
     private String age;
     private Switch swAutoLocate;
     public static String userType;
+
     private TextInputEditText tietName, tietEmail, tietPassword, tietRetypePass, tietMobileNum, tietBirthdate, tietAddress, tietRate;
 
     private FirebaseAuth mAuth;
@@ -119,11 +116,10 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
                     tietPassword = findViewById(R.id.tiet_password);
                     tietRetypePass = findViewById(R.id.tiet_retype_pass);
                     tietMobileNum = findViewById(R.id.tiet_mobile_num);
-                    tietAddress = findViewById(R.id.tiet_birthdate);
-                    tietBirthdate = findViewById(R.id.tiet_address);
+                    tietAddress = findViewById(R.id.tiet_address);
+                    tietBirthdate = findViewById(R.id.tiet_birthdate);
                     tietRate = findViewById(R.id.tiet_rate);
-
-
+                    TextInputLayout tilBirthdate = findViewById(R.id.til_birthdate);
 
                     Button btnRegister = findViewById(R.id.btn_register);
                     progressBar = findViewById(R.id.progressBar);
@@ -157,6 +153,7 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
                             updateUiValues(locationResult.getLastLocation());
                         }
                     };
+
                     tietBirthdate.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -220,7 +217,7 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
             return;
         }
         if (password.length() < 8) {
-            tietPassword.setError("Password is required");
+            tietPassword.setError("Password length must be minimum of 8 characters");
             tietPassword.requestFocus();
             return;
         }
@@ -237,7 +234,7 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
         }
 
         if (mobileNum.length() != 10) {
-            tietMobileNum.setError("Mobile number is required");
+            tietMobileNum.setError("please provide a valid mobile number format");
             tietMobileNum.requestFocus();
             return;
         }
@@ -256,9 +253,6 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
             tietBirthdate.requestFocus();
             return;
         }
-
-
-
 
 
         // creates an account for the new user and put their credential on
@@ -434,7 +428,7 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
         c.set(Calendar.MONTH, month);
         c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
 
-        String birthDate = DateFormat.getDateInstance(DateFormat.FULL).format(c.getTime());
+        String birthDate = DateFormat.getDateInstance(DateFormat.MEDIUM).format(c.getTime());
         tietBirthdate.setText(birthDate);
 
         // get users age from birthdate
@@ -458,17 +452,17 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
 
 
     private void goToDesignatedActivity() {
-        if (userType.equals("Worker")) {
-            Intent intent = new Intent(Register.this, Services.class);
-            startActivity(intent);
-            finish();
-        } else if (userType.equals("Employer")) {
-            Intent clIntent = new Intent(Register.this, ClientVerification.class);
-            startActivity(clIntent);
-            finish();
+       if (userType.equals("Worker")) {
+           Intent intent = new Intent(Register.this, Services.class);
+           startActivity(intent);
+           finish();
+     } else if (userType.equals("Employer")) {
+           Intent clIntent = new Intent(Register.this, RegisterIds.class);
+           clIntent.putExtra("userTypeRegister", userType);
+           startActivity(clIntent);
+           finish();
         } else {
-            Toast.makeText(Register.this, "userType is: " + userType,
-                Toast.LENGTH_LONG).show();
+           Toast.makeText(Register.this, "userType is: " + userType, Toast.LENGTH_LONG).show();
         }
 
     }

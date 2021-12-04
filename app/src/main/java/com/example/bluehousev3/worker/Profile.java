@@ -1,10 +1,12 @@
 package com.example.bluehousev3.worker;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -36,11 +38,10 @@ import java.util.Map;
 
 public class Profile extends Fragment {
   private TextView  tvName, tvAge, tvAddress, tvGender, tvPhoneNum,
-      tvEmail, tvHourlyRate, tvVerified, tvHighest;
-  private Button btnMyServicesOffered, btnSignOut, btnEditProfile;
+      tvEmail, tvHourlyRate, tvVerified, tvHighest, tvSignout, tvServicesOffered;
   private String imgUrl;
 
-  private ImageView ivPic;
+  private ImageView ivPic, ivEdit;
   private final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
   private final String uid = user.getUid();
   private final DatabaseReference profileRef = FirebaseDatabase.getInstance().getReference().child("users/workers").child(uid);
@@ -64,11 +65,12 @@ public class Profile extends Fragment {
     tvEmail = view.findViewById(R.id.tv_email);
     tvHourlyRate = view.findViewById(R.id.tv_rate);
     ivPic = view.findViewById(R.id.iv_workerPic);
-    btnMyServicesOffered = view.findViewById(R.id.btn_serv_offered);
-    btnSignOut = view.findViewById(R.id.btn_sign_out_worker);
     tvVerified = view.findViewById(R.id.tv_worker_status_profile);
     tvHighest = view.findViewById(R.id.tv_highest);
-    btnEditProfile = view.findViewById(R.id.btn_edit_profile_worker);
+    tvSignout = view.findViewById(R.id.tv_signout);
+    tvServicesOffered = view.findViewById(R.id.tv_myServices);
+
+    ivEdit = view.findViewById(R.id.iv_edit_profile);
 
     setProfile();
 
@@ -89,7 +91,7 @@ public class Profile extends Fragment {
     });
 
 
-    btnEditProfile.setOnClickListener(new View.OnClickListener() {
+    ivEdit.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
         bundle.putString("PROFILE_PATH", profilePath);
@@ -107,7 +109,7 @@ public class Profile extends Fragment {
       }
     });
 
-    btnMyServicesOffered.setOnClickListener(new View.OnClickListener() {
+    tvServicesOffered.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
         Fragment servicesOffered = new ServicesOffered();
@@ -119,14 +121,27 @@ public class Profile extends Fragment {
       }
     });
 
-    btnSignOut.setOnClickListener(new View.OnClickListener() {
+    tvSignout.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        FirebaseAuth.getInstance().signOut();
-        Toast.makeText(getContext(), "signed out", Toast.LENGTH_LONG).show();
-        Intent intent = new Intent(getContext(), LogIn.class);
-        startActivity(intent);
-        requireActivity().finish();
+
+        new AlertDialog.Builder(getActivity())
+           .setTitle("Sign Out")
+           .setMessage("Are you sure you want to sign out?")
+           .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+             public void onClick(DialogInterface dialog, int which) {
+               FirebaseAuth.getInstance().signOut();
+               Toast.makeText(getContext(), "signed out", Toast.LENGTH_LONG).show();
+               Intent intent = new Intent(getContext(), LogIn.class);
+               startActivity(intent);
+               requireActivity().finish();
+             }
+           })
+           .setNegativeButton("No", null)
+           .setIcon(R.drawable.ic_logout)
+           .show();
+
+
       }
     });
 
@@ -144,7 +159,7 @@ public class Profile extends Fragment {
         public void onDataChange(DataSnapshot dataSnapshot) {
           String name = dataSnapshot.child("fullName").getValue(String.class);
           String address = dataSnapshot.child("address").getValue(String.class);
-          String age = dataSnapshot.child("age").getValue(String.class);
+          String birthdate = dataSnapshot.child("birthdate").getValue(String.class);
           String gender = dataSnapshot.child("gender").getValue(String.class);
           String phoneNum =
               dataSnapshot.child("phoneNumber").getValue(String.class);
@@ -153,15 +168,15 @@ public class Profile extends Fragment {
           if (status == null){
             tvVerified.setText("Status: not yet verified");
           } else {
-            tvVerified.setText("Status :" + status);
+            tvVerified.setText(status);
           }
           tvName.setText(name);
-          tvAddress.setText("Address: " + address);
-          tvAge.setText("Age: " + age);
-          tvHourlyRate.setText("Rate: " + rate);
-          tvGender.setText("Sex: " + gender);
-          tvPhoneNum.setText("Mobile Number: " + phoneNum);
-          tvHighest.setText("Educational Attainment: " + dataSnapshot.child("highestEducationalAttainment").getValue(String.class));
+          tvAddress.setText(address);
+          tvAge.setText(birthdate);
+          tvHourlyRate.setText(rate);
+          tvGender.setText(gender);
+          tvPhoneNum.setText("+63" + phoneNum);
+          tvHighest.setText(dataSnapshot.child("highestEducationalAttainment").getValue(String.class));
         }
         @Override
         public void onCancelled(DatabaseError databaseError) {

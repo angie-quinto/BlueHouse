@@ -25,9 +25,6 @@
 
 
         <activity
-            android:name=".client.ClientVerification"
-            android:exported="false" />
-        <activity
             android:name=".worker.WorkerHomePage"
             android:windowSoftInputMode="adjustPan"
             android:exported="true" />
@@ -36,7 +33,7 @@
             android:windowSoftInputMode="adjustPan"
             android:exported="true" />
         <activity
-            android:name=".worker.WorkerVerification"
+            android:name=".views.RegisterIds"
             android:exported="true" />
         <activity
             android:name=".views.Services"

@@ -3,7 +3,7 @@ this class asks for the users(worker) selfie, police clearance, 2 valid ids
 images and uploads them into Firebase Storage and put the image urls into the
 user's realtime database
  */
-package com.example.bluehousev3.worker;
+package com.example.bluehousev3.views;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -28,8 +28,8 @@ import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 import com.example.bluehousev3.R;
-import com.example.bluehousev3.model.Worker;
-import com.example.bluehousev3.views.MainActivity;
+import com.example.bluehousev3.client.ClientHomePageActivity;
+import com.example.bluehousev3.worker.WorkerHomePage;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -44,14 +44,17 @@ import com.google.firebase.storage.UploadTask;
 import java.io.ByteArrayOutputStream;
 import java.util.Objects;
 
-public class WorkerVerification extends AppCompatActivity {
+public class RegisterIds extends AppCompatActivity {
   private DatabaseReference mDatabase;
-  private DatabaseReference workerIdsRef;
+  private DatabaseReference idsRef;
   private Spinner sid1, sid2;
   private ArrayAdapter<CharSequence> adap1, adap2;
   private final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
   private final String uid;
   private final String[] ids = new String[4];
+  private String userType;
+
+
 
   {
     assert user != null;
@@ -67,10 +70,14 @@ public class WorkerVerification extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_worker_verification);
-
     mDatabase = FirebaseDatabase.getInstance().getReference();
-    workerIdsRef = mDatabase.child("users/workerIds");
 
+    userType = getIntent().getExtras().getString("userTypeRegister");
+        if (userType.equals("Employer")) {
+          idsRef = mDatabase.child("users/employerIds");
+        } else {
+          idsRef = mDatabase.child("users/workerIds");
+        }
     sid1 = findViewById(R.id.sp_valid1);
     sid2 = findViewById(R.id.spVid2);
 
@@ -90,13 +97,10 @@ public class WorkerVerification extends AppCompatActivity {
     progressBar = findViewById(R.id.progressBar3);
     progressBar.setVisibility(View.INVISIBLE);
 
-
-
-
     // request camera permission
-    if (ContextCompat.checkSelfPermission(WorkerVerification.this,
+    if (ContextCompat.checkSelfPermission(RegisterIds.this,
             Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-      ActivityCompat.requestPermissions(WorkerVerification.this,
+      ActivityCompat.requestPermissions(RegisterIds.this,
               new String[]{
                       Manifest.permission.CAMERA
               }, 200);
@@ -130,19 +134,19 @@ public class WorkerVerification extends AppCompatActivity {
     });
     // condition if the images provided by the worker is complete
 
-    DatabaseReference curUserRef = workerIdsRef.child(uid);
+    DatabaseReference curUserRef = idsRef.child(uid);
 
     curUserRef.addValueEventListener(new ValueEventListener() {
       @Override
       public void onDataChange(@NonNull DataSnapshot snapshot) {
         ids[0] = snapshot.child("SelfieUrl").getValue(String.class);
-        ids[1] = snapshot.child("ValidId1Url").getValue(String.class);
-        ids[2] = snapshot.child("ValidId2Url").getValue(String.class);
+        ids[1] = snapshot.child(sid1.getSelectedItem().toString()).getValue(String.class);
+        ids[2] = snapshot.child(sid2.getSelectedItem().toString()).getValue(String.class);
 
         btnGeVerified.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View view) {
-            new AlertDialog.Builder(WorkerVerification.this)
+            new AlertDialog.Builder(RegisterIds.this)
                 .setTitle("Privacy Policy")
                 .setMessage("BlueHouse collects user information to verify if a user can register based on Philippine Labor laws (RA7610 & RA9231). BlueHouse is committed in following ethical practices, protecting the personal information of all users, and will not rent, barter, sell, permit, or give away to anyone unaffiliated with BlueHouse to use their data. \n" +
                         "\n" +
@@ -154,25 +158,32 @@ public class WorkerVerification extends AppCompatActivity {
                 .setPositiveButton("Agree", new DialogInterface.OnClickListener() {
                   public void onClick(DialogInterface dialog, int which) {
                     if (ids[0] == null || ids[1] == null || ids[2] == null) {
-                      new AlertDialog.Builder(WorkerVerification.this)
+                      new AlertDialog.Builder(RegisterIds.this)
                               .setTitle("Incomplete Image Upload")
                               .setMessage("Please Provide all the requirements being asked")
                               .setPositiveButton(android.R.string.yes, (dialog1, which1) -> {
                               }).show();
                     } else {
-                      Intent intent = new Intent(WorkerVerification.this, WorkerHomePage.class);
-                      startActivity(intent);
-                      finish();
+                      if (userType.equals("Employer")) {
+                        Toast.makeText(RegisterIds.this, "Registration Success", Toast.LENGTH_SHORT).show();
+                        Intent empIntent = new Intent(RegisterIds.this, ClientHomePageActivity.class);
+                        startActivity(empIntent);
+                        finish();
+                      } else {
+                        Toast.makeText(RegisterIds.this, "Registration Success", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(RegisterIds.this, WorkerHomePage.class);
+                        startActivity(intent);
+                        finish();
+                      }
                     }
-
                   }
                 })
                 .setNegativeButton("Disagree", new DialogInterface.OnClickListener() {
                   @Override
                   public void onClick(DialogInterface dialog, int which) {
-                    Toast.makeText(WorkerVerification.this, "You need to agree on our privacy policy in order to use this app", Toast.LENGTH_LONG).show();
+                    Toast.makeText(RegisterIds.this, "You need to agree on our privacy policy in order to use this app", Toast.LENGTH_LONG).show();
                     FirebaseAuth.getInstance().signOut();
-                    Intent intent = new Intent(WorkerVerification.this, MainActivity.class);
+                    Intent intent = new Intent(RegisterIds.this, MainActivity.class);
                     startActivity(intent);
                     finish();
                   }
@@ -189,8 +200,6 @@ public class WorkerVerification extends AppCompatActivity {
 
       }
     });
-
-
   }
 
   // uploads images of firebase and sets the url of the images as a property
@@ -212,10 +221,10 @@ public class WorkerVerification extends AppCompatActivity {
         //uploads the image into firebase storage
         UploadTask uploadTask =
             ref.putBytes(bData);
-        uploadTask.addOnFailureListener(exception -> Toast.makeText(WorkerVerification.this, "Selfie Image Upload " +
+        uploadTask.addOnFailureListener(exception -> Toast.makeText(RegisterIds.this, "Selfie Image Upload " +
                 "Failed",
             Toast.LENGTH_SHORT).show()).addOnSuccessListener(taskSnapshot -> {
-          Toast.makeText(WorkerVerification.this, "Selfie Image Upload " +
+          Toast.makeText(RegisterIds.this, "Selfie Image Upload " +
                   "Success",
               Toast.LENGTH_SHORT).show();
 
@@ -231,14 +240,12 @@ public class WorkerVerification extends AppCompatActivity {
           }).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
               Uri downloadUri = task.getResult();
-              Worker worker = new Worker();
               String selfie1 = downloadUri.toString();
-              worker.setSelfieUrl(selfie1);
-              workerIdsRef.child(uid).child("SelfieUrl").setValue(worker.getSelfieUrl());
+              idsRef.child(uid).child("SelfieUrl").setValue(selfie1);
               progressBar.setVisibility(View.INVISIBLE);
 
             } else {
-              Toast.makeText(WorkerVerification.this, "Error uploading " +
+              Toast.makeText(RegisterIds.this, "Error uploading " +
                       "selfie Image to database",
                   Toast.LENGTH_SHORT).show();
             }
@@ -252,17 +259,15 @@ public class WorkerVerification extends AppCompatActivity {
         final StorageReference fileRef =
             reference.child(System.currentTimeMillis() + "." + getFileExtension(validId1Uri));
         fileRef.putFile(validId1Uri).addOnSuccessListener(taskSnapshot -> fileRef.getDownloadUrl().addOnSuccessListener(uri -> {
-          Worker worker = new Worker();
           String valid1 = uri.toString();
-          worker.setValidId1(valid1);
-          workerIdsRef.child(uid).child("ValidId1Url").setValue(worker.getValidId1());
+          idsRef.child(uid).child(sid1.getSelectedItem().toString()).setValue(valid1);
           progressBar.setVisibility(View.INVISIBLE);
-          Toast.makeText(WorkerVerification.this, sid1.getSelectedItem().toString() + " upload success",
+          Toast.makeText(RegisterIds.this, sid1.getSelectedItem().toString() + " upload success",
               Toast.LENGTH_SHORT).show();
 
         })).addOnProgressListener(snapshot -> progressBar.setVisibility(View.VISIBLE)).addOnFailureListener(e -> {
           progressBar.setVisibility(View.INVISIBLE);
-          Toast.makeText(WorkerVerification.this, "Valid ID 1 Image Upload " +
+          Toast.makeText(RegisterIds.this, "Valid ID 1 Image Upload " +
                   "Failed!",
               Toast.LENGTH_SHORT).show();
         });
@@ -273,17 +278,15 @@ public class WorkerVerification extends AppCompatActivity {
         final StorageReference fileRef =
             reference.child(System.currentTimeMillis() + "." + getFileExtension(validId2Uri));
         fileRef.putFile(validId2Uri).addOnSuccessListener(taskSnapshot -> fileRef.getDownloadUrl().addOnSuccessListener(uri -> {
-          Worker worker = new Worker();
           String valid2 = uri.toString();
-          worker.setValidId2(valid2);
-          workerIdsRef.child(uid).child("ValidId2Url").setValue(worker.getValidId2());
+          idsRef.child(uid).child(sid2.getSelectedItem().toString()).setValue(valid2);
           progressBar.setVisibility(View.INVISIBLE);
-          Toast.makeText(WorkerVerification.this, sid2.getSelectedItem().toString() + " upload success",
+          Toast.makeText(RegisterIds.this, sid2.getSelectedItem().toString() + " upload success",
               Toast.LENGTH_SHORT).show();
 
         })).addOnProgressListener(snapshot -> progressBar.setVisibility(View.VISIBLE)).addOnFailureListener(e -> {
           progressBar.setVisibility(View.INVISIBLE);
-          Toast.makeText(WorkerVerification.this, "Valid ID 2 Image Upload " +
+          Toast.makeText(RegisterIds.this, "Valid ID 2 Image Upload " +
                   "Failed!",
               Toast.LENGTH_SHORT).show();
         });
@@ -296,18 +299,17 @@ public class WorkerVerification extends AppCompatActivity {
         final StorageReference fileRef =
             reference.child(System.currentTimeMillis() + "." + getFileExtension(certUri));
         fileRef.putFile(certUri).addOnSuccessListener(taskSnapshot -> fileRef.getDownloadUrl().addOnSuccessListener(uri -> {
-          Worker worker = new Worker();
+
           String cert = uri.toString();
-          worker.setCert(cert);
-          workerIdsRef.child(uid).child("CertificateUrl").setValue(worker.getCert());
+          idsRef.child(uid).child("CertificateUrl").setValue(cert);
           progressBar.setVisibility(View.INVISIBLE);
-          Toast.makeText(WorkerVerification.this, "Certificate " +
+          Toast.makeText(RegisterIds.this, "Certificate " +
                   "Image Uploaded Successfully",
               Toast.LENGTH_SHORT).show();
 
         })).addOnProgressListener(snapshot -> progressBar.setVisibility(View.VISIBLE)).addOnFailureListener(e -> {
           progressBar.setVisibility(View.INVISIBLE);
-          Toast.makeText(WorkerVerification.this, "Certificate " +
+          Toast.makeText(RegisterIds.this, "Certificate " +
                   "Image Upload Failed!",
               Toast.LENGTH_SHORT).show();
         });
@@ -330,7 +332,6 @@ public class WorkerVerification extends AppCompatActivity {
                 grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
         } else {
-
           Toast.makeText(this, "The app needs your permission to access your gallery, registration failed.", Toast.LENGTH_SHORT).show();
           FirebaseAuth.getInstance().signOut();
           Intent intent = new Intent(this, MainActivity.class);
