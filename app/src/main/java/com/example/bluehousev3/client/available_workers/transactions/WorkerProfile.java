@@ -35,9 +35,10 @@ import java.util.Objects;
 
 
 public class WorkerProfile extends Fragment {
-    private TextView tvEducAtt,tvName, tvAge, tvRating, tvNumberOfServicesComp, tvEmail, tvPhoneNum, tvHourlyRate, tvGender, tvAddress, tvStatus;
-    private Button btnReviews, btnCert, btnIds, btnRequestService;
-    private ImageView ivWorkerProfilePic;
+    private TextView tvEducAtt,tvName, tvAge, tvRating, tvEmail, tvPhoneNum, tvHourlyRate, tvGender, tvAddress, tvReq, tvReviews,
+    tvIds, tvCert;
+
+    private ImageView ivWorkerProfilePic, ivStat;
     private Bundle bundle;
     private String workerId;
     private String status;
@@ -51,20 +52,20 @@ public class WorkerProfile extends Fragment {
         tvName = view.findViewById(R.id.tv_workerProfile_workerName);
         tvAge = view.findViewById(R.id.tv_workerProfile_workerAge);
         tvRating = view.findViewById(R.id.tv_workerProfile_rating);
-        tvNumberOfServicesComp = view.findViewById(R.id.tv_workerProfile_numberOfServicesCompleted);
+
         tvEducAtt = view.findViewById(R.id.tv_workerProfile_educationalAtt);
         tvEmail = view.findViewById(R.id.tv_workerProfile_email);
         tvPhoneNum = view.findViewById(R.id.tv_workerProfile_mobile);
-        btnReviews = view.findViewById(R.id.btn_reviews);
-        btnCert = view.findViewById(R.id.btn_certs);
-        btnIds = view.findViewById(R.id.btn_ids);
-        btnRequestService = view.findViewById(R.id.btn_requestService);
         tvHourlyRate = view.findViewById(R.id.tv_workerProfile_hourlyRate);
         tvGender = view.findViewById(R.id.tv_workerProfile_gender);
         ivWorkerProfilePic = view.findViewById(R.id.iv_workerProfile_profilePic);
         tvAddress = view.findViewById(R.id.tv_workerProfile_address);
         tvEducAtt = view.findViewById(R.id.tv_workerProfile_educationalAtt);
-        tvStatus = view.findViewById(R.id.tv_worker_profile_status);
+        tvReq = view.findViewById(R.id.tv_req_service);
+        tvCert = view.findViewById(R.id.tv_worker_cert);
+        tvIds = view.findViewById(R.id.tv_workerids);
+        tvReviews = view.findViewById(R.id.tv_worker_reviews);
+        ivStat = view.findViewById(R.id.iv_worker_stat);
 
 
         bundle = new Bundle();
@@ -77,38 +78,34 @@ public class WorkerProfile extends Fragment {
             @SuppressLint("SetTextI18n")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                tvName.setText("Name: " + snapshot.child("fullName").getValue(String.class));
+                tvName.setText(snapshot.child("fullName").getValue(String.class));
                 String age = snapshot.child("age").getValue(String.class);
-                tvAge.setText("Age: " + age);
-                tvPhoneNum.setText("Mobile Number: " + snapshot.child("phoneNumber").getValue(String.class));
+                tvAge.setText(age);
+                tvPhoneNum.setText(snapshot.child("phoneNumber").getValue(String.class));
                 rate = snapshot.child("rate").getValue(String.class);
-                tvHourlyRate.setText("Rate: " + rate);
-                tvEmail.setText("Email: " + snapshot.child("email").getValue(String.class));
-                tvGender.setText("Sex: " + snapshot.child("gender").getValue(String.class));
-                tvAddress.setText("Address: " + snapshot.child("address").getValue(String.class));
-                tvEducAtt.setText("Highest Educational Attainment: " + snapshot.child("highestEducationalAttainment").getValue(String.class));
+                tvHourlyRate.setText(rate);
+                tvEmail.setText(snapshot.child("email").getValue(String.class));
+                tvGender.setText(snapshot.child("gender").getValue(String.class));
+                tvAddress.setText(snapshot.child("address").getValue(String.class));
+                tvEducAtt.setText(snapshot.child("highestEducationalAttainment").getValue(String.class));
                 String rating = snapshot.child("rating").getValue(String.class);
                 status = snapshot.child("status").getValue(String.class);
-                String numComp = snapshot.child("numberOfServicesCompleted").getValue(String.class);
+
                 if (status != null) {
-                    tvStatus.setText("Status: " + status);
-                } else {
-                    tvStatus.setText("Status: not yet verified" );
+                    if (status.equals("verified")) {
+                        ivStat.setVisibility(View.VISIBLE);
+                    }
                 }
 
                 if (rating != null) {
-                    tvRating.setText("Rating: " + rating);
+                    tvRating.setText(rating);
 
                 } else {
-                    tvRating.setText("Rating: not yet rated");
+                    tvRating.setText("not yet rated");
                 }
 
 
-                if (numComp == null) {
-                    tvNumberOfServicesComp.setText("Number of Services Completed: 0");
-                } else {
-                    tvNumberOfServicesComp.setText("Number of Services Completed: "+ numComp);
-                }
+
 
                 DatabaseReference picRef = FirebaseDatabase.getInstance().getReference().child("users/workerIds").child(workerId);
                 picRef.addValueEventListener(new ValueEventListener() {
@@ -141,11 +138,7 @@ public class WorkerProfile extends Fragment {
             }
         });
 
-
-
-
-
-        btnReviews.setOnClickListener(new View.OnClickListener() {
+        tvReviews.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 WorkerReviewsDialog workerReviewsDialog = new WorkerReviewsDialog(workerId);
@@ -153,7 +146,7 @@ public class WorkerProfile extends Fragment {
             }
         });
 
-        btnCert.setOnClickListener(new View.OnClickListener() {
+        tvCert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 WorkerCertificateDialog workerCertificateDialog = new WorkerCertificateDialog(workerId);
@@ -161,7 +154,7 @@ public class WorkerProfile extends Fragment {
             }
         });
 
-        btnIds.setOnClickListener(new View.OnClickListener() {
+        tvIds.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 WorkerIdsDialogFragment workerIdsDialogFragment = new WorkerIdsDialogFragment(workerId);
@@ -169,7 +162,7 @@ public class WorkerProfile extends Fragment {
             }
         });
 
-        btnRequestService.setOnClickListener(new View.OnClickListener() {
+        tvReq.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (status == null || status.equals("not yet verified")) {

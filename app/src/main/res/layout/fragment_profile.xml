@@ -35,7 +35,7 @@
         android:id="@+id/tv_rate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
+        android:layout_marginStart="5dp"
         android:text="Rate"
         android:textSize="12sp"
         app:layout_constraintStart_toEndOf="@+id/imageView11"
@@ -45,32 +45,17 @@
         android:id="@+id/tv_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="6dp"
+        android:layout_marginStart="5dp"
         android:text="Email"
         android:textSize="12sp"
         app:layout_constraintStart_toEndOf="@+id/imageView10"
         app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
     <TextView
-        android:id="@+id/tv_gender"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="6dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginEnd="284dp"
-        android:text="Gender: "
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView7"
-        app:layout_constraintTop_toBottomOf="@+id/textView12" />
-
-    <TextView
         android:id="@+id/tv_phoneNum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="6dp"
-        android:layout_marginTop="2dp"
+        android:layout_marginStart="5dp"
         android:text="Phone Number: "
         android:textSize="12sp"
         app:layout_constraintStart_toEndOf="@+id/imageView9"
@@ -80,8 +65,7 @@
         android:id="@+id/tv_address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="2dp"
+        android:layout_marginStart="5dp"
         android:layout_marginEnd="276dp"
         android:text="Address"
         android:textSize="12sp"
@@ -94,8 +78,7 @@
         android:id="@+id/tv_age"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="2dp"
+        android:layout_marginStart="5dp"
         android:drawablePadding="5dp"
         android:paddingTop="0dp"
         android:text="Age:"
@@ -110,6 +93,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
         android:text="Name:"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -119,31 +103,10 @@
         app:layout_constraintTop_toBottomOf="@+id/iv_workerPic" />
 
     <TextView
-        android:id="@+id/tv_worker_status_profile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="6dp"
-        android:text="Status"
-        android:textSize="12sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView12"
-        app:layout_constraintTop_toBottomOf="@+id/textView21" />
-
-    <TextView
-        android:id="@+id/tv_highest"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="6dp"
-        android:layout_marginTop="2dp"
-        android:text="Highest Educational Attainment"
-        android:textSize="12sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView8"
-        app:layout_constraintTop_toBottomOf="@+id/textView14" />
-
-    <TextView
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
+        android:layout_marginStart="5dp"
         android:paddingTop="0dp"
         android:paddingBottom="0dp"
         android:text="Date of Birth"
@@ -154,9 +117,9 @@
 
     <ImageView
         android:id="@+id/imageView5"
-        android:layout_width="30dp"
+        android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="40dp"
         android:layout_marginTop="8dp"
         android:src="@drawable/ic_calendar"
         app:layout_constraintStart_toStartOf="parent"
@@ -164,10 +127,10 @@
 
     <ImageView
         android:id="@+id/imageView6"
-        android:layout_width="30dp"
+        android:layout_width="40dp"
 
         android:layout_height="40dp"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="40dp"
         android:src="@drawable/ic_location"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView5" />
@@ -176,76 +139,36 @@
         android:id="@+id/textView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
+        android:layout_marginStart="5dp"
         android:text="Address"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/imageView6"
-        app:layout_constraintTop_toBottomOf="@+id/tv_age" />
-
-    <ImageView
-        android:id="@+id/imageView7"
-        android:layout_width="30dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="32dp"
-        android:src="@drawable/ic_male_female"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView6" />
-
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:text="Sex"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/imageView7"
-        app:layout_constraintTop_toBottomOf="@+id/tv_address" />
-
-    <ImageView
-        android:id="@+id/imageView8"
-        android:layout_width="30dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="32dp"
-        android:src="@drawable/ic_school"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView7" />
-
-    <TextView
-        android:id="@+id/textView14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
-        android:text="Highest Educational Attainment"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/imageView8"
-        app:layout_constraintTop_toBottomOf="@+id/tv_gender" />
+        app:layout_constraintTop_toTopOf="@+id/imageView6" />
 
     <ImageView
         android:id="@+id/imageView9"
-        android:layout_width="37dp"
-        android:layout_height="46dp"
-        android:layout_marginStart="28dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="40dp"
         android:src="@drawable/ic_mobile"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView8" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView6" />
 
     <TextView
         android:id="@+id/textView18"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"
         android:text="Mobile Number"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/imageView9"
-        app:layout_constraintTop_toBottomOf="@+id/tv_highest" />
+        app:layout_constraintTop_toTopOf="@+id/imageView9" />
 
     <ImageView
         android:id="@+id/imageView10"
-        android:layout_width="33dp"
-        android:layout_height="42dp"
-        android:layout_marginStart="32dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="40dp"
         android:src="@drawable/ic_email"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView9" />
@@ -254,18 +177,17 @@
         android:id="@+id/textView19"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="5dp"
         android:text="Email"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/imageView10"
-        app:layout_constraintTop_toBottomOf="@+id/tv_phoneNum" />
+        app:layout_constraintTop_toTopOf="@+id/imageView10" />
 
     <ImageView
         android:id="@+id/imageView11"
-        android:layout_width="34dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="28dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="40dp"
         android:src="@drawable/ic_dollar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView10" />
@@ -274,33 +196,11 @@
         android:id="@+id/textView20"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="5dp"
         android:text="Rate"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/imageView11"
-        app:layout_constraintTop_toBottomOf="@+id/tv_email" />
-
-    <ImageView
-        android:id="@+id/imageView12"
-        android:layout_width="37dp"
-        android:layout_height="49dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="4dp"
-        android:src="@drawable/ic_verified_status"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView11" />
-
-    <TextView
-        android:id="@+id/textView21"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="10dp"
-        android:text="Status"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/imageView12"
-        app:layout_constraintTop_toBottomOf="@+id/tv_rate" />
+        app:layout_constraintTop_toTopOf="@+id/imageView11" />
 
     <ImageView
         android:id="@+id/iv_edit_profile"
@@ -316,7 +216,7 @@
         android:id="@+id/tv_signout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="44dp"
         android:drawablePadding="5dp"
         android:text="Sign Out"
         android:textSize="16sp"
@@ -325,13 +225,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/tv_myServices"
-        app:layout_constraintTop_toBottomOf="@+id/divider8" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView11" />
 
     <TextView
         android:id="@+id/tv_myServices"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="44dp"
         android:drawablePadding="5dp"
         android:text="My Services Offered"
         android:textSize="16sp"
@@ -340,18 +240,16 @@
         app:layout_constraintEnd_toStartOf="@+id/tv_signout"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider8" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView11" />
 
-    <View
-        android:id="@+id/divider8"
-        android:layout_width="409dp"
-        android:layout_height="2dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="1dp"
-        android:background="@drawable/h_divider"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView12" />
+    <ImageView
+        android:id="@+id/iv_verified"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:src="@drawable/ic_check"
+        android:visibility="invisible"
+        app:layout_constraintStart_toEndOf="@+id/tv_name"
+        app:layout_constraintTop_toTopOf="@+id/tv_name" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

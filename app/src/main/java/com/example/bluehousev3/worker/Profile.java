@@ -37,11 +37,11 @@ import java.util.Map;
 
 
 public class Profile extends Fragment {
-  private TextView  tvName, tvAge, tvAddress, tvGender, tvPhoneNum,
-      tvEmail, tvHourlyRate, tvVerified, tvHighest, tvSignout, tvServicesOffered;
+  private TextView  tvName, tvAge, tvAddress,tvPhoneNum,
+      tvEmail, tvHourlyRate, tvSignout, tvServicesOffered;
   private String imgUrl;
 
-  private ImageView ivPic, ivEdit;
+  private ImageView ivPic, ivEdit, ivVerified;
   private final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
   private final String uid = user.getUid();
   private final DatabaseReference profileRef = FirebaseDatabase.getInstance().getReference().child("users/workers").child(uid);
@@ -60,13 +60,14 @@ public class Profile extends Fragment {
     tvName = view.findViewById(R.id.tv_name);
     tvAge = view.findViewById(R.id.tv_age);
     tvAddress = view.findViewById(R.id.tv_address);
-    tvGender = view.findViewById(R.id.tv_gender);
+    ivVerified = view.findViewById(R.id.iv_verified);
+
     tvPhoneNum = view.findViewById(R.id.tv_phoneNum);
     tvEmail = view.findViewById(R.id.tv_email);
     tvHourlyRate = view.findViewById(R.id.tv_rate);
     ivPic = view.findViewById(R.id.iv_workerPic);
-    tvVerified = view.findViewById(R.id.tv_worker_status_profile);
-    tvHighest = view.findViewById(R.id.tv_highest);
+//    tvVerified = view.findViewById(R.id.tv_worker_status_profile);
+
     tvSignout = view.findViewById(R.id.tv_signout);
     tvServicesOffered = view.findViewById(R.id.tv_myServices);
 
@@ -160,23 +161,22 @@ public class Profile extends Fragment {
           String name = dataSnapshot.child("fullName").getValue(String.class);
           String address = dataSnapshot.child("address").getValue(String.class);
           String birthdate = dataSnapshot.child("birthdate").getValue(String.class);
-          String gender = dataSnapshot.child("gender").getValue(String.class);
-          String phoneNum =
-              dataSnapshot.child("phoneNumber").getValue(String.class);
-         String rate = dataSnapshot.child("rate").getValue(String.class);
+          String phoneNum = dataSnapshot.child("phoneNumber").getValue(String.class);
+          String rate = dataSnapshot.child("rate").getValue(String.class);
           String status = dataSnapshot.child("status").getValue(String.class);
-          if (status == null){
-            tvVerified.setText("Status: not yet verified");
-          } else {
-            tvVerified.setText(status);
+
+          if (status != null) {
+            if (status.equals("verified")) {
+              ivVerified.setVisibility(View.VISIBLE);
+            }
           }
+
+
           tvName.setText(name);
           tvAddress.setText(address);
           tvAge.setText(birthdate);
           tvHourlyRate.setText(rate);
-          tvGender.setText(gender);
           tvPhoneNum.setText("+63" + phoneNum);
-          tvHighest.setText(dataSnapshot.child("highestEducationalAttainment").getValue(String.class));
         }
         @Override
         public void onCancelled(DatabaseError databaseError) {

@@ -3,6 +3,7 @@ package com.example.bluehousev3.client.available_workers.transactions;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,10 +22,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+
 public class WorkerIdsDialogFragment extends DialogFragment {
     private ImageView iv1, iv2;
     private Button btnBack;
     private String workerId;
+    private static final String TAG = "WorkerIdsDialogFragment";
+
 
     public WorkerIdsDialogFragment(String workerId) {
         this.workerId = workerId;
@@ -39,28 +44,21 @@ public class WorkerIdsDialogFragment extends DialogFragment {
         iv2 = view.findViewById(R.id.iv_id2_dialog);
         btnBack = view.findViewById(R.id.btn_back);
 
-
-
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("users/workerIds");
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("users/workerIds").child(workerId);
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot: snapshot.getChildren()) {
-                    if (dataSnapshot.getKey().equals(workerId)) {
-                        String id1 = dataSnapshot.child("ValidId1Url").getValue(String.class);
-                        String id2 = dataSnapshot.child("ValidId2Url").getValue(String.class);
 
-                        Picasso.get().load(id1).into(iv1);
-                        Picasso.get().load(id2).into(iv2);
-
-                    }
-                }
+                    String id1 = snapshot.child("ValidId1Url").getValue(String.class);
+                    String id2 = snapshot.child("ValidId2Url").getValue(String.class);
+                    Picasso.get().load(id1).into(iv1);
+                    Picasso.get().load(id2).into(iv2);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Log.d(TAG, "onCancelled: WorkerIdsFragment Error");
             }
         });
 

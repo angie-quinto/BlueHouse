@@ -146,7 +146,7 @@ public class RequestAService2 extends Fragment {
 
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
-                                String nRate = edtRate.getText().toString();
+                                String nRate = edtRate.getText().toString().trim();
                                 if (Integer.parseInt(nRate) < Integer.parseInt(rate)) {
                                     edtRate.setError("proposed rate must be greater than the rate of the worker");
                                     edtRate.requestFocus();

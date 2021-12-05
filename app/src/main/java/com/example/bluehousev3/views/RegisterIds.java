@@ -140,8 +140,8 @@ public class RegisterIds extends AppCompatActivity {
       @Override
       public void onDataChange(@NonNull DataSnapshot snapshot) {
         ids[0] = snapshot.child("SelfieUrl").getValue(String.class);
-        ids[1] = snapshot.child(sid1.getSelectedItem().toString()).getValue(String.class);
-        ids[2] = snapshot.child(sid2.getSelectedItem().toString()).getValue(String.class);
+        ids[1] = snapshot.child("ValidId1Url").getValue(String.class);
+        ids[2] = snapshot.child("ValidId2Url").getValue(String.class);
 
         btnGeVerified.setOnClickListener(new View.OnClickListener() {
           @Override
@@ -260,7 +260,7 @@ public class RegisterIds extends AppCompatActivity {
             reference.child(System.currentTimeMillis() + "." + getFileExtension(validId1Uri));
         fileRef.putFile(validId1Uri).addOnSuccessListener(taskSnapshot -> fileRef.getDownloadUrl().addOnSuccessListener(uri -> {
           String valid1 = uri.toString();
-          idsRef.child(uid).child(sid1.getSelectedItem().toString()).setValue(valid1);
+          idsRef.child(uid).child("ValidId1Url").setValue(valid1);
           progressBar.setVisibility(View.INVISIBLE);
           Toast.makeText(RegisterIds.this, sid1.getSelectedItem().toString() + " upload success",
               Toast.LENGTH_SHORT).show();
@@ -279,7 +279,7 @@ public class RegisterIds extends AppCompatActivity {
             reference.child(System.currentTimeMillis() + "." + getFileExtension(validId2Uri));
         fileRef.putFile(validId2Uri).addOnSuccessListener(taskSnapshot -> fileRef.getDownloadUrl().addOnSuccessListener(uri -> {
           String valid2 = uri.toString();
-          idsRef.child(uid).child(sid2.getSelectedItem().toString()).setValue(valid2);
+          idsRef.child(uid).child("ValidId2Url").setValue(valid2);
           progressBar.setVisibility(View.INVISIBLE);
           Toast.makeText(RegisterIds.this, sid2.getSelectedItem().toString() + " upload success",
               Toast.LENGTH_SHORT).show();

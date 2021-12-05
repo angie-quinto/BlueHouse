@@ -1,11 +1,13 @@
 package com.example.bluehousev3.client;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -35,10 +37,9 @@ import java.net.URL;
 
 public class Profile extends Fragment {
 
-  private TextView tvName, tvAge, tvAddress, tvGender, tvPhoneNum,
-      tvEmail;
-  private ImageView ivProfile;
-  private Button btnRequest;
+  private TextView tvName, tvAge, tvAddress, tvPhoneNum,
+      tvEmail, tvSignout, tvRequest;
+  private ImageView ivProfile, ivVerfied;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,28 +51,41 @@ public class Profile extends Fragment {
     tvName = view.findViewById(R.id.tv_clientName);
     tvAge = view.findViewById(R.id.tv_clientAge);
     tvAddress = view.findViewById(R.id.tv_clientAdd);
-    tvGender = view.findViewById(R.id.tv_client_gender);
     tvPhoneNum = view.findViewById(R.id.tv_clientPhone);
     tvEmail = view.findViewById(R.id.tv_clientEmail);
     ivProfile = view.findViewById(R.id.iv_empPic);
-    Button btnSignOut = view.findViewById(R.id.btn_clientSignout);
+    tvSignout = view.findViewById(R.id.tv_signout_emp);
+    tvRequest = view.findViewById(R.id.tv_request);
+    ivVerfied = view.findViewById(R.id.iv_verified_emp);
 
-    btnRequest = view.findViewById(R.id.btn_request_a_service_type);
+
+
+
 
     setProfile();
 
-    btnSignOut.setOnClickListener(new View.OnClickListener() {
+    tvSignout.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        FirebaseAuth.getInstance().signOut();
-        Toast.makeText(getContext(), "user signed out", Toast.LENGTH_LONG).show();
-        Intent intent = new Intent(getContext(), LogIn.class);
-        startActivity(intent);
-        requireActivity().finish(); // changed this
+        new AlertDialog.Builder(getActivity())
+           .setTitle("Sign Out")
+           .setMessage("Are you sure you want to sign out?")
+           .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+             public void onClick(DialogInterface dialog, int which) {
+               FirebaseAuth.getInstance().signOut();
+               Toast.makeText(getContext(), "signed out", Toast.LENGTH_LONG).show();
+               Intent intent = new Intent(getContext(), LogIn.class);
+               startActivity(intent);
+               requireActivity().finish();
+             }
+           })
+           .setNegativeButton("No", null)
+           .setIcon(R.drawable.ic_logout)
+           .show();
       }
     });
 
-    btnRequest.setOnClickListener(new View.OnClickListener() {
+    tvRequest.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
         RequestAServiceType req = new RequestAServiceType();
@@ -84,7 +98,7 @@ public class Profile extends Fragment {
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     if (user != null) {
       String email = user.getEmail();
-      tvEmail.setText("Email: " + email);
+      tvEmail.setText(email);
       String uid = user.getUid();
 
       DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
@@ -96,16 +110,21 @@ public class Profile extends Fragment {
         public void onDataChange(DataSnapshot dataSnapshot) {
           String name = dataSnapshot.child("fullName").getValue(String.class);
           String address = dataSnapshot.child("address").getValue(String.class);
-          String age = dataSnapshot.child("age").getValue(String.class);
-          String gender = dataSnapshot.child("gender").getValue(String.class);
+          String age = dataSnapshot.child("birthdate").getValue(String.class);
+          String status = dataSnapshot.child("status").getValue(String.class);
           String phoneNum =
               dataSnapshot.child("phoneNumber").getValue(String.class);
 
-          tvName.setText("Name: " + name);
-          tvAddress.setText("Address: " + address);
-          tvAge.setText("Age: " + String.valueOf(age));
-          tvGender.setText("Gender: " + gender);
-          tvPhoneNum.setText("Mobile Number: " + phoneNum);
+          if (status != null) {
+            if (status.equals("verified")) {
+              ivVerfied.setVisibility(View.VISIBLE);
+            }
+          }
+
+          tvName.setText(name);
+          tvAddress.setText(address);
+          tvAge.setText(age);
+          tvPhoneNum.setText("+63" + phoneNum);
 
           DatabaseReference picRef = FirebaseDatabase.getInstance().getReference().child("users/employerIds").child(uid);
           picRef.addValueEventListener(new ValueEventListener() {
