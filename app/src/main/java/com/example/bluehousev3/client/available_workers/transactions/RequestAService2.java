@@ -70,7 +70,7 @@ public class RequestAService2 extends Fragment {
         edtRate = view.findViewById(R.id.edt_rate);
         btnSubmit = view.findViewById(R.id.btn_submit);
 
-        assert getArguments() != null;
+
         serviceType = getArguments().getString("serviceType");
         description = getArguments().getString("description");
         startDate = getArguments().getString("startDate");

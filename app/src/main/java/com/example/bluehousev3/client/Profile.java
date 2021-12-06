@@ -41,6 +41,7 @@ public class Profile extends Fragment {
       tvEmail, tvSignout, tvRequest;
   private ImageView ivProfile, ivVerfied;
 
+
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {

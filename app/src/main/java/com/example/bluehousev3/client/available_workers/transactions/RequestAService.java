@@ -63,6 +63,7 @@ public class RequestAService extends Fragment {
         View view = inflater.inflate(R.layout.fragment_request_a_service, container, false);
 
         workerId = getArguments().getString("Wid");
+        rate = getArguments().getString("workerRateWorkerProfile");
         edtDescription = view.findViewById(R.id.edt_desc);
         edtStartDate = view.findViewById(R.id.edt_start_date);
         edtStartTime = view.findViewById(R.id.edt_start_time);
@@ -78,7 +79,9 @@ public class RequestAService extends Fragment {
         services = new String[servicesOffered.size()];
 
 
-        rate = getArguments().getString("workerRate");
+
+
+        Toast.makeText(getActivity(), "rate::" + rate, Toast.LENGTH_SHORT).show();
 
         DatabaseReference workerServicesOfferedRef = FirebaseDatabase.getInstance().getReference().child("users/workerServicesOffered").child(workerId);
         workerServicesOfferedRef.addValueEventListener(new ValueEventListener() {
@@ -167,7 +170,7 @@ public class RequestAService extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
                 final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                assert user != null;
+
                 String uid = user.getUid();
                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("users/employers").child(uid);
                 reference.addValueEventListener(new ValueEventListener() {
@@ -236,6 +239,7 @@ public class RequestAService extends Fragment {
         bundle.putString("location", location);
         bundle.putString("ID", workerId);
         bundle.putString("workerRATE3", rate);
+
 
         Toast.makeText(getActivity(), "rate2: " + rate, Toast.LENGTH_SHORT).show();
 

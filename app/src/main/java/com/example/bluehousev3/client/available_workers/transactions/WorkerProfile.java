@@ -162,6 +162,7 @@ public class WorkerProfile extends Fragment {
             }
         });
 
+
         tvReq.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -173,8 +174,8 @@ public class WorkerProfile extends Fragment {
                             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
                                     Fragment requestAService = new RequestAService();
-                                    bundle.putString("workerRate", rate);
                                     Toast.makeText(getActivity(), "rate1:" + rate, Toast.LENGTH_SHORT).show();
+                                    bundle.putString("workerRateWorkerProfile", rate);
                                     requestAService.setArguments(bundle);
                                     FragmentTransaction ft = getParentFragmentManager().beginTransaction();
                                     ft.replace(R.id.fragment_container_client, requestAService);
@@ -190,6 +191,8 @@ public class WorkerProfile extends Fragment {
                 } else {
                     Fragment requestAService = new RequestAService();
                     requestAService.setArguments(bundle);
+                    Toast.makeText(getActivity(), "rate1:" + rate, Toast.LENGTH_SHORT).show();
+                    bundle.putString("workerRateWorkerProfile", rate);
                     FragmentTransaction ft = getParentFragmentManager().beginTransaction();
                     ft.replace(R.id.fragment_container_client, requestAService);
                     ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
