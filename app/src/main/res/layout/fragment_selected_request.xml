@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:foregroundGravity="center"
     tools:context=".worker.transactions.SelectedRequest">
 
 
@@ -11,24 +12,26 @@
         android:id="@+id/tv_service_type_selected"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:text="Service Type"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/view2" />
 
     <TextView
         android:id="@+id/tv_desc_selec"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
+        android:layout_marginTop="64dp"
         android:text="Description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_service_type_selected" />
+        app:layout_constraintTop_toTopOf="@+id/tv_service_type_selected" />
 
     <TextView
         android:id="@+id/tv_start_date_selec"
@@ -86,84 +89,39 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_loc_select" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_pic_selec"
-        android:layout_width="250dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/button"
-        android:text="View Request PHotos"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_client_age" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_accept_selec"
-        android:layout_width="250dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/button_accept"
-        android:text="Accept Request"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_reject_req" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_reject_req"
-        android:layout_width="250dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/button_reject"
-        android:text="Reject Request"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_pic_selec" />
-
     <TextView
         android:id="@+id/tv_client_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:text="Client Name"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.655"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider5" />
+        app:layout_constraintTop_toBottomOf="@+id/divider13" />
 
     <TextView
         android:id="@+id/tv_client_rating_selec"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
+        android:layout_marginTop="20dp"
         android:text="Client Rating"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.65"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_client_name" />
-
-    <View
-        android:id="@+id/divider5"
-        android:layout_width="409dp"
-        android:layout_height="1dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="1dp"
-        android:background="?android:attr/listDivider"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_proposed_rate_selec" />
 
     <TextView
         android:id="@+id/tv_client_gender_selec"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
         android:text="Client Gender"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.639"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_client_rating_selec" />
 
@@ -172,9 +130,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
+        android:layout_marginTop="12dp"
         android:text="Client Age"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.628"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_client_gender_selec" />
 
@@ -182,9 +141,113 @@
         android:id="@+id/tv_emp_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="224dp"
+        android:layout_marginTop="4dp"
         android:text="TextView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_client_age" />
+
+    <TextView
+        android:id="@+id/tv_req_photos"
+        android:layout_width="180dp"
+        android:layout_height="@dimen/height_outline_button"
+        android:layout_marginTop="152dp"
+        android:background="@drawable/button_outline"
+        android:drawablePadding="5dp"
+        android:padding="3dp"
+        android:text="Request Photos"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="@color/text_color_button"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:drawableStartCompat="@drawable/ic_image_box"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_emp_status" />
+
+    <TextView
+        android:id="@+id/tv_reject_req"
+        android:layout_width="180dp"
+        android:layout_height="@dimen/height_outline_button"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/button_outline"
+        android:drawablePadding="5dp"
+        android:padding="3dp"
+        android:text="Reject Request"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="@color/text_color_button"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:drawableStartCompat="@drawable/ic_x_circle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_req_photos" />
+
+    <TextView
+        android:id="@+id/tv_accept_req"
+        android:layout_width="180dp"
+        android:layout_height="@dimen/height_outline_button"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/button_outline"
+        android:drawablePadding="5dp"
+        android:padding="3dp"
+        android:text="Accept Request"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="@color/text_color_button"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:drawableStartCompat="@drawable/ic_check_circle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_reject_req" />
+
+    <View
+        android:id="@+id/divider13"
+        android:layout_width="390dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="8dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_service_type_selected" />
+
+    <View
+        android:id="@+id/divider14"
+        android:layout_width="1dp"
+        android:layout_height="400dp"
+        android:layout_marginTop="12dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider13" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="390dp"
+        android:layout_height="134dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.526"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView23"
+        android:layout_width="98dp"
+        android:layout_height="91dp"
+        android:layout_marginTop="32dp"
+        android:src="@mipmap/logo2_round"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

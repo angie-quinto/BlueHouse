@@ -32,8 +32,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class SelectedRequest extends Fragment {
     private TextView tvServiceType, tvDescription, tvStartDate, tvEndDate, tvLocation, tvProposedRate,
-    tvStartTime, tvEndTime, tvClientName, tvClientRating, tvClientGender, tvClientAge, tvEmpStat;
-    private Button btnViewPhotos, btnRejectRequest, btnAcceptRequest;
+    tvStartTime, tvEndTime, tvClientName, tvClientRating, tvClientGender, tvClientAge, tvEmpStat, tvReqPhotos, tvAcceptReq, tvRejectReq;
     private String clientId;
     String serviceType, description, startDate, endDate, startTime, endTime, location, proposedRate, proposedRateTime;
     String clientName, clientRating, clientGender, image1, image2;
@@ -55,12 +54,11 @@ public class SelectedRequest extends Fragment {
         tvClientRating = view.findViewById(R.id.tv_client_rating_selec);
         tvClientGender = view.findViewById(R.id.tv_client_gender_selec);
         tvClientAge = view.findViewById(R.id.tv_client_age);
-        btnAcceptRequest = view.findViewById(R.id.btn_accept_selec);
-        btnRejectRequest = view.findViewById(R.id.btn_reject_req);
-        btnViewPhotos = view.findViewById(R.id.btn_pic_selec);
         tvEmpStat = view.findViewById(R.id.tv_emp_status);
+        tvReqPhotos = view.findViewById(R.id.tv_req_photos);
+        tvAcceptReq = view.findViewById(R.id.tv_accept_req);
+        tvRejectReq = view.findViewById(R.id.tv_reject_req);
 
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
         String reqId = getArguments().getString("rId");
 
        clientId = getArguments().getString("cId");
@@ -84,7 +82,7 @@ public class SelectedRequest extends Fragment {
                 image1 = snapshot.child("img1Url").getValue(String.class);
                 image2 = snapshot.child("img2Url").getValue(String.class);
 
-                tvServiceType.setText("Service Type: " +serviceType);
+                tvServiceType.setText(serviceType);
                 tvDescription.setText("Description: " + description);
                 tvStartDate.setText("Start Date: " + startDate);
                 tvEndDate.setText("End Date: " + endDate);
@@ -93,7 +91,7 @@ public class SelectedRequest extends Fragment {
                 tvLocation.setText("Location: " + location);
                 tvProposedRate.setText("Proposed Rate: Php " + proposedRate + ": " + proposedRateTime);
 
-                btnViewPhotos.setOnClickListener(new View.OnClickListener() {
+                tvReqPhotos.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         ViewRequestPhotos viewRequestPhotos = new ViewRequestPhotos(image1, image2);
@@ -143,7 +141,7 @@ public class SelectedRequest extends Fragment {
                     }
                 });
 
-        btnRejectRequest.setOnClickListener(new View.OnClickListener() {
+        tvRejectReq.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -175,7 +173,7 @@ public class SelectedRequest extends Fragment {
             }
         });
 
-        btnAcceptRequest.setOnClickListener(new View.OnClickListener() {
+        tvAcceptReq.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (status == null || status.equals("not yet verified")) {

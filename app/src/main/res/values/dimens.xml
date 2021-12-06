@@ -7,4 +7,6 @@
     <dimen name="edt_layout_height">40dp</dimen>
     <dimen name="bth_layout_height" />
     <dimen name="btn_height2">50dp</dimen>
+    <dimen name="width_outline_button">180dp</dimen>
+    <dimen name="height_outline_button">35dp</dimen>
 </resources>
