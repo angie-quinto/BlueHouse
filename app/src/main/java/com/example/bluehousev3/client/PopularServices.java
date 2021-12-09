@@ -1,232 +1,140 @@
 package com.example.bluehousev3.client;
-
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.anychart.AnyChart;
+import com.anychart.AnyChartView;
+import java.util.ArrayList;
+import java.util.List;
+import com.anychart.chart.common.dataentry.DataEntry;
+import com.anychart.chart.common.dataentry.ValueDataEntry;
+import com.anychart.charts.Pie;
+import com.anychart.core.ui.ChartCredits;
+import com.anychart.enums.Align;
+import com.anychart.enums.LegendLayout;
 import com.example.bluehousev3.R;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 public class PopularServices extends Fragment {
 
-
-  private TextView tv1, tv2, tv3, tv4, tv5, tv6, tv7, tv8, tv9, tv10;
-  @Override
-  public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                           Bundle savedInstanceState) {
-    View view = inflater.inflate(R.layout.fragment_popular_workers_client, container, false);
-
-
-    tv1 = view.findViewById(R.id.tv1);
-    tv2 = view.findViewById(R.id.tv2);
-    tv3 = view.findViewById(R.id.tv3);
-    tv4 = view.findViewById(R.id.tv4);
-    tv5 = view.findViewById(R.id.tv5);
-    tv6 = view.findViewById(R.id.tv6);
-    tv7 = view.findViewById(R.id.tv7);
-    tv8 = view.findViewById(R.id.tv8);
-    tv9 = view.findViewById(R.id.tv9);
-    tv10 = view.findViewById(R.id.tv10);
-
-    tv1.setText("1. Home Appliance Maintenance");
-    tv2.setText("2. Laundry Services");
-    tv3.setText("3. House Keeping");
-    tv4.setText("4. Roof Maintenance");
-    tv5.setText("5. Carpentry");
-    tv6.setText("6. Gardening");
-    tv7.setText("7. Jet Matic Pump Maintenance");
-    tv8.setText("8. Upholstery");
-    tv9.setText("9. Septic Tank Maintenance");
-    tv10.setText("10. Electrical Maintenance");
-
-
-
-
-
-    return view;
-  }
-}
-
-/*
-package com.example.bluehousev3.client;
-
-import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.example.bluehousev3.R;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Optional;
-import java.util.stream.Collectors;
-
-public class PopularWorkers extends Fragment {
-  private HashMap<String, Integer> popularServiceMap;
   private int plumber = 0, beautician = 0, carpentry = 0, computerElectronic = 0, cooking = 0, delivery = 0, electrical = 0, gardening = 0, homeApp = 0,
-          houseCleaning = 0, jetMatic = 0, laundry = 0, mechanic = 0, pestControl = 0, roofing = 0, septic = 0, sewerage = 0,upholstery = 0, waterPipe = 0;
-  private TextView tv1, tv2, tv3, tv4, tv5, tv6, tv7, tv8, tv9, tv10;
+     houseCleaning = 0, jetMatic = 0, laundry = 0, mechanic = 0, pestControl = 0, roofing = 0, septic = 0, sewerage = 0,upholstery = 0, waterPipe = 0;
+//  private TextView tv1, tv2, tv3, tv4, tv5, tv6, tv7, tv8, tv9, tv10;
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_popular_workers_client, container, false);
-    popularServiceMap = new HashMap<>();
 
-    tv1 = view.findViewById(R.id.tv1);
-    tv2 = view.findViewById(R.id.tv2);
 
-    tv3 = view.findViewById(R.id.tv3);
-    tv4 = view.findViewById(R.id.tv4);
-    tv5 = view.findViewById(R.id.tv5);
-    tv6 = view.findViewById(R.id.tv6);
-    tv7 = view.findViewById(R.id.tv7);
-    tv8 = view.findViewById(R.id.tv8);
-    tv9 = view.findViewById(R.id.tv9);
-    tv10 = view.findViewById(R.id.tv10);
 
-    DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("users/clientRequests");
+    DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("popularServices");
 
+
+
+
+
+
+
+    Pie pie = AnyChart.pie();
     reference.addValueEventListener(new ValueEventListener() {
       @Override
       public void onDataChange(@NonNull DataSnapshot snapshot) {
-        for (DataSnapshot snapshot1 : snapshot.getChildren()) {
-          for (DataSnapshot snapshot2 : snapshot1.getChildren()) {
-            for (DataSnapshot snapshot3 : snapshot2.getChildren()) {
-              if (snapshot3 != null) {
-                if (snapshot3.child("serviceType").getValue(String.class).equals("Plumbing")) {
-                  plumber++;
-                }
-                if (snapshot3.child("serviceType").getValue(String.class).equals("Water Pipe Maintenance")) {
-                  waterPipe++;
-                }
-                if (snapshot3.child("serviceType").getValue(String.class).equals("Carpentry")) {
-                  carpentry++;
-                }
-                if (snapshot3.child("serviceType").getValue(String.class).equals("JetMatic Pump Maintenance")) {
-                  jetMatic++;
-                }
-                if (snapshot3.child("serviceType").getValue(String.class).equals("Upholstery")) {
-                  upholstery++;
-                }
-                if (snapshot3.child("serviceType").getValue(String.class).equals("Septic Tank Maintenance")) {
-                  septic++;
-                }
-                if (snapshot3.child("serviceType").getValue(String.class).equals("Gardening")) {
-                  gardening++;
-                }
-                if (snapshot3.child("serviceType").getValue(String.class).equals("Home Appliance Maintenance")) {
-                  homeApp++;
-                }
-                if (snapshot3.child("serviceType").getValue(String.class).equals("Roofing")) {
-                  roofing++;
-                }
-                if (snapshot3.child("serviceType").getValue(String.class).equals("House Cleaning")) {
-                  houseCleaning++;
-                }
-                if (snapshot3.child("serviceType").getValue(String.class).equals("Laundry services")) {
-                  laundry++;
-                }
-                if (snapshot3.child("serviceType").getValue(String.class).equals("Beautician")) {
-                  beautician++;
-                }
-                if (snapshot3.child("serviceType").getValue(String.class).equals("Electrical Maintenance")) {
-                  electrical++;
-                }
-                if (snapshot3.child("serviceType").getValue(String.class).equals("Computer/Electronic Repair")) {
-                  computerElectronic++;
-                }
-                if (snapshot3.child("serviceType").getValue(String.class).equals("Mechanic")) {
-                  mechanic++;
-                }
-                if (snapshot3.child("serviceType").getValue(String.class).equals("Pest Control & Fumigation")) {
-                  pestControl++;
-                }
-                if (snapshot3.child("serviceType").getValue(String.class).equals("Cooking Services")) {
-                  cooking++;
-                }
-                if (snapshot3.child("serviceType").getValue(String.class).equals("Sewerage Cleaning")) {
-                  sewerage++;
-                }
-                if (snapshot3.child("serviceType").getValue(String.class).equals("Deliver Services")) {
-                  delivery++;
-                }
-              }
-
+        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+          String key = dataSnapshot.getKey();
+          if (key != null) {
+            switch (snapshot.child(key).getValue(String.class)) {
+              case "Plumbing/Water Pipe Maintenance":
+                plumber++;
+                break;
+              case "Carpentry":
+                carpentry++;
+                break;
+              case "JetMatic Pump Maintenance":
+                jetMatic++;
+                break;
+              case "Upholstery":
+                upholstery++;
+                break;
+              case "Septic Tank Maintenance":
+                septic++;
+                break;
+              case "Gardening":
+                gardening++;
+                break;
+              case "Home Appliance Maintenance":
+                homeApp++;
+                break;
+              case "Roof Maintenance":
+                roofing++;
+                break;
+              case "Housekeeping":
+                houseCleaning++;
+                break;
+              case "Laundry Services":
+                laundry++;
+                break;
+              case "Beauty Salon Services":
+                beautician++;
+                break;
+              case "Electrical Maintenance":
+                electrical++;
+                break;
+              case "Computer/Electronic Repair":
+                computerElectronic++;
+                break;
+              case "Mechanic":
+                mechanic++;
+                break;
+              case "Pest Control & Fumigation":
+                pestControl++;
+                break;
+              case "Cooking Services":
+                cooking++;
+                break;
             }
+
           }
+
         }
-          popularServiceMap.put("Plumbing", plumber);
-          popularServiceMap.put("Beautician", beautician);
-          popularServiceMap.put("Carpentry", carpentry);
-          popularServiceMap.put("Computer & Electronic Repair", computerElectronic);
-          popularServiceMap.put("Cooking", cooking);
-          popularServiceMap.put("Delivery Services", delivery);
-          popularServiceMap.put("Electrical Maintenance", electrical);
-          popularServiceMap.put("Gardening", gardening);
-          popularServiceMap.put("Home Appliance Maintenance", homeApp);
-          popularServiceMap.put("House Cleaning", houseCleaning);
-          popularServiceMap.put("JetMatic Pump Maintenance", jetMatic);
-          popularServiceMap.put("Laundry", laundry);
-          popularServiceMap.put("Mechanic", mechanic);
-          popularServiceMap.put("Pest Control & Fumigation", pestControl);
-          popularServiceMap.put("Roofing", roofing);
-          popularServiceMap.put("Septic Tank Maintenance", septic);
-          popularServiceMap.put("Sewerage Cleaning", sewerage);
-          popularServiceMap.put("Upholstery", upholstery);
-          popularServiceMap.put("WaterPipe", waterPipe);
 
-        Map<String, Integer> sortedMap = popularServiceMap.entrySet().stream()
-                .sorted(Comparator.comparingInt(Map.Entry::getValue))
-                .collect(Collectors.toMap(
-                        Map.Entry::getKey,
-                        Map.Entry::getValue,
-                        (a, b) -> { throw new AssertionError(); },
-                        LinkedHashMap::new
-                ));
-        System.out.println(sortedMap.entrySet());
-        tv1.setText(sortedMap.keySet().toArray()[18].toString());
-        tv2.setText(sortedMap.keySet().toArray()[17].toString());
-        tv3.setText(sortedMap.keySet().toArray()[16].toString());
-        tv4.setText(sortedMap.keySet().toArray()[15].toString());
-        tv5.setText(sortedMap.keySet().toArray()[14].toString());
-        tv6.setText(sortedMap.keySet().toArray()[13].toString());
-        tv7.setText(sortedMap.keySet().toArray()[12].toString());
-        tv8.setText(sortedMap.keySet().toArray()[11].toString());
-        tv9.setText(sortedMap.keySet().toArray()[10].toString());
-        tv10.setText(sortedMap.keySet().toArray()[9].toString());
 
+//        pie.background("#A8D8EA");
+        pie.tooltip().format("Number of Requests: {%value}");
+        List<DataEntry> data = new ArrayList<>();
+        data.add(new ValueDataEntry("Plumbing/Water Pipe Maintenance", plumber));
+        data.add(new ValueDataEntry("Beauty Salon Services", beautician));
+        data.add(new ValueDataEntry("Computer/Electronic Repair", computerElectronic));
+        data.add(new ValueDataEntry("Cooking Services", cooking));
+        data.add(new ValueDataEntry("Electrical Maintenance", electrical));
+        data.add(new ValueDataEntry("Carpentry", carpentry));
+        data.add(new ValueDataEntry("Gardening", gardening));
+        data.add(new ValueDataEntry("Home Appliance Maintenance", homeApp));
+        data.add(new ValueDataEntry("Housekeeping", houseCleaning));
+        data.add(new ValueDataEntry("JetMatic Pump Maintenance", jetMatic));
+        data.add(new ValueDataEntry("Mechanic", mechanic));
+        data.add(new ValueDataEntry("Laundry Services", laundry));
+        data.add(new ValueDataEntry("Pest Control & Fumigation", pestControl));
+        data.add(new ValueDataEntry("Roof Maintenance", roofing));
+        data.add(new ValueDataEntry("Septic Tank Maintenance", septic));
+        data.add(new ValueDataEntry("Upholstery", upholstery));
+        pie.data(data);
+        AnyChartView anyChartView = view.findViewById(R.id.any_chart_view);
+        pie.labels().position("outside");
+//        pie.title("Popular Services");
+
+        anyChartView.setChart(pie);
 
       }
 
@@ -237,7 +145,8 @@ public class PopularWorkers extends Fragment {
     });
 
 
+
     return view;
   }
 }
- */
+

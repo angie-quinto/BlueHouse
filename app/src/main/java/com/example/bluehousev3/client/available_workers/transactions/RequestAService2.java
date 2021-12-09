@@ -165,7 +165,8 @@ public class RequestAService2 extends Fragment {
 
                                      }
                                  }) ;
-
+                                DatabaseReference pReference = FirebaseDatabase.getInstance().getReference();
+                                pReference.child("popularServices").child(String.valueOf(System.currentTimeMillis())).setValue(serviceType);
                                 serviceReqRef.child("workerId").setValue(workerId);
                                 serviceReqRef.child("serviceType").setValue(serviceType);
                                 serviceReqRef.child("description").setValue(description);

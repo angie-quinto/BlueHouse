@@ -31,10 +31,10 @@ import com.google.firebase.database.ValueEventListener;
 
 
 public class SelectedRequest extends Fragment {
-    private TextView tvServiceType, tvDescription, tvStartDate, tvEndDate, tvLocation, tvProposedRate,
-    tvStartTime, tvEndTime, tvClientName, tvClientRating, tvClientGender, tvClientAge, tvEmpStat, tvReqPhotos, tvAcceptReq, tvRejectReq;
+    private TextView tvServiceType, tvDescription, tvStartDate, tvLocation, tvProposedRate,
+    tvStartTime, tvClientName, tvClientRating, tvClientGender, tvClientAge, tvEmpStat, tvReqPhotos, tvAcceptReq, tvRejectReq;
     private String clientId;
-    String serviceType, description, startDate, endDate, startTime, endTime, location, proposedRate, proposedRateTime;
+    String serviceType, description, startDate, startTime, location, proposedRate, proposedRateTime;
     String clientName, clientRating, clientGender, image1, image2;
     String clientAge, status;
 
@@ -45,11 +45,9 @@ public class SelectedRequest extends Fragment {
         tvServiceType = view.findViewById(R.id.tv_service_type_selected);
         tvDescription = view.findViewById(R.id.tv_desc_selec);
         tvStartDate = view.findViewById(R.id.tv_start_date_selec);
-        tvEndDate = view.findViewById(R.id.tv_end_date_selec);
         tvLocation = view.findViewById(R.id.tv_loc_select);
         tvProposedRate = view.findViewById(R.id.tv_proposed_rate_selec);
         tvStartTime = view.findViewById(R.id.tv_start_time_selec);
-        tvEndTime = view.findViewById(R.id.tv_end_time_selec);
         tvClientName = view.findViewById(R.id.tv_client_name);
         tvClientRating = view.findViewById(R.id.tv_client_rating_selec);
         tvClientGender = view.findViewById(R.id.tv_client_gender_selec);
@@ -73,9 +71,7 @@ public class SelectedRequest extends Fragment {
                 serviceType = snapshot.child("serviceType").getValue(String.class);
                 description = snapshot.child("description").getValue(String.class);
                 startDate = snapshot.child("startDate").getValue(String.class);
-                endDate = snapshot.child("endDate").getValue(String.class);
                 startTime = snapshot.child("startTime").getValue(String.class);
-                endTime = snapshot.child("endTime").getValue(String.class);
                 location = snapshot.child("location").getValue(String.class);
                 proposedRate = snapshot.child("proposedRate").getValue(String.class);
                 proposedRateTime = snapshot.child("proposedRateTime").getValue(String.class);
@@ -83,13 +79,11 @@ public class SelectedRequest extends Fragment {
                 image2 = snapshot.child("img2Url").getValue(String.class);
 
                 tvServiceType.setText(serviceType);
-                tvDescription.setText("Description: " + description);
-                tvStartDate.setText("Start Date: " + startDate);
-                tvEndDate.setText("End Date: " + endDate);
-                tvStartTime.setText("Start Time: " + startTime);
-                tvEndTime.setText("End Time: " + endTime);
-                tvLocation.setText("Location: " + location);
-                tvProposedRate.setText("Proposed Rate: Php " + proposedRate + ": " + proposedRateTime);
+                tvDescription.setText(description);
+                tvStartDate.setText(startDate);
+                tvStartTime.setText(startTime);
+                tvLocation.setText(location);
+                tvProposedRate.setText("Php " + proposedRate + " : " + proposedRateTime);
 
                 tvReqPhotos.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -115,22 +109,22 @@ public class SelectedRequest extends Fragment {
                         clientName = snapshot1.child("fullName").getValue(String.class);
                         clientAge = snapshot1.child("age").getValue(String.class);
                         clientGender = snapshot1.child("gender").getValue(String.class);
-                        clientRating = snapshot1.child("clientRating").getValue(String.class);
+                        clientRating = snapshot1.child("rating").getValue(String.class);
 
-                        tvClientName.setText("Employer Name: " + clientName);
+                        tvClientName.setText(clientName);
                         if (clientRating != null) {
-                            tvClientRating.setText("Rating: " + clientRating);
+                            tvClientRating.setText(clientRating);
+
                         } else {
-                            tvClientRating.setText("Rating: Not Yet Rated");
+                            tvClientRating.setText("Not yet rated");
                         }
-                        tvClientGender.setText("Sex: " + clientGender);
-                        tvClientAge.setText("Age: " + String.valueOf(clientAge));
+
+                        tvClientGender.setText(clientGender);
+                        tvClientAge.setText(clientAge);
 
                         status = snapshot1.child("status").getValue(String.class);
                         if (status != null) {
-                            tvEmpStat.setText("Status: " + status);
-                        } else {
-                            tvEmpStat.setText("Status: not yet verified");
+                            tvEmpStat.setText(status);
                         }
 
                     }

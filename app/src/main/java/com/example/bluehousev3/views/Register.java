@@ -310,8 +310,8 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
                             client.setPhoneNumber(mobileNum);
                             client.setAddress(address);
                             client.setBirthdate(birthDate);
-                            client.setStatus("not yet verified");
-                            client.setRating("0");
+                            client.setStatus("Not yet verified");
+
 
                             FirebaseDatabase.getInstance(FIREBASE_URL).getReference("users").child("usertype").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue("employer");
                             FirebaseDatabase.getInstance(FIREBASE_URL).getReference("users").child("employers")

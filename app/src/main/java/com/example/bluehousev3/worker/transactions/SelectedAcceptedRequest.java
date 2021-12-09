@@ -29,11 +29,11 @@ import java.util.Objects;
 
 
 public class SelectedAcceptedRequest extends Fragment {
-    private TextView tvServiceType, tvDescription, tvStartDate, tvEndDate, tvLocation, tvProposedRate,
-            tvStartTime, tvEndTime, tvClientName, tvClientRating, tvClientGender, tvClientAge, tvStatus;
-    private Button btnChat, btnRate;
+    private TextView tvServiceType, tvDescription, tvStartDate, tvLocation, tvProposedRate,
+            tvStartTime,tvChat, tvRate, tvClientName, tvClientRating, tvClientGender, tvClientAge, tvStatus;
+
     private String clientId;
-    String serviceType, description, startDate, endDate, startTime, endTime, location, proposedRate, proposedRateTime;
+    String serviceType, description, startDate,  startTime,  location, proposedRate, proposedRateTime;
     String clientName, clientRating, clientGender, image1, image2;
     String clientAge, status, isEmpRated;
 
@@ -46,18 +46,19 @@ public class SelectedAcceptedRequest extends Fragment {
         tvServiceType = view.findViewById(R.id.tv_service_type_selected_accep);
         tvDescription = view.findViewById(R.id.tv_desc_sellec_accep);
         tvStartDate = view.findViewById(R.id.tv_start_date_selected_accep);
-        tvEndDate = view.findViewById(R.id.tv_end_date_selec_accep);
+
         tvLocation = view.findViewById(R.id.tv_location_selec_accep);
         tvProposedRate = view.findViewById(R.id.tv_proposed_rate_selec_accep);
         tvStartTime = view.findViewById(R.id.tv_start_time_selec_accep);
-        tvEndTime = view.findViewById(R.id.tv_end_time_selec_accep);
+
         tvClientName = view.findViewById(R.id.tv_client_name_selec_accep);
         tvClientRating = view.findViewById(R.id.tv_client_rating_selec_accep);
         tvClientGender = view.findViewById(R.id.tv_client_sex_selec_accep);
         tvClientAge = view.findViewById(R.id.tv_client_age_selec_accep);
-        btnChat = view.findViewById(R.id.btn_chat_client_accep);
-        btnRate = view.findViewById(R.id.btn_rate_client_accep);
+
         tvStatus = view.findViewById(R.id.tv_status_selec_accep);
+        tvChat = view.findViewById(R.id.tv_chat_emp);
+        tvRate = view.findViewById(R.id.tv_rate_emp);
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
@@ -76,9 +77,7 @@ public class SelectedAcceptedRequest extends Fragment {
                 serviceType = snapshot.child("serviceType").getValue(String.class);
                 description = snapshot.child("description").getValue(String.class);
                 startDate = snapshot.child("startDate").getValue(String.class);
-                endDate = snapshot.child("endDate").getValue(String.class);
                 startTime = snapshot.child("startTime").getValue(String.class);
-                endTime = snapshot.child("endTime").getValue(String.class);
                 location = snapshot.child("location").getValue(String.class);
                 proposedRate = snapshot.child("proposedRate").getValue(String.class);
                 proposedRateTime = snapshot.child("proposedRateTime").getValue(String.class);
@@ -86,28 +85,26 @@ public class SelectedAcceptedRequest extends Fragment {
                 image2 = snapshot.child("img2Url").getValue(String.class);
                 status = snapshot.child("status").getValue(String.class);
                 isEmpRated = snapshot.child("isEmployerRated").getValue(String.class);
-                tvServiceType.setText("Service Type: " +serviceType);
-                tvDescription.setText("Description: " + description);
-                tvStartDate.setText("Start Date: " + startDate);
-                tvEndDate.setText("End Date: " + endDate);
-                tvStartTime.setText("Start Time: " + startTime);
-                tvEndTime.setText("End Time: " + endTime);
-                tvLocation.setText("Location: " + location);
-                tvStatus.setText("Status: " + status);
-                tvProposedRate.setText("Proposed Rate: Php " + proposedRate + ": " + proposedRateTime);
+                tvServiceType.setText(serviceType);
+                tvDescription.setText(description);
+                tvStartDate.setText(startDate);
+                tvStartTime.setText(startTime);
+                tvLocation.setText(location);
+                tvStatus.setText(status);
+                tvProposedRate.setText("Php " + proposedRate + " : " + proposedRateTime);
 
                 // check if the worker has already rated the employer
                 if (isEmpRated != null) {
                   if (isEmpRated.equals("true")) {
-                    btnRate.setEnabled(false);
+                    tvRate.setEnabled(false);
                   }
                 }
 
                 if (status.equals("completed")) {
-                    btnChat.setEnabled(false);
+                    tvChat.setEnabled(false);
                 }
                 if (status.equals("accepted")) {
-                    btnRate.setEnabled(false);
+                    tvRate.setEnabled(false);
                 }
 
             }
@@ -145,7 +142,7 @@ public class SelectedAcceptedRequest extends Fragment {
             }
         });
 
-        btnChat.setOnClickListener(new View.OnClickListener() {
+        tvChat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
@@ -162,10 +159,9 @@ public class SelectedAcceptedRequest extends Fragment {
             }
         });
 
-        btnRate.setOnClickListener(new View.OnClickListener() {
+        tvRate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              // todo add path to params
               RateDialog rateDialog = new RateDialog(path, "employerRatings", clientId, "employers");
               rateDialog.show(getParentFragmentManager(), "rate dialog");
             }

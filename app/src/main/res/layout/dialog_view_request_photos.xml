@@ -2,41 +2,50 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/iv_req_photo1"
-        android:layout_width="134dp"
-        android:layout_height="133dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="20dp"
-        app:layout_constraintEnd_toStartOf="@+id/iv_req_photo2"
-        app:layout_constraintHorizontal_bias="0.949"
+        android:layout_width="350dp"
+        android:layout_height="300dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_insert_photo" />
 
     <ImageView
         android:id="@+id/iv_req_photo2"
-        android:layout_width="134dp"
-        android:layout_height="135dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="64dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="350dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="30dp"
+        app:layout_constraintEnd_toEndOf="@+id/iv_req_photo1"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/iv_req_photo1"
+        app:layout_constraintTop_toBottomOf="@+id/iv_req_photo1"
         app:srcCompat="@drawable/ic_insert_photo" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_close_reqPh"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/button"
+    <TextView
+        android:id="@+id/tv_close"
+        android:layout_width="95dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/button_outline"
+        android:drawableStart="@drawable/ic_x_circle"
+        android:drawablePadding="5dp"
         android:text="Close"
+        android:padding="3dp"
+        android:textColor="@color/text_color_button"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/iv_req_photo2"
-        app:layout_constraintHorizontal_bias="0.522"
-        app:layout_constraintStart_toStartOf="@+id/iv_req_photo1"
-        app:layout_constraintTop_toBottomOf="@+id/iv_req_photo1" />
+        app:layout_constraintStart_toStartOf="@+id/iv_req_photo2"
+        app:layout_constraintTop_toBottomOf="@+id/iv_req_photo2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

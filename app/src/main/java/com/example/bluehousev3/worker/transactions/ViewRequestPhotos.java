@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,7 +18,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 public class ViewRequestPhotos extends DialogFragment {
-    private Button btnClose;
+
+    private TextView tvClose;
     private ImageView ivPhoto1, ivPhoto2;
     private String image1, image2;
 
@@ -31,14 +33,15 @@ public class ViewRequestPhotos extends DialogFragment {
         View view = inflater.inflate(R.layout.dialog_view_request_photos, container, false);
         ivPhoto1 = view.findViewById(R.id.iv_req_photo1);
         ivPhoto2 = view.findViewById(R.id.iv_req_photo2);
-        btnClose = view.findViewById(R.id.btn_close_reqPh);
+
+        tvClose = view.findViewById(R.id.tv_close);
 
         if (image1 != null && image2 != null) {
-            Picasso.get().load(image1).into(ivPhoto1);
-            Picasso.get().load(image2).into(ivPhoto2);
+            Picasso.get().load(image1).resize(350,350).into(ivPhoto1);
+            Picasso.get().load(image2).resize(350,350).into(ivPhoto2);
         }
 
-        btnClose.setOnClickListener(new View.OnClickListener() {
+        tvClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 getDialog().dismiss();
