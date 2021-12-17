@@ -19,8 +19,8 @@
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_container_worker"
         android:name="com.example.bluehousev3.worker.PendingRequests"
-        android:layout_width="395dp"
-        android:layout_height="676dp"
+        android:layout_width="412dp"
+        android:layout_height="679dp"
         android:layout_marginStart="1dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="5dp"

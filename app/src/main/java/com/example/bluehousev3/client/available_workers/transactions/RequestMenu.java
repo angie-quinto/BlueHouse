@@ -103,7 +103,7 @@ public class RequestMenu extends Fragment {
                             public void onClick(View v) {
                                 ReviewDialog reviewDialog = new ReviewDialog(wId);
                                 reviewDialog.show(getParentFragmentManager(), "review worker dialog");
-                                RateDialog rateDialog = new RateDialog(path, "workerRatings", uid, "workers");
+                                RateDialog rateDialog = new RateDialog(path, "workerRatings", wId, "workers");
                                 rateDialog.show(getParentFragmentManager(), "rate worker dialog");
                                 reference.child("status").setValue("completed").addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override

@@ -52,7 +52,6 @@ public class WorkerProfile extends Fragment {
         tvName = view.findViewById(R.id.tv_workerProfile_workerName);
         tvAge = view.findViewById(R.id.tv_workerProfile_workerAge);
         tvRating = view.findViewById(R.id.tv_workerProfile_rating);
-
         tvEducAtt = view.findViewById(R.id.tv_workerProfile_educationalAtt);
         tvEmail = view.findViewById(R.id.tv_workerProfile_email);
         tvPhoneNum = view.findViewById(R.id.tv_workerProfile_mobile);
@@ -66,8 +65,6 @@ public class WorkerProfile extends Fragment {
         tvIds = view.findViewById(R.id.tv_workerids);
         tvReviews = view.findViewById(R.id.tv_worker_reviews);
         ivStat = view.findViewById(R.id.iv_worker_stat);
-
-
         bundle = new Bundle();
 
 
@@ -174,8 +171,6 @@ public class WorkerProfile extends Fragment {
                             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
                                     Fragment requestAService = new RequestAService();
-                                    Toast.makeText(getActivity(), "rate1:" + rate, Toast.LENGTH_SHORT).show();
-                                    bundle.putString("workerRateWorkerProfile", rate);
                                     requestAService.setArguments(bundle);
                                     FragmentTransaction ft = getParentFragmentManager().beginTransaction();
                                     ft.replace(R.id.fragment_container_client, requestAService);
@@ -191,8 +186,6 @@ public class WorkerProfile extends Fragment {
                 } else {
                     Fragment requestAService = new RequestAService();
                     requestAService.setArguments(bundle);
-                    Toast.makeText(getActivity(), "rate1:" + rate, Toast.LENGTH_SHORT).show();
-                    bundle.putString("workerRateWorkerProfile", rate);
                     FragmentTransaction ft = getParentFragmentManager().beginTransaction();
                     ft.replace(R.id.fragment_container_client, requestAService);
                     ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);

@@ -8,15 +8,17 @@
 
     <com.anychart.AnyChartView
         android:id="@+id/any_chart_view"
-        android:layout_width="341dp"
-        android:layout_height="426dp"
+        android:layout_width="match_parent"
+        android:layout_height="550dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.425"
-        tools:ignore="MissingClass" />
+        app:layout_constraintVertical_bias="0.928"
+        tools:ignore="MissingClass">
+
+    </com.anychart.AnyChartView>
 
     <TextView
         android:id="@+id/textView4"
@@ -37,6 +39,16 @@
         android:layout_height="wrap_content"
         android:background="@drawable/bell"
         android:src="@mipmap/logo2_round"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/progressBar4"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="154dp"
+        android:layout_height="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

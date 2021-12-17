@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="#FFFFFF"
     android:backgroundTint="@color/white"
     tools:context=".client.available_workers.transactions.RequestAService">
@@ -14,161 +14,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="72dp"
-        android:layout_marginTop="28dp"
-        android:text="Service Type:"
+        android:layout_marginTop="100dp"
+        android:text="Type of Service"
+        android:textColor="#000000"
+        android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView32"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="Description:"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.214"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spnnr_serviceType" />
-
-    <EditText
-        android:id="@+id/edt_desc"
-        android:layout_width="275dp"
-        android:layout_height="38dp"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/edt_border"
-        android:ems="10"
-        android:padding="10dp"
-        android:gravity="start|top"
-        android:inputType="textMultiLine"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="@+id/spnnr_serviceType"
-        app:layout_constraintHorizontal_bias="0.985"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spnnr_serviceType"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <TextView
-        android:id="@+id/textView33"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="Start Date and Time: "
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.257"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_desc" />
-
-    <EditText
-        android:id="@+id/edt_start_date"
-        android:layout_width="275dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="32dp"
-        android:autoText="false"
-        android:background="@drawable/edt_border"
-        android:editable="true"
-        android:ems="10"
-        android:padding="10dp"
-        android:focusable="false"
-        android:hint="tap to set date"
-        android:inputType="date"
-        android:minHeight="48dp"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_desc" />
-
-    <EditText
-        android:id="@+id/edt_start_time"
-        android:layout_width="275dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/edt_border"
-        android:ems="10"
-        android:focusable="false"
-        android:padding="10dp"
-        android:hint="tap to set time"
-        android:inputType="time"
-        android:minHeight="48dp"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="@+id/edt_start_date"
-        app:layout_constraintHorizontal_bias="0.428"
-        app:layout_constraintStart_toStartOf="@+id/edt_start_date"
-        app:layout_constraintTop_toBottomOf="@+id/edt_start_date" />
-
-    <TextView
-        android:id="@+id/textView36"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="End Date and Time (Optional)"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.315"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_start_time" />
-
-    <EditText
-        android:id="@+id/edt_end_date"
-        android:layout_width="275dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/edt_border"
-        android:ems="10"
-        android:focusable="false"
-        android:hint="tap to set date"
-        android:padding="10dp"
-        android:inputType="date"
-        android:minHeight="48dp"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="@+id/edt_start_time"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/edt_start_time"
-        app:layout_constraintTop_toBottomOf="@+id/edt_start_time" />
-
-    <EditText
-        android:id="@+id/edt_end_time"
-        android:layout_width="275dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/edt_border"
-        android:ems="10"
-        android:focusable="false"
-        android:hint="tap to set time"
-        android:padding="10dp"
-        android:inputType="time"
-        android:minHeight="48dp"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="@+id/edt_end_date"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/edt_end_date"
-        app:layout_constraintTop_toBottomOf="@+id/edt_end_date" />
-
-    <TextView
-        android:id="@+id/textView37"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="Location:"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.203"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_end_time" />
-
-    <EditText
-        android:id="@+id/edt_location"
-        android:layout_width="275dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/edt_border"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:padding="10dp"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="@+id/edt_end_time"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/edt_end_time"
-        app:layout_constraintTop_toBottomOf="@+id/edt_end_time"
-        tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
 
     <Switch
         android:id="@+id/sw_curr_addr"
@@ -176,34 +27,143 @@
         android:layout_height="wrap_content"
         android:minHeight="48dp"
         android:text="set my current address"
-        app:layout_constraintEnd_toEndOf="@+id/edt_location"
-        app:layout_constraintStart_toStartOf="@+id/edt_location"
-        app:layout_constraintTop_toBottomOf="@+id/edt_location" />
+        app:layout_constraintEnd_toEndOf="@+id/til_location"
+        app:layout_constraintStart_toStartOf="@+id/til_location"
+        app:layout_constraintTop_toBottomOf="@+id/til_location" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_next"
         android:layout_width="180dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="16dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="15dp"
         android:layout_marginBottom="5dp"
-        android:background="@drawable/button"
+        android:background="@drawable/button_outline"
         android:text="Next"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.873"
+        app:layout_constraintHorizontal_bias="0.476"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sw_curr_addr" />
+        app:layout_constraintTop_toBottomOf="@+id/sw_curr_addr"
+        app:layout_constraintVertical_bias="0.323" />
 
     <Spinner
         android:id="@+id/spnnr_serviceType"
-        android:layout_width="277dp"
-        android:layout_height="36dp"
-        android:layout_marginTop="48dp"
-        android:background="@drawable/edt_border"
-        android:visibility="visible"
+        android:layout_width="300dp"
+        android:layout_height="55dp"
         android:padding="10dp"
+        android:spinnerMode="dropdown"
+        android:visibility="visible"
+        android:background="@drawable/blue_outline"
+        android:popupBackground="@drawable/blue_outline_white_bg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="visible" />
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        tools:ignore="SpeakableTextPresentCheck"
+        tools:visibility="visible"
+        />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_description"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="15dp"
+        android:hint="Description"
+        android:textColorHint="#000000"
+        app:helperTextTextColor="#000000"
+        app:layout_constraintEnd_toEndOf="@+id/spnnr_serviceType"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="@+id/spnnr_serviceType"
+        app:layout_constraintTop_toBottomOf="@id/spnnr_serviceType">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tiet_description"
+            android:layout_width="300dp"
+            android:layout_height="55dp"
+
+            android:textColor="@color/teal_200"
+            android:textColorHint="#000000"
+            app:layout_constraintEnd_toEndOf="@+id/til_description"
+            app:layout_constraintLeft_toLeftOf="@+id/til_description"
+            app:layout_constraintTop_toTopOf="@+id/til_description" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_date_of_appointment"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="15dp"
+        android:hint="Date of Appointment"
+        android:textColorHint="#000000"
+        app:layout_constraintEnd_toEndOf="@+id/til_description"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="@+id/til_description"
+        app:layout_constraintTop_toBottomOf="@id/til_description">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tiet_date_of_appointment"
+            android:layout_width="300dp"
+            android:layout_height="55dp"
+            android:focusableInTouchMode="false"
+            android:textColor="@color/teal_200"
+            android:textColorHint="@color/teal_200"
+            app:layout_constraintEnd_toEndOf="@+id/til_date_of_appointment"
+            app:layout_constraintLeft_toLeftOf="@+id/til_date_of_appointment"
+            app:layout_constraintTop_toTopOf="@+id/til_date_of_appointment" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_time_of_appointment"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="15dp"
+        android:hint="Time of Appointment"
+        android:textColorHint="#000000"
+        app:layout_constraintEnd_toEndOf="@+id/til_date_of_appointment"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="@+id/til_date_of_appointment"
+        app:layout_constraintTop_toBottomOf="@id/til_date_of_appointment">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tiet_time_of_appointment"
+            android:layout_width="300dp"
+            android:layout_height="55dp"
+            android:focusableInTouchMode="false"
+            android:textColor="@color/in_demand_workers_background"
+            android:textColorHint="@color/in_demand_workers_background"
+            app:layout_constraintEnd_toEndOf="@+id/til_date_of_appointment"
+            app:layout_constraintLeft_toLeftOf="@+id/til_date_of_appointment"
+            app:layout_constraintTop_toTopOf="@+id/til_date_of_appointment" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_location"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="15dp"
+        android:hint="Location"
+        android:textColorHint="#000000"
+        app:layout_constraintEnd_toEndOf="@+id/til_time_of_appointment"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="@+id/til_time_of_appointment"
+        app:layout_constraintTop_toBottomOf="@id/til_time_of_appointment">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tiet_location"
+            android:layout_width="300dp"
+            android:layout_height="55dp"
+
+            android:textColor="#000000"
+            android:textColorHint="#000000"
+            app:layout_constraintEnd_toEndOf="@+id/til_location"
+            app:layout_constraintLeft_toLeftOf="@+id/til_location"
+            app:layout_constraintTop_toTopOf="@+id/til_location" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

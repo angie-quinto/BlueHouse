@@ -45,19 +45,19 @@ import com.squareup.picasso.Picasso;
 
 public class RequestAService2 extends Fragment {
     private ImageView ivImg1, ivImg2;
-    private EditText edtRate;
+
     private Button btnSubmit;
-    private Spinner spRate;
-    private String serviceType, description, startDate, endDate, startTime, endTime, location, workerId;
+
+    private String serviceType, description, startDate, startTime, location, workerId;
     private final StorageReference reference = FirebaseStorage.getInstance().getReference();
     private final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     private final String uid = user.getUid();
-    private ArrayAdapter<CharSequence> rateAdapter;
+
     private  DatabaseReference serviceReqRef;
-    private String selectedRate;
+
     private Uri img1, img2;
     private String imgUrl1, imgUrl2;
-     String rate;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -66,45 +66,18 @@ public class RequestAService2 extends Fragment {
 
         ivImg1 = view.findViewById(R.id.iv_img1);
         ivImg2 = view.findViewById(R.id.iv_img2);
-        spRate = view.findViewById(R.id.sp_rate);
-        edtRate = view.findViewById(R.id.edt_rate);
+
         btnSubmit = view.findViewById(R.id.btn_submit);
 
 
         serviceType = getArguments().getString("serviceType");
         description = getArguments().getString("description");
         startDate = getArguments().getString("startDate");
-        endDate = getArguments().getString("endDate");
         startTime = getArguments().getString("startTime");
-        endTime = getArguments().getString("endTime");
         location = getArguments().getString("location");
         workerId = getArguments().getString("ID");
-        rate = getArguments().getString("workerRATE3");
-
-        edtRate.setText(rate);
-        Toast.makeText(getActivity(), "rate3" + rate, Toast.LENGTH_SHORT).show();
-
 
         serviceReqRef = FirebaseDatabase.getInstance().getReference().child("users").child("serviceRequests").child(uid).child(String.valueOf(System.currentTimeMillis()));
-
-        Toast.makeText(getActivity(), "id: " + workerId, Toast.LENGTH_SHORT).show();
-
-        rateAdapter = ArrayAdapter.createFromResource(getActivity(), R.array.rate, android.R.layout.simple_spinner_item);
-        rateAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spRate.setAdapter(rateAdapter);
-        spRate.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectedRate = spRate.getSelectedItem().toString();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
-
 
         if (ContextCompat.checkSelfPermission(getActivity(),
                 Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
@@ -146,12 +119,6 @@ public class RequestAService2 extends Fragment {
 
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
-                                String nRate = edtRate.getText().toString().trim();
-                                if (Integer.parseInt(nRate) < Integer.parseInt(rate)) {
-                                    edtRate.setError("proposed rate must be greater than the rate of the worker");
-                                    edtRate.requestFocus();
-                                    return;
-                                }
                                 DatabaseReference workerRef = FirebaseDatabase.getInstance().getReference().child("users/workers").child(workerId);
                                  workerRef.addValueEventListener(new ValueEventListener() {
                                      @Override
@@ -171,15 +138,11 @@ public class RequestAService2 extends Fragment {
                                 serviceReqRef.child("serviceType").setValue(serviceType);
                                 serviceReqRef.child("description").setValue(description);
                                 serviceReqRef.child("startDate").setValue(startDate);
-                                serviceReqRef.child("endDate").setValue(endDate);
                                 serviceReqRef.child("startTime").setValue(startTime);
-                                serviceReqRef.child("endTime").setValue(endTime);
                                 serviceReqRef.child("location").setValue(location);
-                                serviceReqRef.child("proposedRate").setValue(nRate);
                                 serviceReqRef.child("status").setValue("pending");
                                 serviceReqRef.child("img1Url").setValue(imgUrl1);
-                                serviceReqRef.child("img2Url").setValue(imgUrl2);
-                                serviceReqRef.child("proposedRateTime").setValue(selectedRate).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                serviceReqRef.child("img2Url").setValue(imgUrl2).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
                                         Fragment home = new Home();

@@ -44,7 +44,7 @@ public class RateWorkerDialog extends DialogFragment {
         btnCancel = view.findViewById(R.id.btn_cancel_rate);
         edtRate = view.findViewById(R.id.edt_rate_worker);
 
-
+        Toast.makeText(getContext(), "wod" + workerId, Toast.LENGTH_SHORT).show();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("users").child("workerRatings").child(workerId);
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
@@ -89,8 +89,8 @@ public class RateWorkerDialog extends DialogFragment {
                                                 }
                                                 double total = (double) sum / ratings.size();
                                                 // set worker rating to worker obj
-                                                DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("users/workers").child(workerId).child("rating");
-                                                ref.setValue(String.valueOf(total));
+                                                DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("users/workers").child(workerId);
+                                                ref.child("rating").setValue(String.valueOf(total));
                                             }
 
                                         }

@@ -1,6 +1,6 @@
 package com.example.bluehousev3.client.available_workers.transactions;
 
-import android.annotation.SuppressLint;
+
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +26,7 @@ import android.widget.Toast;
 
 import com.example.bluehousev3.R;
 
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -44,12 +45,12 @@ import java.util.Locale;
 
 
 public class RequestAService extends Fragment {
-    private EditText edtDescription, edtStartDate, edtStartTime, edtEndDate, edtEndTime, edtLocation;
     private Button btnNext;
     private Switch swSetCurrAdd;
     private Spinner spinnerServiceType;
     private ArrayList<String> servicesOffered;
-    private String[] services;
+    private TextInputEditText tietDescription, tietDateOfAppointment, tietTime, tietLocation;
+
     Bundle bundle;
     private ArrayAdapter<String> arrayAdapter;
     private final Calendar myCalendar = Calendar.getInstance();
@@ -63,25 +64,22 @@ public class RequestAService extends Fragment {
         View view = inflater.inflate(R.layout.fragment_request_a_service, container, false);
 
         workerId = getArguments().getString("Wid");
-        rate = getArguments().getString("workerRateWorkerProfile");
-        edtDescription = view.findViewById(R.id.edt_desc);
-        edtStartDate = view.findViewById(R.id.edt_start_date);
-        edtStartTime = view.findViewById(R.id.edt_start_time);
-        edtEndDate = view.findViewById(R.id.edt_end_date);
-        edtEndTime = view.findViewById(R.id.edt_end_time);
-        edtLocation = view.findViewById(R.id.edt_location);
+        tietDescription = view.findViewById(R.id.tiet_description);
+        tietDateOfAppointment = view.findViewById(R.id.tiet_date_of_appointment);
+        tietTime = view.findViewById(R.id.tiet_time_of_appointment);
+        tietLocation = view.findViewById(R.id.tiet_location);
         swSetCurrAdd = view.findViewById(R.id.sw_curr_addr);
         btnNext = view.findViewById(R.id.btn_next);
         spinnerServiceType = view.findViewById(R.id.spnnr_serviceType);
 
         bundle = new Bundle();
         servicesOffered = new ArrayList<>();
-        services = new String[servicesOffered.size()];
 
 
 
 
-        Toast.makeText(getActivity(), "rate::" + rate, Toast.LENGTH_SHORT).show();
+
+
 
         DatabaseReference workerServicesOfferedRef = FirebaseDatabase.getInstance().getReference().child("users/workerServicesOffered").child(workerId);
         workerServicesOfferedRef.addValueEventListener(new ValueEventListener() {
@@ -90,7 +88,7 @@ public class RequestAService extends Fragment {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     servicesOffered.add(dataSnapshot.getValue(String.class));
                 }
-                arrayAdapter = new ArrayAdapter<String>(getActivity(),  android.R.layout.simple_spinner_dropdown_item, servicesOffered);
+                arrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, servicesOffered);
                 arrayAdapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item);
                 arrayAdapter.notifyDataSetChanged();
                 spinnerServiceType.setAdapter(arrayAdapter);
@@ -117,21 +115,7 @@ public class RequestAService extends Fragment {
 
         };
 
-        DatePickerDialog.OnDateSetListener endDate = new DatePickerDialog.OnDateSetListener() {
-
-            @Override
-            public void onDateSet(DatePicker view, int year, int monthOfYear,
-                                  int dayOfMonth) {
-
-                myCalendar.set(Calendar.YEAR, year);
-                myCalendar.set(Calendar.MONTH, monthOfYear);
-                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                updateLabelForEnd();
-            }
-
-        };
-
-        edtStartDate.setOnClickListener(new View.OnClickListener() {
+        tietDateOfAppointment.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -141,29 +125,17 @@ public class RequestAService extends Fragment {
 
             }
         });
-        edtEndDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new DatePickerDialog(getActivity(), endDate, myCalendar
-                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
-            }
-        });
 
-      edtStartTime.setOnClickListener(new View.OnClickListener() {
+
+      tietTime.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
-              openTimeFragment(edtStartTime);
+              openTimeFragment(tietTime);
           }
       });
 
 
-        edtEndTime.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openTimeFragment(edtEndTime);
-            }
-        });
+
 
         swSetCurrAdd.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -176,7 +148,7 @@ public class RequestAService extends Fragment {
                 reference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        edtLocation.setText(snapshot.child("address").getValue(String.class));
+                        tietLocation.setText(snapshot.child("address").getValue(String.class));
                     }
 
                     @Override
@@ -200,48 +172,41 @@ public class RequestAService extends Fragment {
     }
 
     private void addToBundle() {
-        String serviceType, description, startDate, startTime, endDate, endTime, location;
+        String serviceType, description, dateOfAppointment, time, location;
         serviceType = spinnerServiceType.getSelectedItem().toString();
-        description = edtDescription.getText().toString().trim();
-        startDate = edtStartDate.getText().toString();
-        endDate = edtEndDate.getText().toString();
-        startTime = edtStartTime.getText().toString();
-        endTime = edtEndTime.getText().toString();
-        location = edtLocation.getText().toString().trim();
+        dateOfAppointment = tietDateOfAppointment.getText().toString().trim();
+        description = tietDescription.getText().toString().trim();
+        time = tietTime.getText().toString().trim();
+        location = tietLocation.getText().toString().trim();
 
         if (description.isEmpty()) {
-            edtDescription.setError("please provide a description for your service request");
-            edtDescription.requestFocus();
+            tietDescription.setError("please provide a description for your service request");
+            tietDescription.requestFocus();
             return;
         }
-        if (startDate.isEmpty()) {
-            edtStartDate.setError("please provide a date");
-            edtStartDate.requestFocus();
+        if (dateOfAppointment.isEmpty()) {
+            tietDateOfAppointment.setError("please provide a date");
+            tietDateOfAppointment.requestFocus();
             return;
         }
-        if (startTime.isEmpty()) {
-            edtStartTime.setError("please provide a time");
-            edtStartTime.requestFocus();
+        if (time.isEmpty()) {
+            tietTime.setError("please provide a time");
+            tietTime.requestFocus();
             return;
         }
         if (location.isEmpty()) {
-            edtLocation.setError("please provide a location");
-            edtLocation.requestFocus();
+            tietLocation.setError("please provide a location");
+            tietLocation.requestFocus();
             return;
         }
 
         bundle.putString("serviceType", serviceType);
         bundle.putString("description", description);
-        bundle.putString("startDate", startDate);
-        bundle.putString("endDate", endDate);
-        bundle.putString("startTime", startTime);
-        bundle.putString("endTime", endTime);
+        bundle.putString("startDate", dateOfAppointment);
+        bundle.putString("startTime", time);
         bundle.putString("location", location);
         bundle.putString("ID", workerId);
         bundle.putString("workerRATE3", rate);
-
-
-        Toast.makeText(getActivity(), "rate2: " + rate, Toast.LENGTH_SHORT).show();
 
         Fragment req2 = new RequestAService2();
         req2.setArguments(bundle);
@@ -256,16 +221,11 @@ private void updateLabelForStart() {
     String myFormat = "E, dd/MM/yy";
     SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
-    edtStartDate.setText(sdf.format(myCalendar.getTime()));
+    tietDateOfAppointment.setText(sdf.format(myCalendar.getTime()));
 
 }
 
-private void updateLabelForEnd() {
-    String myFormat = "E, dd/MM/yy";
-    SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
-    edtEndDate.setText(sdf.format(myCalendar.getTime()));
-}
 
     private void openTimeFragment(EditText edt) {
         TimePickerDialog mTimePicker;

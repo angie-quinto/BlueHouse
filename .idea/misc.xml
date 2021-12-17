@@ -46,6 +46,8 @@
         <entry key="..\:/Users/User-PC/StudioProjects/BlueHouse/app/src/main/res/layout/activity_worker_home_page2.xml" value="0.13489583333333333" />
         <entry key="app/src/main/res/drawable/background_view.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/beautician_background.xml" value="0.15833333333333333" />
+        <entry key="app/src/main/res/drawable/blue_outline.xml" value="0.15648148148148147" />
+        <entry key="app/src/main/res/drawable/blue_outline_white_bg.xml" value="0.15648148148148147" />
         <entry key="app/src/main/res/drawable/button.xml" value="0.3703125" />
         <entry key="app/src/main/res/drawable/button_accept.xml" value="0.15833333333333333" />
         <entry key="app/src/main/res/drawable/button_outline.xml" value="0.3734375" />
@@ -71,6 +73,7 @@
         <entry key="app/src/main/res/layout/activity_worker_home_page3.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_worker_verification.xml" value="0.33" />
         <entry key="app/src/main/res/layout/available_workers_row.xml" value="0.3494791666666667" />
+        <entry key="app/src/main/res/layout/blue_outline.xml" value="0.3572916666666667" />
         <entry key="app/src/main/res/layout/button_accept.xml" value="0.3541666666666667" />
         <entry key="app/src/main/res/layout/dialog_request_a_new_type_of_service.xml" value="0.3494791666666667" />
         <entry key="app/src/main/res/layout/dialog_view_request_photos.xml" value="0.3536458333333333" />
@@ -93,17 +96,17 @@
         <entry key="app/src/main/res/layout/fragment_popular_workers_client.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.4294117647058823" />
         <entry key="app/src/main/res/layout/fragment_profile2.xml" value="0.47671994440583737" />
-        <entry key="app/src/main/res/layout/fragment_request_a_service.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_request_a_service.xml" value="0.5" />
         <entry key="app/src/main/res/layout/fragment_request_a_service2.xml" value="0.35520833333333335" />
         <entry key="app/src/main/res/layout/fragment_request_menu.xml" value="0.3536458333333333" />
         <entry key="app/src/main/res/layout/fragment_saved_offers.xml" value="0.17274569402228976" />
         <entry key="app/src/main/res/layout/fragment_selected_accepted_request.xml" value="0.5" />
-        <entry key="app/src/main/res/layout/fragment_selected_request.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_selected_request.xml" value="0.5" />
         <entry key="app/src/main/res/layout/fragment_service_requests_client.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_services_offered.xml" value="0.25833333333333336" />
         <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.3333333333333333" />
         <entry key="app/src/main/res/layout/fragment_upholstery.xml" value="0.3541666666666667" />
-        <entry key="app/src/main/res/layout/fragment_worker_profile.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/fragment_worker_profile.xml" value="0.33" />
         <entry key="app/src/main/res/layout/job_post_row.xml" value="0.3494791666666667" />
         <entry key="app/src/main/res/layout/nav_header.xml" value="0.3541666666666667" />
         <entry key="app/src/main/res/layout/rate_dialog_layout.xml" value="0.67" />
@@ -118,6 +121,7 @@
         <entry key="app/src/main/res/layout/row_service_requests_client.xml" value="0.5" />
         <entry key="app/src/main/res/layout/row_worker_reviews.xml" value="0.5" />
         <entry key="app/src/main/res/layout/row_worker_services_offered.xml" value="0.35025641025641024" />
+        <entry key="app/src/main/res/layout/spinner_layout.xml" value="0.3572916666666667" />
         <entry key="app/src/main/res/menu/client_nav_menu.xml" value="0.1" />
         <entry key="app/src/main/res/menu/worker_nav_menu.xml" value="0.1" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/privacy.xml" value="0.3296296296296296" />

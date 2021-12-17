@@ -1,8 +1,13 @@
 package com.example.bluehousev3.client;
+import android.annotation.SuppressLint;
+import android.os.Build;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +17,10 @@ import com.anychart.AnyChart;
 import com.anychart.AnyChartView;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
+
 import com.anychart.chart.common.dataentry.DataEntry;
 import com.anychart.chart.common.dataentry.ValueDataEntry;
 import com.anychart.charts.Pie;
@@ -25,13 +34,16 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 public class PopularServices extends Fragment {
+  private static final String TAG = "popular services error";
+  private int plumber = 0, beautician = 0, carpentry = 0, computerElectronic = 0, cooking = 0, electrical = 0, gardening = 0, homeApp = 0,
+     houseCleaning = 0, jetMatic = 0, laundry = 0, mechanic = 0, pestControl = 0, roofing = 0, septic = 0,upholstery = 0;
 
-  private int plumber = 0, beautician = 0, carpentry = 0, computerElectronic = 0, cooking = 0, delivery = 0, electrical = 0, gardening = 0, homeApp = 0,
-     houseCleaning = 0, jetMatic = 0, laundry = 0, mechanic = 0, pestControl = 0, roofing = 0, septic = 0, sewerage = 0,upholstery = 0, waterPipe = 0;
-//  private TextView tv1, tv2, tv3, tv4, tv5, tv6, tv7, tv8, tv9, tv10;
+  @RequiresApi(api = Build.VERSION_CODES.O)
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
@@ -39,22 +51,28 @@ public class PopularServices extends Fragment {
 
 
 
+    @SuppressLint("SimpleDateFormat") SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+    Date date = new Date();
     DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("popularServices");
 
-
-
-
-
-
+    AnyChartView anyChartView = view.findViewById(R.id.any_chart_view);
+    anyChartView.setProgressBar(view.findViewById(R.id.progressBar4));
 
     Pie pie = AnyChart.pie();
+    pie.legend().fontSize(12);
+    pie.legend().fontColor("black");
+    pie.labels().position("outside");
+    pie.title("As of: " + formatter.format(date));
+    pie.tooltip().format("Number of Requests: {%value}");
+    anyChartView.setChart(pie);
     reference.addValueEventListener(new ValueEventListener() {
       @Override
       public void onDataChange(@NonNull DataSnapshot snapshot) {
         for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
           String key = dataSnapshot.getKey();
           if (key != null) {
-            switch (snapshot.child(key).getValue(String.class)) {
+            String serviceType = snapshot.child(key).getValue(String.class);
+            switch (Objects.requireNonNull(serviceType)) {
               case "Plumbing/Water Pipe Maintenance":
                 plumber++;
                 break;
@@ -104,14 +122,10 @@ public class PopularServices extends Fragment {
                 cooking++;
                 break;
             }
-
           }
 
         }
 
-
-//        pie.background("#A8D8EA");
-        pie.tooltip().format("Number of Requests: {%value}");
         List<DataEntry> data = new ArrayList<>();
         data.add(new ValueDataEntry("Plumbing/Water Pipe Maintenance", plumber));
         data.add(new ValueDataEntry("Beauty Salon Services", beautician));
@@ -130,17 +144,12 @@ public class PopularServices extends Fragment {
         data.add(new ValueDataEntry("Septic Tank Maintenance", septic));
         data.add(new ValueDataEntry("Upholstery", upholstery));
         pie.data(data);
-        AnyChartView anyChartView = view.findViewById(R.id.any_chart_view);
-        pie.labels().position("outside");
-//        pie.title("Popular Services");
-
-        anyChartView.setChart(pie);
 
       }
 
       @Override
       public void onCancelled(@NonNull DatabaseError error) {
-
+        Log.d(TAG, "onCancelled: popular services error");
       }
     });
 
