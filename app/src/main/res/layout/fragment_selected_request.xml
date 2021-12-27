@@ -14,7 +14,7 @@
         android:id="@+id/tv_service_type_selected"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="180dp"
         android:fontFamily="sans-serif"
         android:shadowColor="#0099FF"
         android:text="Service Type"
@@ -22,22 +22,9 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.456"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view2" />
-
-    <TextView
-        android:id="@+id/tv_proposed_rate_selec"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:text="Proposed Rate"
-        android:textColor="#000000"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.003"
-        app:layout_constraintStart_toEndOf="@+id/imageView26"
-        app:layout_constraintTop_toBottomOf="@+id/textView55" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_desc_selec"
@@ -151,11 +138,12 @@
 
     <TextView
         android:id="@+id/tv_req_photos"
-        android:layout_width="180dp"
+        android:layout_width="@dimen/btn_width"
         android:layout_height="@dimen/height_outline_button"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="30dp"
         android:background="@drawable/button_outline"
         android:drawablePadding="5dp"
+        android:gravity="center"
         android:padding="3dp"
         android:text="Request Photos"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
@@ -164,17 +152,18 @@
         android:textStyle="bold"
         app:drawableStartCompat="@drawable/ic_image_box"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.108"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider14" />
 
     <TextView
         android:id="@+id/tv_reject_req"
-        android:layout_width="180dp"
+        android:layout_width="@dimen/btn_width"
         android:layout_height="@dimen/height_outline_button"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/button_outline"
         android:drawablePadding="5dp"
+        android:gravity="center"
         android:padding="3dp"
         android:text="Reject Request"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
@@ -183,17 +172,18 @@
         android:textStyle="bold"
         app:drawableStartCompat="@drawable/ic_x_circle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.112"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_req_photos" />
 
     <TextView
         android:id="@+id/tv_accept_req"
-        android:layout_width="180dp"
+        android:layout_width="@dimen/btn_width"
         android:layout_height="@dimen/height_outline_button"
         android:layout_marginTop="20dp"
         android:background="@drawable/button_outline"
         android:drawablePadding="5dp"
+        android:gravity="center"
         android:padding="3dp"
         android:text="Accept Request"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
@@ -202,7 +192,7 @@
         android:textStyle="bold"
         app:drawableStartCompat="@drawable/ic_check_circle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.108"
+        app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_reject_req" />
 
@@ -228,27 +218,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider13" />
 
-    <View
-        android:id="@+id/view2"
-        android:layout_width="390dp"
-        android:layout_height="134dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:background="@drawable/background_view"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.526"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <ImageView
         android:id="@+id/imageView23"
-        android:layout_width="98dp"
-        android:layout_height="91dp"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/bell"
-        android:src="@mipmap/logo2_round"
+        android:layout_width="360dp"
+        android:layout_height="283dp"
+        android:layout_marginStart="-50dp"
+        android:layout_marginTop="-45dp"
+        android:src="@drawable/ic_logof__1_"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -270,48 +248,33 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="15dp"
         android:text="Date of Appointment"
         android:textColor="#000000"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/imageView24"
-        app:layout_constraintTop_toBottomOf="@+id/tv_desc_selec" />
+        app:layout_constraintTop_toTopOf="@+id/imageView24" />
 
     <TextView
         android:id="@+id/textView50"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="15dp"
         android:text="Time"
         android:textColor="#000000"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/imageView25"
-        app:layout_constraintTop_toBottomOf="@+id/tv_start_date_selec" />
+        app:layout_constraintTop_toTopOf="@+id/imageView25" />
 
     <TextView
         android:id="@+id/textView54"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
         android:text="Location"
         android:textColor="#000000"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/imageView7"
-        app:layout_constraintTop_toBottomOf="@+id/tv_start_time_selec" />
-
-    <TextView
-        android:id="@+id/textView55"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="15dp"
-        android:text="Proposed Rate"
-        android:textColor="#000000"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/imageView26"
-        app:layout_constraintTop_toBottomOf="@+id/tv_loc_select" />
+        app:layout_constraintTop_toTopOf="@+id/imageView7" />
 
     <TextView
         android:id="@+id/textView56"
@@ -377,17 +340,17 @@
         android:id="@+id/imageView7"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="20dp"
         android:src="@drawable/ic_location"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_start_time_selec" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView25" />
 
     <ImageView
         android:id="@+id/imageView22"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:layout_marginStart="5dp"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="12dp"
         android:src="@drawable/ic_description"
         app:layout_constraintStart_toStartOf="parent"
@@ -397,8 +360,8 @@
         android:id="@+id/imageView24"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="20dp"
         android:src="@drawable/ic_dateofappointment"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView22" />
@@ -407,21 +370,11 @@
         android:id="@+id/imageView25"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="20dp"
         android:src="@drawable/ic_time"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView24" />
-
-    <ImageView
-        android:id="@+id/imageView26"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="15dp"
-        android:src="@drawable/ic_rate"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView7" />
 
     <ImageView
         android:id="@+id/imageView27"
@@ -475,11 +428,13 @@
 
     <ImageView
         android:id="@+id/imageView44"
-        android:layout_width="186dp"
-        android:layout_height="238dp"
+        android:layout_width="140dp"
+        android:layout_height="119dp"
+        android:layout_marginTop="36dp"
         android:src="@drawable/ic_service_illus"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tv_reject_req"
-        app:layout_constraintTop_toBottomOf="@+id/divider14" />
+        app:layout_constraintHorizontal_bias="0.992"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

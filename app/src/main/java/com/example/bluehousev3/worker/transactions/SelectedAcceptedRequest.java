@@ -29,11 +29,11 @@ import java.util.Objects;
 
 
 public class SelectedAcceptedRequest extends Fragment {
-    private TextView tvServiceType, tvDescription, tvStartDate, tvLocation, tvProposedRate,
-            tvStartTime,tvChat, tvRate, tvClientName, tvClientRating, tvClientGender, tvClientAge, tvStatus;
-
+    private TextView tvServiceType, tvDescription, tvStartDate, tvLocation,
+            tvStartTime, tvClientName, tvClientRating, tvClientGender, tvClientAge, tvStatus;
+    private Button tvChat, tvRate;
     private String clientId;
-    String serviceType, description, startDate,  startTime,  location, proposedRate, proposedRateTime;
+    String serviceType, description, startDate,  startTime,  location;
     String clientName, clientRating, clientGender, image1, image2;
     String clientAge, status, isEmpRated;
 
@@ -48,7 +48,7 @@ public class SelectedAcceptedRequest extends Fragment {
         tvStartDate = view.findViewById(R.id.tv_start_date_selected_accep);
 
         tvLocation = view.findViewById(R.id.tv_location_selec_accep);
-        tvProposedRate = view.findViewById(R.id.tv_proposed_rate_selec_accep);
+
         tvStartTime = view.findViewById(R.id.tv_start_time_selec_accep);
 
         tvClientName = view.findViewById(R.id.tv_client_name_selec_accep);
@@ -79,8 +79,7 @@ public class SelectedAcceptedRequest extends Fragment {
                 startDate = snapshot.child("startDate").getValue(String.class);
                 startTime = snapshot.child("startTime").getValue(String.class);
                 location = snapshot.child("location").getValue(String.class);
-                proposedRate = snapshot.child("proposedRate").getValue(String.class);
-                proposedRateTime = snapshot.child("proposedRateTime").getValue(String.class);
+
                 image1 = snapshot.child("img1Url").getValue(String.class);
                 image2 = snapshot.child("img2Url").getValue(String.class);
                 status = snapshot.child("status").getValue(String.class);
@@ -91,7 +90,7 @@ public class SelectedAcceptedRequest extends Fragment {
                 tvStartTime.setText(startTime);
                 tvLocation.setText(location);
                 tvStatus.setText(status);
-                tvProposedRate.setText("Php " + proposedRate + " : " + proposedRateTime);
+
 
                 // check if the worker has already rated the employer
                 if (isEmpRated != null) {

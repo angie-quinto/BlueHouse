@@ -20,8 +20,8 @@
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/client_bot_nav"
-        android:layout_width="407dp"
-        android:layout_height="42dp"
+        android:layout_width="412dp"
+        android:layout_height="41dp"
         android:background="?android:attr/windowBackground"
         android:foreground="?attr/selectableItemBackground"
         app:layout_constraintBottom_toBottomOf="parent"

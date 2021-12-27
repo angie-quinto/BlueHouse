@@ -14,24 +14,25 @@
         android:required="true" />
 
     <application
-        android:allowBackup="true"
         android:name=".views.AppContext"
+        android:allowBackup="true"
         android:icon="@mipmap/logo2_round"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/logo2_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BlueHouseV3"
         tools:ignore="ExtraText">
-
-
+        <activity
+            android:name=".views.Register2"
+            android:exported="false" />
         <activity
             android:name=".worker.WorkerHomePage"
-            android:windowSoftInputMode="adjustPan"
-            android:exported="true" />
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".client.ClientHomePageActivity"
-            android:windowSoftInputMode="adjustPan"
-            android:exported="true" />
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".views.RegisterIds"
             android:exported="true" />
@@ -57,6 +58,7 @@
         <service
             android:name=".views.MainActivity"
             android:foregroundServiceType="location" />
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

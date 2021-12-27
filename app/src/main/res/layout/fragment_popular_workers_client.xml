@@ -15,7 +15,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.928"
+        app:layout_constraintVertical_bias="0.558"
         tools:ignore="MissingClass">
 
     </com.anychart.AnyChartView>
@@ -24,24 +24,25 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="104dp"
         android:text="Popular Services"
         android:textColor="#000000"
         android:textSize="35sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/imageView43"
         app:layout_constraintStart_toStartOf="@+id/imageView43"
-        app:layout_constraintTop_toBottomOf="@+id/imageView43" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView43"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bell"
-        android:src="@mipmap/logo2_round"
+        android:layout_width="300dp"
+        android:layout_height="171dp"
+        android:layout_marginTop="-15dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_logof__1_" />
 
     <ProgressBar
         android:id="@+id/progressBar4"

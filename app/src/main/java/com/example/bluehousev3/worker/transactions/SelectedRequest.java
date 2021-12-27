@@ -31,7 +31,7 @@ import com.google.firebase.database.ValueEventListener;
 
 
 public class SelectedRequest extends Fragment {
-    private TextView tvServiceType, tvDescription, tvStartDate, tvLocation, tvProposedRate,
+    private TextView tvServiceType, tvDescription, tvStartDate, tvLocation,
     tvStartTime, tvClientName, tvClientRating, tvClientGender, tvClientAge, tvEmpStat, tvReqPhotos, tvAcceptReq, tvRejectReq;
     private String clientId;
     String serviceType, description, startDate, startTime, location, proposedRate, proposedRateTime;
@@ -46,7 +46,7 @@ public class SelectedRequest extends Fragment {
         tvDescription = view.findViewById(R.id.tv_desc_selec);
         tvStartDate = view.findViewById(R.id.tv_start_date_selec);
         tvLocation = view.findViewById(R.id.tv_loc_select);
-        tvProposedRate = view.findViewById(R.id.tv_proposed_rate_selec);
+
         tvStartTime = view.findViewById(R.id.tv_start_time_selec);
         tvClientName = view.findViewById(R.id.tv_client_name);
         tvClientRating = view.findViewById(R.id.tv_client_rating_selec);
@@ -73,8 +73,6 @@ public class SelectedRequest extends Fragment {
                 startDate = snapshot.child("startDate").getValue(String.class);
                 startTime = snapshot.child("startTime").getValue(String.class);
                 location = snapshot.child("location").getValue(String.class);
-                proposedRate = snapshot.child("proposedRate").getValue(String.class);
-                proposedRateTime = snapshot.child("proposedRateTime").getValue(String.class);
                 image1 = snapshot.child("img1Url").getValue(String.class);
                 image2 = snapshot.child("img2Url").getValue(String.class);
 
@@ -83,7 +81,7 @@ public class SelectedRequest extends Fragment {
                 tvStartDate.setText(startDate);
                 tvStartTime.setText(startTime);
                 tvLocation.setText(location);
-                tvProposedRate.setText("Php " + proposedRate + " : " + proposedRateTime);
+
 
                 tvReqPhotos.setOnClickListener(new View.OnClickListener() {
                     @Override

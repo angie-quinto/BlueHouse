@@ -11,13 +11,15 @@
         android:id="@+id/tv_service_type_selected_accep"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="136dp"
         android:text="Service Type"
+        android:textColor="#000000"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/view3"
-        app:layout_constraintStart_toStartOf="@+id/view3"
-        app:layout_constraintTop_toBottomOf="@+id/view3" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_desc_sellec_accep"
@@ -38,16 +40,6 @@
         android:textSize="12sp"
         app:layout_constraintStart_toEndOf="@+id/imageView34"
         app:layout_constraintTop_toBottomOf="@+id/textView63" />
-
-    <TextView
-        android:id="@+id/tv_proposed_rate_selec_accep"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:text="Proposed Rate"
-        android:textSize="12sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView37"
-        app:layout_constraintTop_toBottomOf="@+id/textView66" />
 
     <TextView
         android:id="@+id/tv_client_name_selec_accep"
@@ -119,73 +111,12 @@
         app:layout_constraintStart_toEndOf="@+id/imageView42"
         app:layout_constraintTop_toBottomOf="@+id/textView71" />
 
-    <TextView
-        android:id="@+id/tv_rate_emp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="10dp"
-        android:background="@drawable/button_outline"
-        android:drawableStart="@drawable/ic_star"
-        android:drawablePadding="5dp"
-        android:padding="3dp"
-        android:text="Rate Employer"
-        android:textColor="@color/ic_logo_color"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/tv_chat_emp"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_status_selec_accep" />
-
-    <TextView
-        android:id="@+id/tv_chat_emp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="32dp"
-        android:background="@drawable/button_outline"
-        android:drawableStart="@drawable/ic_chat_employer"
-        android:drawablePadding="5dp"
-        android:padding="3dp"
-        android:text="Chat Employer"
-        android:textColor="@color/ic_logo_color"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/tv_rate_emp"
-        app:layout_constraintTop_toBottomOf="@+id/tv_status_selec_accep" />
-
-    <View
-        android:id="@+id/view3"
-        android:layout_width="390dp"
-        android:layout_height="134dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:background="@drawable/background_view"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageView32"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bell"
-        android:src="@mipmap/logo2_round"
-        app:layout_constraintBottom_toBottomOf="@+id/view3"
-        app:layout_constraintEnd_toEndOf="@+id/view3"
-        app:layout_constraintStart_toStartOf="@+id/view3"
-        app:layout_constraintTop_toTopOf="@+id/view3" />
-
     <ImageView
         android:id="@+id/imageView33"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_marginStart="55dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="5dp"
         android:src="@drawable/ic_description"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_service_type_selected_accep" />
@@ -196,6 +127,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="Description"
+        android:textColor="#000000"
         android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/imageView33"
@@ -217,6 +149,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="Date of Appointment"
+        android:textColor="#000000"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/imageView34"
         app:layout_constraintTop_toTopOf="@+id/imageView34" />
@@ -237,6 +170,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="Time"
+        android:textColor="#000000"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/imageView35"
         app:layout_constraintTop_toTopOf="@+id/imageView35" />
@@ -257,29 +191,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="Location"
+        android:textColor="#000000"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/imageView36"
         app:layout_constraintTop_toTopOf="@+id/imageView36" />
-
-    <ImageView
-        android:id="@+id/imageView37"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="55dp"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/ic_rate"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView36" />
-
-    <TextView
-        android:id="@+id/textView66"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="Proposed Rate"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/imageView37"
-        app:layout_constraintTop_toTopOf="@+id/imageView37" />
 
     <ImageView
         android:id="@+id/imageView38"
@@ -289,7 +204,7 @@
         android:layout_marginTop="10dp"
         android:src="@drawable/ic_user"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView37" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView36" />
 
     <TextView
         android:id="@+id/textView67"
@@ -297,6 +212,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="Employer Name"
+        android:textColor="#000000"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/imageView38"
         app:layout_constraintTop_toTopOf="@+id/imageView38" />
@@ -317,6 +233,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="Rating"
+        android:textColor="#000000"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/imageView39"
         app:layout_constraintTop_toTopOf="@+id/imageView39" />
@@ -337,6 +254,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="Sex"
+        android:textColor="#000000"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/imageView40"
         app:layout_constraintTop_toTopOf="@+id/imageView40" />
@@ -357,6 +275,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="Age"
+        android:textColor="#000000"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/imageView41"
         app:layout_constraintTop_toTopOf="@+id/imageView41" />
@@ -377,8 +296,52 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="Status"
+        android:textColor="#000000"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/imageView42"
         app:layout_constraintTop_toTopOf="@+id/imageView42" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="-30dp"
+        android:layout_marginTop="-20dp"
+        android:src="@drawable/ic_logof"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView26"
+        android:layout_width="181dp"
+        android:layout_height="98dp"
+        android:layout_marginTop="38dp"
+        android:src="@drawable/ic_accepted"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/tv_rate_emp"
+        android:layout_width="@dimen/btn_width"
+        android:layout_height="@dimen/btn_height2"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/button_outline"
+        android:text="Rate"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView42" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/tv_chat_emp"
+        android:layout_width="@dimen/btn_width"
+        android:layout_height="@dimen/btn_height2"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/button_outline"
+        android:text="Chat"
+        app:layout_constraintEnd_toEndOf="@+id/tv_rate_emp"
+        app:layout_constraintStart_toStartOf="@+id/tv_rate_emp"
+        app:layout_constraintTop_toBottomOf="@+id/tv_rate_emp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
