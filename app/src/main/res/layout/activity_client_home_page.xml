@@ -9,20 +9,21 @@
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_container_client"
         android:name="com.example.bluehousev3.client.Home"
-        android:layout_width="410dp"
-        android:layout_height="690dp"
+        android:layout_width="389dp"
+        android:layout_height="777dp"
         android:layout_marginBottom="4dp"
         app:layout_constraintBottom_toTopOf="@+id/client_bot_nav"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.083"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/client_bot_nav"
-        android:layout_width="412dp"
-        android:layout_height="41dp"
-        android:background="?android:attr/windowBackground"
+        android:layout_width="392dp"
+        android:layout_height="48dp"
+        android:background="@drawable/nav_outline"
         android:foreground="?attr/selectableItemBackground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

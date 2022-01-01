@@ -37,13 +37,14 @@ public class ServiceRequests extends Fragment implements ClientServiceRequestsAd
 
   private TextView tvNoReq;
   private  ArrayList<String> reqId;
-  private ArrayList<ServiceRequest> serviceRequests;
+  private ArrayList<String> serviceRequests;
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_service_requests_client, container, false);
     tvNoReq = view.findViewById(R.id.tv_no_req_client);
     serviceRequests = new ArrayList<>();
     reqId = new ArrayList<>();
+
     RecyclerView rv = view.findViewById(R.id.rv_service_requests_client);
     rv.setLayoutManager(new LinearLayoutManager(getActivity()));
     ClientServiceRequestsAdapter adapter = new ClientServiceRequestsAdapter(serviceRequests, this);
@@ -60,8 +61,8 @@ public class ServiceRequests extends Fragment implements ClientServiceRequestsAd
       public void onDataChange(@NonNull DataSnapshot snapshot) {
         for (DataSnapshot snapshot1 : snapshot.getChildren()) {
           reqId.add(snapshot1.getKey());
-          ServiceRequest serviceRequest = snapshot1.getValue(ServiceRequest.class);
-          serviceRequests.add(serviceRequest);
+          String serviceType = snapshot1.child("serviceType").getValue(String.class);
+          serviceRequests.add(serviceType);
           rv.smoothScrollToPosition(serviceRequests.size());
         }
         adapter.notifyDataSetChanged();
@@ -81,9 +82,8 @@ public class ServiceRequests extends Fragment implements ClientServiceRequestsAd
   @Override
   public void onRequestClick(int position) {
     String requestId = reqId.get(position);
-    String workerId = serviceRequests.get(position).getWorkerId();
+    String workerId = serviceRequests.get(position);
     Bundle bundle = new Bundle();
-    bundle.putString("workerId2", workerId);
     bundle.putString("reqId", requestId);
 
     Fragment menu = new RequestMenu();

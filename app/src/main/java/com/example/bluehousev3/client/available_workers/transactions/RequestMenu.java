@@ -33,6 +33,7 @@ public class RequestMenu extends Fragment {
     private static final String TAG = "Request Menu";
     private Bundle bundle;
     private String workerName;
+    private String workerId;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -44,7 +45,6 @@ public class RequestMenu extends Fragment {
         btnChat = view.findViewById(R.id.btn_chat_req_menu);
         btnReview = view.findViewById(R.id.btn_create_review);
         String reqId = getArguments().getString("reqId");
-        String wId = getArguments().getString("workerId2");
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
         String uid = user.getUid();
@@ -55,6 +55,8 @@ public class RequestMenu extends Fragment {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                workerId = snapshot.child("workerId").getValue(String.class);
+                Toast.makeText(getContext(), "wid: " + workerId, Toast.LENGTH_SHORT).show();
                 String status = snapshot.child("status").getValue(String.class);
                 workerName = snapshot.child("workerName").getValue(String.class);
                 if (status != null) {
@@ -101,9 +103,9 @@ public class RequestMenu extends Fragment {
                         btnMark.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                ReviewDialog reviewDialog = new ReviewDialog(wId);
+                                ReviewDialog reviewDialog = new ReviewDialog(workerId);
                                 reviewDialog.show(getParentFragmentManager(), "review worker dialog");
-                                RateDialog rateDialog = new RateDialog(path, "workerRatings", wId, "workers");
+                                RateDialog rateDialog = new RateDialog(path, "workerRatings", workerId, "workers");
                                 rateDialog.show(getParentFragmentManager(), "rate worker dialog");
                                 reference.child("status").setValue("completed").addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
@@ -135,7 +137,7 @@ public class RequestMenu extends Fragment {
                         btnReview.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                ReviewDialog reviewDialog = new ReviewDialog(wId);
+                                ReviewDialog reviewDialog = new ReviewDialog(workerId);
                                 reviewDialog.show(getParentFragmentManager(), "review worker");
                             }
                         });

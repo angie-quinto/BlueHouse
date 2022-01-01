@@ -12,13 +12,16 @@
         android:id="@+id/tv_serviceTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="48dp"
         android:layout_marginEnd="29dp"
         android:text="Service Title Here"
+        android:textColor="#000000"
+        android:textSize="16sp"
         android:textStyle="bold"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.287"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/iv_service"
         app:layout_constraintTop_toTopOf="parent" />
 

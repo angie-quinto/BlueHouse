@@ -183,7 +183,7 @@ public class Profile extends Fragment {
           Log.d("workerError", "onCancelled: Worker Profile Error");
         }
       };
-      profileRef.addListenerForSingleValueEvent(eventListener);
+      profileRef.addValueEventListener(eventListener);
     } else {
       Toast.makeText(getContext(), "user is null", Toast.LENGTH_LONG).show();
     }

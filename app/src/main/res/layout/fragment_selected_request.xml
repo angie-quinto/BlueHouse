@@ -10,11 +10,22 @@
     tools:layout_editor_absoluteY="0dp">
 
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/tv_accept_req"
+        android:layout_width="@dimen/btn_width"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/button_outline"
+        android:text="Accept Request"
+        app:layout_constraintEnd_toEndOf="@+id/tv_reject_req"
+        app:layout_constraintStart_toStartOf="@+id/tv_reject_req"
+        app:layout_constraintTop_toBottomOf="@+id/tv_reject_req" />
+
     <TextView
         android:id="@+id/tv_service_type_selected"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="180dp"
+        android:layout_marginTop="240dp"
         android:fontFamily="sans-serif"
         android:shadowColor="#0099FF"
         android:text="Service Type"
@@ -22,7 +33,7 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.456"
+        app:layout_constraintHorizontal_bias="0.431"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -136,66 +147,6 @@
         app:layout_constraintStart_toEndOf="@+id/imageView31"
         app:layout_constraintTop_toBottomOf="@+id/textView60" />
 
-    <TextView
-        android:id="@+id/tv_req_photos"
-        android:layout_width="@dimen/btn_width"
-        android:layout_height="@dimen/height_outline_button"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/button_outline"
-        android:drawablePadding="5dp"
-        android:gravity="center"
-        android:padding="3dp"
-        android:text="Request Photos"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:textColor="@color/text_color_button"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:drawableStartCompat="@drawable/ic_image_box"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider14" />
-
-    <TextView
-        android:id="@+id/tv_reject_req"
-        android:layout_width="@dimen/btn_width"
-        android:layout_height="@dimen/height_outline_button"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/button_outline"
-        android:drawablePadding="5dp"
-        android:gravity="center"
-        android:padding="3dp"
-        android:text="Reject Request"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:textColor="@color/text_color_button"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:drawableStartCompat="@drawable/ic_x_circle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_req_photos" />
-
-    <TextView
-        android:id="@+id/tv_accept_req"
-        android:layout_width="@dimen/btn_width"
-        android:layout_height="@dimen/height_outline_button"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/button_outline"
-        android:drawablePadding="5dp"
-        android:gravity="center"
-        android:padding="3dp"
-        android:text="Accept Request"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:textColor="@color/text_color_button"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:drawableStartCompat="@drawable/ic_check_circle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.489"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_reject_req" />
-
     <View
         android:id="@+id/divider13"
         android:layout_width="390dp"
@@ -220,13 +171,13 @@
 
     <ImageView
         android:id="@+id/imageView23"
-        android:layout_width="360dp"
-        android:layout_height="283dp"
-        android:layout_marginStart="-50dp"
-        android:layout_marginTop="-45dp"
+        android:layout_width="240dp"
+        android:layout_height="166dp"
+        android:layout_marginStart="-16dp"
+        android:layout_marginTop="103dp"
         android:src="@drawable/ic_logof__1_"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -422,7 +373,7 @@
         android:layout_height="35dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="15dp"
-        android:src="@drawable/ic_check"
+        android:src="@drawable/ic_check_black"
         app:layout_constraintStart_toEndOf="@+id/divider14"
         app:layout_constraintTop_toBottomOf="@+id/imageView30" />
 
@@ -430,11 +381,34 @@
         android:id="@+id/imageView44"
         android:layout_width="140dp"
         android:layout_height="119dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="108dp"
         android:src="@drawable/ic_service_illus"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.992"
+        app:layout_constraintHorizontal_bias="0.952"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/tv_req_photos"
+        android:layout_width="@dimen/btn_width"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/button_outline"
+        android:text="Request Photos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider14" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/tv_reject_req"
+        android:layout_width="@dimen/btn_width"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/button_outline"
+        android:text="Reject Request"
+        app:layout_constraintEnd_toEndOf="@+id/tv_req_photos"
+        app:layout_constraintStart_toStartOf="@+id/tv_req_photos"
+        app:layout_constraintTop_toBottomOf="@+id/tv_req_photos" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

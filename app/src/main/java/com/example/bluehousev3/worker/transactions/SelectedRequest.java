@@ -31,10 +31,11 @@ import com.google.firebase.database.ValueEventListener;
 
 
 public class SelectedRequest extends Fragment {
+    private Button tvReqPhotos, tvAcceptReq, tvRejectReq;
     private TextView tvServiceType, tvDescription, tvStartDate, tvLocation,
-    tvStartTime, tvClientName, tvClientRating, tvClientGender, tvClientAge, tvEmpStat, tvReqPhotos, tvAcceptReq, tvRejectReq;
+    tvStartTime, tvClientName, tvClientRating, tvClientGender, tvClientAge, tvEmpStat;
     private String clientId;
-    String serviceType, description, startDate, startTime, location, proposedRate, proposedRateTime;
+    String serviceType, description, startDate, startTime, location;
     String clientName, clientRating, clientGender, image1, image2;
     String clientAge, status;
 

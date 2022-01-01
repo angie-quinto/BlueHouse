@@ -11,7 +11,7 @@
         android:id="@+id/tv_service_type_selected_accep"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="136dp"
+        android:layout_marginTop="240dp"
         android:text="Service Type"
         android:textColor="#000000"
         android:textSize="20sp"
@@ -286,7 +286,7 @@
         android:layout_height="35dp"
         android:layout_marginStart="55dp"
         android:layout_marginTop="10dp"
-        android:src="@drawable/ic_check"
+        android:src="@drawable/ic_check_black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView41" />
 
@@ -303,10 +303,10 @@
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="-30dp"
-        android:layout_marginTop="-20dp"
+        android:layout_width="240dp"
+        android:layout_height="166dp"
+        android:layout_marginStart="-16dp"
+        android:layout_marginTop="103dp"
         android:src="@drawable/ic_logof"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -315,19 +315,19 @@
         android:id="@+id/imageView26"
         android:layout_width="181dp"
         android:layout_height="98dp"
-        android:layout_marginTop="38dp"
-        android:src="@drawable/ic_accepted"
+        android:layout_marginTop="128dp"
+        android:src="@drawable/ic_approved"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.938"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/tv_rate_emp"
-        android:layout_width="@dimen/btn_width"
-        android:layout_height="@dimen/btn_height2"
-        android:layout_marginStart="68dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/button_outline"
         android:text="Rate"
         app:layout_constraintStart_toStartOf="parent"
@@ -335,13 +335,16 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/tv_chat_emp"
-        android:layout_width="@dimen/btn_width"
-        android:layout_height="@dimen/btn_height2"
-        android:layout_marginTop="5dp"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="40dp"
         android:background="@drawable/button_outline"
         android:text="Chat"
-        app:layout_constraintEnd_toEndOf="@+id/tv_rate_emp"
-        app:layout_constraintStart_toStartOf="@+id/tv_rate_emp"
-        app:layout_constraintTop_toBottomOf="@+id/tv_rate_emp" />
+        app:layout_constraintBottom_toBottomOf="@+id/tv_rate_emp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/tv_rate_emp"
+        app:layout_constraintTop_toTopOf="@+id/tv_rate_emp"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
