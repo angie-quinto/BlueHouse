@@ -55,7 +55,7 @@
         android:id="@+id/divider7"
         android:layout_width="400dp"
         android:layout_height="1dp"
-        android:background="?android:attr/listDivider"
+        android:background="@drawable/h_divider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView52" />

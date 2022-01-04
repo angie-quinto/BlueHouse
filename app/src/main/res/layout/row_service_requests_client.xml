@@ -9,14 +9,15 @@
         android:id="@+id/tv_service_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
+        android:gravity="center"
         android:text="ServiceType"
         android:textColor="#000000"
-        android:textSize="20sp"
+        android:textSize="17sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/imageView52"
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
@@ -24,11 +25,21 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="1dp"
         android:background="@android:drawable/divider_horizontal_textfield"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_service_type" />
+
+    <ImageView
+        android:id="@+id/imageView52"
+        android:layout_width="99dp"
+        android:layout_height="68dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_servicerequest" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bluehousev3.R;
@@ -39,7 +40,11 @@ public class RequestMenu extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_request_menu, container, false);
-
+        TextView tvServiceType = view.findViewById(R.id.tv_service_type_menu);
+        TextView tvDesc = view.findViewById(R.id.tv_descrip_menu);
+        TextView tvdateOP = view.findViewById(R.id.tv_date_of_appointment);
+        TextView tvLocation = view.findViewById(R.id.tv_address_menu);
+        TextView tvStatus = view.findViewById(R.id.tv_status_menu);
         btnMark = view.findViewById(R.id.btn_mark_menu);
         btnCancel = view.findViewById(R.id.btn_cancel_menu);
         btnChat = view.findViewById(R.id.btn_chat_req_menu);
@@ -56,8 +61,12 @@ public class RequestMenu extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 workerId = snapshot.child("workerId").getValue(String.class);
-                Toast.makeText(getContext(), "wid: " + workerId, Toast.LENGTH_SHORT).show();
                 String status = snapshot.child("status").getValue(String.class);
+                tvServiceType.setText(snapshot.child("serviceType").getValue(String.class));
+                tvDesc.setText(snapshot.child("description").getValue(String.class));
+                tvdateOP.setText(snapshot.child("startDate").getValue(String.class));
+                tvLocation.setText(snapshot.child("location").getValue(String.class));
+                tvStatus.setText(snapshot.child("status").getValue(String.class));
                 workerName = snapshot.child("workerName").getValue(String.class);
                 if (status != null) {
                     if (status.equals("cancelled") || status.equals("completed") || status.equals("rejected")) {

@@ -154,7 +154,7 @@
         android:id="@+id/btn_proceed"
         android:layout_width="@dimen/btn_width"
         android:layout_height="@dimen/btn_height2"
-        android:background="@drawable/button"
+        android:background="@drawable/button_outline"
         android:text="Proceed"
         android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"

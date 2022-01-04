@@ -38,7 +38,7 @@ public class AcceptedRequestsAdapter extends RecyclerView.Adapter<AcceptedReques
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull AcceptedRequestsAdapter.ViewHolder holder, int position) {
-        holder.tvServiceType.setText("Service Type: " + acceptedRequests.get(position).getServiceType());
+        holder.tvServiceType.setText(acceptedRequests.get(position).getServiceType());
         holder.tvStartTime.setText("Time: " + acceptedRequests.get(position).getStartTime());
         holder.tvStartDate.setText("Date: " + acceptedRequests.get(position).getStartDate());
         holder.tvLocation.setText("Location: " + acceptedRequests.get(position).getLocation());

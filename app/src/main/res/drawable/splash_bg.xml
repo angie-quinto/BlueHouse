@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:drawable="@drawable/bg_gradient">
+    </item>
+    <item
+        android:width="550dp"
+        android:height="440dp"
+        android:gravity="center"
+        android:drawable="@drawable/ic_logof"/>
+
+
+</layer-list>

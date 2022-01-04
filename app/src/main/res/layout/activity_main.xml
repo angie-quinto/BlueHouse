@@ -5,10 +5,4 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:theme="@android:style/Theme.NoDisplay"
-    tools:context=".views.MainActivity">
-
-
-
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    tools:context=".views.MainActivity"/>

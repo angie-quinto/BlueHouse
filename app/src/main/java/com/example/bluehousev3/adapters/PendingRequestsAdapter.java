@@ -35,7 +35,7 @@ public class PendingRequestsAdapter extends RecyclerView.Adapter<PendingRequests
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull PendingRequestsAdapter.ViewHolder holder, int position) {
-        holder.tvServiceType.setText("Service Type: " + pendingRequests.get(position).getServiceType());
+        holder.tvServiceType.setText(pendingRequests.get(position).getServiceType());
         holder.tvStartTime.setText("Time: " + pendingRequests.get(position).getStartTime());
         holder.tvStartDate.setText("Date: " + pendingRequests.get(position).getStartDate());
         holder.tvLocation.setText("Location: " + pendingRequests.get(position).getLocation());

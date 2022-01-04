@@ -22,16 +22,19 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_submit_request"
-        android:layout_width="170dp"
+        android:layout_width="100dp"
         android:layout_height="40dp"
         android:layout_marginTop="104dp"
         android:layout_marginEnd="16dp"
-        android:background="@drawable/button"
-        android:text="Submit Request"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/button_outline"
+        android:text="Submit"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/edt_new_request"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.886"
+        app:layout_constraintStart_toEndOf="@+id/btn_cancel_req"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_cancel_req"
@@ -39,8 +42,10 @@
         android:layout_height="40dp"
         android:layout_marginStart="40dp"
         android:layout_marginTop="104dp"
-        android:background="@drawable/button"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/button_outline"
         android:text="Cancel"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/edt_new_request"
         app:layout_constraintHorizontal_bias="0.272"
         app:layout_constraintStart_toStartOf="parent"

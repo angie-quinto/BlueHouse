@@ -66,7 +66,7 @@ public class Profile extends Fragment {
     tvEmail = view.findViewById(R.id.tv_email);
     tvHourlyRate = view.findViewById(R.id.tv_rate);
     ivPic = view.findViewById(R.id.iv_workerPic);
-//    tvVerified = view.findViewById(R.id.tv_worker_status_profile);
+
 
     tvSignout = view.findViewById(R.id.tv_signout);
     tvServicesOffered = view.findViewById(R.id.tv_myServices);
@@ -168,6 +168,12 @@ public class Profile extends Fragment {
           if (status != null) {
             if (status.equals("verified")) {
               ivVerified.setVisibility(View.VISIBLE);
+              ivVerified.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                  Toast.makeText(getContext(), "Verified User", Toast.LENGTH_SHORT).show();
+                }
+              });
             }
           }
 

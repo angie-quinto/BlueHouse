@@ -141,7 +141,7 @@ public class SelectedRequest extends Fragment {
                 new AlertDialog.Builder(getActivity())
                     .setTitle("Reject request")
                     .setMessage("Are you sure you want to reject this request?")
-                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
 
 
@@ -161,7 +161,7 @@ public class SelectedRequest extends Fragment {
 
                     })
                     .setNegativeButton(android.R.string.no, null)
-                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setIcon(R.drawable.ic_alert)
                     .show();
             }
         });

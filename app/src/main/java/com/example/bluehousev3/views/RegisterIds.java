@@ -24,6 +24,7 @@ import android.webkit.MimeTypeMap;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -89,10 +90,10 @@ public class RegisterIds extends AppCompatActivity {
     adap2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     sid2.setAdapter(adap1);
 
-    ImageButton ibSelfie = findViewById(R.id.ib_selfie);
-    ImageButton ibValidId1 = findViewById(R.id.ib_validId1);
-    ImageButton ibValidId2 = findViewById(R.id.ib_validId_2);
-    ImageButton ibCert = findViewById(R.id.ib_cert);
+    ImageView ibSelfie = findViewById(R.id.ib_selfie);
+    ImageView ibValidId1 = findViewById(R.id.ib_validId1);
+    ImageView ibValidId2 = findViewById(R.id.ib_validId_2);
+    ImageView ibCert = findViewById(R.id.ib_cert);
     Button btnGeVerified = findViewById(R.id.btn_getVerified);
     progressBar = findViewById(R.id.progressBar3);
     progressBar.setVisibility(View.INVISIBLE);
@@ -224,9 +225,12 @@ public class RegisterIds extends AppCompatActivity {
         uploadTask.addOnFailureListener(exception -> Toast.makeText(RegisterIds.this, "Selfie Image Upload " +
                 "Failed",
             Toast.LENGTH_SHORT).show()).addOnSuccessListener(taskSnapshot -> {
-          Toast.makeText(RegisterIds.this, "Selfie Image Upload " +
-                  "Success",
-              Toast.LENGTH_SHORT).show();
+
+          new AlertDialog.Builder(this)
+             .setTitle("Selfie Upload Success")
+             .setPositiveButton(android.R.string.yes, null)
+             .setIcon(R.drawable.ic_check)
+             .show();
 
           // gets the url of the uploaded image from the firebase and put
           // it into the realtime database as a property of the user
@@ -262,8 +266,11 @@ public class RegisterIds extends AppCompatActivity {
           String valid1 = uri.toString();
           idsRef.child(uid).child("ValidId1Url").setValue(valid1);
           progressBar.setVisibility(View.INVISIBLE);
-          Toast.makeText(RegisterIds.this, sid1.getSelectedItem().toString() + " upload success",
-              Toast.LENGTH_SHORT).show();
+          new AlertDialog.Builder(this)
+             .setTitle("Image Upload Success")
+             .setPositiveButton(android.R.string.yes, null)
+             .setIcon(R.drawable.ic_check)
+             .show();
 
         })).addOnProgressListener(snapshot -> progressBar.setVisibility(View.VISIBLE)).addOnFailureListener(e -> {
           progressBar.setVisibility(View.INVISIBLE);
@@ -281,8 +288,11 @@ public class RegisterIds extends AppCompatActivity {
           String valid2 = uri.toString();
           idsRef.child(uid).child("ValidId2Url").setValue(valid2);
           progressBar.setVisibility(View.INVISIBLE);
-          Toast.makeText(RegisterIds.this, sid2.getSelectedItem().toString() + " upload success",
-              Toast.LENGTH_SHORT).show();
+          new AlertDialog.Builder(this)
+             .setTitle("Image Upload Success")
+             .setPositiveButton(android.R.string.yes, null)
+             .setIcon(R.drawable.ic_check)
+             .show();
 
         })).addOnProgressListener(snapshot -> progressBar.setVisibility(View.VISIBLE)).addOnFailureListener(e -> {
           progressBar.setVisibility(View.INVISIBLE);
@@ -303,9 +313,11 @@ public class RegisterIds extends AppCompatActivity {
           String cert = uri.toString();
           idsRef.child(uid).child("CertificateUrl").setValue(cert);
           progressBar.setVisibility(View.INVISIBLE);
-          Toast.makeText(RegisterIds.this, "Certificate " +
-                  "Image Uploaded Successfully",
-              Toast.LENGTH_SHORT).show();
+          new AlertDialog.Builder(this)
+             .setTitle("Image Upload Success")
+             .setPositiveButton(android.R.string.yes, null)
+             .setIcon(R.drawable.ic_check)
+             .show();
 
         })).addOnProgressListener(snapshot -> progressBar.setVisibility(View.VISIBLE)).addOnFailureListener(e -> {
           progressBar.setVisibility(View.INVISIBLE);

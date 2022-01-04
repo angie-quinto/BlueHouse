@@ -44,6 +44,7 @@ public class LogIn extends AppCompatActivity {
         edtPassword = findViewById(R.id.edt_password);
 
         TextView txtRegister = findViewById(R.id.edt_register);
+        TextView tvForgotPass = findViewById(R.id.tv_forgot_pass);
         Button btnLogin = findViewById(R.id.btn_login);
         progressBar = findViewById(R.id.progressBar2);
 
@@ -63,6 +64,15 @@ public class LogIn extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 login();
+            }
+        });
+
+        tvForgotPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LogIn.this, ForgotPassword.class);
+                startActivity(intent);
+                finish();
             }
         });
     }

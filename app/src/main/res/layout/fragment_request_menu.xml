@@ -12,7 +12,7 @@
         android:layout_width="200dp"
         android:layout_height="40dp"
         android:layout_marginTop="24dp"
-        android:background="@drawable/button"
+        android:background="@drawable/button_outline"
         android:text="Cancel Request"
         app:layout_constraintEnd_toEndOf="@+id/btn_chat_req_menu"
         app:layout_constraintHorizontal_bias="0.48"
@@ -23,13 +23,14 @@
         android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="184dp"
+        android:layout_marginTop="188dp"
         android:gravity="center"
         android:text="Request Menu"
         android:textColor="#000000"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -37,31 +38,31 @@
         android:id="@+id/btn_chat_req_menu"
         android:layout_width="200dp"
         android:layout_height="40dp"
-        android:layout_marginTop="60dp"
-        android:background="@drawable/button"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/button_outline"
         android:text="Chat Worker"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_worker_name_menu" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_mark_menu"
         android:layout_width="200dp"
         android:layout_height="40dp"
         android:layout_marginTop="24dp"
-        android:background="@drawable/button"
-        android:text="Mark as Complete"
+        android:background="@drawable/button_outline"
+        android:text="Mark as Done"
         app:layout_constraintEnd_toEndOf="@+id/btn_cancel_menu"
         app:layout_constraintStart_toStartOf="@+id/btn_cancel_menu"
         app:layout_constraintTop_toBottomOf="@+id/btn_cancel_menu" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_create_review"
         android:layout_width="200dp"
         android:layout_height="40dp"
         android:layout_marginTop="28dp"
-        android:background="@drawable/button"
+        android:background="@drawable/button_outline"
         android:text="Add worker review"
         app:layout_constraintEnd_toEndOf="@+id/btn_mark_menu"
         app:layout_constraintHorizontal_bias="0.0"
@@ -72,10 +73,150 @@
         android:id="@+id/imageView50"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="56dp"
         android:src="@drawable/ic_logof__1_"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/divider8"
+        android:layout_width="391dp"
+        android:layout_height="1dp"
+        android:background="@drawable/h_divider"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView13"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/tv_service_type_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Service Type"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider8" />
+
+    <TextView
+        android:id="@+id/tv_descrip_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Description"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/textView66"
+        app:layout_constraintTop_toTopOf="@+id/textView66" />
+
+    <TextView
+        android:id="@+id/tv_date_of_appointment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date of Appointment"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/textView72"
+        app:layout_constraintTop_toTopOf="@+id/textView72" />
+
+    <TextView
+        android:id="@+id/tv_address_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Location"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/textView73"
+        app:layout_constraintTop_toTopOf="@+id/textView73" />
+
+    <TextView
+        android:id="@+id/tv_status_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Request status"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/textView74"
+        app:layout_constraintTop_toTopOf="@+id/textView74" />
+
+    <TextView
+        android:id="@+id/tv_worker_name_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Worker name"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/textView75"
+        app:layout_constraintTop_toTopOf="@+id/textView75" />
+
+    <TextView
+        android:id="@+id/textView66"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="28dp"
+        android:text="Description: "
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_service_type_menu" />
+
+    <TextView
+        android:id="@+id/textView72"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="12dp"
+        android:text="Date of Appointment: "
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView66" />
+
+    <TextView
+        android:id="@+id/textView73"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="12dp"
+        android:text="Location: "
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView72" />
+
+    <TextView
+        android:id="@+id/textView74"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="12dp"
+        android:text="Request Status: "
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView73" />
+
+    <TextView
+        android:id="@+id/textView75"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="12dp"
+        android:text="Worker Name: "
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView74" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -31,7 +31,7 @@ public class WorkerReviewsAdapter extends RecyclerView.Adapter<WorkerReviewsAdap
 
     @Override
     public void onBindViewHolder(@NonNull WorkerReviewsAdapter.ViewHolder holder, int position) {
-        holder.tvReview.setText(reviews.get(position));
+        holder.tvReview.setText("User ID: *********: \"" + reviews.get(position)+ "\"");
     }
 
     @Override

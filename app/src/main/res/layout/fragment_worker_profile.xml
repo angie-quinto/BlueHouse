@@ -7,23 +7,13 @@
     tools:context=".client.available_workers.transactions.WorkerProfile">
 
 
-    <TextView
-        android:id="@+id/tv_workerProfile_workerName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Worker Name:"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_workerProfile_profilePic" />
-
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/iv_workerProfile_profilePic"
-        android:layout_width="87dp"
-        android:layout_height="88dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="122dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="120dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
@@ -34,6 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Age: "
+        android:textColor="#000000"
         android:textSize="10sp"
         app:layout_constraintStart_toEndOf="@+id/imageView8"
         app:layout_constraintTop_toBottomOf="@+id/textView12" />
@@ -43,6 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Email: "
+        android:textColor="#000000"
         android:textSize="10sp"
         app:layout_constraintStart_toEndOf="@+id/imageView12"
         app:layout_constraintTop_toBottomOf="@+id/textView14" />
@@ -52,6 +44,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Mobile Number: "
+        android:textColor="#000000"
         android:textSize="10sp"
         app:layout_constraintStart_toEndOf="@+id/imageView16"
         app:layout_constraintTop_toBottomOf="@+id/textView21" />
@@ -61,6 +54,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Rating: "
+        android:textColor="#000000"
         android:textSize="10sp"
         app:layout_constraintStart_toEndOf="@+id/imageView17"
         app:layout_constraintTop_toBottomOf="@+id/textView26" />
@@ -70,6 +64,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Educational Attainment: "
+        android:textColor="#000000"
         android:textSize="10sp"
         app:layout_constraintStart_toEndOf="@+id/imageView18"
         app:layout_constraintTop_toBottomOf="@+id/textView27" />
@@ -79,6 +74,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hourly Rate: "
+        android:textColor="#000000"
         android:textSize="10sp"
         app:layout_constraintStart_toEndOf="@+id/imageView19"
         app:layout_constraintTop_toBottomOf="@+id/textView28" />
@@ -88,6 +84,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Gender: "
+        android:textColor="#000000"
         android:textSize="10sp"
         app:layout_constraintStart_toEndOf="@+id/imageView20"
         app:layout_constraintTop_toBottomOf="@+id/textView30" />
@@ -97,6 +94,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Address: "
+        android:textColor="#000000"
         android:textSize="10sp"
         app:layout_constraintStart_toEndOf="@+id/imageView21"
         app:layout_constraintTop_toBottomOf="@+id/textView45" />
@@ -105,17 +103,18 @@
         android:id="@+id/iv_worker_stat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="3dp"
         android:src="@drawable/ic_check"
         android:visibility="invisible"
         app:layout_constraintStart_toEndOf="@+id/tv_workerProfile_workerName"
-        app:layout_constraintTop_toTopOf="@+id/tv_workerProfile_workerName" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_workerProfile_profilePic" />
 
     <ImageView
         android:id="@+id/imageView8"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginStart="56dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="10dp"
         android:src="@drawable/ic_calendar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_workerProfile_workerName" />
@@ -125,6 +124,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Age"
+        android:textColor="#000000"
         android:textSize="12sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/imageView8"
@@ -135,6 +135,7 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginStart="56dp"
+        android:layout_marginTop="3dp"
         android:src="@drawable/ic_email"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView8" />
@@ -145,6 +146,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:text="Email"
+        android:textColor="#000000"
         android:textSize="12sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/imageView12"
@@ -155,6 +157,7 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginStart="56dp"
+        android:layout_marginTop="3dp"
         android:src="@drawable/ic_mobile"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView12" />
@@ -164,6 +167,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Mobile Number"
+        android:textColor="#000000"
         android:textSize="12sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/imageView16"
@@ -174,6 +178,7 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginStart="56dp"
+        android:layout_marginTop="3dp"
         android:src="@drawable/ic_star"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView16" />
@@ -183,6 +188,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Rating"
+        android:textColor="#000000"
         android:textSize="12sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/imageView17"
@@ -193,6 +199,7 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginStart="56dp"
+        android:layout_marginTop="3dp"
         android:src="@drawable/ic_school"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView17" />
@@ -202,7 +209,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Educational Attainment"
-        android:textSize="10sp"
+        android:textColor="#000000"
+        android:textSize="12sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/imageView18"
         app:layout_constraintTop_toTopOf="@+id/imageView18" />
@@ -212,6 +220,7 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginStart="56dp"
+        android:layout_marginTop="3dp"
         android:src="@drawable/ic_dollar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView18" />
@@ -221,6 +230,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Rate"
+        android:textColor="#000000"
         android:textSize="12sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/imageView19"
@@ -231,6 +241,7 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginStart="56dp"
+        android:layout_marginTop="3dp"
         android:src="@drawable/ic_male_female"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView19" />
@@ -240,6 +251,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sex"
+        android:textColor="#000000"
         android:textSize="12sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/imageView20"
@@ -250,6 +262,7 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginStart="56dp"
+        android:layout_marginTop="3dp"
         android:src="@drawable/ic_location"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView20" />
@@ -258,8 +271,8 @@
         android:id="@+id/textView45"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
         android:text="Location"
+        android:textColor="#000000"
         android:textSize="12sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/imageView21"
@@ -267,56 +280,76 @@
 
     <TextView
         android:id="@+id/tv_workerids"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:drawablePadding="5dp"
+        android:layout_width="@dimen/btn_width"
+        android:layout_height="@dimen/btn_height2"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/button_outline"
+        android:gravity="center"
         android:text="Identification Photos (ID)"
+        android:textColor="#011C54"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:drawableStartCompat="@drawable/ic_idcard"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView21" />
 
     <TextView
         android:id="@+id/tv_worker_reviews"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/btn_width"
+        android:layout_height="@dimen/btn_height2"
+        android:layout_marginTop="2dp"
+        android:background="@drawable/button_outline"
         android:drawablePadding="5dp"
-        android:padding="5dp"
+        android:gravity="center"
         android:text="Reviews"
+        android:textColor="#011C54"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:drawableStartCompat="@drawable/ic_comment_review"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_workerids" />
 
     <TextView
         android:id="@+id/tv_worker_cert"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:drawablePadding="5dp"
+        android:layout_width="@dimen/btn_width"
+        android:layout_height="@dimen/btn_height2"
+        android:layout_marginTop="2dp"
+        android:background="@drawable/button_outline"
+        android:gravity="center"
         android:text="Certificate"
+        android:textColor="#011C54"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:drawableStartCompat="@drawable/ic_certification"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_worker_reviews" />
 
     <TextView
         android:id="@+id/tv_req_service"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:drawablePadding="5dp"
+        android:layout_width="@dimen/btn_width"
+        android:layout_height="@dimen/btn_height2"
+        android:layout_marginTop="2dp"
+        android:background="@drawable/button_outline"
+        android:gravity="center"
         android:text="Request A Service"
+        android:textColor="#011C54"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:drawableStartCompat="@drawable/ic_plus"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_worker_cert" />
+
+    <TextView
+        android:id="@+id/tv_workerProfile_workerName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Worker Name"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_workerProfile_profilePic" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

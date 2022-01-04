@@ -4,12 +4,14 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.bluehousev3.R;
 import com.example.bluehousev3.adapters.WorkerServicesOfferedAdapter;
@@ -34,7 +36,8 @@ private ArrayList<String> servicesOffered;
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_services_offered, container, false);
-
+        Button btnEdit = view.findViewById(R.id.btn_edit_services);
+        Button btnClose = view.findViewById(R.id.btn_close_services);
         servicesOffered = new ArrayList<>();
 
         RecyclerView rv = view.findViewById(R.id.rv_services_offered);
@@ -59,6 +62,29 @@ private ArrayList<String> servicesOffered;
             }
         });
 
+        btnEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            Fragment edit = new EditServicesOffered();
+            FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+            ft.replace(R.id.fragment_container_worker, edit);
+            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+            ft.addToBackStack(null);
+            ft.commit();
+            }
+        });
+
+        btnClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment profile = new Profile();
+                FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+                ft.replace(R.id.fragment_container_worker, profile);
+                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                ft.addToBackStack(null);
+                ft.commit();
+            }
+        });
 
         return view;
     }

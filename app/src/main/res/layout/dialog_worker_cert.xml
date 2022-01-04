@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/iv_cert"
         android:layout_width="356dp"
-        android:layout_height="617dp"
+        android:layout_height="500dp"
         android:layout_marginTop="44dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -22,13 +22,14 @@
         android:layout_height="48dp"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="10dp"
-        android:background="@drawable/button"
-        android:text="back"
+        android:background="@drawable/button_outline"
+        android:text="Close"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_cert" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_cert"
+        app:layout_constraintVertical_bias="0.291" />
 
     <TextView
         android:id="@+id/tv_cert"

@@ -91,6 +91,12 @@ public class WorkerProfile extends Fragment {
                 if (status != null) {
                     if (status.equals("verified")) {
                         ivStat.setVisibility(View.VISIBLE);
+                        ivStat.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Toast.makeText(getContext(), "Worker is Verified", Toast.LENGTH_LONG).show();
+                            }
+                        });
                     }
                 }
 
