@@ -55,7 +55,7 @@ public class Register2 extends AppCompatActivity implements  AdapterView.OnItemS
   public static final int PERMISSIONS_FINE_LOCATION = 99;
   private String userType;
   private String age;
-  private TextInputEditText tietDob, tietAddress, tietRate;
+  private TextInputEditText tietDob, tietAddress;
   private Switch swAutoLoc;
   private Spinner genderSpinner;
   ArrayAdapter<CharSequence> genderAdapter;
@@ -79,7 +79,7 @@ public class Register2 extends AppCompatActivity implements  AdapterView.OnItemS
       progressBar.setVisibility(View.INVISIBLE);
       tietDob = findViewById(R.id.tiet_birthdate);
       tietAddress = findViewById(R.id.tiet_address);
-      tietRate = findViewById(R.id.tiet_rate);
+
       swAutoLoc = findViewById(R.id.sw_autoLocate);
       btnRegister2 = findViewById(R.id.btn_register2);
 
@@ -145,7 +145,6 @@ public class Register2 extends AppCompatActivity implements  AdapterView.OnItemS
   public void registerUser() {
     String address = tietAddress.getText().toString().trim();
     String birthDate = tietDob.getText().toString().trim();
-    String rate = tietRate.getText().toString();
     userType = userTypeSpinner.getSelectedItem().toString();
 
     if (address.isEmpty()) {
@@ -180,7 +179,6 @@ public class Register2 extends AppCompatActivity implements  AdapterView.OnItemS
               worker.setUserType("worker");
               worker.setFullName(name);
               worker.setAge(age);
-              worker.setRate(rate);
               worker.setGender(getGender());
               worker.setEmail(email);
               worker.setPhoneNumber(mobileNumber);

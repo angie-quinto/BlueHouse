@@ -81,64 +81,51 @@
     </com.google.android.material.textfield.TextInputLayout>
 
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/til_edit_rate"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="300dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="30dp"
-        android:hint="Rate"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/til_edit_mobile">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edt_edit_rate"
-            android:layout_width="300dp"
-            android:layout_height="55dp"
-
-            app:layout_constraintEnd_toEndOf="@+id/til_edit_rate"
-            app:layout_constraintLeft_toLeftOf="@+id/til_edit_rate"
-            app:layout_constraintTop_toTopOf="@+id/til_edit_rate" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_edit_save"
         android:layout_width="100dp"
         android:layout_height="@dimen/btn_height2"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:background="@drawable/button_outline"
         android:text="Save"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.687"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/til_edit_rate" />
+        app:layout_constraintTop_toBottomOf="@+id/til_edit_mobile" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_edit_cancel"
         android:layout_width="100dp"
         android:layout_height="@dimen/btn_height2"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:background="@drawable/button_outline"
         android:text="Cancel"
         app:layout_constraintEnd_toStartOf="@+id/btn_edit_save"
         app:layout_constraintHorizontal_bias="0.824"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/til_edit_rate" />
+        app:layout_constraintTop_toBottomOf="@+id/til_edit_mobile" />
 
     <TextView
         android:id="@+id/textView43"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="250dp"
         android:text="Edit Profile"
         android:textColor="#000000"
         android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="92dp"
+        android:src="@drawable/ic_logof"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

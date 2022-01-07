@@ -26,19 +26,14 @@
     </string-array>
 
     <string-array name="ids">
-        <item>Philippine Passport</item>
-        <item>Driver’s License</item>
-        <item>PhilHealth ID</item>
-        <item>SSS UMID Card</item>
-        <item>Postal ID</item>
-        <item>TIN ID</item>
-        <item>Voter’s ID</item>
-        <item>PRC ID</item>
-        <item>Senior Citizen ID</item>
+        <item>SSS</item>
+        <item>NBI</item>
+        <item>Barangay Clearance</item>
+        <item>Pag-IBIG</item>
+        <item>PhilHealth</item>
+        <item>TIN</item>
         <item>Student ID</item>
-        <item>National ID/PhilSys ID</item>
         <item>Police Clearance</item>
-
     </string-array>
 
 

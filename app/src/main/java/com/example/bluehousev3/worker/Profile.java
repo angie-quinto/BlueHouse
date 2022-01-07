@@ -38,7 +38,7 @@ import java.util.Map;
 
 public class Profile extends Fragment {
   private TextView  tvName, tvAge, tvAddress,tvPhoneNum,
-      tvEmail, tvHourlyRate, tvSignout, tvServicesOffered;
+      tvEmail, tvSignout, tvServicesOffered;
   private String imgUrl;
 
   private ImageView ivPic, ivEdit, ivVerified;
@@ -64,7 +64,6 @@ public class Profile extends Fragment {
 
     tvPhoneNum = view.findViewById(R.id.tv_phoneNum);
     tvEmail = view.findViewById(R.id.tv_email);
-    tvHourlyRate = view.findViewById(R.id.tv_rate);
     ivPic = view.findViewById(R.id.iv_workerPic);
 
 
@@ -162,7 +161,7 @@ public class Profile extends Fragment {
           String address = dataSnapshot.child("address").getValue(String.class);
           String birthdate = dataSnapshot.child("birthdate").getValue(String.class);
           String phoneNum = dataSnapshot.child("phoneNumber").getValue(String.class);
-          String rate = dataSnapshot.child("rate").getValue(String.class);
+
           String status = dataSnapshot.child("status").getValue(String.class);
 
           if (status != null) {
@@ -181,8 +180,7 @@ public class Profile extends Fragment {
           tvName.setText(name);
           tvAddress.setText(address);
           tvAge.setText(birthdate);
-          tvHourlyRate.setText(rate);
-          tvPhoneNum.setText("+63" + phoneNum);
+          tvPhoneNum.setText("+63 " + phoneNum);
         }
         @Override
         public void onCancelled(DatabaseError databaseError) {

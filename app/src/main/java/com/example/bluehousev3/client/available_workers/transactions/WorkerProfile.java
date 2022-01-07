@@ -35,14 +35,14 @@ import java.util.Objects;
 
 
 public class WorkerProfile extends Fragment {
-    private TextView tvEducAtt,tvName, tvAge, tvRating, tvEmail, tvPhoneNum, tvHourlyRate, tvGender, tvAddress, tvReq, tvReviews,
+    private TextView tvEducAtt,tvName, tvAge, tvRating, tvEmail, tvPhoneNum, tvGender, tvAddress, tvReq, tvReviews,
     tvIds, tvCert;
 
     private ImageView ivWorkerProfilePic, ivStat;
     private Bundle bundle;
     private String workerId;
     private String status;
-    private String rate;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -55,7 +55,6 @@ public class WorkerProfile extends Fragment {
         tvEducAtt = view.findViewById(R.id.tv_workerProfile_educationalAtt);
         tvEmail = view.findViewById(R.id.tv_workerProfile_email);
         tvPhoneNum = view.findViewById(R.id.tv_workerProfile_mobile);
-        tvHourlyRate = view.findViewById(R.id.tv_workerProfile_hourlyRate);
         tvGender = view.findViewById(R.id.tv_workerProfile_gender);
         ivWorkerProfilePic = view.findViewById(R.id.iv_workerProfile_profilePic);
         tvAddress = view.findViewById(R.id.tv_workerProfile_address);
@@ -79,8 +78,6 @@ public class WorkerProfile extends Fragment {
                 String age = snapshot.child("age").getValue(String.class);
                 tvAge.setText(age);
                 tvPhoneNum.setText(snapshot.child("phoneNumber").getValue(String.class));
-                rate = snapshot.child("rate").getValue(String.class);
-                tvHourlyRate.setText(rate);
                 tvEmail.setText(snapshot.child("email").getValue(String.class));
                 tvGender.setText(snapshot.child("gender").getValue(String.class));
                 tvAddress.setText(snapshot.child("address").getValue(String.class));

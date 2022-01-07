@@ -37,7 +37,6 @@ public class EditProfile extends Fragment {
         View view = inflater.inflate(R.layout.fragment_edit_profile_worker, container, false);
         EditText edtName = view.findViewById(R.id.edt_edit_name);
         EditText edtAddress = view.findViewById(R.id.edt_edit_address);
-        EditText edtRate = view.findViewById(R.id.edt_edit_rate);
         EditText edtMobileNum = view.findViewById(R.id.edt_edit_mobile);
         Button btnSave = view.findViewById(R.id.btn_edit_save);
         Button btnCancel = view.findViewById(R.id.btn_edit_cancel);
@@ -49,7 +48,7 @@ public class EditProfile extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 edtName.setText(snapshot.child("fullName").getValue(String.class));
                 edtAddress.setText(snapshot.child("address").getValue(String.class));
-                edtRate.setText(snapshot.child("rate").getValue(String.class));
+
                 edtMobileNum.setText(snapshot.child("phoneNumber").getValue(String.class));
             }
 
@@ -80,8 +79,7 @@ public class EditProfile extends Fragment {
                         public void onClick(DialogInterface dialog, int which) {
                             reference.child("fullName").setValue(edtName.getText().toString());
                             reference.child("address").setValue(edtAddress.getText().toString());
-                            reference.child("phoneNumber").setValue(edtMobileNum.getText().toString());
-                            reference.child("rate").setValue(edtRate.getText().toString()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            reference.child("phoneNumber").setValue(edtMobileNum.getText().toString()).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void unused) {
                                     Toast.makeText(getActivity(), "Changes Saved", Toast.LENGTH_SHORT).show();

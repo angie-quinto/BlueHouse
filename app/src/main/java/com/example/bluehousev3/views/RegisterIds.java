@@ -23,7 +23,6 @@ import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
@@ -48,11 +47,11 @@ import java.util.Objects;
 public class RegisterIds extends AppCompatActivity {
   private DatabaseReference mDatabase;
   private DatabaseReference idsRef;
-  private Spinner sid1, sid2;
-  private ArrayAdapter<CharSequence> adap1, adap2;
+  private Spinner sid1;
+  private ArrayAdapter<CharSequence> adap1;
   private final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
   private final String uid;
-  private final String[] ids = new String[4];
+  private final String[] ids = new String[3];
   private String userType;
 
 
@@ -80,19 +79,14 @@ public class RegisterIds extends AppCompatActivity {
           idsRef = mDatabase.child("users/workerIds");
         }
     sid1 = findViewById(R.id.sp_valid1);
-    sid2 = findViewById(R.id.spVid2);
 
     adap1 = ArrayAdapter.createFromResource(this, R.array.ids, android.R.layout.simple_spinner_item);
     adap1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     sid1.setAdapter(adap1);
 
-    adap2 = ArrayAdapter.createFromResource(this, R.array.ids, android.R.layout.simple_spinner_item);
-    adap2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-    sid2.setAdapter(adap1);
 
     ImageView ibSelfie = findViewById(R.id.ib_selfie);
     ImageView ibValidId1 = findViewById(R.id.ib_validId1);
-    ImageView ibValidId2 = findViewById(R.id.ib_validId_2);
     ImageView ibCert = findViewById(R.id.ib_cert);
     Button btnGeVerified = findViewById(R.id.btn_getVerified);
     progressBar = findViewById(R.id.progressBar3);
@@ -121,12 +115,7 @@ public class RegisterIds extends AppCompatActivity {
       startActivityForResult(intent, 10);
     });
 
-    ibValidId2.setOnClickListener(v -> {
-      Intent intent = new Intent();
-      intent.setAction(Intent.ACTION_GET_CONTENT);
-      intent.setType("image/*");
-      startActivityForResult(intent, 5);
-    });
+
     ibCert.setOnClickListener(v -> {
       Intent intent = new Intent();
       intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -141,8 +130,8 @@ public class RegisterIds extends AppCompatActivity {
       @Override
       public void onDataChange(@NonNull DataSnapshot snapshot) {
         ids[0] = snapshot.child("SelfieUrl").getValue(String.class);
-        ids[1] = snapshot.child("ValidId1Url").getValue(String.class);
-        ids[2] = snapshot.child("ValidId2Url").getValue(String.class);
+        ids[1] = snapshot.child("ValidIdUrl").getValue(String.class);
+
 
         btnGeVerified.setOnClickListener(new View.OnClickListener() {
           @Override
@@ -158,7 +147,7 @@ public class RegisterIds extends AppCompatActivity {
                         "By clicking Agree, you agree to our Terms and that you have read our Privacy Policy.")
                 .setPositiveButton("Agree", new DialogInterface.OnClickListener() {
                   public void onClick(DialogInterface dialog, int which) {
-                    if (ids[0] == null || ids[1] == null || ids[2] == null) {
+                    if (ids[0] == null || ids[1] == null) {
                       new AlertDialog.Builder(RegisterIds.this)
                               .setTitle("Incomplete Image Upload")
                               .setMessage("Please Provide all the requirements being asked")
@@ -232,6 +221,7 @@ public class RegisterIds extends AppCompatActivity {
              .setIcon(R.drawable.ic_check)
              .show();
 
+
           // gets the url of the uploaded image from the firebase and put
           // it into the realtime database as a property of the user
           // (worker) object
@@ -247,6 +237,11 @@ public class RegisterIds extends AppCompatActivity {
               String selfie1 = downloadUri.toString();
               idsRef.child(uid).child("SelfieUrl").setValue(selfie1);
               progressBar.setVisibility(View.INVISIBLE);
+              new AlertDialog.Builder(this)
+                 .setTitle("Selfie Upload Success")
+                 .setPositiveButton(android.R.string.yes, null)
+                 .setIcon(R.drawable.ic_check)
+                 .show();
 
             } else {
               Toast.makeText(RegisterIds.this, "Error uploading " +
@@ -264,10 +259,11 @@ public class RegisterIds extends AppCompatActivity {
             reference.child(System.currentTimeMillis() + "." + getFileExtension(validId1Uri));
         fileRef.putFile(validId1Uri).addOnSuccessListener(taskSnapshot -> fileRef.getDownloadUrl().addOnSuccessListener(uri -> {
           String valid1 = uri.toString();
-          idsRef.child(uid).child("ValidId1Url").setValue(valid1);
+          idsRef.child(uid).child("ValidIdUrl").setValue(valid1);
           progressBar.setVisibility(View.INVISIBLE);
+
           new AlertDialog.Builder(this)
-             .setTitle("Image Upload Success")
+             .setTitle(sid1.getSelectedItem().toString() +  " ID Upload Success")
              .setPositiveButton(android.R.string.yes, null)
              .setIcon(R.drawable.ic_check)
              .show();
@@ -275,28 +271,6 @@ public class RegisterIds extends AppCompatActivity {
         })).addOnProgressListener(snapshot -> progressBar.setVisibility(View.VISIBLE)).addOnFailureListener(e -> {
           progressBar.setVisibility(View.INVISIBLE);
           Toast.makeText(RegisterIds.this, "Valid ID 1 Image Upload " +
-                  "Failed!",
-              Toast.LENGTH_SHORT).show();
-        });
-      }
-
-      if (requestCode == 5) {
-        Uri validId2Uri = data.getData();
-        final StorageReference fileRef =
-            reference.child(System.currentTimeMillis() + "." + getFileExtension(validId2Uri));
-        fileRef.putFile(validId2Uri).addOnSuccessListener(taskSnapshot -> fileRef.getDownloadUrl().addOnSuccessListener(uri -> {
-          String valid2 = uri.toString();
-          idsRef.child(uid).child("ValidId2Url").setValue(valid2);
-          progressBar.setVisibility(View.INVISIBLE);
-          new AlertDialog.Builder(this)
-             .setTitle("Image Upload Success")
-             .setPositiveButton(android.R.string.yes, null)
-             .setIcon(R.drawable.ic_check)
-             .show();
-
-        })).addOnProgressListener(snapshot -> progressBar.setVisibility(View.VISIBLE)).addOnFailureListener(e -> {
-          progressBar.setVisibility(View.INVISIBLE);
-          Toast.makeText(RegisterIds.this, "Valid ID 2 Image Upload " +
                   "Failed!",
               Toast.LENGTH_SHORT).show();
         });
@@ -313,8 +287,9 @@ public class RegisterIds extends AppCompatActivity {
           String cert = uri.toString();
           idsRef.child(uid).child("CertificateUrl").setValue(cert);
           progressBar.setVisibility(View.INVISIBLE);
+
           new AlertDialog.Builder(this)
-             .setTitle("Image Upload Success")
+             .setTitle("Certificate Upload Success")
              .setPositiveButton(android.R.string.yes, null)
              .setIcon(R.drawable.ic_check)
              .show();

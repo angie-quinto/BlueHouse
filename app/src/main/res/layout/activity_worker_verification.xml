@@ -8,13 +8,12 @@
 
     <ImageView
         android:id="@+id/ib_validId1"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="5dp"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
         android:background="@drawable/blue_outline"
-        app:layout_constraintEnd_toEndOf="@+id/spVid2"
-        app:layout_constraintStart_toStartOf="@+id/spVid2"
-        app:layout_constraintTop_toBottomOf="@+id/spVid2"
+        app:layout_constraintEnd_toEndOf="@+id/sp_valid1"
+        app:layout_constraintStart_toStartOf="@+id/sp_valid1"
+        app:layout_constraintTop_toBottomOf="@+id/sp_valid1"
         app:srcCompat="@drawable/ic_valid" />
 
     <TextView
@@ -35,8 +34,7 @@
         android:id="@+id/btn_getVerified"
         android:layout_width="@dimen/width_textView"
         android:layout_height="@dimen/btn_height2"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="44dp"
+        android:layout_marginBottom="15dp"
         android:background="@drawable/button_outline"
         android:text="Submit"
         android:textAllCaps="false"
@@ -44,8 +42,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ib_validId_2"
-        app:layout_constraintVertical_bias="0.078" />
+        app:layout_constraintTop_toBottomOf="@+id/ib_validId1" />
 
     <TextView
         android:id="@+id/textView7"
@@ -65,7 +62,7 @@
         android:layout_height="36dp"
         android:layout_marginTop="5dp"
         android:gravity="center"
-        android:text="certificates - for workers only (optional)"
+        android:text="Certificates - for workers only (optional)"
         android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="@+id/ib_selfie"
         app:layout_constraintStart_toStartOf="@+id/ib_selfie"
@@ -86,29 +83,19 @@
     <Spinner
         android:id="@+id/sp_valid1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="@+id/ib_validId1"
-        app:layout_constraintStart_toStartOf="@+id/ib_validId1"
-        app:layout_constraintTop_toBottomOf="@+id/ib_validId1"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <Spinner
-        android:id="@+id/spVid2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="15dp"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="@+id/ib_cert"
+        app:layout_constraintHorizontal_bias="0.48"
         app:layout_constraintStart_toStartOf="@+id/ib_cert"
         app:layout_constraintTop_toBottomOf="@+id/ib_cert"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageView
         android:id="@+id/ib_selfie"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
         android:layout_marginTop="5dp"
         android:background="@drawable/blue_outline"
         app:layout_constraintEnd_toEndOf="@+id/textView7"
@@ -118,25 +105,14 @@
 
     <ImageView
         android:id="@+id/ib_cert"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="5dp"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_marginTop="15dp"
         android:background="@drawable/blue_outline"
         app:layout_constraintEnd_toEndOf="@+id/textView10"
-        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="@+id/textView10"
         app:layout_constraintTop_toBottomOf="@+id/textView10"
         app:srcCompat="@drawable/ic_certificate" />
-
-    <ImageView
-        android:id="@+id/ib_validId_2"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/blue_outline"
-        app:layout_constraintEnd_toEndOf="@+id/sp_valid1"
-        app:layout_constraintStart_toStartOf="@+id/sp_valid1"
-        app:layout_constraintTop_toBottomOf="@+id/sp_valid1"
-        app:srcCompat="@drawable/ic_valid" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

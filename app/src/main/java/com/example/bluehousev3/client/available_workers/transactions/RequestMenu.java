@@ -48,7 +48,7 @@ public class RequestMenu extends Fragment {
         btnMark = view.findViewById(R.id.btn_mark_menu);
         btnCancel = view.findViewById(R.id.btn_cancel_menu);
         btnChat = view.findViewById(R.id.btn_chat_req_menu);
-        btnReview = view.findViewById(R.id.btn_create_review);
+
         String reqId = getArguments().getString("reqId");
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
@@ -73,7 +73,6 @@ public class RequestMenu extends Fragment {
                         btnCancel.setEnabled(false);
                         btnMark.setEnabled(false);
                         btnChat.setEnabled(false);
-                        btnReview.setEnabled(false);
 
                     } else {
                         btnCancel.setOnClickListener(new View.OnClickListener() {
@@ -143,13 +142,6 @@ public class RequestMenu extends Fragment {
                             }
                         });
 
-                        btnReview.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                ReviewDialog reviewDialog = new ReviewDialog(workerId);
-                                reviewDialog.show(getParentFragmentManager(), "review worker");
-                            }
-                        });
                     }
                 }
 

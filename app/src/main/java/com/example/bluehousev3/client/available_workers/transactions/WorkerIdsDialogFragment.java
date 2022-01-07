@@ -25,7 +25,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 public class WorkerIdsDialogFragment extends DialogFragment {
-    private ImageView iv1, iv2;
+    private ImageView iv1;
     private Button btnBack;
     private String workerId;
     private static final String TAG = "WorkerIdsDialogFragment";
@@ -41,19 +41,14 @@ public class WorkerIdsDialogFragment extends DialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.dialog_worker_ids, container, false);
         iv1 = view.findViewById(R.id.iv_id1_dialog);
-        iv2 = view.findViewById(R.id.iv_id2_dialog);
         btnBack = view.findViewById(R.id.btn_back);
-
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("users/workerIds").child(workerId);
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                    String id1 = snapshot.child("ValidId1Url").getValue(String.class);
-                    String id2 = snapshot.child("ValidId2Url").getValue(String.class);
+                    String id1 = snapshot.child("ValidIdUrl").getValue(String.class);
                     Picasso.get().load(id1).into(iv1);
-                    Picasso.get().load(id2).into(iv2);
             }
 
             @Override

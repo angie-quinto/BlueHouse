@@ -55,7 +55,7 @@ public class RequestAService extends Fragment {
     private ArrayAdapter<String> arrayAdapter;
     private final Calendar myCalendar = Calendar.getInstance();
     private String workerId;
-    private String rate;
+
 
 
 
@@ -206,7 +206,7 @@ public class RequestAService extends Fragment {
         bundle.putString("startTime", time);
         bundle.putString("location", location);
         bundle.putString("ID", workerId);
-        bundle.putString("workerRATE3", rate);
+
 
         Fragment req2 = new RequestAService2();
         req2.setArguments(bundle);

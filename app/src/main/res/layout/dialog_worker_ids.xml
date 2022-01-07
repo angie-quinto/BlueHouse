@@ -9,29 +9,17 @@
         android:id="@+id/iv_id1_dialog"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="224dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.476"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
-
-    <ImageView
-        android:id="@+id/iv_id2_dialog"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.476"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_id1_dialog"
         tools:srcCompat="@tools:sample/avatars" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_back"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:background="@drawable/button_outline"
         android:text="Close"
@@ -39,6 +27,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_id2_dialog"
-        app:layout_constraintVertical_bias="0.157" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_id1_dialog"
+        app:layout_constraintVertical_bias="0.394" />
 </androidx.constraintlayout.widget.ConstraintLayout>

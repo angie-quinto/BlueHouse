@@ -7,6 +7,15 @@
     tools:context=".client.available_workers.transactions.WorkerProfile">
 
 
+    <View
+        android:id="@+id/view2"
+        android:layout_width="412dp"
+        android:layout_height="270dp"
+        android:background="@drawable/background_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/iv_workerProfile_profilePic"
         android:layout_width="122dp"
@@ -23,6 +32,7 @@
         android:id="@+id/tv_workerProfile_workerAge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
         android:text="Age: "
         android:textColor="#000000"
         android:textSize="10sp"
@@ -33,6 +43,7 @@
         android:id="@+id/tv_workerProfile_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
         android:text="Email: "
         android:textColor="#000000"
         android:textSize="10sp"
@@ -43,6 +54,7 @@
         android:id="@+id/tv_workerProfile_mobile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
         android:text="Mobile Number: "
         android:textColor="#000000"
         android:textSize="10sp"
@@ -53,6 +65,7 @@
         android:id="@+id/tv_workerProfile_rating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
         android:text="Rating: "
         android:textColor="#000000"
         android:textSize="10sp"
@@ -63,6 +76,7 @@
         android:id="@+id/tv_workerProfile_educationalAtt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
         android:text="Educational Attainment: "
         android:textColor="#000000"
         android:textSize="10sp"
@@ -70,19 +84,10 @@
         app:layout_constraintTop_toBottomOf="@+id/textView27" />
 
     <TextView
-        android:id="@+id/tv_workerProfile_hourlyRate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hourly Rate: "
-        android:textColor="#000000"
-        android:textSize="10sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView19"
-        app:layout_constraintTop_toBottomOf="@+id/textView28" />
-
-    <TextView
         android:id="@+id/tv_workerProfile_gender"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
         android:text="Gender: "
         android:textColor="#000000"
         android:textSize="10sp"
@@ -93,6 +98,7 @@
         android:id="@+id/tv_workerProfile_address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
         android:text="Address: "
         android:textColor="#000000"
         android:textSize="10sp"
@@ -135,7 +141,7 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginStart="56dp"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="10dp"
         android:src="@drawable/ic_email"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView8" />
@@ -144,7 +150,6 @@
         android:id="@+id/textView14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
         android:text="Email"
         android:textColor="#000000"
         android:textSize="12sp"
@@ -157,7 +162,7 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginStart="56dp"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="10dp"
         android:src="@drawable/ic_mobile"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView12" />
@@ -178,7 +183,7 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginStart="56dp"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="10dp"
         android:src="@drawable/ic_star"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView16" />
@@ -199,7 +204,7 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginStart="56dp"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="10dp"
         android:src="@drawable/ic_school"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView17" />
@@ -216,35 +221,14 @@
         app:layout_constraintTop_toTopOf="@+id/imageView18" />
 
     <ImageView
-        android:id="@+id/imageView19"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="3dp"
-        android:src="@drawable/ic_dollar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView18" />
-
-    <TextView
-        android:id="@+id/textView28"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Rate"
-        android:textColor="#000000"
-        android:textSize="12sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/imageView19"
-        app:layout_constraintTop_toTopOf="@+id/imageView19" />
-
-    <ImageView
         android:id="@+id/imageView20"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginStart="56dp"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="10dp"
         android:src="@drawable/ic_male_female"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView19" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView18" />
 
     <TextView
         android:id="@+id/textView30"
@@ -262,7 +246,7 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginStart="56dp"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="10dp"
         android:src="@drawable/ic_location"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView20" />
@@ -281,8 +265,8 @@
     <TextView
         android:id="@+id/tv_workerids"
         android:layout_width="@dimen/btn_width"
-        android:layout_height="@dimen/btn_height2"
-        android:layout_marginTop="10dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/button_outline"
         android:gravity="center"
         android:text="Identification Photos (ID)"
@@ -297,8 +281,8 @@
     <TextView
         android:id="@+id/tv_worker_reviews"
         android:layout_width="@dimen/btn_width"
-        android:layout_height="@dimen/btn_height2"
-        android:layout_marginTop="2dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="5dp"
         android:background="@drawable/button_outline"
         android:drawablePadding="5dp"
         android:gravity="center"
@@ -313,8 +297,8 @@
     <TextView
         android:id="@+id/tv_worker_cert"
         android:layout_width="@dimen/btn_width"
-        android:layout_height="@dimen/btn_height2"
-        android:layout_marginTop="2dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="5dp"
         android:background="@drawable/button_outline"
         android:gravity="center"
         android:text="Certificate"
@@ -328,8 +312,8 @@
     <TextView
         android:id="@+id/tv_req_service"
         android:layout_width="@dimen/btn_width"
-        android:layout_height="@dimen/btn_height2"
-        android:layout_marginTop="2dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="5dp"
         android:background="@drawable/button_outline"
         android:gravity="center"
         android:text="Request A Service"

@@ -114,7 +114,7 @@ public class RequestAService2 extends Fragment {
             @Override
             public void onClick(View v) {
                 new AlertDialog.Builder(getActivity())
-                        .setTitle("submit")
+                        .setTitle("Submit")
                         .setMessage("Are you sure you want to submit service request?")
 
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
@@ -158,7 +158,7 @@ public class RequestAService2 extends Fragment {
                         })
 
                         .setNegativeButton(android.R.string.no, null)
-                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setIcon(R.drawable.ic_alert)
                         .show();
             }
         });
