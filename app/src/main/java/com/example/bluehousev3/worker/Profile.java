@@ -152,7 +152,7 @@ public class Profile extends Fragment {
   private void setProfile() {
     if (user != null) {
       String email = user.getEmail();
-      tvEmail.setText("Email: " + email);
+      tvEmail.setText(email);
       ValueEventListener eventListener = new ValueEventListener() {
         @SuppressLint("SetTextI18n")
         @Override

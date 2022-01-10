@@ -4,16 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#CBF1F5"
+    android:backgroundTintMode="add"
     tools:context=".worker.PendingRequests">
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_pending"
         android:layout_width="391dp"
-        android:layout_height="529dp"
+        android:layout_height="537dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="2dp"
         android:layout_marginEnd="5dp"
+        android:background="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

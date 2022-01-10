@@ -4,14 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#CBF1F5"
     tools:context=".client.ServiceRequests">
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_service_requests_client"
-        android:layout_width="382dp"
-        android:layout_height="553dp"
+        android:layout_width="390dp"
+        android:layout_height="563dp"
         android:layout_marginTop="5dp"
+        android:background="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.454"

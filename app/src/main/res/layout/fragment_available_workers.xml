@@ -4,12 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#CBF1F5"
     tools:context=".client.available_workers.AvailableWorkers">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_beautician"
-        android:layout_width="384dp"
-        android:layout_height="191dp"
+        android:layout_width="388dp"
+        android:layout_height="557dp"
+        android:background="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.444"
         app:layout_constraintStart_toStartOf="parent"

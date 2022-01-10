@@ -96,50 +96,61 @@ private void login() {
         .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
+                FirebaseUser currentUser = mAuth.getCurrentUser();
                 if (task.isSuccessful()) {
-                    FirebaseUser currentUser = mAuth.getCurrentUser();
-                    assert currentUser != null;
-                    String uid = currentUser.getUid();
-                    DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference().child("users/usertype");
+                    if (currentUser.isEmailVerified()) {
+                        String uid = currentUser.getUid();
+                        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference().child("users/usertype");
 
-                    ValueEventListener eventListener = new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            String userType = snapshot.child(uid).getValue(String.class);
+                        ValueEventListener eventListener = new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                String userType = snapshot.child(uid).getValue(String.class);
 
-                            if (userType.equals("worker")) {
-                                Intent intent = new Intent(LogIn.this, WorkerHomePage.class);
-                                startActivity(intent);
-                                finish();
-                                Toast.makeText(LogIn.this, "Welcome back!",
-                                    Toast.LENGTH_LONG).show();
-                            } else if (userType.equals("employer")) {
-                                Intent intent = new Intent(LogIn.this,
-                                ClientHomePageActivity.class);
-                                startActivity(intent);
-                                finish();
-                                Toast.makeText(LogIn.this, "Welcome back!",
-                                    Toast.LENGTH_LONG).show();
+                                if (userType.equals("worker")) {
+                                    Intent intent = new Intent(LogIn.this, WorkerHomePage.class);
+                                    startActivity(intent);
+                                    finish();
+                                    Toast.makeText(LogIn.this, "Welcome back!",
+                                       Toast.LENGTH_LONG).show();
+                                } else if (userType.equals("employer")) {
+                                    Intent intent = new Intent(LogIn.this,
+                                       ClientHomePageActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                    Toast.makeText(LogIn.this, "Welcome back!",
+                                       Toast.LENGTH_LONG).show();
+                                }
                             }
-                        }
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-                            Toast.makeText(LogIn.this, "database error, please log in again",
-                            Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(LogIn.this, LogIn.class);
-                            startActivity(intent);
-                            finish();
-                        }
-                    };
-                    rootRef.addValueEventListener(eventListener);
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+                                Toast.makeText(LogIn.this, "database error, please log in again",
+                                   Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(LogIn.this, LogIn.class);
+                                startActivity(intent);
+                                finish();
+                            }
+                        };
+                        rootRef.addValueEventListener(eventListener);
+                    } else if (!currentUser.isEmailVerified()) {
+                        progressBar.setVisibility(View.INVISIBLE);
+                        currentUser.sendEmailVerification();
+                        new AlertDialog.Builder(LogIn.this)
+                           .setTitle("Email Verification")
+                           .setMessage("Check your email to verify your account")
+                           .setPositiveButton(android.R.string.yes, (dialog, which) -> {
+                           }).show();
+                        edtEmail.requestFocus();
 
+
+                }
                 } else {
                     progressBar.setVisibility(View.INVISIBLE);
                     new AlertDialog.Builder(LogIn.this)
-                        .setTitle("Login Failed")
-                        .setMessage("email or password is invalid. Please provide a valid email and password.")
-                        .setPositiveButton(android.R.string.yes, (dialog, which) -> {
-                        }).show();
+                       .setTitle("Log In Failed")
+                       .setMessage("Your email/password is incorrect")
+                       .setPositiveButton(android.R.string.yes, (dialog, which) -> {
+                       }).show();
                     edtEmail.requestFocus();
                 }
             }

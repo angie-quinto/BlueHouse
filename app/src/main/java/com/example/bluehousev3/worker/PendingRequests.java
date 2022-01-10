@@ -87,7 +87,7 @@ public class PendingRequests extends Fragment implements PendingRequestsAdapter.
                 }
 
                 if (pendingRequests.isEmpty()) {
-                    tvNoReq.setText("There are no pending requests right now");
+                    tvNoReq.setText("Pending request is empty");
                 }
 
                 adapter.notifyDataSetChanged();

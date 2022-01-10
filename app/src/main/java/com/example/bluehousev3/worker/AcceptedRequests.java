@@ -28,6 +28,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 
@@ -46,7 +48,7 @@ public class AcceptedRequests extends Fragment implements AcceptedRequestsAdapte
         clientId = new ArrayList<>();
         bundle = new Bundle();
         RecyclerView rv = view.findViewById(R.id.rc_accepted);
-
+        TextView tvNo = view.findViewById(R.id.tv_no);
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         AcceptedRequestsAdapter adapter = new AcceptedRequestsAdapter(acceptedRequests, this);
@@ -78,7 +80,9 @@ public class AcceptedRequests extends Fragment implements AcceptedRequestsAdapte
                         }
                     }
                 }
-
+                if (acceptedRequests.isEmpty()) {
+                    tvNo.setText("Accepted request is empty");
+                }
                 adapter.notifyDataSetChanged();
             }
 

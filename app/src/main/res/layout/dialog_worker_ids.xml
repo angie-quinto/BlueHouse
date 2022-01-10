@@ -8,8 +8,8 @@
     <ImageView
         android:id="@+id/iv_id1_dialog"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_marginTop="224dp"
+        android:layout_height="500dp"
+        android:layout_marginTop="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"

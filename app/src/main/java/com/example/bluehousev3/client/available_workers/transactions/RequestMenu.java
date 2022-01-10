@@ -73,8 +73,13 @@ public class RequestMenu extends Fragment {
                         btnCancel.setEnabled(false);
                         btnMark.setEnabled(false);
                         btnChat.setEnabled(false);
+                    } else if (status.equals("pending")) {
+                        btnChat.setEnabled(false);
+                        btnMark.setEnabled(false);
+                    } else if (status.equals("accepted")) {
+                        btnCancel.setEnabled(false);
+                    }
 
-                    } else {
                         btnCancel.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
@@ -142,7 +147,7 @@ public class RequestMenu extends Fragment {
                             }
                         });
 
-                    }
+
                 }
 
             }

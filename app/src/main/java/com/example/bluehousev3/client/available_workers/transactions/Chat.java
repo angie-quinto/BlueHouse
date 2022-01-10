@@ -1,5 +1,6 @@
 package com.example.bluehousev3.client.available_workers.transactions;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,6 +13,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.contentcapture.ContentCaptureCondition;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -45,6 +48,9 @@ public class Chat extends Fragment {
         chatList = new ArrayList<>();
         String workerNAME = getArguments().getString("WORKER_NAME");
         tvChatWith.setText("Chatting with: " + workerNAME);
+
+
+
 
         DatabaseReference clientRef = FirebaseDatabase.getInstance().getReference().child("users/employers").child(uid);
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child(path);

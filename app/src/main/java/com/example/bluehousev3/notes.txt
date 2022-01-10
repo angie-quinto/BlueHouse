@@ -1,11 +1,22 @@
-if status == accepted? enable chat feature
+ mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
 
+                if(task.isSuccessful()){
+                   FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-accepted service row
-- service type
-- start date
-- start time
-- location
-
-item clicked: show addtl. details, chat button, mark as complete
-if status == completed : rate client enabled else : rate client disabled
+                   if(user.isEmailVerified()) {
+                       //redirect to home
+                       if (user != null){
+                           startActivity(new Intent(MainActivity.this, GetLevel.class));
+                           finish();
+                       }
+                   }else{
+                       user.sendEmailVerification();
+                       Toast.makeText(MainActivity.this, "Check your email to verify your account!", Toast.LENGTH_LONG).show();
+                       progressBar.setVisibility(View.GONE);
+                   }
+                }else{
+                    Toast.makeText(MainActivity.this, "Failed to login! Please check your credentials!", Toast.LENGTH_LONG).show();
+                    progressBar.setVisibility(View.GONE);
+                }

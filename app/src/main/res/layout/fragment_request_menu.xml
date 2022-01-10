@@ -7,10 +7,19 @@
     tools:context=".client.available_workers.transactions.RequestMenu">
 
 
+    <View
+        android:id="@+id/view3"
+        android:layout_width="391dp"
+        android:layout_height="215dp"
+        android:background="#CBF1F5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_cancel_menu"
         android:layout_width="200dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:layout_marginTop="24dp"
         android:background="@drawable/button_outline"
         android:text="Cancel Request"
@@ -37,7 +46,7 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_chat_req_menu"
         android:layout_width="200dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:layout_marginTop="32dp"
         android:background="@drawable/button_outline"
         android:text="Chat Worker"
@@ -49,7 +58,7 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_mark_menu"
         android:layout_width="200dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:layout_marginTop="24dp"
         android:background="@drawable/button_outline"
         android:text="Mark as Done"

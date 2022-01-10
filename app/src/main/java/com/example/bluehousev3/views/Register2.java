@@ -18,6 +18,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 
 import android.Manifest;
@@ -174,6 +175,7 @@ public class Register2 extends AppCompatActivity implements  AdapterView.OnItemS
         public void onComplete(@NonNull Task<AuthResult> task) {
           if(task.isSuccessful()) {
             Toast.makeText(Register2.this, "Auth Success", Toast.LENGTH_SHORT).show();
+
             if(userType.equals("Worker")) {
               com.example.bluehousev3.model.Worker worker = new com.example.bluehousev3.model.Worker();
               worker.setUserType("worker");
