@@ -38,16 +38,18 @@ public class ServiceRequests extends Fragment implements ClientServiceRequestsAd
   private TextView tvNoReq;
   private  ArrayList<String> reqId;
   private ArrayList<String> serviceRequests;
+  private ArrayList<String> statusList;
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_service_requests_client, container, false);
     tvNoReq = view.findViewById(R.id.tv_no_req_client);
     serviceRequests = new ArrayList<>();
+    statusList = new ArrayList<>();
     reqId = new ArrayList<>();
 
     RecyclerView rv = view.findViewById(R.id.rv_service_requests_client);
     rv.setLayoutManager(new LinearLayoutManager(getActivity()));
-    ClientServiceRequestsAdapter adapter = new ClientServiceRequestsAdapter(serviceRequests, this);
+    ClientServiceRequestsAdapter adapter = new ClientServiceRequestsAdapter(serviceRequests, statusList,this);
     rv.setAdapter(adapter);
 
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -62,7 +64,9 @@ public class ServiceRequests extends Fragment implements ClientServiceRequestsAd
         for (DataSnapshot snapshot1 : snapshot.getChildren()) {
           reqId.add(snapshot1.getKey());
           String serviceType = snapshot1.child("serviceType").getValue(String.class);
+          String status = snapshot1.child("status").getValue(String.class);
           serviceRequests.add(serviceType);
+          statusList.add(status);
           rv.smoothScrollToPosition(serviceRequests.size());
         }
         adapter.notifyDataSetChanged();

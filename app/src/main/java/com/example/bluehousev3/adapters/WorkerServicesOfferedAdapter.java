@@ -1,5 +1,6 @@
 package com.example.bluehousev3.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,9 +30,10 @@ public class WorkerServicesOfferedAdapter extends RecyclerView.Adapter<WorkerSer
         return new WorkerServicesOfferedAdapter.ViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull WorkerServicesOfferedAdapter.ViewHolder holder, int position) {
-        holder.tvServiceName.setText(servicesOffered.get(position));
+        holder.tvServiceName.setText((position+1) +  ". " +  servicesOffered.get(position));
     }
 
     @Override

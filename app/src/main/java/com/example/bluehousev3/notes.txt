@@ -1,22 +1,27 @@
- mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
+App presentation flow
+Employer
+1. Log in
+2. Register
+3. Available Services
+4. Request a service
+5. Service requests
+6. Request menu
+7. Popular services
+8. Profile
 
-                if(task.isSuccessful()){
-                   FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+Worker
+1. Pending requests
+2. Selected request
+3. Accepted request
+4. chat
+5. popular services
+6. profile
+7. edit profile
+8. services offered
 
-                   if(user.isEmailVerified()) {
-                       //redirect to home
-                       if (user != null){
-                           startActivity(new Intent(MainActivity.this, GetLevel.class));
-                           finish();
-                       }
-                   }else{
-                       user.sendEmailVerification();
-                       Toast.makeText(MainActivity.this, "Check your email to verify your account!", Toast.LENGTH_LONG).show();
-                       progressBar.setVisibility(View.GONE);
-                   }
-                }else{
-                    Toast.makeText(MainActivity.this, "Failed to login! Please check your credentials!", Toast.LENGTH_LONG).show();
-                    progressBar.setVisibility(View.GONE);
-                }
+security
+forgot password
+email verification
+
+
+

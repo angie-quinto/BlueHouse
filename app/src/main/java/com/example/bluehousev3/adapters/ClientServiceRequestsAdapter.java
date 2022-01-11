@@ -23,9 +23,10 @@ import java.util.List;
 public class ClientServiceRequestsAdapter extends RecyclerView.Adapter<ClientServiceRequestsAdapter.ViewHolder> {
     private OnRequestClickListener onRequestClickListener;
     private ArrayList<String> serviceRequests;
+    private ArrayList<String> status;
 
-    public ClientServiceRequestsAdapter(ArrayList<String> serviceRequests, OnRequestClickListener onRequestClickListener) {
-
+    public ClientServiceRequestsAdapter(ArrayList<String> serviceRequests,ArrayList<String> status,OnRequestClickListener onRequestClickListener) {
+        this.status = status;
         this.onRequestClickListener = onRequestClickListener;
         this.serviceRequests = serviceRequests;
     }
@@ -42,6 +43,7 @@ public class ClientServiceRequestsAdapter extends RecyclerView.Adapter<ClientSer
     @Override
     public void onBindViewHolder(@NonNull ClientServiceRequestsAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
             holder.tvServiceType.setText(serviceRequests.get(position ));
+            holder.tvServiceStatus.setText("Request Status: " + status.get(position));
 
     }
 
@@ -51,11 +53,12 @@ public class ClientServiceRequestsAdapter extends RecyclerView.Adapter<ClientSer
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        TextView tvServiceType;
+        TextView tvServiceType, tvServiceStatus;
         OnRequestClickListener onRequestClickListener;
         public ViewHolder(@NonNull View itemView, OnRequestClickListener onRequestClickListener) {
             super(itemView);
             tvServiceType = itemView.findViewById(R.id.tv_service_type);
+            tvServiceStatus = itemView.findViewById(R.id.tv_service_status);
             this.onRequestClickListener = onRequestClickListener;
             itemView.setOnClickListener(this);
 

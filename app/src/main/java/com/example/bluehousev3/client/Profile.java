@@ -59,10 +59,6 @@ public class Profile extends Fragment {
     tvRequest = view.findViewById(R.id.tv_request);
     ivVerfied = view.findViewById(R.id.iv_verified_emp);
 
-
-
-
-
     setProfile();
 
     tvSignout.setOnClickListener(new View.OnClickListener() {
@@ -119,6 +115,12 @@ public class Profile extends Fragment {
           if (status != null) {
             if (status.equals("verified")) {
               ivVerfied.setVisibility(View.VISIBLE);
+              ivVerfied.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                  Toast.makeText(getContext(), "Verified User", Toast.LENGTH_SHORT).show();
+                }
+              });
             }
           }
 
@@ -145,7 +147,7 @@ public class Profile extends Fragment {
         @Override
         public void onCancelled(DatabaseError databaseError) {}
       };
-      current_userRef.addListenerForSingleValueEvent(eventListener);
+      current_userRef.addValueEventListener(eventListener);
     } else {
       Toast.makeText(getContext(), "user is null", Toast.LENGTH_LONG).show();
     }

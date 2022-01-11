@@ -9,8 +9,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_services_offered"
-        android:layout_width="294dp"
-        android:layout_height="491dp"
+        android:layout_width="349dp"
+        android:layout_height="295dp"
         android:layout_marginStart="1dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="1dp"
@@ -25,7 +25,7 @@
         android:id="@+id/textView15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="170dp"
         android:text="My Services Offered"
         android:textColor="#000000"
         android:textSize="35sp"
@@ -56,4 +56,15 @@
         android:text="Close"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rv_services_offered" />
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="391dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/h_divider"
+        app:layout_constraintBottom_toTopOf="@+id/rv_services_offered"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView15" />
 </androidx.constraintlayout.widget.ConstraintLayout>

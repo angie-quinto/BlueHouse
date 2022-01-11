@@ -19,6 +19,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GetTokenResult;
 import com.google.firebase.database.FirebaseDatabase;
 
 import android.Manifest;
@@ -198,6 +199,8 @@ public class Register2 extends AppCompatActivity implements  AdapterView.OnItemS
                 public void onComplete(@NonNull Task<Void> task) {
                   if (task.isSuccessful()) {
                     progressBar.setVisibility(View.GONE);
+                    String uid = FirebaseAuth.getInstance().getUid();
+                    getUserToken(uid);
                     Toast.makeText(Register2.this, "Worker has" +
                        " been registered successfully", Toast.LENGTH_SHORT).show();
                     goToDesignatedActivity();
@@ -231,6 +234,8 @@ public class Register2 extends AppCompatActivity implements  AdapterView.OnItemS
                 public void onComplete(@NonNull Task<Void> task) {
                   if (task.isSuccessful()) {
                     progressBar.setVisibility(View.GONE);
+                    String uid = FirebaseAuth.getInstance().getUid();
+                    getUserToken(uid);
                     Toast.makeText(Register2.this, "Client has been registered successfully", Toast.LENGTH_SHORT).show();
                     goToDesignatedActivity();
 
@@ -370,5 +375,20 @@ public class Register2 extends AppCompatActivity implements  AdapterView.OnItemS
   @Override
   public void onNothingSelected(AdapterView<?> parent) {
 
+  }
+
+  private void getUserToken(String uid) {
+    FirebaseUser mUser = FirebaseAuth.getInstance().getCurrentUser();
+    mUser.getIdToken(true)
+       .addOnCompleteListener(new OnCompleteListener<GetTokenResult>() {
+         public void onComplete(@NonNull Task<GetTokenResult> task) {
+           if (task.isSuccessful()) {
+             String idToken = task.getResult().getToken();
+             FirebaseDatabase.getInstance().getReference().child("userTokens").child(uid).setValue(idToken);
+           } else {
+             task.getException();
+           }
+         }
+       });
   }
 }
