@@ -17,15 +17,20 @@
         <item>Undecided</item>
     </string-array>
 
+    <string-array name="date">
+        <item>January</item>
+    </string-array>
+
     <string-array name="educ_attainment">
         <item>Post Graduate</item>
         <item>Bachelors Degree</item>
         <item>Associate Degree</item>
-        <item>High School Graduate or Equivalent</item>
+        <item>High School Graduate</item>
         <item>None</item>
     </string-array>
 
     <string-array name="ids">
+        <item>Valid ID</item>
         <item>SSS</item>
         <item>NBI</item>
         <item>Barangay Clearance</item>

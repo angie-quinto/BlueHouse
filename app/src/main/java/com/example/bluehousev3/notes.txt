@@ -1,4 +1,3 @@
-App presentation flow
 Employer
 1. Log in
 2. Register
@@ -22,6 +21,13 @@ Worker
 security
 forgot password
 email verification
+
+employer:
+Steve Rogers
+maquinto9@gmail.com
+pppppppp
+Sindalan, CSF(P)
+
 
 
 

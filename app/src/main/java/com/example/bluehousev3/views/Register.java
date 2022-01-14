@@ -37,21 +37,6 @@ public class Register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        new AlertDialog.Builder(this)
-            .setTitle("Privacy Policy")
-            .setMessage("BlueHouse collects user information to verify if a user can register based on Philippine Labor laws (RA7610 & RA9231). BlueHouse is committed in following ethical practices, protecting the personal information of all users, and will not rent, barter, sell, permit, or give away to anyone unaffiliated with BlueHouse to use their data. \n" +
-                    "\n" +
-                    "This Privacy Policy explains how your personal information is collected, used, and disclosed by BlueHouse. This Privacy Policy applies to our application named BlueHouse. \n" +
-                    "\n" +
-                    "By accessing or using our Service, you signify that you agree to our collection, and storage of your personal information.\n" +
-                    "\n" +
-                    "By clicking Agree, you agree to our Terms and that you have read our Privacy Policy.")
-
-            .setPositiveButton("Agree", new DialogInterface.OnClickListener() {
-                @SuppressLint("CutPasteId")
-                public void onClick(DialogInterface dialog, int which) {
-
-
                     TextInputEditText tietName = findViewById(R.id.tiet_name);
                     TextInputEditText tietEmail = findViewById(R.id.tiet_email);
                     TextInputEditText tietPassword = findViewById(R.id.tiet_password);
@@ -131,34 +116,6 @@ public class Register extends AppCompatActivity {
 
 
                 }
-            })
-
-            .setNegativeButton("Disagree", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    Toast.makeText(Register.this, "You need to agree in the app's privacy policy in order to use it", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(Register.this, LogIn.class);
-                    startActivity(intent);
-                    finish();
-                }
-            })
-            .setIcon(R.drawable.privacy_policy)
-            .show();
+            }
 
 
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-}

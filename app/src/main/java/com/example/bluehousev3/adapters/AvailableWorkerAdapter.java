@@ -39,7 +39,7 @@ public class AvailableWorkerAdapter extends RecyclerView.Adapter<AvailableWorker
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull AvailableWorkerAdapter.ViewHolder holder, int position) {
-        holder.tvName.setText("Name: " + availableWorkersUnderServices.get(position).getFullName());
+        holder.tvName.setText(availableWorkersUnderServices.get(position).getFullName());
         holder.tvWorkerLoc.setText("Location: " + availableWorkersUnderServices.get(position).getAddress());
         if (availableWorkersUnderServices.get(position).getRating() != null) {
             holder.tvRating.setText("Rating: " + availableWorkersUnderServices.get(position).getRating());

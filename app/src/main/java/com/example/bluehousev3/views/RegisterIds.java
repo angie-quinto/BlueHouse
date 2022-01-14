@@ -41,6 +41,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
+
 import java.io.ByteArrayOutputStream;
 import java.util.Objects;
 
@@ -54,7 +56,7 @@ public class RegisterIds extends AppCompatActivity {
   private final String[] ids = new String[3];
   private String userType;
 
-
+  private ImageView ibSelfie, ibValidId1, ibCert;
 
   {
     assert user != null;
@@ -85,9 +87,9 @@ public class RegisterIds extends AppCompatActivity {
     sid1.setAdapter(adap1);
 
 
-    ImageView ibSelfie = findViewById(R.id.ib_selfie);
-    ImageView ibValidId1 = findViewById(R.id.ib_validId1);
-    ImageView ibCert = findViewById(R.id.ib_cert);
+     ibSelfie = findViewById(R.id.ib_selfie);
+     ibValidId1 = findViewById(R.id.ib_validId1);
+     ibCert = findViewById(R.id.ib_cert);
     Button btnGeVerified = findViewById(R.id.btn_getVerified);
     progressBar = findViewById(R.id.progressBar3);
     progressBar.setVisibility(View.INVISIBLE);
@@ -215,11 +217,7 @@ public class RegisterIds extends AppCompatActivity {
                 "Failed",
             Toast.LENGTH_SHORT).show()).addOnSuccessListener(taskSnapshot -> {
 
-          new AlertDialog.Builder(this)
-             .setTitle("Selfie Upload Success")
-             .setPositiveButton(android.R.string.yes, null)
-             .setIcon(R.drawable.ic_check)
-             .show();
+
 
 
           // gets the url of the uploaded image from the firebase and put
@@ -237,8 +235,9 @@ public class RegisterIds extends AppCompatActivity {
               String selfie1 = downloadUri.toString();
               idsRef.child(uid).child("SelfieUrl").setValue(selfie1);
               progressBar.setVisibility(View.INVISIBLE);
+              Picasso.get().load(selfie1).into(ibSelfie);
               new AlertDialog.Builder(this)
-                 .setTitle("Selfie Upload Success")
+                 .setTitle("Photo has been successfully uploaded.")
                  .setPositiveButton(android.R.string.yes, null)
                  .setIcon(R.drawable.ic_check)
                  .show();
@@ -262,8 +261,9 @@ public class RegisterIds extends AppCompatActivity {
           idsRef.child(uid).child("ValidIdUrl").setValue(valid1);
           progressBar.setVisibility(View.INVISIBLE);
 
+          Picasso.get().load(valid1).into(ibValidId1);
           new AlertDialog.Builder(this)
-             .setTitle(sid1.getSelectedItem().toString() +  " ID Upload Success")
+             .setTitle(sid1.getSelectedItem().toString() +  " ID has been successfully uploaded.")
              .setPositiveButton(android.R.string.yes, null)
              .setIcon(R.drawable.ic_check)
              .show();
@@ -278,7 +278,7 @@ public class RegisterIds extends AppCompatActivity {
       }
 
     if (requestCode == 1) {
-      assert data != null;
+
       Uri certUri = data.getData();
         final StorageReference fileRef =
             reference.child(System.currentTimeMillis() + "." + getFileExtension(certUri));
@@ -287,9 +287,9 @@ public class RegisterIds extends AppCompatActivity {
           String cert = uri.toString();
           idsRef.child(uid).child("CertificateUrl").setValue(cert);
           progressBar.setVisibility(View.INVISIBLE);
-
+          Picasso.get().load(cert).into(ibCert);
           new AlertDialog.Builder(this)
-             .setTitle("Certificate Upload Success")
+             .setTitle("Certificate has been successfully uploaded.")
              .setPositiveButton(android.R.string.yes, null)
              .setIcon(R.drawable.ic_check)
              .show();

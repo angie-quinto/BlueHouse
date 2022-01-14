@@ -9,6 +9,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +21,7 @@ import android.widget.Toast;
 
 import com.example.bluehousev3.R;
 
+import com.example.bluehousev3.client.available_workers.AvailableWorkers;
 import com.example.bluehousev3.views.LogIn;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -39,9 +41,9 @@ public class Profile extends Fragment {
 
   private TextView tvName, tvAge, tvAddress, tvPhoneNum,
       tvEmail, tvSignout, tvRequest;
-  private ImageView ivProfile, ivVerfied;
-
-
+  private ImageView ivProfile, ivVerfied, ivEdit;
+  private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+  private final String uid = user.getUid();
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
@@ -58,8 +60,24 @@ public class Profile extends Fragment {
     tvSignout = view.findViewById(R.id.tv_signout_emp);
     tvRequest = view.findViewById(R.id.tv_request);
     ivVerfied = view.findViewById(R.id.iv_verified_emp);
+    ivEdit = view.findViewById(R.id.iv_edit_emp);
 
     setProfile();
+    Bundle bundle = new Bundle();
+    bundle.putString("PROFILE_PATH_EMP", "users/employers/" + uid);
+
+    ivEdit.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        Fragment fragment = new EditProfile();
+        fragment.setArguments(bundle);
+        FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+        ft.replace(R.id.fragment_container_client, fragment);
+        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        ft.addToBackStack(null);
+        ft.commit();
+      }
+    });
 
     tvSignout.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -92,12 +110,10 @@ public class Profile extends Fragment {
     return view;
   }
   private void setProfile() {
-    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
     if (user != null) {
       String email = user.getEmail();
       tvEmail.setText(email);
-      String uid = user.getUid();
-
       DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
       DatabaseReference userReference = rootRef.child("users/employers");
       DatabaseReference current_userRef = userReference.child(uid);

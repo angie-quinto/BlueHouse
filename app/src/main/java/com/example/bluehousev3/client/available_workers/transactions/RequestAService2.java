@@ -9,9 +9,11 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.media.session.MediaSession;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
@@ -48,6 +50,11 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
+
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
+
 public class RequestAService2 extends Fragment {
     private ImageView ivImg1, ivImg2;
 
@@ -61,9 +68,10 @@ public class RequestAService2 extends Fragment {
     private  DatabaseReference serviceReqRef;
 
     private Uri img1, img2;
-    private String imgUrl1, imgUrl2;
+    private String imgUrl1, imgUrl2, month;
 
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -82,6 +90,53 @@ public class RequestAService2 extends Fragment {
         startTime = getArguments().getString("startTime");
         location = getArguments().getString("location");
         workerId = getArguments().getString("ID");
+
+
+        Date date = new Date();
+        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        int monthInt = localDate.getMonthValue();
+
+        switch (monthInt) {
+            case 1:
+                month = "January";
+                break;
+            case 2:
+                month = "February";
+                break;
+            case 3:
+                month = "March";
+                break;
+            case 4:
+                month = "April";
+                break;
+            case 5:
+                month = "May";
+                break;
+            case 6:
+                month = "June";
+                break;
+            case 7:
+                month = "July";
+                break;
+            case 8:
+                month = "August";
+                break;
+            case 9:
+                month = "September";
+                break;
+            case 10:
+                month = "October";
+                break;
+            case 11:
+                month = "November";
+                break;
+            case 12:
+                month = "December";
+                break;
+            default:
+                month = "empty";
+        }
+
 
         serviceReqRef = FirebaseDatabase.getInstance().getReference().child("users").child("serviceRequests").child(uid).child(String.valueOf(System.currentTimeMillis()));
         if (ContextCompat.checkSelfPermission(getActivity(),
@@ -113,6 +168,9 @@ public class RequestAService2 extends Fragment {
                 startActivityForResult(intent, 2);
             }
         });
+        DatabaseReference workerRef = FirebaseDatabase.getInstance().getReference().child("users/workers").child(workerId);
+        DatabaseReference pReference = FirebaseDatabase.getInstance().getReference();
+
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
 
@@ -123,11 +181,9 @@ public class RequestAService2 extends Fragment {
                         .setMessage("Are you sure you want to submit service request?")
 
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
                             public void onClick(DialogInterface dialog, int which) {
-
-                                DatabaseReference workerRef = FirebaseDatabase.getInstance().getReference().child("users/workers").child(workerId);
-
-                                 workerRef.addValueEventListener(new ValueEventListener() {
+                                workerRef.addValueEventListener(new ValueEventListener() {
                                      @Override
                                      public void onDataChange(@NonNull DataSnapshot snapshot) {
                                          serviceReqRef.child("workerName").setValue(snapshot.child("fullName").getValue(String.class));
@@ -139,8 +195,8 @@ public class RequestAService2 extends Fragment {
 
                                      }
                                  }) ;
-                                DatabaseReference pReference = FirebaseDatabase.getInstance().getReference();
-                                pReference.child("popularServices").child(String.valueOf(System.currentTimeMillis())).setValue(serviceType);
+
+                                pReference.child("popularServices").child(month).child(String.valueOf(System.currentTimeMillis())).setValue(serviceType);
                                 serviceReqRef.child("workerId").setValue(workerId);
                                 serviceReqRef.child("serviceType").setValue(serviceType);
                                 serviceReqRef.child("description").setValue(description);
