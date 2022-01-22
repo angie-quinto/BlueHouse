@@ -79,12 +79,9 @@ public class SelectedRequest extends Fragment {
                 tvLocation.setText(location);
 
 
-                tvReqPhotos.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        ViewRequestPhotos viewRequestPhotos = new ViewRequestPhotos(image1, image2);
-                        viewRequestPhotos.show(getParentFragmentManager(), "Request Photos");
-                    }
+                tvReqPhotos.setOnClickListener(view1 -> {
+                    ViewRequestPhotos viewRequestPhotos = new ViewRequestPhotos(image1, image2);
+                    viewRequestPhotos.show(getParentFragmentManager(), "Request Photos");
                 });
 
             }
@@ -129,66 +126,40 @@ public class SelectedRequest extends Fragment {
                     }
                 });
 
-        tvRejectReq.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        tvRejectReq.setOnClickListener(view12 -> new AlertDialog.Builder(getActivity())
+            .setTitle("Reject request")
+            .setMessage("Are you sure you want to reject this request?")
+            .setPositiveButton("Yes", (dialog, which) -> reference.child("status").setValue("rejected").addOnSuccessListener(unused -> {
+                Toast.makeText(getContext(), "Request Rejected", Toast.LENGTH_SHORT).show();
+                Fragment pending = new PendingRequests();
+                FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+                ft.replace(R.id.fragment_container_worker, pending);
+                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                ft.addToBackStack(null);
+                ft.commit();
+            }))
+            .setNegativeButton(android.R.string.no, null)
+            .setIcon(R.drawable.ic_alert)
+            .show());
 
-                new AlertDialog.Builder(getActivity())
-                    .setTitle("Reject request")
-                    .setMessage("Are you sure you want to reject this request?")
-                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
+        tvAcceptReq.setOnClickListener(view13 -> {
+            if (status == null || status.equals("Not yet verified")) {
+                new AlertDialog.Builder(getContext())
+                    .setTitle("Employer is not yet verified")
+                    .setMessage("Are you sure you want to transact with this employer?")
 
-
-                            reference.child("status").setValue("rejected").addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void unused) {
-                                    Toast.makeText(getContext(), "Request Rejected", Toast.LENGTH_SHORT).show();
-                                    Fragment pending = new PendingRequests();
-                                    FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-                                    ft.replace(R.id.fragment_container_worker, pending);
-                                    ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-                                    ft.addToBackStack(null);
-                                    ft.commit();
-                                }
-                            });
-                        }
-
-                    })
+                    .setPositiveButton(android.R.string.yes, (dialog, which) -> reference.child("status").setValue("accepted").addOnSuccessListener(unused -> {
+                        Toast.makeText(getContext(), "Request Accepted", Toast.LENGTH_SHORT).show();
+                        Fragment pending = new PendingRequests();
+                        FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+                        ft.replace(R.id.fragment_container_worker, pending);
+                        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                        ft.addToBackStack(null);
+                        ft.commit();
+                    }))
                     .setNegativeButton(android.R.string.no, null)
-                    .setIcon(R.drawable.ic_alert)
+                    .setIcon(R.drawable.caution_ic)
                     .show();
-            }
-        });
-
-        tvAcceptReq.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (status == null || status.equals("Not yet verified")) {
-                    new AlertDialog.Builder(getContext())
-                        .setTitle("Employer is not yet verified")
-                        .setMessage("Are you sure you want to transact with this employer?")
-
-                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                reference.child("status").setValue("accepted").addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void unused) {
-                                        Toast.makeText(getContext(), "Request Accepted", Toast.LENGTH_SHORT).show();
-                                        Fragment pending = new PendingRequests();
-                                        FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-                                        ft.replace(R.id.fragment_container_worker, pending);
-                                        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-                                        ft.addToBackStack(null);
-                                        ft.commit();
-                                    }
-                                });
-                            }
-                        })
-                        .setNegativeButton(android.R.string.no, null)
-                        .setIcon(R.drawable.caution_ic)
-                        .show();
-                }
             }
         });
 

@@ -41,12 +41,7 @@ public class ViewRequestPhotos extends DialogFragment {
             Picasso.get().load(image2).resize(350,350).into(ivPhoto2);
         }
 
-        tvClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getDialog().dismiss();
-            }
-        });
+        tvClose.setOnClickListener(view1 -> getDialog().dismiss());
 
         return view;
     }

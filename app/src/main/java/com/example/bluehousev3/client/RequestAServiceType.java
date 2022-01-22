@@ -33,32 +33,22 @@ public class RequestAServiceType extends DialogFragment {
         btnSubmit = view.findViewById(R.id.btn_submit_request);
         btnCancel = view.findViewById(R.id.btn_cancel_req);
 
-        btnSubmit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        btnSubmit.setOnClickListener(v -> {
 
-                    String request = edtRequest.getText().toString();
-                    if (!request.isEmpty()) {
-                        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("usersRequest");
-                        databaseReference.child(String.valueOf(System.currentTimeMillis())).setValue(request).addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void unused) {
-                                Toast.makeText(getActivity(), "Request Sent...", Toast.LENGTH_SHORT).show();
-                                getDialog().dismiss();
-                            }
-                        });
-                    }
-            }
+                String request = edtRequest.getText().toString();
+                if (!request.isEmpty()) {
+                    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("usersRequest");
+                    databaseReference.child(String.valueOf(System.currentTimeMillis())).setValue(request).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            Toast.makeText(getActivity(), "Request Sent...", Toast.LENGTH_SHORT).show();
+                            getDialog().dismiss();
+                        }
+                    });
+                }
         });
 
-        btnCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getDialog().dismiss();
-            }
-        });
-
-
+        btnCancel.setOnClickListener(v -> getDialog().dismiss());
         return view;
     }
 }

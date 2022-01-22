@@ -61,15 +61,11 @@ public class Profile extends Fragment {
     tvAge = view.findViewById(R.id.tv_age);
     tvAddress = view.findViewById(R.id.tv_address);
     ivVerified = view.findViewById(R.id.iv_verified);
-
     tvPhoneNum = view.findViewById(R.id.tv_phoneNum);
     tvEmail = view.findViewById(R.id.tv_email);
     ivPic = view.findViewById(R.id.iv_workerPic);
-
-
     tvSignout = view.findViewById(R.id.tv_signout);
     tvServicesOffered = view.findViewById(R.id.tv_myServices);
-
     ivEdit = view.findViewById(R.id.iv_edit_profile);
 
     setProfile();
@@ -140,8 +136,6 @@ public class Profile extends Fragment {
            .setNegativeButton("No", null)
            .setIcon(R.drawable.ic_logout)
            .show();
-
-
       }
     });
 
@@ -175,8 +169,6 @@ public class Profile extends Fragment {
               });
             }
           }
-
-
           tvName.setText(name);
           tvAddress.setText(address);
           tvAge.setText(birthdate);

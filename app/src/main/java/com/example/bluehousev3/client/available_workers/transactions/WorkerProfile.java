@@ -104,9 +104,6 @@ public class WorkerProfile extends Fragment {
                     tvRating.setText("not yet rated");
                 }
 
-
-
-
                 DatabaseReference picRef = FirebaseDatabase.getInstance().getReference().child("users/workerIds").child(workerId);
                 picRef.addValueEventListener(new ValueEventListener() {
                     @Override

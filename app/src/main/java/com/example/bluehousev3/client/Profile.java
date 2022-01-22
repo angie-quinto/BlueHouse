@@ -79,33 +79,23 @@ public class Profile extends Fragment {
       }
     });
 
-    tvSignout.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        new AlertDialog.Builder(getActivity())
-           .setTitle("Sign Out")
-           .setMessage("Are you sure you want to sign out?")
-           .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-             public void onClick(DialogInterface dialog, int which) {
-               FirebaseAuth.getInstance().signOut();
-               Toast.makeText(getContext(), "signed out", Toast.LENGTH_LONG).show();
-               Intent intent = new Intent(getContext(), LogIn.class);
-               startActivity(intent);
-               requireActivity().finish();
-             }
-           })
-           .setNegativeButton("No", null)
-           .setIcon(R.drawable.ic_logout)
-           .show();
-      }
-    });
+    tvSignout.setOnClickListener(v -> new AlertDialog.Builder(getActivity())
+       .setTitle("Sign Out")
+       .setMessage("Are you sure you want to sign out?")
+       .setPositiveButton("Yes", (dialog, which) -> {
+         FirebaseAuth.getInstance().signOut();
+         Toast.makeText(getContext(), "signed out", Toast.LENGTH_LONG).show();
+         Intent intent = new Intent(getContext(), LogIn.class);
+         startActivity(intent);
+         requireActivity().finish();
+       })
+       .setNegativeButton("No", null)
+       .setIcon(R.drawable.ic_logout)
+       .show());
 
-    tvRequest.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        RequestAServiceType req = new RequestAServiceType();
-        req.show(getParentFragmentManager(), "Request");
-      }
+    tvRequest.setOnClickListener(v -> {
+      RequestAServiceType req = new RequestAServiceType();
+      req.show(getParentFragmentManager(), "Request");
     });
     return view;
   }
@@ -131,12 +121,7 @@ public class Profile extends Fragment {
           if (status != null) {
             if (status.equals("verified")) {
               ivVerfied.setVisibility(View.VISIBLE);
-              ivVerfied.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                  Toast.makeText(getContext(), "Verified User", Toast.LENGTH_SHORT).show();
-                }
-              });
+              ivVerfied.setOnClickListener(v -> Toast.makeText(getContext(), "Verified User", Toast.LENGTH_SHORT).show());
             }
           }
 

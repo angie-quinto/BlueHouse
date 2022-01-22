@@ -56,9 +56,6 @@ public class RequestAService extends Fragment {
     private final Calendar myCalendar = Calendar.getInstance();
     private String workerId;
 
-
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_request_a_service, container, false);
@@ -71,15 +68,8 @@ public class RequestAService extends Fragment {
         swSetCurrAdd = view.findViewById(R.id.sw_curr_addr);
         btnNext = view.findViewById(R.id.btn_next);
         spinnerServiceType = view.findViewById(R.id.spnnr_serviceType);
-
         bundle = new Bundle();
         servicesOffered = new ArrayList<>();
-
-
-
-
-
-
 
         DatabaseReference workerServicesOfferedRef = FirebaseDatabase.getInstance().getReference().child("users/workerServicesOffered").child(workerId);
         workerServicesOfferedRef.addValueEventListener(new ValueEventListener() {
@@ -134,10 +124,7 @@ public class RequestAService extends Fragment {
           }
       });
 
-
-
-
-        swSetCurrAdd.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+      swSetCurrAdd.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
@@ -220,14 +207,11 @@ public class RequestAService extends Fragment {
 private void updateLabelForStart() {
     String myFormat = "E, dd/MM/yy";
     SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
-
     tietDateOfAppointment.setText(sdf.format(myCalendar.getTime()));
 
 }
 
-
-
-    private void openTimeFragment(EditText edt) {
+private void openTimeFragment(EditText edt) {
         TimePickerDialog mTimePicker;
 
         final Calendar c = Calendar.getInstance();
@@ -257,7 +241,7 @@ private void updateLabelForStart() {
 
                 edt.setText(formattedTime);
             }
-        }, hour, minute, false);//No 24 hour time
+        }, hour, minute, false);
         mTimePicker.setTitle("Select Time");
         mTimePicker.show();
     }

@@ -37,7 +37,6 @@ public class SelectedAcceptedRequest extends Fragment {
     String clientName, clientRating, clientGender, image1, image2;
     String clientAge, status, isEmpRated;
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -46,16 +45,12 @@ public class SelectedAcceptedRequest extends Fragment {
         tvServiceType = view.findViewById(R.id.tv_service_type_selected_accep);
         tvDescription = view.findViewById(R.id.tv_desc_sellec_accep);
         tvStartDate = view.findViewById(R.id.tv_start_date_selected_accep);
-
         tvLocation = view.findViewById(R.id.tv_location_selec_accep);
-
         tvStartTime = view.findViewById(R.id.tv_start_time_selec_accep);
-
         tvClientName = view.findViewById(R.id.tv_client_name_selec_accep);
         tvClientRating = view.findViewById(R.id.tv_client_rating_selec_accep);
         tvClientGender = view.findViewById(R.id.tv_client_sex_selec_accep);
         tvClientAge = view.findViewById(R.id.tv_client_age_selec_accep);
-
         tvStatus = view.findViewById(R.id.tv_status_selec_accep);
         tvChat = view.findViewById(R.id.tv_chat_emp);
         tvRate = view.findViewById(R.id.tv_rate_emp);
@@ -64,7 +59,6 @@ public class SelectedAcceptedRequest extends Fragment {
         FirebaseUser user = mAuth.getCurrentUser();
         String uid = user.getUid();
         String reqId = getArguments().getString("rIdAccept");
-
         clientId = getArguments().getString("cIdAccept");
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("users/serviceRequests").child(clientId).child(reqId);
@@ -91,8 +85,6 @@ public class SelectedAcceptedRequest extends Fragment {
                 tvLocation.setText(location);
                 tvStatus.setText(status);
 
-
-                // check if the worker has already rated the employer
                 if (isEmpRated != null) {
                   if (isEmpRated.equals("true")) {
                     tvRate.setEnabled(false);
@@ -131,7 +123,7 @@ public class SelectedAcceptedRequest extends Fragment {
                     tvClientRating.setText("Rating: Not Yet Rated");
                 }
                 tvClientGender.setText("Sex: " + clientGender);
-                tvClientAge.setText("Age: " + String.valueOf(clientAge));
+                tvClientAge.setText("Age: " + clientAge);
 
             }
 
@@ -141,29 +133,23 @@ public class SelectedAcceptedRequest extends Fragment {
             }
         });
 
-        tvChat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Bundle bundle = new Bundle();
-                bundle.putString("empName", clientName);
-                bundle.putString("WorkerId",uid);
-                bundle.putString("refPath", path);
-                Fragment chat = new Chat();
-                chat.setArguments(bundle);
-                FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-                ft.replace(R.id.fragment_container_worker, chat);
-                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-                ft.addToBackStack(null);
-                ft.commit();
-            }
+        tvChat.setOnClickListener(v -> {
+            Bundle bundle = new Bundle();
+            bundle.putString("empName", clientName);
+            bundle.putString("WorkerId",uid);
+            bundle.putString("refPath", path);
+            Fragment chat = new Chat();
+            chat.setArguments(bundle);
+            FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+            ft.replace(R.id.fragment_container_worker, chat);
+            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+            ft.addToBackStack(null);
+            ft.commit();
         });
 
-        tvRate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-              RateDialog rateDialog = new RateDialog(path, "employerRatings", clientId, "employers");
-              rateDialog.show(getParentFragmentManager(), "rate dialog");
-            }
+        tvRate.setOnClickListener(v -> {
+          RateDialog rateDialog = new RateDialog(path, "employerRatings", clientId, "employers");
+          rateDialog.show(getParentFragmentManager(), "rate dialog");
         });
 
         return view;

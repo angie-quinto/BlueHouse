@@ -45,8 +45,6 @@ public class AvailableWorkers extends Fragment implements AvailableWorkerAdapter
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_available_workers, container, false);
-
-
         workerIds = new ArrayList<>();
         tvLabel = view.findViewById(R.id.tv_available_workers_label);
 
@@ -98,9 +96,6 @@ public class AvailableWorkers extends Fragment implements AvailableWorkerAdapter
 
                     }
                 });
-
-
-
             }
 
             @Override

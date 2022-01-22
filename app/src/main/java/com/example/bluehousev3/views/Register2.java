@@ -118,30 +118,15 @@ public class Register2 extends AppCompatActivity implements  AdapterView.OnItemS
       }
     };
 
-    tietDob.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        showDatePickerDialog(v);
+    tietDob.setOnClickListener(v -> showDatePickerDialog(v));
+
+    btnRegister2.setOnClickListener(v -> registerUser());
+
+    swAutoLoc.setOnCheckedChangeListener((buttonView, isChecked) -> {
+      if (isChecked) {
+        updateGps();
       }
     });
-
-    btnRegister2.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        registerUser();
-      }
-    });
-    swAutoLoc.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-      @Override
-      public void onCheckedChanged(CompoundButton buttonView,
-                                   boolean isChecked) {
-        if (isChecked) {
-          updateGps();
-        }
-      }
-    });
-
-
   }
 
   public void registerUser() {
@@ -166,97 +151,88 @@ public class Register2 extends AppCompatActivity implements  AdapterView.OnItemS
       return;
     }
 
-
     // creates an account for the new user and put their credential on
     // the database
     if (Integer.parseInt(age) > 18) {
       progressBar.setVisibility(View.VISIBLE);
-      mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-        @Override
-        public void onComplete(@NonNull Task<AuthResult> task) {
-          if(task.isSuccessful()) {
-            Toast.makeText(Register2.this, "Auth Success", Toast.LENGTH_SHORT).show();
+      mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
+        if(task.isSuccessful()) {
+          Toast.makeText(Register2.this, "Auth Success", Toast.LENGTH_SHORT).show();
 
-            if(userType.equals("Worker")) {
-              com.example.bluehousev3.model.Worker worker = new com.example.bluehousev3.model.Worker();
-              worker.setUserType("worker");
-              worker.setFullName(name);
-              worker.setAge(age);
-              worker.setGender(getGender());
-              worker.setEmail(email);
-              worker.setPhoneNumber(mobileNumber);
-              worker.setAddress(address);
-              worker.setBirthdate(birthDate);
-              worker.setStatus("not yet verified");
-              worker.setHighestEducationalAttainment(educAttSpinner.getSelectedItem().toString());
+          if(userType.equals("Worker")) {
+            com.example.bluehousev3.model.Worker worker = new com.example.bluehousev3.model.Worker();
+            worker.setUserType("worker");
+            worker.setFullName(name);
+            worker.setAge(age);
+            worker.setGender(getGender());
+            worker.setEmail(email);
+            worker.setPhoneNumber(mobileNumber);
+            worker.setAddress(address);
+            worker.setBirthdate(birthDate);
+            worker.setStatus("not yet verified");
+            worker.setHighestEducationalAttainment(educAttSpinner.getSelectedItem().toString());
 
-              FirebaseDatabase.getInstance(FIREBASE_URL).getReference("users").child("usertype").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue("worker");
+            FirebaseDatabase.getInstance(FIREBASE_URL).getReference("users").child("usertype").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue("worker");
 
-              FirebaseDatabase.getInstance(FIREBASE_URL).getReference("users").child("workers")
-                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                 .setValue(worker).addOnCompleteListener(new OnCompleteListener<Void>() {
-                @Override
-                public void onComplete(@NonNull Task<Void> task) {
-                  if (task.isSuccessful()) {
-                    progressBar.setVisibility(View.GONE);
-                    String uid = FirebaseAuth.getInstance().getUid();
-                    getUserToken(uid);
-                    Toast.makeText(Register2.this, "Worker has" +
-                       " been registered successfully", Toast.LENGTH_SHORT).show();
-                    goToDesignatedActivity();
+            FirebaseDatabase.getInstance(FIREBASE_URL).getReference("users").child("workers")
+               .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+               .setValue(worker).addOnCompleteListener(new OnCompleteListener<Void>() {
+              @Override
+              public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                  progressBar.setVisibility(View.GONE);
+                  String uid = FirebaseAuth.getInstance().getUid();
+                  getUserToken(uid);
+                  Toast.makeText(Register2.this, "Worker has" +
+                     " been registered successfully", Toast.LENGTH_SHORT).show();
+                  goToDesignatedActivity();
 
-                  } else {
-                    progressBar.setVisibility(View.GONE);
-                    Toast.makeText(Register2.this, "Worker " +
-                       "registration failed", Toast.LENGTH_SHORT).show();
-                  }
+                } else {
+                  progressBar.setVisibility(View.GONE);
+                  Toast.makeText(Register2.this, "Worker " +
+                     "registration failed", Toast.LENGTH_SHORT).show();
                 }
-              });
+              }
+            });
 
-            } else if (userType.equals("Employer")) {
-              Client client = new Client();
-              client.setUserType("employer");
-              client.setFullName(name);
-              client.setAge(age);
-              client.setGender(getGender());
-              client.setEmail(email);
-              client.setPhoneNumber(mobileNumber);
-              client.setAddress(address);
-              client.setBirthdate(birthDate);
-              client.setStatus("Not yet verified");
+          } else if (userType.equals("Employer")) {
+            Client client = new Client();
+            client.setUserType("employer");
+            client.setFullName(name);
+            client.setAge(age);
+            client.setGender(getGender());
+            client.setEmail(email);
+            client.setPhoneNumber(mobileNumber);
+            client.setAddress(address);
+            client.setBirthdate(birthDate);
+            client.setStatus("Not yet verified");
 
 
-              FirebaseDatabase.getInstance(FIREBASE_URL).getReference("users").child("usertype").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue("employer");
-              FirebaseDatabase.getInstance(FIREBASE_URL).getReference("users").child("employers")
-                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                 .setValue(client).addOnCompleteListener(new OnCompleteListener<Void>() {
-                @Override
-                public void onComplete(@NonNull Task<Void> task) {
-                  if (task.isSuccessful()) {
-                    progressBar.setVisibility(View.GONE);
-                    String uid = FirebaseAuth.getInstance().getUid();
-                    getUserToken(uid);
-                    Toast.makeText(Register2.this, "Client has been registered successfully", Toast.LENGTH_SHORT).show();
-                    goToDesignatedActivity();
+            FirebaseDatabase.getInstance(FIREBASE_URL).getReference("users").child("usertype").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue("employer");
+            FirebaseDatabase.getInstance(FIREBASE_URL).getReference("users").child("employers")
+               .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+               .setValue(client).addOnCompleteListener(task1 -> {
+                 if (task1.isSuccessful()) {
+                   progressBar.setVisibility(View.GONE);
+                   String uid = FirebaseAuth.getInstance().getUid();
+                   getUserToken(uid);
+                   Toast.makeText(Register2.this, "Client has been registered successfully", Toast.LENGTH_SHORT).show();
+                   goToDesignatedActivity();
 
-                  } else {
-                    progressBar.setVisibility(View.GONE);
-                    Toast.makeText(Register2.this, "Client registration failed", Toast.LENGTH_SHORT).show();
-                  }
-                }
-              });
-            } else {
-              Toast.makeText(Register2.this, "Registration Failed", Toast.LENGTH_SHORT).show();
-            }
+                 } else {
+                   progressBar.setVisibility(View.GONE);
+                   Toast.makeText(Register2.this, "Client registration failed", Toast.LENGTH_SHORT).show();
+                 }
+               });
           } else {
-            progressBar.setVisibility(View.GONE);
-            Toast.makeText(Register2.this, "Auth Failed", Toast.LENGTH_SHORT).show();
-            Toast.makeText(Register2.this, "Invalid Email",
-               Toast.LENGTH_LONG).show();
+            Toast.makeText(Register2.this, "Registration Failed", Toast.LENGTH_SHORT).show();
           }
+        } else {
+          progressBar.setVisibility(View.GONE);
+          Toast.makeText(Register2.this, "Auth Failed", Toast.LENGTH_SHORT).show();
+          Toast.makeText(Register2.this, "Invalid Email",
+             Toast.LENGTH_LONG).show();
         }
-
-
       });
 
     }
@@ -290,17 +266,14 @@ public class Register2 extends AppCompatActivity implements  AdapterView.OnItemS
     if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
       // user provided the permission
 
-      fusedLocationProviderClient.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
-        @Override
-        public void onSuccess(Location location) {
-          // we got permissions. Put the values of location xxx into the
-          // UI components
+      fusedLocationProviderClient.getLastLocation().addOnSuccessListener(this, location -> {
+        // we got permissions. Put the values of location xxx into the
+        // UI components
 
-          updateUiValues(location);
+        updateUiValues(location);
 
 
 
-        }
       });
     } else {
       // permission not granted yet
@@ -366,7 +339,6 @@ public class Register2 extends AppCompatActivity implements  AdapterView.OnItemS
 
   }
 
-
   @Override
   public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
@@ -380,14 +352,12 @@ public class Register2 extends AppCompatActivity implements  AdapterView.OnItemS
   private void getUserToken(String uid) {
     FirebaseUser mUser = FirebaseAuth.getInstance().getCurrentUser();
     mUser.getIdToken(true)
-       .addOnCompleteListener(new OnCompleteListener<GetTokenResult>() {
-         public void onComplete(@NonNull Task<GetTokenResult> task) {
-           if (task.isSuccessful()) {
-             String idToken = task.getResult().getToken();
-             FirebaseDatabase.getInstance().getReference().child("userTokens").child(uid).setValue(idToken);
-           } else {
-             task.getException();
-           }
+       .addOnCompleteListener(task -> {
+         if (task.isSuccessful()) {
+           String idToken = task.getResult().getToken();
+           FirebaseDatabase.getInstance().getReference().child("userTokens").child(uid).setValue(idToken);
+         } else {
+           task.getException();
          }
        });
   }

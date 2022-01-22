@@ -111,11 +111,11 @@
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_profile2.xml" value="0.5" />
         <entry key="app/src/main/res/layout/fragment_request_a_service.xml" value="0.5" />
-        <entry key="app/src/main/res/layout/fragment_request_a_service2.xml" value="0.33090909090909093" />
+        <entry key="app/src/main/res/layout/fragment_request_a_service2.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_request_menu.xml" value="0.3536458333333333" />
         <entry key="app/src/main/res/layout/fragment_saved_offers.xml" value="0.17274569402228976" />
         <entry key="app/src/main/res/layout/fragment_selected_accepted_request.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/fragment_selected_request.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_selected_request.xml" value="0.5" />
         <entry key="app/src/main/res/layout/fragment_service_requests_client.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_services_offered.xml" value="0.25833333333333336" />
         <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.3333333333333333" />

@@ -57,48 +57,34 @@ public class EditProfile extends Fragment {
 
             }
         });
-        btnCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Fragment profile = new Profile();
-                FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-                ft.replace(R.id.fragment_container_worker, profile);
-                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-                ft.addToBackStack(null);
-                ft.commit();
-            }
+        btnCancel.setOnClickListener(v -> {
+            Fragment profile = new Profile();
+            FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+            ft.replace(R.id.fragment_container_worker, profile);
+            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+            ft.addToBackStack(null);
+            ft.commit();
         });
 
-        btnSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new AlertDialog.Builder(getContext())
-                    .setTitle("Save Changes")
-                    .setMessage("Are you sure you want to save these changes?")
-                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            reference.child("fullName").setValue(edtName.getText().toString());
-                            reference.child("address").setValue(edtAddress.getText().toString());
-                            reference.child("phoneNumber").setValue(edtMobileNum.getText().toString()).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void unused) {
-                                    Toast.makeText(getActivity(), "Changes Saved", Toast.LENGTH_SHORT).show();
-                                    Fragment profile = new Profile();
-                                    FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-                                    ft.replace(R.id.fragment_container_worker, profile);
-                                    ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-                                    ft.addToBackStack(null);
-                                    ft.commit();
-                                }
-                            });
-                        }
-                    })
-                    .setNegativeButton(android.R.string.no, null)
-                    .setIcon(R.drawable.ic_alert)
-                    .show();
-
-            }
-        });
+        btnSave.setOnClickListener(v -> new AlertDialog.Builder(getContext())
+            .setTitle("Save Changes")
+            .setMessage("Are you sure you want to save these changes?")
+            .setPositiveButton(android.R.string.yes, (dialog, which) -> {
+                reference.child("fullName").setValue(edtName.getText().toString());
+                reference.child("address").setValue(edtAddress.getText().toString());
+                reference.child("phoneNumber").setValue(edtMobileNum.getText().toString()).addOnSuccessListener(unused -> {
+                    Toast.makeText(getActivity(), "Changes Saved", Toast.LENGTH_SHORT).show();
+                    Fragment profile = new Profile();
+                    FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+                    ft.replace(R.id.fragment_container_worker, profile);
+                    ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                    ft.addToBackStack(null);
+                    ft.commit();
+                });
+            })
+            .setNegativeButton(android.R.string.no, null)
+            .setIcon(R.drawable.ic_alert)
+            .show());
         return view;
     }
 }

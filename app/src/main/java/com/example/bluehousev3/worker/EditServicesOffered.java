@@ -74,37 +74,23 @@ public class EditServicesOffered extends Fragment {
     servicesOffered = new HashMap<>();
     Button btnCancel = view.findViewById(R.id.btn_cancel_edit);
 
-    btnSave.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
+    btnSave.setOnClickListener(v -> new AlertDialog.Builder(getContext())
+       .setTitle("Save Edit?")
+       .setMessage("Are you sure you want to change your services offered?")
 
-        new AlertDialog.Builder(getContext())
-           .setTitle("Save Edit?")
-           .setMessage("Are you sure you want to change your services offered?")
+       .setPositiveButton("Yes", (dialog, which) -> goToRegister())
 
-           .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-             public void onClick(DialogInterface dialog, int which) {
-               goToRegister();
-             }
-           })
+       .setNegativeButton("No", null)
+       .setIcon(android.R.drawable.ic_dialog_alert)
+       .show());
 
-           // A null listener allows the button to dismiss the dialog and take no further action.
-           .setNegativeButton("No", null)
-           .setIcon(android.R.drawable.ic_dialog_alert)
-           .show();
-      }
-    });
-
-    btnCancel.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        Fragment profile = new Profile();
-        FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-        ft.replace(R.id.fragment_container_worker, profile);
-        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-        ft.addToBackStack(null);
-        ft.commit();
-      }
+    btnCancel.setOnClickListener(v -> {
+      Fragment profile = new Profile();
+      FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+      ft.replace(R.id.fragment_container_worker, profile);
+      ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+      ft.addToBackStack(null);
+      ft.commit();
     });
     return view;
   }
@@ -208,22 +194,19 @@ public class EditServicesOffered extends Fragment {
 
     }
 
-    mDatabase.child("users").child("workerServicesOffered").child(uid).setValue(servicesOffered).addOnCompleteListener(new OnCompleteListener<Void>() {
-      @Override
-      public void onComplete(@NonNull Task<Void> task) {
-        if (task.isSuccessful()) {
-          Toast.makeText(getContext(), "Successfully added to services offered",
-             Toast.LENGTH_LONG).show();
-          Fragment profile = new Profile();
-          FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-          ft.replace(R.id.fragment_container_worker, profile);
-          ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-          ft.addToBackStack(null);
-          ft.commit();
-        } else {
-          Toast.makeText(getContext(), "failed to add in the database",
-             Toast.LENGTH_LONG).show();
-        }
+    mDatabase.child("users").child("workerServicesOffered").child(uid).setValue(servicesOffered).addOnCompleteListener(task -> {
+      if (task.isSuccessful()) {
+        Toast.makeText(getContext(), "Successfully added to services offered",
+           Toast.LENGTH_LONG).show();
+        Fragment profile = new Profile();
+        FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+        ft.replace(R.id.fragment_container_worker, profile);
+        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        ft.addToBackStack(null);
+        ft.commit();
+      } else {
+        Toast.makeText(getContext(), "failed to add in the database",
+           Toast.LENGTH_LONG).show();
       }
     });
   }

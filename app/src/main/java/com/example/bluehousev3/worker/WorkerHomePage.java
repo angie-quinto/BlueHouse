@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.WindowManager;
-import android.widget.Toast;
 
 import com.example.bluehousev3.R;
 import com.example.bluehousev3.client.PopularServices;
@@ -22,7 +21,6 @@ public class WorkerHomePage extends AppCompatActivity {
         BottomNavigationView bottomNavigationView = findViewById(R.id.worker_bottom_nav);
         bottomNavigationView.setItemIconTintList(null);
         bottomNavigationView.setSelectedItemId(R.id.worker_pending);
-
         bottomNavigationView.setOnItemSelectedListener(item -> {
 
             switch (item.getItemId()) {

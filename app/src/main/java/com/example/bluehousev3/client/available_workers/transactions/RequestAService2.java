@@ -57,19 +57,14 @@ import java.util.Date;
 
 public class RequestAService2 extends Fragment {
     private ImageView ivImg1, ivImg2;
-
     private Button btnSubmit;
-
     private String serviceType, description, startDate, startTime, location, workerId;
     private final StorageReference reference = FirebaseStorage.getInstance().getReference();
     private final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     private final String uid = user.getUid();
-
     private  DatabaseReference serviceReqRef;
-
     private Uri img1, img2;
     private String imgUrl1, imgUrl2, month;
-
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -81,8 +76,6 @@ public class RequestAService2 extends Fragment {
         ivImg2 = view.findViewById(R.id.iv_img2);
 
         btnSubmit = view.findViewById(R.id.btn_submit);
-
-
 
         serviceType = getArguments().getString("serviceType");
         description = getArguments().getString("description");
@@ -136,7 +129,6 @@ public class RequestAService2 extends Fragment {
             default:
                 month = "empty";
         }
-
 
         serviceReqRef = FirebaseDatabase.getInstance().getReference().child("users").child("serviceRequests").child(uid).child(String.valueOf(System.currentTimeMillis()));
         if (ContextCompat.checkSelfPermission(getActivity(),

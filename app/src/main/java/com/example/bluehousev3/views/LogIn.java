@@ -34,7 +34,6 @@ public class LogIn extends AppCompatActivity {
     private ProgressBar progressBar;
     private FirebaseAuth mAuth;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,30 +49,19 @@ public class LogIn extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        txtRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LogIn.this, Register.class);
-                startActivity(intent);
-                finish();
+        txtRegister.setOnClickListener(v -> {
+            Intent intent = new Intent(LogIn.this, Register.class);
+            startActivity(intent);
+            finish();
 
-            }
         });
 
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                login();
-            }
-        });
+        btnLogin.setOnClickListener(v -> login());
 
-        tvForgotPass.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LogIn.this, ForgotPassword.class);
-                startActivity(intent);
-                finish();
-            }
+        tvForgotPass.setOnClickListener(v -> {
+            Intent intent = new Intent(LogIn.this, ForgotPassword.class);
+            startActivity(intent);
+            finish();
         });
     }
 

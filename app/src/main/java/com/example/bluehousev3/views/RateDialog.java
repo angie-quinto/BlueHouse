@@ -51,68 +51,53 @@ public class RateDialog extends DialogFragment {
 
 
 
-    btnRate.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        float rating = ratingBar.getRating();
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("users").child(userTypeRating).child(uid);
-        reference.child(String.valueOf(System.currentTimeMillis())).setValue(String.valueOf(rating)).addOnSuccessListener(new OnSuccessListener<Void>() {
-          @Override
-          public void onSuccess(Void unused) {
-            Toast.makeText(getActivity(), "Successfully rated user", Toast.LENGTH_SHORT).show();
+    btnRate.setOnClickListener(v -> {
+      float rating = ratingBar.getRating();
+      DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("users").child(userTypeRating).child(uid);
+      reference.child(String.valueOf(System.currentTimeMillis())).setValue(String.valueOf(rating)).addOnSuccessListener(new OnSuccessListener<Void>() {
+        @Override
+        public void onSuccess(Void unused) {
+          Toast.makeText(getActivity(), "Successfully rated user", Toast.LENGTH_SHORT).show();
 
-            reference.addValueEventListener(new ValueEventListener() {
-              @Override
-              public void onDataChange(@NonNull DataSnapshot snapshot) {
-                // calculates the user rating
-                if (snapshot.exists()) {
-                  ArrayList<Float> ratings = new ArrayList<>();
-                  for (DataSnapshot snapshot1 : snapshot.getChildren()) {
-                    ratings.add(Float.parseFloat(snapshot1.getValue(String.class)));
-                  }
-                  float sum = 0f;
-                  for (int k = 0; k < ratings.size(); k++) {
-                    sum += ratings.get(k);
-                  }
-                  double total = (double) sum / ratings.size();
-                  double roundedT = round(total, 1);
-                  DatabaseReference rRef = FirebaseDatabase.getInstance().getReference().child("users").child(userType).child(uid).child("rating");
-                  rRef.setValue(String.valueOf(roundedT)).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-                      Log.d(TAG, "onSuccess: successfully rated employer");
-                      // mark the emp as rated so that the rate emp button will be disabled after successfully rated the emp.
-                      if (userTypeRating.equals("employerRatings")) {
-                          DatabaseReference ratedRef = FirebaseDatabase.getInstance().getReference().child(path);
-                          ratedRef.child("isEmployerRated").setValue("true");
-                      }
-                    }
-                  });
+          reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+              // calculates the user rating
+              if (snapshot.exists()) {
+                ArrayList<Float> ratings = new ArrayList<>();
+                for (DataSnapshot snapshot1 : snapshot.getChildren()) {
+                  ratings.add(Float.parseFloat(snapshot1.getValue(String.class)));
                 }
+                float sum = 0f;
+                for (int k = 0; k < ratings.size(); k++) {
+                  sum += ratings.get(k);
+                }
+                double total = (double) sum / ratings.size();
+                double roundedT = round(total, 1);
+                DatabaseReference rRef = FirebaseDatabase.getInstance().getReference().child("users").child(userType).child(uid).child("rating");
+                rRef.setValue(String.valueOf(roundedT)).addOnSuccessListener(unused1 -> {
+                  Log.d(TAG, "onSuccess: successfully rated employer");
+                  // mark the emp as rated so that the rate emp button will be disabled after successfully rating the emp.
+                  if (userTypeRating.equals("employerRatings")) {
+                      DatabaseReference ratedRef = FirebaseDatabase.getInstance().getReference().child(path);
+                      ratedRef.child("isEmployerRated").setValue("true");
+                  }
+                });
               }
+            }
 
-              @Override
-              public void onCancelled(@NonNull DatabaseError error) {
-                Log.d(TAG, "onCancelled: Rate Dialog Error");
-              }
-            });
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+              Log.d(TAG, "onCancelled: Rate Dialog Error");
+            }
+          });
 
-
-
-            getDialog().dismiss();
-          }
-        });
-      }
+          getDialog().dismiss();
+        }
+      });
     });
 
-    btnCancel.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        Objects.requireNonNull(getDialog()).dismiss();
-      }
-    });
-
-
+    btnCancel.setOnClickListener(v -> Objects.requireNonNull(getDialog()).dismiss());
 
     return view;
   }

@@ -12,10 +12,7 @@ public class Worker extends User {
     private String rating;
     private String status;
 
-
     public Worker() {}
-
-
 
     public String getRate() {
         return rate;

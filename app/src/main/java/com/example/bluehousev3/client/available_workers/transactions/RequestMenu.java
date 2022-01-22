@@ -70,7 +70,7 @@ public class RequestMenu extends Fragment {
                 tvLocation.setText(snapshot.child("location").getValue(String.class));
                 tvStatus.setText(snapshot.child("status").getValue(String.class));
                 workerName = snapshot.child("workerName").getValue(String.class);
-                if (status != null) {
+                if (status == null) return;
                     if (status.equals("cancelled") || status.equals("completed") || status.equals("rejected")) {
                         btnCancel.setEnabled(false);
                         btnMark.setEnabled(false);
@@ -149,8 +149,6 @@ public class RequestMenu extends Fragment {
                             }
                         });
 
-
-                }
 
             }
 

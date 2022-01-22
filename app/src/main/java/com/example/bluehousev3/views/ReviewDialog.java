@@ -34,27 +34,16 @@ public class ReviewDialog extends DialogFragment {
     btnCancel = view.findViewById(R.id.btn_review_cancel);
     titReview = view.findViewById(R.id.tit_review);
 
-    btnCancel.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
+    btnCancel.setOnClickListener(v -> getDialog().dismiss());
+
+    btnSubmit.setOnClickListener(v -> {
+      DatabaseReference reviewRef = FirebaseDatabase.getInstance().getReference().child("users/workerReviews").child(workerId);
+      String review = titReview.getText().toString();
+      reviewRef.child(String.valueOf(System.currentTimeMillis())).setValue(review).addOnSuccessListener(unused -> {
+        Toast.makeText(getActivity(), "Your review has been submitted", Toast.LENGTH_SHORT).show();
         getDialog().dismiss();
-      }
-    });
+      });
 
-    btnSubmit.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        DatabaseReference reviewRef = FirebaseDatabase.getInstance().getReference().child("users/workerReviews").child(workerId);
-        String review = titReview.getText().toString();
-        reviewRef.child(String.valueOf(System.currentTimeMillis())).setValue(review).addOnSuccessListener(new OnSuccessListener<Void>() {
-          @Override
-          public void onSuccess(Void unused) {
-            Toast.makeText(getActivity(), "Your review has been submitted", Toast.LENGTH_SHORT).show();
-            getDialog().dismiss();
-          }
-        });
-
-      }
     });
 
     return view;

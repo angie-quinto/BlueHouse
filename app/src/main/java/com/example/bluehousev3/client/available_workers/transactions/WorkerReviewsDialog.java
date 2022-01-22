@@ -30,8 +30,6 @@ public class WorkerReviewsDialog extends DialogFragment {
     private String workerId;
     private TextView tv;
     private Button btnBack;
-
-
     public WorkerReviewsDialog(String workerId) {
         this.workerId = workerId;
     }
@@ -68,8 +66,6 @@ public class WorkerReviewsDialog extends DialogFragment {
 
             }
         });
-
-
 
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override

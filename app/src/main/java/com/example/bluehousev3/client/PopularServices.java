@@ -48,7 +48,7 @@ public class PopularServices extends Fragment {
 
   private ArrayAdapter<CharSequence> dateAdapter;
   private int plumber = 0, beautician = 0, carpentry = 0, computerElectronic = 0, cooking = 0, electrical = 0, gardening = 0, homeApp = 0,
-     houseCleaning = 0, jetMatic = 0, laundry = 0, mechanic = 0, pestControl = 0, roofing = 0, septic = 0,upholstery = 0, count = 0;
+     houseCleaning = 0, jetMatic = 0, laundry = 0, mechanic = 0, pestControl = 0, roofing = 0, septic = 0,upholstery = 0;
 
   @RequiresApi(api = Build.VERSION_CODES.O)
   @Override
@@ -56,12 +56,10 @@ public class PopularServices extends Fragment {
                            Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_popular_workers_client, container, false);
 
-
     spDate = view.findViewById(R.id.sp_date);
     dateAdapter = ArrayAdapter.createFromResource(getContext(), R.array.date, android.R.layout.simple_spinner_item);
     dateAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     spDate.setAdapter(dateAdapter);
-
 
     @SuppressLint("SimpleDateFormat") SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
     Date date = new Date();
@@ -82,75 +80,59 @@ public class PopularServices extends Fragment {
       public void onDataChange(@NonNull DataSnapshot snapshot) {
         for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
           String key = dataSnapshot.getKey();
-          if (key != null) {
+          if (key == null) return;
             String serviceType = snapshot.child(key).getValue(String.class);
             switch (Objects.requireNonNull(serviceType)) {
               case "Plumbing/Water Pipe Maintenance":
                 plumber++;
-
                 break;
               case "Carpentry":
                 carpentry++;
-
                 break;
               case "JetMatic Pump Maintenance":
                 jetMatic++;
-
                 break;
               case "Upholstery":
                 upholstery++;
-
                 break;
               case "Septic Tank Maintenance":
                 septic++;
-
                 break;
               case "Gardening":
                 gardening++;
-
                 break;
               case "Home Appliance Maintenance":
                 homeApp++;
-
                 break;
               case "Roof Maintenance":
                 roofing++;
-
                 break;
               case "Housekeeping":
                 houseCleaning++;
-
                 break;
               case "Laundry Services":
                 laundry++;
-
                 break;
               case "Beauty Salon Services":
                 beautician++;
-
                 break;
               case "Electrical Maintenance":
                 electrical++;
-
                 break;
               case "Computer/Electronic Device Repair":
                 computerElectronic++;
-                count++;
                 break;
               case "Mechanic":
                 mechanic++;
-                count++;
                 break;
               case "Pest Control & Fumigation":
                 pestControl++;
-                count++;
                 break;
               case "Cooking Services":
                 cooking++;
-                count++;
                 break;
             }
-          }
+
 
         }
 

@@ -5,15 +5,6 @@ public class AvailableWorkersUnderService {
   private String address;
   private String rating;
 
-  public AvailableWorkersUnderService(String fullName, String address, String rating) {
-    this.fullName = fullName;
-    this.address = address;
-    this.rating = rating;
-  }
-
-  public AvailableWorkersUnderService() {
-  }
-
   public String getFullName() {
     return fullName;
   }

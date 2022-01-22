@@ -46,7 +46,4 @@ public class ClientHomePageActivity extends AppCompatActivity {
       return true;
     });
   }
-
-
-
 }

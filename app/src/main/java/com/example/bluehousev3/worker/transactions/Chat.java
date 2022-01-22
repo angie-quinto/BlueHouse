@@ -102,19 +102,16 @@ public class Chat extends Fragment {
            }
        });
 
-       btnSend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String message = edtMessage.getText().toString();
-                reference.child("chats").child(String.valueOf(System.currentTimeMillis())).setValue(workerName + ": " + message).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-                        edtMessage.getText().clear();
-                    }
-                });
+       btnSend.setOnClickListener(v -> {
+           String message = edtMessage.getText().toString();
+           reference.child("chats").child(String.valueOf(System.currentTimeMillis())).setValue(workerName + ": " + message).addOnSuccessListener(new OnSuccessListener<Void>() {
+               @Override
+               public void onSuccess(Void unused) {
+                   edtMessage.getText().clear();
+               }
+           });
 
-            }
-        });
+       });
 
 
         return view;

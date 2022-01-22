@@ -1,7 +1,5 @@
 package com.example.bluehousev3.client.available_workers.transactions;
 
-import android.app.Dialog;
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,7 +10,7 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
+
 import androidx.fragment.app.DialogFragment;
 import com.example.bluehousev3.R;
 import com.google.firebase.database.DataSnapshot;
@@ -22,14 +20,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 
 public class WorkerIdsDialogFragment extends DialogFragment {
     private ImageView iv1;
     private Button btnBack;
     private String workerId;
     private static final String TAG = "WorkerIdsDialogFragment";
-
 
     public WorkerIdsDialogFragment(String workerId) {
         this.workerId = workerId;

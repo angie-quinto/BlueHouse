@@ -9,18 +9,17 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 import com.example.bluehousev3.R;
 import com.example.bluehousev3.adapters.ClientServiceRequestsAdapter;
 import com.example.bluehousev3.client.available_workers.transactions.RequestMenu;
-import com.example.bluehousev3.client.available_workers.transactions.WorkerProfile;
-import com.example.bluehousev3.model.ServiceRequest;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -30,7 +29,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Map;
+
 
 
 public class ServiceRequests extends Fragment implements ClientServiceRequestsAdapter.OnRequestClickListener {

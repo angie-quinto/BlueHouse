@@ -41,7 +41,6 @@ public class PendingRequests extends Fragment implements PendingRequestsAdapter.
     private Bundle bundle;
     private static final String TAG = "Pending Request";
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_pending_requests, container, false);
@@ -57,7 +56,6 @@ public class PendingRequests extends Fragment implements PendingRequestsAdapter.
 
         PendingRequestsAdapter adapter = new PendingRequestsAdapter(pendingRequests, PendingRequests.this);
         rv.setAdapter(adapter);
-
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
@@ -101,7 +99,6 @@ public class PendingRequests extends Fragment implements PendingRequestsAdapter.
 
         return view;
     }
-
     @Override
     public void onPendingRequestClicked(int position) {
         String req = reqId.get(position);

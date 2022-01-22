@@ -30,7 +30,6 @@ public class WorkerCertificateDialog extends DialogFragment {
         this.workerId = workerId;
     }
 
-    // todo: put cert to bundle
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

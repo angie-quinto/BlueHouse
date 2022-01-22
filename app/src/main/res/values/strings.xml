@@ -32,7 +32,7 @@
     <string-array name="ids">
         <item>Valid ID</item>
         <item>SSS</item>
-        <item>NBI</item>
+        <item>NBI Clearance</item>
         <item>Barangay Clearance</item>
         <item>Pag-IBIG</item>
         <item>PhilHealth</item>

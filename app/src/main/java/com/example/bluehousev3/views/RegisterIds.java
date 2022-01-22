@@ -135,55 +135,45 @@ public class RegisterIds extends AppCompatActivity {
         ids[1] = snapshot.child("ValidIdUrl").getValue(String.class);
 
 
-        btnGeVerified.setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View view) {
-            new AlertDialog.Builder(RegisterIds.this)
-                .setTitle("Privacy Policy")
-                .setMessage("BlueHouse collects user information to verify if a user can register based on Philippine Labor laws (RA7610 & RA9231). BlueHouse is committed in following ethical practices, protecting the personal information of all users, and will not rent, barter, sell, permit, or give away to anyone unaffiliated with BlueHouse to use their data. \n" +
-                        "\n" +
-                        "This Privacy Policy explains how your personal information is collected, used, and disclosed by BlueHouse. This Privacy Policy applies to our application named BlueHouse. \n" +
-                        "\n" +
-                        "By accessing or using our Service, you signify that you agree to our collection, and storage of your personal information.\n" +
-                        "\n" +
-                        "By clicking Agree, you agree to our Terms and that you have read our Privacy Policy.")
-                .setPositiveButton("Agree", new DialogInterface.OnClickListener() {
-                  public void onClick(DialogInterface dialog, int which) {
-                    if (ids[0] == null || ids[1] == null) {
-                      new AlertDialog.Builder(RegisterIds.this)
-                              .setTitle("Incomplete Image Upload")
-                              .setMessage("Please Provide all the requirements being asked")
-                              .setPositiveButton(android.R.string.yes, (dialog1, which1) -> {
-                              }).show();
-                    } else {
-                      if (userType.equals("Employer")) {
-                        Toast.makeText(RegisterIds.this, "Registration Success", Toast.LENGTH_SHORT).show();
-                        Intent empIntent = new Intent(RegisterIds.this, ClientHomePageActivity.class);
-                        startActivity(empIntent);
-                        finish();
-                      } else {
-                        Toast.makeText(RegisterIds.this, "Registration Success", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(RegisterIds.this, WorkerHomePage.class);
-                        startActivity(intent);
-                        finish();
-                      }
-                    }
-                  }
-                })
-                .setNegativeButton("Disagree", new DialogInterface.OnClickListener() {
-                  @Override
-                  public void onClick(DialogInterface dialog, int which) {
-                    Toast.makeText(RegisterIds.this, "You need to agree on our privacy policy in order to use this app", Toast.LENGTH_LONG).show();
-                    FirebaseAuth.getInstance().signOut();
-                    Intent intent = new Intent(RegisterIds.this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
-                  }
-                })
-                .setIcon(R.drawable.privacy_policy)
-                .show();
-          }
-        });
+        btnGeVerified.setOnClickListener(view -> new AlertDialog.Builder(RegisterIds.this)
+            .setTitle("Privacy Policy")
+            .setMessage("BlueHouse collects user information to verify if a user can register based on Philippine Labor laws (RA7610 & RA9231). BlueHouse is committed in following ethical practices, protecting the personal information of all users, and will not rent, barter, sell, permit, or give away to anyone unaffiliated with BlueHouse to use their data. \n" +
+                    "\n" +
+                    "This Privacy Policy explains how your personal information is collected, used, and disclosed by BlueHouse. This Privacy Policy applies to our application named BlueHouse. \n" +
+                    "\n" +
+                    "By accessing or using our Service, you signify that you agree to our collection, and storage of your personal information.\n" +
+                    "\n" +
+                    "By clicking Agree, you agree to our Terms and that you have read our Privacy Policy.")
+            .setPositiveButton("Agree", (dialog, which) -> {
+              if (ids[0] == null || ids[1] == null) {
+                new AlertDialog.Builder(RegisterIds.this)
+                        .setTitle("Incomplete Image Upload")
+                        .setMessage("Please Provide all the requirements being asked")
+                        .setPositiveButton(android.R.string.yes, (dialog1, which1) -> {
+                        }).show();
+              } else {
+                if (userType.equals("Employer")) {
+                  Toast.makeText(RegisterIds.this, "Registration Success", Toast.LENGTH_SHORT).show();
+                  Intent empIntent = new Intent(RegisterIds.this, ClientHomePageActivity.class);
+                  startActivity(empIntent);
+                  finish();
+                } else {
+                  Toast.makeText(RegisterIds.this, "Registration Success", Toast.LENGTH_SHORT).show();
+                  Intent intent = new Intent(RegisterIds.this, WorkerHomePage.class);
+                  startActivity(intent);
+                  finish();
+                }
+              }
+            })
+            .setNegativeButton("Disagree", (dialog, which) -> {
+              Toast.makeText(RegisterIds.this, "You need to agree on our privacy policy in order to use this app", Toast.LENGTH_LONG).show();
+              FirebaseAuth.getInstance().signOut();
+              Intent intent = new Intent(RegisterIds.this, MainActivity.class);
+              startActivity(intent);
+              finish();
+            })
+            .setIcon(R.drawable.privacy_policy)
+            .show());
 
       }
 

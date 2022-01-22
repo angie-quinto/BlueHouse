@@ -52,7 +52,6 @@ private ArrayList<String> servicesOffered;
                 if (map != null) {
                     servicesOffered.addAll(map.values());
                 }
-
                 adapter.notifyDataSetChanged();
             }
 
@@ -62,28 +61,22 @@ private ArrayList<String> servicesOffered;
             }
         });
 
-        btnEdit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            Fragment edit = new EditServicesOffered();
+        btnEdit.setOnClickListener(v -> {
+        Fragment edit = new EditServicesOffered();
+        FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+        ft.replace(R.id.fragment_container_worker, edit);
+        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        ft.addToBackStack(null);
+        ft.commit();
+        });
+
+        btnClose.setOnClickListener(v -> {
+            Fragment profile = new Profile();
             FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-            ft.replace(R.id.fragment_container_worker, edit);
+            ft.replace(R.id.fragment_container_worker, profile);
             ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
             ft.addToBackStack(null);
             ft.commit();
-            }
-        });
-
-        btnClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Fragment profile = new Profile();
-                FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-                ft.replace(R.id.fragment_container_worker, profile);
-                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-                ft.addToBackStack(null);
-                ft.commit();
-            }
         });
 
         return view;
