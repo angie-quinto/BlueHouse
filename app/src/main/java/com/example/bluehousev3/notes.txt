@@ -1,32 +1,4 @@
-Employer
-1. Log in
-2. Register
-3. Available Services
-4. Request a service
-5. Service requests
-6. Request menu
-7. Popular services
-8. Profile
 
-Worker
-1. Pending requests
-2. Selected request
-3. Accepted request
-4. chat
-5. popular services
-6. profile
-7. edit profile
-8. services offered
-
-security
-forgot password
-email verification
-
-employer:
-Steve Rogers
-maquinto9@gmail.com
-pppppppp
-Sindalan, CSF(P)
 
 
 
